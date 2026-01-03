@@ -1,0 +1,50 @@
+[0m[[0m[0mdebug[0m] [0m[0m[32mScalablyTypedConverterExternalNpmPlugin.scala:45[39m [32minput.asJson.spaces2[39m [92m{[0m
+[0m[[0m[0mdebug[0m] [0m[0m  "converterVersion" : "1.0.0-beta44",[0m
+[0m[[0m[0mdebug[0m] [0m[0m  "conversion" : {[0m
+[0m[[0m[0mdebug[0m] [0m[0m    "useScalaJsDomTypes" : true,[0m
+[0m[[0m[0mdebug[0m] [0m[0m    "flavour" : "normal",[0m
+[0m[[0m[0mdebug[0m] [0m[0m    "outputPackage" : "typings",[0m
+[0m[[0m[0mdebug[0m] [0m[0m    "enableScalaJsDefined" : {[0m
+[0m[[0m[0mdebug[0m] [0m[0m      "AllExcept" : {[0m
+[0m[[0m[0mdebug[0m] [0m[0m        "values" : [[0m
+[0m[[0m[0mdebug[0m] [0m[0m        ][0m
+[0m[[0m[0mdebug[0m] [0m[0m      }[0m
+[0m[[0m[0mdebug[0m] [0m[0m    },[0m
+[0m[[0m[0mdebug[0m] [0m[0m    "stdLibs" : [[0m
+[0m[[0m[0mdebug[0m] [0m[0m      "dom",[0m
+[0m[[0m[0mdebug[0m] [0m[0m      "es6"[0m
+[0m[[0m[0mdebug[0m] [0m[0m    ],[0m
+[0m[[0m[0mdebug[0m] [0m[0m    "expandTypeMappings" : {[0m
+[0m[[0m[0mdebug[0m] [0m[0m      "AllExcept" : {[0m
+[0m[[0m[0mdebug[0m] [0m[0m        "values" : [[0m
+[0m[[0m[0mdebug[0m] [0m[0m          "prop-types",[0m
+[0m[[0m[0mdebug[0m] [0m[0m          "react",[0m
+[0m[[0m[0mdebug[0m] [0m[0m          "std"[0m
+[0m[[0m[0mdebug[0m] [0m[0m        ][0m
+[0m[[0m[0mdebug[0m] [0m[0m      }[0m
+[0m[[0m[0mdebug[0m] [0m[0m    },[0m
+[0m[[0m[0mdebug[0m] [0m[0m    "ignored" : [[0m
+[0m[[0m[0mdebug[0m] [0m[0m      "typescript"[0m
+[0m[[0m[0mdebug[0m] [0m[0m    ],[0m
+[0m[[0m[0mdebug[0m] [0m[0m    "versions" : {[0m
+[0m[[0m[0mdebug[0m] [0m[0m      "scala" : "3.3.3",[0m
+[0m[[0m[0mdebug[0m] [0m[0m      "scalaJs" : "1.20.1"[0m
+[0m[[0m[0mdebug[0m] [0m[0m    },[0m
+[0m[[0m[0mdebug[0m] [0m[0m    "organization" : "org.scalablytyped",[0m
+[0m[[0m[0mdebug[0m] [0m[0m    "enableReactTreeShaking" : {[0m
+[0m[[0m[0mdebug[0m] [0m[0m      "NoneExcept" : {[0m
+[0m[[0m[0mdebug[0m] [0m[0m        "values" : [[0m
+[0m[[0m[0mdebug[0m] [0m[0m        ][0m
+[0m[[0m[0mdebug[0m] [0m[0m      }[0m
+[0m[[0m[0mdebug[0m] [0m[0m    },[0m
+[0m[[0m[0mdebug[0m] [0m[0m    "enableLongApplyMethod" : false,[0m
+[0m[[0m[0mdebug[0m] [0m[0m    "privateWithin" : null,[0m
+[0m[[0m[0mdebug[0m] [0m[0m    "useDeprecatedModuleNames" : false[0m
+[0m[[0m[0mdebug[0m] [0m[0m  },[0m
+[0m[[0m[0mdebug[0m] [0m[0m  "wantedLibs" : {[0m
+[0m[[0m[0mdebug[0m] [0m[0m    "chart.js" : "^2.9.4"[0m
+[0m[[0m[0mdebug[0m] [0m[0m  }[0m
+[0m[[0m[0mdebug[0m] [0m[0m}[39m [32m[project => livechart, ms => 0][39m[0m
+[0m[[0m[0mdebug[0m] [0m[0m[32mScalablyTypedConverterExternalNpmPlugin.scala:46[39m [32minput.packageJsonHash[39m [92m810a3fee8fc25fb51c1eba42050e83d9[39m [32m[project => livechart, ms => 2][39m[0m
+[0m[[0m[0mdebug[0m] [0m[0m[32mScalablyTypedConverterExternalNpmPlugin.scala:47[39m [32mrunCacheKey[39m [92me59bf6affca398c73df945fe9f984633[39m [32m[project => livechart, ms => 3][39m[0m
+[0m[[0m[0mdebug[0m] [0m[0m[32mRunCache.scala:224[39m  [92mUsing cached result :[39m [32m[project => livechart, localRunFile.toString => C:\Users\Hoehlenhund\AppData\Local\ScalablyTyped\runs\e59bf6affca398c73df945fe9f984633.json, ms => 6][39m[0m

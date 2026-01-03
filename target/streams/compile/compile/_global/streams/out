@@ -1,0 +1,9 @@
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: C:\Users\Hoehlenhund\livechart\src\main\scala\livechart\LiveChart.scala:35:16 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m35 |[0m      renderGrid(),[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m      ^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mFound:    Unit[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mRequired: com.raquo.laminar.modifiers.Modifier[[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m  com.raquo.laminar.nodes.ReactiveHtmlElement[org.scalajs.dom.HTMLDivElement]][0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

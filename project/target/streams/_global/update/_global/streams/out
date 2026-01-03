@@ -1,0 +1,7 @@
+[0m[[0m[0mdebug[0m] [0m[0mnot up to date. inChanged = true, force = false[0m
+[0m[[0m[0mdebug[0m] [0m[0mUpdating ProjectRef(uri("file:/C:/Users/Hoehlenhund/livechart/project/"), "livechart-build")...[0m
+[0m[[0m[0minfo[0m] [0m[0mUpdating livechart-build[0m
+[0m[[0m[0minfo[0m] [0m[0mResolved livechart-build dependencies[0m
+[0m[[0m[0minfo[0m] [0m[0mFetching artifacts of livechart-build[0m
+[0m[[0m[0minfo[0m] [0m[0mFetched artifacts of livechart-build[0m
+[0m[[0m[0mdebug[0m] [0m[0mDone updating ProjectRef(uri("file:/C:/Users/Hoehlenhund/livechart/project/"), "livechart-build")[0m
