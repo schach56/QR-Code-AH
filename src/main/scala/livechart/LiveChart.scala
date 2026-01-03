@@ -13,6 +13,14 @@ val javascriptLogo: String = js.native
 
 @main
 def LiveChart(): Unit =
+  // inject stylesheet for pixel area (served from resources root)
+  try
+    val link = dom.document.createElement("link").asInstanceOf[org.scalajs.dom.html.Link]
+    link.rel = "stylesheet"
+    dom.document.head.appendChild(link)
+  catch
+    case _: Throwable => ()
+
   renderOnDomContentLoaded(
     dom.document.getElementById("app"),
     Main.appElement()
@@ -27,10 +35,11 @@ object Main:
 
   def appElement(): Element =
     div(
-      h1("Live Chart"),
+      h1("QR Code"),
+      renderPixelArea(),
       renderDataTable(),
-      renderDataChart(),
-      renderDataList(),
+      //renderDataChart(),
+      //renderDataList(),
       counterButton(),
     )
 
@@ -66,6 +75,26 @@ object Main:
       }
     }
   end chartConfig
+  // 4x4 Pixel grid state: false = white, true = black
+  val pixelGridVar: Var[Vector[Boolean]] = Var(Vector.fill(16)(false))
+
+  def renderPixelArea(): Element =
+    div(
+      h2("Pixel Area"),
+      div(
+        // use CSS classes instead of inline styles
+        className := "pixel-grid",
+        children <-- pixelGridVar.signal.map { grid =>
+          grid.zipWithIndex.map { case (isOn, idx) =>
+            div(
+              className := (if isOn then "pixel on" else "pixel"),
+              onClick --> (_ => pixelGridVar.update(g => g.updated(idx, !g(idx))))
+            )
+          }
+        }
+      )
+    )
+  end renderPixelArea
   def renderDataChart(): Element =
     import scala.scalajs.js.JSConverters.*
     import typings.chartJs.mod.*

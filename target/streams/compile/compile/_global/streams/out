@@ -1,9 +1,33 @@
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: C:\Users\Hoehlenhund\livechart\src\main\scala\livechart\LiveChart.scala:35:16 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m35 |[0m      renderGrid(),[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m      ^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mFound:    Unit[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mRequired: com.raquo.laminar.modifiers.Modifier[[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m  com.raquo.laminar.nodes.ReactiveHtmlElement[org.scalajs.dom.HTMLDivElement]][0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: C:\Users\Hoehlenhund\livechart\src\main\scala\livechart\LiveChart.scala:78:14 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m78 |[0m        style.display := [31m"grid"[0m,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m        ^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m   value display is not a member of object com.raquo.laminar.api.L.style[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: C:\Users\Hoehlenhund\livechart\src\main\scala\livechart\LiveChart.scala:79:14 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m79 |[0m        style.gridTemplateColumns := [31m"repeat(4, 32px)"[0m,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m        ^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue gridTemplateColumns is not a member of object com.raquo.laminar.api.L.style[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: C:\Users\Hoehlenhund\livechart\src\main\scala\livechart\LiveChart.scala:80:14 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m80 |[0m        style.gap := [31m"6px"[0m,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m        ^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m       value gap is not a member of object com.raquo.laminar.api.L.style[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: C:\Users\Hoehlenhund\livechart\src\main\scala\livechart\LiveChart.scala:85:20 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m85 |[0m              style.width := [31m"32px"[0m,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m              ^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue width is not a member of object com.raquo.laminar.api.L.style - did you mean style.wait?[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: C:\Users\Hoehlenhund\livechart\src\main\scala\livechart\LiveChart.scala:86:20 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m86 |[0m              style.height := [31m"32px"[0m,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m              ^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m    value height is not a member of object com.raquo.laminar.api.L.style[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: C:\Users\Hoehlenhund\livechart\src\main\scala\livechart\LiveChart.scala:87:20 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m87 |[0m              style.border := [31m"1px solid #999"[0m,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m              ^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m    value border is not a member of object com.raquo.laminar.api.L.style[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: C:\Users\Hoehlenhund\livechart\src\main\scala\livechart\LiveChart.scala:88:20 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m88 |[0m              style.cursor := [31m"pointer"[0m,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m              ^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m    value cursor is not a member of object com.raquo.laminar.api.L.style[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: C:\Users\Hoehlenhund\livechart\src\main\scala\livechart\LiveChart.scala:89:20 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m89 |[0m              style.backgroundColor := ([33mif[0m isOn [33mthen[0m [31m"black"[0m [33melse[0m [31m"white"[0m),[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m              ^^^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue backgroundColor is not a member of object com.raquo.laminar.api.L.style[0m
+[0m[[0m[31merror[0m] [0m[0m8 errors found[0m

@@ -35,9 +35,9 @@ $c_Llivechart_Model.prototype.removeDataItem__Llivechart_DataItemID__V = (functi
   var mod = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((data) => {
     var data$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List(data);
     var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(data$1);
-    var f = ((_$12) => {
-      var _$12$1 = $j_livechart$002e$002dData$002dItem.$as_Llivechart_DataItem(_$12);
-      var x = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$12$1).Llivechart_DataItem__f_id;
+    var f = ((_$13) => {
+      var _$13$1 = $j_livechart$002e$002dData$002dItem.$as_Llivechart_DataItem(_$13);
+      var x = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$13$1).Llivechart_DataItem__f_id;
       if ((x === null)) {
         var $x_1 = (id === null);
       } else {
