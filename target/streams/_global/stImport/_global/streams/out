@@ -44,7 +44,7 @@
 [0m[[0m[0mdebug[0m] [0m[0m  "wantedLibs" : {[0m
 [0m[[0m[0mdebug[0m] [0m[0m    "chart.js" : "^2.9.4"[0m
 [0m[[0m[0mdebug[0m] [0m[0m  }[0m
-[0m[[0m[0mdebug[0m] [0m[0m}[39m [32m[project => livechart, ms => 4][39m[0m
-[0m[[0m[0mdebug[0m] [0m[0m[32mScalablyTypedConverterExternalNpmPlugin.scala:46[39m [32minput.packageJsonHash[39m [92m810a3fee8fc25fb51c1eba42050e83d9[39m [32m[project => livechart, ms => 7][39m[0m
-[0m[[0m[0mdebug[0m] [0m[0m[32mScalablyTypedConverterExternalNpmPlugin.scala:47[39m [32mrunCacheKey[39m [92me59bf6affca398c73df945fe9f984633[39m [32m[project => livechart, ms => 7][39m[0m
-[0m[[0m[0mdebug[0m] [0m[0m[32mRunCache.scala:224[39m  [92mUsing cached result :[39m [32m[project => livechart, localRunFile.toString => C:\Users\Hoehlenhund\AppData\Local\ScalablyTyped\runs\e59bf6affca398c73df945fe9f984633.json, ms => 12][39m[0m
+[0m[[0m[0mdebug[0m] [0m[0m}[39m [32m[project => livechart, ms => 1][39m[0m
+[0m[[0m[0mdebug[0m] [0m[0m[32mScalablyTypedConverterExternalNpmPlugin.scala:46[39m [32minput.packageJsonHash[39m [92m810a3fee8fc25fb51c1eba42050e83d9[39m [32m[project => livechart, ms => 2][39m[0m
+[0m[[0m[0mdebug[0m] [0m[0m[32mScalablyTypedConverterExternalNpmPlugin.scala:47[39m [32mrunCacheKey[39m [92me59bf6affca398c73df945fe9f984633[39m [32m[project => livechart, ms => 3][39m[0m
+[0m[[0m[0mdebug[0m] [0m[0m[32mRunCache.scala:224[39m  [92mUsing cached result :[39m [32m[project => livechart, localRunFile.toString => C:\Users\Hoehlenhund\AppData\Local\ScalablyTyped\runs\e59bf6affca398c73df945fe9f984633.json, ms => 5][39m[0m

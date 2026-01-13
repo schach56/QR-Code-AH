@@ -1,27 +1,27 @@
 [0m[[0m[0minfo[0m] [0m[0mFast optimizing C:\Users\Hoehlenhund\livechart\target\scala-3.3.3\livechart-fastopt[0m
-[0m[[0m[0mdebug[0m] [0m[0mLinker: Compute reachability: 31745 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mLinker: Assemble LinkedClasses: 9700 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mLinker: 72042 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mDesugarer: Desugar: 2613 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mDesugarer: 2697 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mLinker: Compute reachability: 6052 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mLinker: Assemble LinkedClasses: 5323 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mLinker: 33109 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mDesugarer: Desugar: 947 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mDesugarer: 969 us[0m
 [0m[[0m[0mdebug[0m] [0m[0mOptimizer: Batch mode: false[0m
-[0m[[0m[0mdebug[0m] [0m[0mOptimizer: Incremental part: 22255 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mOptimizer: Elidable constructors: 972 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mOptimizer: Optimizing 1743 methods.[0m
-[0m[[0m[0mdebug[0m] [0m[0mOptimizer: Optimizer part: 88326 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mOptimizer: 118211 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mRefiner: Compute reachability: 23724 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mRefiner: Assemble LinkedClasses: 14420 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mRefiner: 38966 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mModule Splitter: Calculate Dependency Info: 627 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mModule Splitter: Analyze Modules: 8154 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mModule Splitter: Assemble Modules: 2144 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mModule Splitter: 11082 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mEmitter: Generate Classes: 173572 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mEmitter: Write trees: 5113 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mEmitter: Class tree cache stats: reused: 454 -- invalidated: 124[0m
-[0m[[0m[0mdebug[0m] [0m[0mEmitter: Method tree cache stats: reused: 1876 -- invalidated: 1069[0m
-[0m[[0m[0mdebug[0m] [0m[0mEmitter: Pre prints: 1363[0m
-[0m[[0m[0mdebug[0m] [0m[0mEmitter: 192261 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mBasicBackend: Write result: 30295 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mBasicBackend: total modules: 9; re-written: 8[0m
+[0m[[0m[0mdebug[0m] [0m[0mOptimizer: Incremental part: 2480 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mOptimizer: Elidable constructors: 171 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mOptimizer: Optimizing 2 methods.[0m
+[0m[[0m[0mdebug[0m] [0m[0mOptimizer: Optimizer part: 745 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mOptimizer: 4614 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mRefiner: Compute reachability: 2649 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mRefiner: Assemble LinkedClasses: 2616 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mRefiner: 5436 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mModule Splitter: Calculate Dependency Info: 119 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mModule Splitter: Analyze Modules: 1039 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mModule Splitter: Assemble Modules: 264 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mModule Splitter: 1469 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mEmitter: Generate Classes: 4188 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mEmitter: Write trees: 387 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mEmitter: Class tree cache stats: reused: 530 -- invalidated: 5[0m
+[0m[[0m[0mdebug[0m] [0m[0mEmitter: Method tree cache stats: reused: 2588 -- invalidated: 5[0m
+[0m[[0m[0mdebug[0m] [0m[0mEmitter: Pre prints: 17[0m
+[0m[[0m[0mdebug[0m] [0m[0mEmitter: 6746 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mBasicBackend: Write result: 7039 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mBasicBackend: total modules: 7; re-written: 5[0m

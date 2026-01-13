@@ -17,6 +17,7 @@ def LiveChart(): Unit =
   try
     val link = dom.document.createElement("link").asInstanceOf[org.scalajs.dom.html.Link]
     link.rel = "stylesheet"
+    link.href = "/style.css"
     dom.document.head.appendChild(link)
   catch
     case _: Throwable => ()
@@ -30,308 +31,255 @@ def LiveChart(): Unit =
 //end LiveChart
 
 object Main:
-  val model = new Model
-  import model.*
+  // simple model-less Main for demoing the SimpleTextEditor
+  val pixelGridVar: Var[Vector[Boolean]] = Var(Vector.fill(16)(false))
+  // QR data for maskierung
+  val qrDataVar: Var[String] = Var("Hier stehen die QR Daten")
+  val currentHashVar: Var[String] = Var(dom.window.location.hash)
+  try dom.window.addEventListener("hashchange", (_: dom.Event) => currentHashVar.set(dom.window.location.hash)) catch { case _: Throwable => () }
 
   def appElement(): Element =
     div(
-      h1("QR Code"),
-      renderPixelArea(),
-      renderDataTable(),
-      //renderDataChart(),
-      //renderDataList(),
-      counterButton(),
-    )
+      renderMenu(),
+      // render content depending on URL hash
+      child <-- currentHashVar.signal.map { h =>
+        val hash = if h == null then "" else h
+        if hash == "#nachricht" then
+          div(
+            h1("Nachrichten schreiben"),
+            styleAttr := "display: flex; flex-direction: column; align-items: center; margin-left: 20px; gap: 1rem;",
+              renderPixelArea(8, 1, "11110000")
+          )
+        else if hash == "#maskierung" then  
+          div(
+            h1("Maskierung"),
+            renderMaskierung()
+          )
+        else if hash == "#fehlerkorrektur" then  
+          div(
+            h1("Fehlerkorrektur"),
 
+          )
+        else if hash == "#anwendung" then  
+          div(
+            h1("Anwendung"),
+          )
+        else
+          div(
+            h1("QR Code"),
+            // left column with pixel area and exercise stacked
+            div(
+              
+              renderExercise("Schreibe einen kurzen Text, über deine Vorkentnisse zu QR Codes.", Set("qr"), Some(1)),
+              renderExerciseMC(
+                "Welche Aussage trifft zu QR-Codes?",
+                List(
+                  ("Sie speichern Text und URLs", true),
+                  ("Sie sind immer fehlerfrei lesbar", false),
+                  ("Sie funktionieren nur offline", false)
+                ),
+                Some(2)
+              ),
+            ),
+          )
+      }
+    )
   end appElement
 
+  def renderPixelArea(cols: Int, rows: Int, correctPattern: String): Element =
+    val total = cols * rows
+    val pixelGrid: Var[Vector[Boolean]] = Var(Vector.fill(total)(false))
+    val lastCheckVar: Var[Option[Boolean]] = Var(None)
 
-  val chartConfig =
-    import typings.chartJs.mod.*
-    new ChartConfiguration {
-      `type` = ChartType.bar
-      data = new ChartData {
-        datasets = js.Array(
-          new ChartDataSets {
-            label = "Price"
-            borderWidth = 1
-            backgroundColor = "green"
-          },
-          new ChartDataSets {
-            label = "Full price"
-            borderWidth = 1
-            backgroundColor = "blue"
+    // parse provided pattern once (expected to be provided by caller)
+    val parsedPattern: Vector[Boolean] =
+      val s = correctPattern.filter(c => c == '0' || c == '1')
+      val normalized =
+        if s.length == total then s
+        else if s.length < total then s.padTo(total, '0')
+        else s.take(total)
+      normalized.toCharArray.map(_ == '1').toVector
+
+    // indices of pixels that are required to be ON
+    val requiredIndices: Vector[Int] = parsedPattern.zipWithIndex.collect { case (true, i) => i }
+
+    div(
+      h2(s"Pixel Area"),
+      div(
+        styleAttr := s"display: grid; grid-template-columns: repeat(${cols}, 28px); grid-auto-rows: 28px; gap: 0px; justify-content: center;",
+        children <-- pixelGrid.signal.map { grid =>
+          grid.zipWithIndex.map { case (isOn, idx) =>
+              div(
+                styleAttr := "width:28px; height:28px; box-sizing:border-box;",
+                className := (if isOn then "pixel on" else "pixel"),
+                onClick --> (_ => pixelGrid.update(g => g.updated(idx, !g(idx))))
+              )
+          }
+        }
+      ),
+      div(
+      styleAttr := "margin-top: 0.5rem; align-self: center;",
+      button(
+          "Abgeben",
+          onClick.map(_ => pixelGrid.now())
+            .map { current =>
+              if requiredIndices.isEmpty then
+                current == parsedPattern
+              else
+                requiredIndices.forall(idx => current(idx))
+            }
+            .map(ok => Some(ok)) --> lastCheckVar.writer,
+          styleAttr <-- lastCheckVar.signal.map {
+            case Some(true)  => "background-color: green"
+            case Some(false) => "background-color: red"
+            case None        => ""
           }
         )
-      }
-      options = new ChartOptions {
-        scales = new ChartScales {
-          yAxes = js.Array(new CommonAxe {
-            ticks = new TickOptions {
-              beginAtZero = true
-            }
-          })
-        }
-      }
-    }
-  end chartConfig
-  // 4x4 Pixel grid state: false = white, true = black
-  val pixelGridVar: Var[Vector[Boolean]] = Var(Vector.fill(16)(false))
-
-  def renderPixelArea(): Element =
-    div(
-      h2("Pixel Area"),
-      div(
-        // use CSS classes instead of inline styles
-        className := "pixel-grid",
-        children <-- pixelGridVar.signal.map { grid =>
-          grid.zipWithIndex.map { case (isOn, idx) =>
-            div(
-              className := (if isOn then "pixel on" else "pixel"),
-              onClick --> (_ => pixelGridVar.update(g => g.updated(idx, !g(idx))))
-            )
-          }
-        }
       )
     )
   end renderPixelArea
-  def renderDataChart(): Element =
-    import scala.scalajs.js.JSConverters.*
-    import typings.chartJs.mod.*
 
-    var optChart: Option[Chart] = None
-
-    canvasTag(
-      // Regular properties of the canvas
-      width := "100%",
-      height := "200px",
-
-      // onMountUnmount callback to bridge the Laminar world and the Chart.js world
-      onMountUnmountCallback(
-        // on mount, create the `Chart` instance and store it in optChart
-        mount = { nodeCtx =>
-          val domCanvas: dom.HTMLCanvasElement = nodeCtx.thisNode.ref
-          val chart = Chart.apply.newInstance2(domCanvas, chartConfig)
-          optChart = Some(chart)
-        },
-        // on unmount, destroy the `Chart` instance
-        unmount = { thisNode =>
-          for (chart <- optChart)
-            chart.destroy()
-          optChart = None
-        }
-      ),
-
-      // Bridge the FRP world of dataSignal to the imperative world of the `chart.data`
-      dataSignal --> { data =>
-        for (chart <- optChart) {
-          chart.data.labels = data.map(_.label).toJSArray
-          chart.data.datasets.get(0).data = data.map(_.price).toJSArray
-          chart.data.datasets.get(1).data = data.map(_.fullPrice).toJSArray
-          chart.update()
-        }
-      },
+  def renderMenu(): Element =
+    val options = List(
+      ("#einfuehrung", "Einführung"),
+      ("#nachricht", "Nachrichten schreiben"),
+      ("#maskierung", "Maskierung"),
+      ("#fehlerkorrektur", "Fehlerkorrektur"),
+      ("#anwendung", "Anwendung")
     )
-  end renderDataChart
 
-
-  def renderDataTable(): Element =
-    table(
-      thead(tr(th("Label"), th("Price"), th("Count"), th("Full price"), th("Action"))),
-      tbody(
-        children <-- dataSignal.split(_.id) { (id, initial, itemSignal) =>
-          renderDataItem(id, itemSignal)
-        },
-      ),
-      tfoot(tr(
-        td(button("➕", onClick --> (_ => addDataItem(DataItem())))),
-        td(),
-        td(),
-        td(child.text <-- dataSignal.map(data => "%.2f".format(data.map(_.fullPrice).sum))),
-      )),
-    )
-  end renderDataTable
-
-   def renderDataItem(id: DataItemID, itemSignal: Signal[DataItem]): Element =
-    tr(
-      td(
-        inputForString(
-          itemSignal.map(_.label),
-          makeDataItemUpdater(id, { (item, newLabel) =>
-            item.copy(label = newLabel)
-          })
-        )
-      ),
-      td(
-        inputForDouble(
-          itemSignal.map(_.price),
-          makeDataItemUpdater(id, { (item, newPrice) =>
-            item.copy(price = newPrice)
-          })
-        )
-      ),
-      td(
-        inputForInt(
-          itemSignal.map(_.count),
-          makeDataItemUpdater(id, { (item, newCount) =>
-            item.copy(count = newCount)
-          })
-        )
-      ),
-      td(
-        child.text <-- itemSignal.map(item => "%.2f".format(item.fullPrice))
-      ),
-      td(button("🗑️", onClick --> (_ => removeDataItem(id)))),
-    )
-    
-  end renderDataItem
-
-   def inputForString(valueSignal: Signal[String],
-      valueUpdater: Observer[String]): Input =
-    input(
-      typ := "text",
-      value <-- valueSignal,
-      onInput.mapToValue --> valueUpdater,
-    )
-  end inputForString
-
-  def makeDataItemUpdater[A](id: DataItemID,
-      f: (DataItem, A) => DataItem): Observer[A] =
-    dataVar.updater { (data, newValue) =>
-      data.map { item =>
-        if item.id == id then f(item, newValue) else item
-      }
-    }
-  end makeDataItemUpdater
-
-  def renderDataList(): Element =
-    ul(
-      children <-- dataSignal.split(_.id) { (id, initial, itemSignal) =>
-        li(child.text <-- itemSignal.map(item => s"${item.count} ${item.label}"))
-      }
-    )
-  end renderDataList
-end Main
-import scala.util.Random
-
-final class DataItemID
-
-case class DataItem(id: DataItemID, label: String, price: Double, count: Int):
-  def fullPrice: Double = price * count
-
-object DataItem:
-  def apply(): DataItem =
-    DataItem(DataItemID(), "?", Random.nextDouble(), Random.nextInt(5) + 1)
-end DataItem
-
-type DataList = List[DataItem]
-
-
-final class Model:
-  val dataVar: Var[DataList] = Var(List(DataItem(DataItemID(), "one", 1.0, 1)))
-  val dataSignal = dataVar.signal
-
-  def addDataItem(item: DataItem): Unit =
-    dataVar.update(data => data :+ item)
-
-  def removeDataItem(id: DataItemID): Unit =
-    dataVar.update(data => data.filter(_.id != id))
-end Model
-
-
-  def inputForDouble(valueSignal: Signal[Double],
-      valueUpdater: Observer[Double]): Input =
-    val strValue = Var[String]("")
-    input(
-      typ := "text",
-      value <-- strValue.signal,
-      onInput.mapToValue --> strValue,
-      valueSignal --> strValue.updater[Double] { (prevStr, newValue) =>
-        if prevStr.toDoubleOption.contains(newValue) then prevStr
-        else newValue.toString
-      },
-      strValue.signal --> { valueStr =>
-        valueStr.toDoubleOption.foreach(valueUpdater.onNext)
-      },
-    )
-  end inputForDouble
-  def inputForInt(valueSignal: Signal[Int],
-      valueUpdater: Observer[Int]): Input =
-    input(
-      typ := "text",
-      controlled(
-        value <-- valueSignal.map(_.toString),
-        onInput.mapToValue.map(_.toIntOption).collect {
-          case Some(newCount) => newCount
-        } --> valueUpdater,
-      ),
-    )
-  end inputForInt
-
-
-/*
-object Main:
-  def appElement(): Element =
     div(
-      a(href := "https://vitejs.dev", target := "_blank",
-        img(src := "/vite.svg", className := "logo", alt := "Vite logo"),
+      div(
+        // simple anchor links
+        a(href := "#einfuehrung", "Einführung"), span(" | "),
+        a(href := "#nachricht", "Nachrichten schreiben"), span(" | "),
+        a(href := "#maskierung", "Maskierung"), span(" | "),
+        a(href := "#fehlerkorrektur", "Fehlerkorrektur"), span(" | "),
+        a(href := "#anwendung", "Anwendung")
       ),
-      a(href := "https://developer.mozilla.org/en-US/docs/Web/JavaScript", target := "_blank",
-        img(src := javascriptLogo, className := "logo vanilla", alt := "JavaScript logo"),
-      ),
-      h1("Hello Laminar!"),
-      div(className := "card",
-        button(tpe := "button"),
-      ),
-      p(className := "read-the-docs",
-        "Click on the Vite logo to learn more",
-      ),
-      counterButton()
-      renderDataTable()
+      // selection dropdown that changes location.hash on change
+      select(
+        onChange --> { ev =>
+          val v = ev.target.asInstanceOf[org.scalajs.dom.html.Select].value
+          dom.window.location.hash = v
+        },
+        children <-- Signal.fromValue(options).map(_.map { case (v, lbl) =>
+          option(value := v, lbl)
+        })
+      )
     )
-  end appElement
+  end renderMenu
+
+  def renderMaskierung(): Element =
+    val qrSrcVar: Var[String] = Var(s"https://api.qrserver.com/v1/create-qr-code/?size=420x420&data=${scala.scalajs.js.URIUtils.encodeURIComponent(qrDataVar.now())}")
+
+    div(
+      cls := "maskierung-section",
+      div(
+        label("QR Daten: "),
+        input(
+          typ := "text",
+          value <-- qrDataVar.signal,
+          onInput.mapToValue --> qrDataVar.writer,
+        ),
+        button("Generiere QR", onClick --> { _ =>
+          val url = s"https://api.qrserver.com/v1/create-qr-code/?size=420x420&data=${scala.scalajs.js.URIUtils.encodeURIComponent(qrDataVar.now())}"
+          qrSrcVar.set(url)
+        })
+      ),
+      // show QR image (scanbar)
+      img(src <-- qrSrcVar.signal, alt := "QR Code", width := "210", height := "210")
+    )
+  end renderMaskierung
+
+  def renderExercise(taskText: String, keywords: Set[String], index: Option[Int] = None): Element =
+    val textVar = Var("")
+    val editor = SimpleTextEditor(textVar)
+    val lastCheckVar: Var[Option[Boolean]] = Var(None)
+
+    // exercise content only (menu is shown at the top now)
+    div(
+      className := "exercise-content",
+      h2(index.map(i => s"Aufgabe $i").getOrElse("Aufgabe")),
+      p(taskText),
+      editor.getDomElement(),
+      button(
+        "Abgeben",
+        onClick.map(_ => textVar.now())
+          .map(text => keywords.exists(k => text.toLowerCase.contains(k.toLowerCase)))
+          .map(ok => Some(ok)) --> lastCheckVar.writer,
+        styleAttr <-- lastCheckVar.signal.map {
+          case Some(true)  => "background-color: green"
+          case Some(false) => "background-color: red"
+          case None        => ""
+        }
+      )
+    )
+  end renderExercise
+  def renderExerciseMC(taskText: String, choices: List[(String, Boolean)], index: Option[Int] = None): Element =
+    val selectedVar: Var[Option[Int]] = Var(None)
+    val lastCheckVar: Var[Option[Boolean]] = Var(None)
+
+    div(
+      className := "exercise-content",
+      h2(index.map(i => s"Aufgabe $i").getOrElse("Aufgabe")),
+      p(taskText),
+      div(
+        children <-- Signal.fromValue(choices).map(_.zipWithIndex.map { case ((label, _), idx) =>
+          div(
+            input(
+              typ := "radio",
+              onChange --> (_ => selectedVar.set(Some(idx))),
+              checked <-- selectedVar.signal.map(_.contains(idx))
+            ),
+            span(" " + label)
+          )
+        })
+      ),
+      button(
+        "Abgeben",
+        onClick.map(_ => selectedVar.now())
+          .map {
+            case Some(idx) if idx >= 0 && idx < choices.length => choices(idx)._2
+            case _ => false
+          }
+          .map(ok => Some(ok)) --> lastCheckVar.writer,
+        styleAttr <-- lastCheckVar.signal.map {
+          case Some(true)  => "background-color: green"
+          case Some(false) => "background-color: red"
+          case None        => ""
+        }
+      )
+    )
+  end renderExerciseMC
+
+  def counterButton(): Element =
+    val counter = Var(0)
+    button(
+      tpe := "button",
+      "Aufgabe abgeben ",
+      child.text <-- counter,
+      onClick --> { _ => counter.update(c => c + 1) },
+    )
+  end counterButton
 end Main
- def renderDataTable(): Element =
-    table(
-      thead(tr(th("Label"), th("Price"), th("Count"), th("Full price"), th("Action"))),
-      tbody(
-        children <-- dataSignal.map(data => data.map { item =>
-          renderDataItem(item.id, item)
-        }),
-      ),
-      tfoot(tr(
-        td(button("➕", onClick --> (_ => addDataItem(DataItem())))),
-        td(),
-        td(),
-        td(child.text <-- dataSignal.map(data => "%.2f".format(data.map(_.fullPrice).sum))),
-      )),
-    )
-  end renderDataTable
 
-  def renderDataItem(id: DataItemID, item: DataItem): Element =
-    tr(
-      td(item.label),
-      td(item.price),
-      td(item.count),
-      td("%.2f".format(item.fullPrice)),
-      td(button("🗑️", onClick --> (_ => removeDataItem(id)))),
+// Standalone SimpleTextEditor using Var[String]
+case class SimpleTextEditor(stateToBind: Var[String]) {
+  private val editorTextArea = textArea(
+    rows := 8,
+    cols := 80,
+    controlled(
+      value <-- stateToBind.signal,
+      onInput.mapToValue --> stateToBind.writer
     )
-  end renderDataItem
-def counterButton(): Element =
-    val counter = Var(0)
-    button(
-      tpe := "button",
-      "count is ",
-      child.text <-- counter,
-      onClick --> { event => counter.update(c => c + 1) },
-    )
-*/
+  )
 
-def counterButton(): Element =
-    val counter = Var(0)
-    button(
-      tpe := "button",
-      "count is ",
-      child.text <-- counter,
-      onClick --> { event => counter.update(c => c + 1) },
+  private val domElement: Element =
+    div(
+      cls := "simple-text-editor",
+      editorTextArea
     )
+
+  def getDomElement(): Element = domElement
+}
