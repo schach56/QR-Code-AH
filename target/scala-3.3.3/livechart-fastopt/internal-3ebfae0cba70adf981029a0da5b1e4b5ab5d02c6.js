@@ -167,6 +167,14 @@ function $objectClassName(arg0) {
   }
 }
 export { $objectClassName as $objectClassName };
+function $dp_codePointAt__I__I(instance, x0) {
+  if (((typeof instance) === "string")) {
+    return $f_T__codePointAt__I__I(instance, x0);
+  } else {
+    return instance.codePointAt__I__I(x0);
+  }
+}
+export { $dp_codePointAt__I__I as $dp_codePointAt__I__I };
 function $dp_equals__O__Z(instance, x0) {
   switch ((typeof instance)) {
     case "string": {
@@ -239,6 +247,22 @@ function $dp_indexOf__I__I(instance, x0) {
   }
 }
 export { $dp_indexOf__I__I as $dp_indexOf__I__I };
+function $dp_repeat__I__T(instance, x0) {
+  if (((typeof instance) === "string")) {
+    return $f_T__repeat__I__T(instance, x0);
+  } else {
+    return instance.repeat__I__T(x0);
+  }
+}
+export { $dp_repeat__I__T as $dp_repeat__I__T };
+function $dp_split__T__I__AT(instance, x0, x1) {
+  if (((typeof instance) === "string")) {
+    return $f_T__split__T__I__AT(instance, x0, x1);
+  } else {
+    return instance.split__T__I__AT(x0, x1);
+  }
+}
+export { $dp_split__T__I__AT as $dp_split__T__I__AT };
 function $dp_toCharArray__AC(instance) {
   if (((typeof instance) === "string")) {
     return $f_T__toCharArray__AC(instance);
@@ -5160,6 +5184,1492 @@ function $h_ju_Formatter$LocaleInfo() {
 }
 export { $h_ju_Formatter$LocaleInfo as $h_ju_Formatter$LocaleInfo };
 $h_ju_Formatter$LocaleInfo.prototype = $c_ju_Formatter$LocaleInfo.prototype;
+function $p_ju_regex_PatternCompiler__parseError__T__E($thiz, desc) {
+  throw new $c_ju_regex_PatternSyntaxException(desc, $thiz.ju_regex_PatternCompiler__f_pattern, $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex);
+}
+export { $p_ju_regex_PatternCompiler__parseError__T__E as $p_ju_regex_PatternCompiler__parseError__T__E };
+function $p_ju_regex_PatternCompiler__processLeadingEmbeddedFlags__V($thiz) {
+  var m = $m_ju_regex_PatternCompiler$().ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$leadingEmbeddedFlagSpecifierRegExp.exec($thiz.ju_regex_PatternCompiler__f_pattern);
+  if ((m !== null)) {
+    var x = m[1];
+    if ((x !== (void 0))) {
+      var t = $as_T(x);
+      var this$3 = $n(t);
+      var end = this$3.length;
+      var i = 0;
+      while ((i < end)) {
+        var value = i;
+        var $x_2 = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags;
+        var $x_1 = $m_ju_regex_PatternCompiler$();
+        var this$5 = $n(t);
+        $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags = ($x_2 | $x_1.java$util$regex$PatternCompiler$$charToFlag__C__I($charAt(this$5, value)));
+        i = ((1 + i) | 0);
+      }
+    }
+    if (((256 & $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags) !== 0)) {
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags = (64 | $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags);
+    }
+    var x$1 = m[2];
+    if ((x$1 !== (void 0))) {
+      var t$1 = $as_T(x$1);
+      var this$8 = $n(t$1);
+      var end$1 = this$8.length;
+      var i$1 = 0;
+      while ((i$1 < end$1)) {
+        var value$1 = i$1;
+        var $x_4 = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags;
+        var $x_3 = $m_ju_regex_PatternCompiler$();
+        var this$10 = $n(t$1);
+        $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags = ($x_4 & (~$x_3.java$util$regex$PatternCompiler$$charToFlag__C__I($charAt(this$10, value$1))));
+        i$1 = ((1 + i$1) | 0);
+      }
+    }
+    var $x_5 = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex;
+    var x$2 = m[0];
+    var this$12 = $n($as_T(x$2));
+    $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = (($x_5 + this$12.length) | 0);
+  }
+}
+export { $p_ju_regex_PatternCompiler__processLeadingEmbeddedFlags__V as $p_ju_regex_PatternCompiler__processLeadingEmbeddedFlags__V };
+function $p_ju_regex_PatternCompiler__literal__T__T($thiz, s) {
+  var result = "";
+  var this$1 = $n(s);
+  var len = this$1.length;
+  var i = 0;
+  while ((i !== len)) {
+    var cp = $f_T__codePointAt__I__I($n(s), i);
+    result = (("" + result) + $p_ju_regex_PatternCompiler__literal__I__T($thiz, cp));
+    i = ((i + ((cp >= 65536) ? 2 : 1)) | 0);
+  }
+  return result;
+}
+export { $p_ju_regex_PatternCompiler__literal__T__T as $p_ju_regex_PatternCompiler__literal__T__T };
+function $p_ju_regex_PatternCompiler__literal__I__T($thiz, cp) {
+  var s = $m_ju_regex_PatternCompiler$().java$util$regex$PatternCompiler$$codePointToString__I__T(cp);
+  if ((cp < 128)) {
+    switch (cp) {
+      case 94:
+      case 36:
+      case 92:
+      case 46:
+      case 42:
+      case 43:
+      case 63:
+      case 40:
+      case 41:
+      case 91:
+      case 93:
+      case 123:
+      case 125:
+      case 124: {
+        return ("\\" + s);
+        break;
+      }
+      default: {
+        return (((66 & $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags) !== 2) ? s : (((cp >= 65) && (cp <= 90)) ? ((("[" + s) + $m_ju_regex_PatternCompiler$().java$util$regex$PatternCompiler$$codePointToString__I__T(((32 + cp) | 0))) + "]") : (((cp >= 97) && (cp <= 122)) ? ((("[" + $m_ju_regex_PatternCompiler$().java$util$regex$PatternCompiler$$codePointToString__I__T((((-32) + cp) | 0))) + s) + "]") : s)));
+      }
+    }
+  } else {
+    return ((((-1024) & cp) === 56320) ? (("(?:" + s) + ")") : s);
+  }
+}
+export { $p_ju_regex_PatternCompiler__literal__I__T as $p_ju_regex_PatternCompiler__literal__I__T };
+function $p_ju_regex_PatternCompiler__skipComments__V($thiz) {
+  var pattern = $thiz.ju_regex_PatternCompiler__f_pattern;
+  var this$1 = $n(pattern);
+  var len = this$1.length;
+  while (true) {
+    if (($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex !== len)) {
+      var this$2 = $n(pattern);
+      var index = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex;
+      var x1 = $charAt(this$2, index);
+      switch (x1) {
+        case 32:
+        case 9:
+        case 10:
+        case 11:
+        case 12:
+        case 13: {
+          $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+          continue;
+          break;
+        }
+        case 35: {
+          $thiz.java$util$regex$PatternCompiler$$skipSharpComment__V();
+          continue;
+          break;
+        }
+      }
+    }
+    break;
+  }
+}
+export { $p_ju_regex_PatternCompiler__skipComments__V as $p_ju_regex_PatternCompiler__skipComments__V };
+function $p_ju_regex_PatternCompiler__compileRepeater__I__T__T($thiz, compiledGroupCountBeforeThisToken, compiledToken) {
+  var pattern = $thiz.ju_regex_PatternCompiler__f_pattern;
+  var this$1 = $n(pattern);
+  var len = this$1.length;
+  var startOfRepeater = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex;
+  if ((startOfRepeater === len)) {
+    var repeaterDispatchChar = 46;
+  } else {
+    var this$2 = $n(pattern);
+    var repeaterDispatchChar = $charAt(this$2, startOfRepeater);
+  }
+  if (((((repeaterDispatchChar === 63) || (repeaterDispatchChar === 42)) || (repeaterDispatchChar === 43)) || (repeaterDispatchChar === 123))) {
+    var this$3 = $n(compiledToken);
+    var x1 = $charAt(this$3, 0);
+    switch (x1) {
+      case 94:
+      case 36: {
+        var isTokenAnAssertion = true;
+        break;
+      }
+      case 40: {
+        var this$4 = $n(compiledToken);
+        if (($charAt(this$4, 1) === 63)) {
+          var this$5 = $n(compiledToken);
+          var isTokenAnAssertion = ($charAt(this$5, 2) !== 58);
+        } else {
+          var isTokenAnAssertion = false;
+        }
+        break;
+      }
+      case 92: {
+        var this$6 = $n(compiledToken);
+        var c = $charAt(this$6, 1);
+        var isTokenAnAssertion = ((c === 98) || (c === 66));
+        break;
+      }
+      default: {
+        var isTokenAnAssertion = false;
+      }
+    }
+    var wrappedToken = (isTokenAnAssertion ? (("(?:" + compiledToken) + ")") : compiledToken);
+    var baseRepeater = $p_ju_regex_PatternCompiler__parseBaseRepeater__C__T($thiz, repeaterDispatchChar);
+    if (($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex !== len)) {
+      var this$7 = $n(pattern);
+      var index = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex;
+      var x1$2 = $charAt(this$7, index);
+      switch (x1$2) {
+        case 43: {
+          $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+          return $p_ju_regex_PatternCompiler__buildPossessiveQuantifier__I__T__T__T($thiz, compiledGroupCountBeforeThisToken, wrappedToken, baseRepeater);
+          break;
+        }
+        case 63: {
+          $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+          return ((("" + wrappedToken) + baseRepeater) + "?");
+          break;
+        }
+        default: {
+          return (("" + wrappedToken) + baseRepeater);
+        }
+      }
+    } else {
+      return (("" + wrappedToken) + baseRepeater);
+    }
+  } else {
+    return compiledToken;
+  }
+}
+export { $p_ju_regex_PatternCompiler__compileRepeater__I__T__T as $p_ju_regex_PatternCompiler__compileRepeater__I__T__T };
+function $p_ju_regex_PatternCompiler__parseBaseRepeater__C__T($thiz, repeaterDispatchChar) {
+  var pattern = $thiz.ju_regex_PatternCompiler__f_pattern;
+  var startOfRepeater = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex;
+  $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+  if ((repeaterDispatchChar === 123)) {
+    var this$1 = $n(pattern);
+    var len = this$1.length;
+    if (($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex === len)) {
+      var $x_1 = true;
+    } else {
+      var this$2 = $n(pattern);
+      var index = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex;
+      var c = $charAt(this$2, index);
+      var $x_1 = (!((c >= 48) && (c <= 57)));
+    }
+    if ($x_1) {
+      $p_ju_regex_PatternCompiler__parseError__T__E($thiz, "Illegal repetition");
+    }
+    while (true) {
+      if (($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex !== len)) {
+        var this$4 = $n(pattern);
+        var index$1 = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex;
+        var c$1 = $charAt(this$4, index$1);
+        var $x_2 = ((c$1 >= 48) && (c$1 <= 57));
+      } else {
+        var $x_2 = false;
+      }
+      if ($x_2) {
+        $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+      } else {
+        break;
+      }
+    }
+    if (($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex === len)) {
+      $p_ju_regex_PatternCompiler__parseError__T__E($thiz, "Illegal repetition");
+    }
+    var this$6 = $n(pattern);
+    var index$2 = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex;
+    if (($charAt(this$6, index$2) === 44)) {
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+      while (true) {
+        if (($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex !== len)) {
+          var this$7 = $n(pattern);
+          var index$3 = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex;
+          var c$2 = $charAt(this$7, index$3);
+          var $x_3 = ((c$2 >= 48) && (c$2 <= 57));
+        } else {
+          var $x_3 = false;
+        }
+        if ($x_3) {
+          $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+        } else {
+          break;
+        }
+      }
+    }
+    if (($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex === len)) {
+      var $x_4 = true;
+    } else {
+      var this$9 = $n(pattern);
+      var index$4 = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex;
+      var $x_4 = ($charAt(this$9, index$4) !== 125);
+    }
+    if ($x_4) {
+      $p_ju_regex_PatternCompiler__parseError__T__E($thiz, "Illegal repetition");
+    }
+    $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+  }
+  return $as_T(pattern.substring(startOfRepeater, $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex));
+}
+export { $p_ju_regex_PatternCompiler__parseBaseRepeater__C__T as $p_ju_regex_PatternCompiler__parseBaseRepeater__C__T };
+function $p_ju_regex_PatternCompiler__buildPossessiveQuantifier__I__T__T__T($thiz, compiledGroupCountBeforeThisToken, compiledToken, baseRepeater) {
+  var end = $uI($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$groupNumberMap.length);
+  var i = 0;
+  while ((i < end)) {
+    var value = i;
+    var mapped = $uI($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$groupNumberMap[value]);
+    if ((mapped > compiledGroupCountBeforeThisToken)) {
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$groupNumberMap[value] = ((1 + mapped) | 0);
+    }
+    i = ((1 + i) | 0);
+  }
+  var amendedToken = $as_T(compiledToken.replace($m_ju_regex_PatternCompiler$().ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$renumberingRegExp, ((arg1$2, arg2$2, arg3$2) => {
+    var arg1 = $as_T(arg1$2);
+    var arg2 = $as_T(arg2$2);
+    var arg3 = $as_T(arg3$2);
+    var this$3 = $n(arg2);
+    if ((((this$3.length % 2) | 0) === 0)) {
+      return arg1;
+    } else {
+      var groupNumber = $uI(parseInt(arg3, 10));
+      return ((groupNumber > compiledGroupCountBeforeThisToken) ? (("" + arg2) + ((1 + groupNumber) | 0)) : arg1);
+    }
+  })));
+  $thiz.ju_regex_PatternCompiler__f_compiledGroupCount = ((1 + $thiz.ju_regex_PatternCompiler__f_compiledGroupCount) | 0);
+  var myGroupNumber = ((1 + compiledGroupCountBeforeThisToken) | 0);
+  return ((((("(?:(?=(" + amendedToken) + baseRepeater) + "))\\") + myGroupNumber) + ")");
+}
+export { $p_ju_regex_PatternCompiler__buildPossessiveQuantifier__I__T__T__T as $p_ju_regex_PatternCompiler__buildPossessiveQuantifier__I__T__T__T };
+function $p_ju_regex_PatternCompiler__compileEscape__T($thiz) {
+  var pattern = $thiz.ju_regex_PatternCompiler__f_pattern;
+  var this$1 = $n(pattern);
+  var len = this$1.length;
+  if ((((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0) === len)) {
+    $p_ju_regex_PatternCompiler__parseError__T__E($thiz, "\\ at end of pattern");
+  }
+  $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+  var this$2 = $n(pattern);
+  var index = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex;
+  var dispatchChar = $charAt(this$2, index);
+  switch (dispatchChar) {
+    case 100:
+    case 68:
+    case 104:
+    case 72:
+    case 115:
+    case 83:
+    case 118:
+    case 86:
+    case 119:
+    case 87:
+    case 112:
+    case 80: {
+      var cls = $p_ju_regex_PatternCompiler__parsePredefinedCharacterClass__C__ju_regex_PatternCompiler$CompiledCharClass($thiz, dispatchChar);
+      var x1$2 = $n(cls).ju_regex_PatternCompiler$CompiledCharClass__f_kind;
+      switch (x1$2) {
+        case 0: {
+          return (("\\p{" + $n(cls).ju_regex_PatternCompiler$CompiledCharClass__f_data) + "}");
+          break;
+        }
+        case 1: {
+          return (("\\P{" + $n(cls).ju_regex_PatternCompiler$CompiledCharClass__f_data) + "}");
+          break;
+        }
+        case 2: {
+          return (("[" + $n(cls).ju_regex_PatternCompiler$CompiledCharClass__f_data) + "]");
+          break;
+        }
+        case 3: {
+          return $m_ju_regex_PatternCompiler$().java$util$regex$PatternCompiler$$codePointNotAmong__T__T($n(cls).ju_regex_PatternCompiler$CompiledCharClass__f_data);
+          break;
+        }
+        default: {
+          throw new $c_jl_AssertionError(x1$2);
+        }
+      }
+      break;
+    }
+    case 98: {
+      if (($as_T(pattern.substring($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex, ((4 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0))) === "b{g}")) {
+        $p_ju_regex_PatternCompiler__parseError__T__E($thiz, "\\b{g} is not supported");
+      } else if (((320 & $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags) !== 0)) {
+        $thiz.java$util$regex$PatternCompiler$$parseErrorRequireESVersion__T__T__E("\\b with UNICODE_CASE", "2018");
+      } else {
+        $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+        return "\\b";
+      }
+      break;
+    }
+    case 66: {
+      if (((320 & $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags) !== 0)) {
+        $thiz.java$util$regex$PatternCompiler$$parseErrorRequireESVersion__T__T__E("\\B with UNICODE_CASE", "2018");
+      } else {
+        $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+        return "\\B";
+      }
+      break;
+    }
+    case 65: {
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+      return "^";
+      break;
+    }
+    case 71: {
+      $p_ju_regex_PatternCompiler__parseError__T__E($thiz, "\\G in the middle of a pattern is not supported");
+      break;
+    }
+    case 90: {
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+      var lineTerminator = (((1 & $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags) !== 0) ? "\n" : "(?:\r\n?|[\n\u0085\u2028\u2029])");
+      return (("(?=" + lineTerminator) + "?$)");
+      break;
+    }
+    case 122: {
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+      return "$";
+      break;
+    }
+    case 82: {
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+      return "(?:\r\n|[\n-\r\u0085\u2028\u2029])";
+      break;
+    }
+    case 88: {
+      $p_ju_regex_PatternCompiler__parseError__T__E($thiz, "\\X is not supported");
+      break;
+    }
+    case 49:
+    case 50:
+    case 51:
+    case 52:
+    case 53:
+    case 54:
+    case 55:
+    case 56:
+    case 57: {
+      var start = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex;
+      var end = ((1 + start) | 0);
+      while (true) {
+        if ((end !== len)) {
+          var this$7 = $n(pattern);
+          var index$1 = end;
+          var c = $charAt(this$7, index$1);
+          var $x_2 = ((c >= 48) && (c <= 57));
+        } else {
+          var $x_2 = false;
+        }
+        if ($x_2) {
+          var s = $as_T(pattern.substring(start, ((1 + end) | 0)));
+          var $x_1 = ($uI(parseInt(s, 10)) <= (((-1) + $uI($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$groupNumberMap.length)) | 0));
+        } else {
+          var $x_1 = false;
+        }
+        if ($x_1) {
+          end = ((1 + end) | 0);
+        } else {
+          break;
+        }
+      }
+      var groupString = $as_T(pattern.substring(start, end));
+      var groupNumber = $uI(parseInt(groupString, 10));
+      if ((groupNumber > (((-1) + $uI($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$groupNumberMap.length)) | 0))) {
+        $p_ju_regex_PatternCompiler__parseError__T__E($thiz, (("numbered capturing group <" + groupNumber) + "> does not exist"));
+      }
+      var compiledGroupNumber = $uI($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$groupNumberMap[groupNumber]);
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = end;
+      return (("(?:\\" + compiledGroupNumber) + ")");
+      break;
+    }
+    case 107: {
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+      if (($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex === len)) {
+        var $x_3 = true;
+      } else {
+        var this$11 = $n(pattern);
+        var index$2 = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex;
+        var $x_3 = ($charAt(this$11, index$2) !== 60);
+      }
+      if ($x_3) {
+        $p_ju_regex_PatternCompiler__parseError__T__E($thiz, "\\k is not followed by '<' for named capturing group");
+      }
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+      var groupName = $p_ju_regex_PatternCompiler__parseGroupName__T($thiz);
+      var dict = $thiz.ju_regex_PatternCompiler__f_namedGroups;
+      if ((!$uZ($m_jl_Utils$Cache$().jl_Utils$Cache$__f_safeHasOwnProperty.call(dict, groupName)))) {
+        $p_ju_regex_PatternCompiler__parseError__T__E($thiz, (("named capturing group <" + groupName) + "> does not exit"));
+      }
+      var groupNumber$2 = $uI(dict[groupName]);
+      var compiledGroupNumber$2 = $uI($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$groupNumberMap[groupNumber$2]);
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+      return (("(?:\\" + compiledGroupNumber$2) + ")");
+      break;
+    }
+    case 81: {
+      var start$2 = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+      var this$13 = $n(pattern);
+      var end$2 = $uI(this$13.indexOf("\\E", start$2));
+      if ((end$2 < 0)) {
+        var this$14 = $n(pattern);
+        $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = this$14.length;
+        return $p_ju_regex_PatternCompiler__literal__T__T($thiz, $as_T(pattern.substring(start$2)));
+      } else {
+        $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((2 + end$2) | 0);
+        return $p_ju_regex_PatternCompiler__literal__T__T($thiz, $as_T(pattern.substring(start$2, end$2)));
+      }
+      break;
+    }
+    default: {
+      return $p_ju_regex_PatternCompiler__literal__I__T($thiz, $p_ju_regex_PatternCompiler__parseSingleCodePointEscape__I($thiz));
+    }
+  }
+}
+export { $p_ju_regex_PatternCompiler__compileEscape__T as $p_ju_regex_PatternCompiler__compileEscape__T };
+function $p_ju_regex_PatternCompiler__parseSingleCodePointEscape__I($thiz) {
+  var pattern = $thiz.ju_regex_PatternCompiler__f_pattern;
+  var x1 = $f_T__codePointAt__I__I($n(pattern), $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex);
+  switch (x1) {
+    case 48: {
+      return $p_ju_regex_PatternCompiler__parseOctalEscape__I($thiz);
+      break;
+    }
+    case 120: {
+      return $p_ju_regex_PatternCompiler__parseHexEscape__I($thiz);
+      break;
+    }
+    case 117: {
+      return $p_ju_regex_PatternCompiler__parseUnicodeHexEscape__I($thiz);
+      break;
+    }
+    case 78: {
+      $p_ju_regex_PatternCompiler__parseError__T__E($thiz, "\\N is not supported");
+      break;
+    }
+    case 97: {
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+      return 7;
+      break;
+    }
+    case 116: {
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+      return 9;
+      break;
+    }
+    case 110: {
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+      return 10;
+      break;
+    }
+    case 102: {
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+      return 12;
+      break;
+    }
+    case 114: {
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+      return 13;
+      break;
+    }
+    case 101: {
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+      return 27;
+      break;
+    }
+    case 99: {
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+      var $x_1 = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex;
+      var this$1 = $n(pattern);
+      if (($x_1 === this$1.length)) {
+        $p_ju_regex_PatternCompiler__parseError__T__E($thiz, "Illegal control escape sequence");
+      }
+      var cp = $f_T__codePointAt__I__I($n(pattern), $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex);
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = (($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex + ((cp >= 65536) ? 2 : 1)) | 0);
+      return (64 ^ cp);
+      break;
+    }
+    default: {
+      if ((((x1 >= 65) && (x1 <= 90)) || ((x1 >= 97) && (x1 <= 122)))) {
+        $p_ju_regex_PatternCompiler__parseError__T__E($thiz, "Illegal/unsupported escape sequence");
+      }
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = (($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex + ((x1 >= 65536) ? 2 : 1)) | 0);
+      return x1;
+    }
+  }
+}
+export { $p_ju_regex_PatternCompiler__parseSingleCodePointEscape__I as $p_ju_regex_PatternCompiler__parseSingleCodePointEscape__I };
+function $p_ju_regex_PatternCompiler__parseOctalEscape__I($thiz) {
+  var pattern = $thiz.ju_regex_PatternCompiler__f_pattern;
+  var this$1 = $n(pattern);
+  var len = this$1.length;
+  var start = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex;
+  if ((((1 + start) | 0) < len)) {
+    var this$2 = $n(pattern);
+    var index = ((1 + start) | 0);
+    var d1 = (((-48) + $charAt(this$2, index)) | 0);
+  } else {
+    var d1 = (-1);
+  }
+  if (((d1 < 0) || (d1 > 7))) {
+    $p_ju_regex_PatternCompiler__parseError__T__E($thiz, "Illegal octal escape sequence");
+  }
+  if ((((2 + start) | 0) < len)) {
+    var this$3 = $n(pattern);
+    var index$1 = ((2 + start) | 0);
+    var d2 = (((-48) + $charAt(this$3, index$1)) | 0);
+  } else {
+    var d2 = (-1);
+  }
+  if (((d2 < 0) || (d2 > 7))) {
+    $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((2 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+    return d1;
+  } else if ((d1 > 3)) {
+    $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((3 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+    return (((d1 << 3) + d2) | 0);
+  } else {
+    if ((((3 + start) | 0) < len)) {
+      var this$4 = $n(pattern);
+      var index$2 = ((3 + start) | 0);
+      var d3 = (((-48) + $charAt(this$4, index$2)) | 0);
+    } else {
+      var d3 = (-1);
+    }
+    if (((d3 < 0) || (d3 > 7))) {
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((3 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+      return (((d1 << 3) + d2) | 0);
+    } else {
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((4 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+      return (((((d1 << 6) + (d2 << 3)) | 0) + d3) | 0);
+    }
+  }
+}
+export { $p_ju_regex_PatternCompiler__parseOctalEscape__I as $p_ju_regex_PatternCompiler__parseOctalEscape__I };
+function $p_ju_regex_PatternCompiler__parseHexEscape__I($thiz) {
+  var pattern = $thiz.ju_regex_PatternCompiler__f_pattern;
+  var this$1 = $n(pattern);
+  var len = this$1.length;
+  var start = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+  if ((start !== len)) {
+    var this$2 = $n(pattern);
+    var $x_1 = ($charAt(this$2, start) === 123);
+  } else {
+    var $x_1 = false;
+  }
+  if ($x_1) {
+    var innerStart = ((1 + start) | 0);
+    var this$3 = $n(pattern);
+    var innerEnd = $uI(this$3.indexOf("}", innerStart));
+    if ((innerEnd < 0)) {
+      $p_ju_regex_PatternCompiler__parseError__T__E($thiz, "Unclosed hexadecimal escape sequence");
+    }
+    var cp = $p_ju_regex_PatternCompiler__parseHexCodePoint__I__I__T__I($thiz, innerStart, innerEnd, "hexadecimal");
+    $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + innerEnd) | 0);
+    return cp;
+  } else {
+    var cp$2 = $p_ju_regex_PatternCompiler__parseHexCodePoint__I__I__T__I($thiz, start, ((2 + start) | 0), "hexadecimal");
+    $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((2 + start) | 0);
+    return cp$2;
+  }
+}
+export { $p_ju_regex_PatternCompiler__parseHexEscape__I as $p_ju_regex_PatternCompiler__parseHexEscape__I };
+function $p_ju_regex_PatternCompiler__parseUnicodeHexEscape__I($thiz) {
+  var pattern = $thiz.ju_regex_PatternCompiler__f_pattern;
+  var start = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+  var end = ((4 + start) | 0);
+  var codeUnit = $p_ju_regex_PatternCompiler__parseHexCodePoint__I__I__T__I($thiz, start, end, "Unicode");
+  $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = end;
+  var lowStart = ((2 + end) | 0);
+  var lowEnd = ((4 + lowStart) | 0);
+  if (((((-1024) & codeUnit) === 55296) && ($as_T(pattern.substring(end, lowStart)) === "\\u"))) {
+    var low = $p_ju_regex_PatternCompiler__parseHexCodePoint__I__I__T__I($thiz, lowStart, lowEnd, "Unicode");
+    if ((((-1024) & low) === 56320)) {
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = lowEnd;
+      return ((((64 + (1023 & codeUnit)) | 0) << 10) | (1023 & low));
+    } else {
+      return codeUnit;
+    }
+  } else {
+    return codeUnit;
+  }
+}
+export { $p_ju_regex_PatternCompiler__parseUnicodeHexEscape__I as $p_ju_regex_PatternCompiler__parseUnicodeHexEscape__I };
+function $p_ju_regex_PatternCompiler__parseHexCodePoint__I__I__T__I($thiz, start, end, nameForError) {
+  var pattern = $thiz.ju_regex_PatternCompiler__f_pattern;
+  var this$1 = $n(pattern);
+  var len = this$1.length;
+  if (((start === end) || (end > len))) {
+    $p_ju_regex_PatternCompiler__parseError__T__E($thiz, (("Illegal " + nameForError) + " escape sequence"));
+  }
+  var i = start;
+  while ((i < end)) {
+    var value = i;
+    var this$4 = $n(pattern);
+    var c = $charAt(this$4, value);
+    if ((!((((c >= 48) && (c <= 57)) || ((c >= 65) && (c <= 70))) || ((c >= 97) && (c <= 102))))) {
+      $p_ju_regex_PatternCompiler__parseError__T__E($thiz, (("Illegal " + nameForError) + " escape sequence"));
+    }
+    i = ((1 + i) | 0);
+  }
+  if ((((end - start) | 0) > 6)) {
+    var cp = 1114112;
+  } else {
+    var s = $as_T(pattern.substring(start, end));
+    var cp = $uI(parseInt(s, 16));
+  }
+  if ((cp > 1114111)) {
+    $p_ju_regex_PatternCompiler__parseError__T__E($thiz, "Hexadecimal codepoint is too big");
+  }
+  return cp;
+}
+export { $p_ju_regex_PatternCompiler__parseHexCodePoint__I__I__T__I as $p_ju_regex_PatternCompiler__parseHexCodePoint__I__I__T__I };
+function $p_ju_regex_PatternCompiler__parsePredefinedCharacterClass__C__ju_regex_PatternCompiler$CompiledCharClass($thiz, dispatchChar) {
+  $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+  switch (dispatchChar) {
+    case 100:
+    case 68: {
+      var positive = $m_ju_regex_PatternCompiler$().ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$ASCIIDigit;
+      break;
+    }
+    case 104:
+    case 72: {
+      var positive = $m_ju_regex_PatternCompiler$().ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$UniversalHorizontalWhiteSpace;
+      break;
+    }
+    case 115:
+    case 83: {
+      var positive = $m_ju_regex_PatternCompiler$().ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$ASCIIWhiteSpace;
+      break;
+    }
+    case 118:
+    case 86: {
+      var positive = $m_ju_regex_PatternCompiler$().ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$UniversalVerticalWhiteSpace;
+      break;
+    }
+    case 119:
+    case 87: {
+      var positive = $m_ju_regex_PatternCompiler$().ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$ASCIIWordChar;
+      break;
+    }
+    case 112:
+    case 80: {
+      var positive = $p_ju_regex_PatternCompiler__parsePCharacterClass__ju_regex_PatternCompiler$CompiledCharClass($thiz);
+      break;
+    }
+    default: {
+      var positive;
+      throw new $c_jl_AssertionError($bC(dispatchChar));
+    }
+  }
+  return ((dispatchChar >= 97) ? positive : $n(positive).negated__ju_regex_PatternCompiler$CompiledCharClass());
+}
+export { $p_ju_regex_PatternCompiler__parsePredefinedCharacterClass__C__ju_regex_PatternCompiler$CompiledCharClass as $p_ju_regex_PatternCompiler__parsePredefinedCharacterClass__C__ju_regex_PatternCompiler$CompiledCharClass };
+function $p_ju_regex_PatternCompiler__parsePCharacterClass__ju_regex_PatternCompiler$CompiledCharClass($thiz) {
+  var pattern = $thiz.ju_regex_PatternCompiler__f_pattern;
+  var this$1 = $n(pattern);
+  var len = this$1.length;
+  var start = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex;
+  if ((start === len)) {
+    var property = "?";
+  } else {
+    var this$2 = $n(pattern);
+    if (($charAt(this$2, start) === 123)) {
+      var innerStart = ((1 + start) | 0);
+      var this$3 = $n(pattern);
+      var innerEnd = $uI(this$3.indexOf("}", innerStart));
+      if ((innerEnd < 0)) {
+        $p_ju_regex_PatternCompiler__parseError__T__E($thiz, "Unclosed character family");
+      }
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = innerEnd;
+      var property = $as_T(pattern.substring(innerStart, innerEnd));
+    } else {
+      var property = $as_T(pattern.substring(start, ((1 + start) | 0)));
+    }
+  }
+  var dict = $m_ju_regex_PatternCompiler$().ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$asciiPOSIXCharacterClasses;
+  if ((!$uZ($m_jl_Utils$Cache$().jl_Utils$Cache$__f_safeHasOwnProperty.call(dict, property)))) {
+    $thiz.java$util$regex$PatternCompiler$$parseErrorRequireESVersion__T__T__E("Unicode character family", "2018");
+  }
+  var property2 = ((((66 & $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags) === 2) && ((property === "Lower") || (property === "Upper"))) ? "Alpha" : property);
+  var dict$1 = $m_ju_regex_PatternCompiler$().ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$asciiPOSIXCharacterClasses;
+  var result = $as_ju_regex_PatternCompiler$CompiledCharClass(dict$1[property2]);
+  $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+  return result;
+}
+export { $p_ju_regex_PatternCompiler__parsePCharacterClass__ju_regex_PatternCompiler$CompiledCharClass as $p_ju_regex_PatternCompiler__parsePCharacterClass__ju_regex_PatternCompiler$CompiledCharClass };
+function $p_ju_regex_PatternCompiler__compileCharacterClass__T($thiz) {
+  var pattern = $thiz.ju_regex_PatternCompiler__f_pattern;
+  var this$1 = $n(pattern);
+  var len = this$1.length;
+  $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+  if (($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex !== len)) {
+    var this$2 = $n(pattern);
+    var index = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex;
+    var isNegated = ($charAt(this$2, index) === 94);
+  } else {
+    var isNegated = false;
+  }
+  if (isNegated) {
+    $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+  }
+  var builder = new $c_ju_regex_PatternCompiler$CharacterClassBuilder(((66 & $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags) === 2), isNegated);
+  while (($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex !== len)) {
+    var x1 = $f_T__codePointAt__I__I($n(pattern), $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex);
+    matchResult: {
+      switch (x1) {
+        case 93: {
+          $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+          return builder.finish__T();
+          break;
+        }
+        case 38: {
+          $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+          if (($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex !== len)) {
+            var this$3 = $n(pattern);
+            var index$1 = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex;
+            var $x_1 = ($charAt(this$3, index$1) === 38);
+          } else {
+            var $x_1 = false;
+          }
+          if ($x_1) {
+            $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+            builder.startNewConjunct__V();
+            break matchResult;
+          } else {
+            $p_ju_regex_PatternCompiler__processRangeOrSingleCodePoint$1__I__I__T__ju_regex_PatternCompiler$CharacterClassBuilder__V($thiz, 38, len, pattern, builder);
+            break matchResult;
+          }
+          break;
+        }
+        case 91: {
+          var cls = $p_ju_regex_PatternCompiler__compileCharacterClass__T($thiz);
+          $p_ju_regex_PatternCompiler$CharacterClassBuilder__addAlternative__T__V(builder, cls);
+          break matchResult;
+          break;
+        }
+        case 92: {
+          $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+          if (($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex === len)) {
+            $p_ju_regex_PatternCompiler__parseError__T__E($thiz, "Illegal escape sequence");
+          }
+          var this$4 = $n(pattern);
+          var index$2 = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex;
+          var c2 = $charAt(this$4, index$2);
+          switch (c2) {
+            case 100:
+            case 68:
+            case 104:
+            case 72:
+            case 115:
+            case 83:
+            case 118:
+            case 86:
+            case 119:
+            case 87:
+            case 112:
+            case 80: {
+              builder.addCharacterClass__ju_regex_PatternCompiler$CompiledCharClass__V($p_ju_regex_PatternCompiler__parsePredefinedCharacterClass__C__ju_regex_PatternCompiler$CompiledCharClass($thiz, c2));
+              break matchResult;
+              break;
+            }
+            case 81: {
+              $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+              var this$5 = $n(pattern);
+              var fromIndex = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex;
+              var end = $uI(this$5.indexOf("\\E", fromIndex));
+              if ((end < 0)) {
+                $p_ju_regex_PatternCompiler__parseError__T__E($thiz, "Unclosed character class");
+              }
+              builder.addCodePointsInString__T__I__I__V(pattern, $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex, end);
+              $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((2 + end) | 0);
+              break matchResult;
+              break;
+            }
+            default: {
+              $p_ju_regex_PatternCompiler__processRangeOrSingleCodePoint$1__I__I__T__ju_regex_PatternCompiler$CharacterClassBuilder__V($thiz, $p_ju_regex_PatternCompiler__parseSingleCodePointEscape__I($thiz), len, pattern, builder);
+              break matchResult;
+            }
+          }
+          break;
+        }
+        case 32:
+        case 9:
+        case 10:
+        case 11:
+        case 12:
+        case 13: {
+          if (((4 & $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags) !== 0)) {
+            $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+            break matchResult;
+          }
+          break;
+        }
+        case 35: {
+          if (((4 & $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags) !== 0)) {
+            $thiz.java$util$regex$PatternCompiler$$skipSharpComment__V();
+            break matchResult;
+          }
+          break;
+        }
+      }
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = (($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex + ((x1 >= 65536) ? 2 : 1)) | 0);
+      $p_ju_regex_PatternCompiler__processRangeOrSingleCodePoint$1__I__I__T__ju_regex_PatternCompiler$CharacterClassBuilder__V($thiz, x1, len, pattern, builder);
+    }
+  }
+  $p_ju_regex_PatternCompiler__parseError__T__E($thiz, "Unclosed character class");
+}
+export { $p_ju_regex_PatternCompiler__compileCharacterClass__T as $p_ju_regex_PatternCompiler__compileCharacterClass__T };
+function $p_ju_regex_PatternCompiler__compileGroup__T($thiz) {
+  var pattern = $thiz.ju_regex_PatternCompiler__f_pattern;
+  var this$1 = $n(pattern);
+  var len = this$1.length;
+  var start = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex;
+  if ((((1 + start) | 0) === len)) {
+    var $x_1 = true;
+  } else {
+    var this$2 = $n(pattern);
+    var index = ((1 + start) | 0);
+    var $x_1 = ($charAt(this$2, index) !== 63);
+  }
+  if ($x_1) {
+    $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + start) | 0);
+    $thiz.ju_regex_PatternCompiler__f_compiledGroupCount = ((1 + $thiz.ju_regex_PatternCompiler__f_compiledGroupCount) | 0);
+    $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$groupNumberMap.push($thiz.ju_regex_PatternCompiler__f_compiledGroupCount);
+    return (("(" + $thiz.java$util$regex$PatternCompiler$$compileTopLevelOrInsideGroup__Z__T(true)) + ")");
+  } else {
+    if ((((2 + start) | 0) === len)) {
+      $p_ju_regex_PatternCompiler__parseError__T__E($thiz, "Unclosed group");
+    }
+    var this$3 = $n(pattern);
+    var index$1 = ((2 + start) | 0);
+    var c1 = $charAt(this$3, index$1);
+    if ((((c1 === 58) || (c1 === 61)) || (c1 === 33))) {
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((3 + start) | 0);
+      return ((("" + $as_T(pattern.substring(start, ((3 + start) | 0)))) + $thiz.java$util$regex$PatternCompiler$$compileTopLevelOrInsideGroup__Z__T(true)) + ")");
+    } else if ((c1 === 60)) {
+      if ((((3 + start) | 0) === len)) {
+        $p_ju_regex_PatternCompiler__parseError__T__E($thiz, "Unclosed group");
+      }
+      var this$4 = $n(pattern);
+      var index$2 = ((3 + start) | 0);
+      var c2 = $charAt(this$4, index$2);
+      if ((((c2 >= 65) && (c2 <= 90)) || ((c2 >= 97) && (c2 <= 122)))) {
+        $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((3 + start) | 0);
+        var name = $p_ju_regex_PatternCompiler__parseGroupName__T($thiz);
+        var dict = $thiz.ju_regex_PatternCompiler__f_namedGroups;
+        if ($uZ($m_jl_Utils$Cache$().jl_Utils$Cache$__f_safeHasOwnProperty.call(dict, name))) {
+          $p_ju_regex_PatternCompiler__parseError__T__E($thiz, (("named capturing group <" + name) + "> is already defined"));
+        }
+        $thiz.ju_regex_PatternCompiler__f_compiledGroupCount = ((1 + $thiz.ju_regex_PatternCompiler__f_compiledGroupCount) | 0);
+        $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$groupNumberMap.push($thiz.ju_regex_PatternCompiler__f_compiledGroupCount);
+        var dict$1 = $thiz.ju_regex_PatternCompiler__f_namedGroups;
+        var value = (((-1) + $uI($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$groupNumberMap.length)) | 0);
+        dict$1[name] = value;
+        $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+        return (("(" + $thiz.java$util$regex$PatternCompiler$$compileTopLevelOrInsideGroup__Z__T(true)) + ")");
+      } else {
+        if (((c2 !== 61) && (c2 !== 33))) {
+          $p_ju_regex_PatternCompiler__parseError__T__E($thiz, "Unknown look-behind group");
+        }
+        $thiz.java$util$regex$PatternCompiler$$parseErrorRequireESVersion__T__T__E("Look-behind group", "2018");
+      }
+    } else if ((c1 === 62)) {
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((3 + start) | 0);
+      $thiz.ju_regex_PatternCompiler__f_compiledGroupCount = ((1 + $thiz.ju_regex_PatternCompiler__f_compiledGroupCount) | 0);
+      var groupNumber = $thiz.ju_regex_PatternCompiler__f_compiledGroupCount;
+      return (((("(?:(?=(" + $thiz.java$util$regex$PatternCompiler$$compileTopLevelOrInsideGroup__Z__T(true)) + "))\\") + groupNumber) + ")");
+    } else {
+      $p_ju_regex_PatternCompiler__parseError__T__E($thiz, "Embedded flag expression in the middle of a pattern is not supported");
+    }
+  }
+}
+export { $p_ju_regex_PatternCompiler__compileGroup__T as $p_ju_regex_PatternCompiler__compileGroup__T };
+function $p_ju_regex_PatternCompiler__parseGroupName__T($thiz) {
+  var pattern = $thiz.ju_regex_PatternCompiler__f_pattern;
+  var this$1 = $n(pattern);
+  var len = this$1.length;
+  var start = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex;
+  while (true) {
+    if (($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex !== len)) {
+      var this$2 = $n(pattern);
+      var index = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex;
+      var c = $charAt(this$2, index);
+      var $x_1 = ((((c >= 65) && (c <= 90)) || ((c >= 97) && (c <= 122))) || ((c >= 48) && (c <= 57)));
+    } else {
+      var $x_1 = false;
+    }
+    if ($x_1) {
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+    } else {
+      break;
+    }
+  }
+  if (($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex === len)) {
+    var $x_2 = true;
+  } else {
+    var this$4 = $n(pattern);
+    var index$1 = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex;
+    var $x_2 = ($charAt(this$4, index$1) !== 62);
+  }
+  if ($x_2) {
+    $p_ju_regex_PatternCompiler__parseError__T__E($thiz, "named capturing group is missing trailing '>'");
+  }
+  return $as_T(pattern.substring(start, $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex));
+}
+export { $p_ju_regex_PatternCompiler__parseGroupName__T as $p_ju_regex_PatternCompiler__parseGroupName__T };
+function $p_ju_regex_PatternCompiler__processRangeOrSingleCodePoint$1__I__I__T__ju_regex_PatternCompiler$CharacterClassBuilder__V($thiz, startCodePoint, len$2, pattern$3, builder$1) {
+  if (((4 & $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags) !== 0)) {
+    $p_ju_regex_PatternCompiler__skipComments__V($thiz);
+  }
+  if (($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex !== len$2)) {
+    var this$1 = $n(pattern$3);
+    var index = $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex;
+    var $x_1 = ($charAt(this$1, index) === 45);
+  } else {
+    var $x_1 = false;
+  }
+  if ($x_1) {
+    $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+    if (((4 & $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags) !== 0)) {
+      $p_ju_regex_PatternCompiler__skipComments__V($thiz);
+    }
+    if (($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex === len$2)) {
+      $p_ju_regex_PatternCompiler__parseError__T__E($thiz, "Unclosed character class");
+    }
+    var cpEnd = $f_T__codePointAt__I__I($n(pattern$3), $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex);
+    if (((cpEnd === 91) || (cpEnd === 93))) {
+      $n(builder$1).addSingleCodePoint__I__V(startCodePoint);
+      $n(builder$1).addSingleCodePoint__I__V(45);
+    } else {
+      $thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = (($thiz.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex + ((cpEnd >= 65536) ? 2 : 1)) | 0);
+      var endCodePoint = ((cpEnd === 92) ? $p_ju_regex_PatternCompiler__parseSingleCodePointEscape__I($thiz) : cpEnd);
+      if ((endCodePoint < startCodePoint)) {
+        $p_ju_regex_PatternCompiler__parseError__T__E($thiz, "Illegal character range");
+      }
+      $n(builder$1).addCodePointRange__I__I__V(startCodePoint, endCodePoint);
+    }
+  } else {
+    $n(builder$1).addSingleCodePoint__I__V(startCodePoint);
+  }
+}
+export { $p_ju_regex_PatternCompiler__processRangeOrSingleCodePoint$1__I__I__T__ju_regex_PatternCompiler$CharacterClassBuilder__V as $p_ju_regex_PatternCompiler__processRangeOrSingleCodePoint$1__I__I__T__ju_regex_PatternCompiler$CharacterClassBuilder__V };
+/** @constructor */
+function $c_ju_regex_PatternCompiler(pattern, flags) {
+  this.ju_regex_PatternCompiler__f_pattern = null;
+  this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags = 0;
+  this.ju_regex_PatternCompiler__f_sticky = false;
+  this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = 0;
+  this.ju_regex_PatternCompiler__f_compiledGroupCount = 0;
+  this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$groupNumberMap = null;
+  this.ju_regex_PatternCompiler__f_namedGroups = null;
+  this.ju_regex_PatternCompiler__f_pattern = pattern;
+  this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags = flags;
+  this.ju_regex_PatternCompiler__f_sticky = false;
+  this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = 0;
+  this.ju_regex_PatternCompiler__f_compiledGroupCount = 0;
+  this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$groupNumberMap = [0];
+  this.ju_regex_PatternCompiler__f_namedGroups = ({});
+}
+export { $c_ju_regex_PatternCompiler as $c_ju_regex_PatternCompiler };
+$c_ju_regex_PatternCompiler.prototype = new $h_O();
+$c_ju_regex_PatternCompiler.prototype.constructor = $c_ju_regex_PatternCompiler;
+/** @constructor */
+function $h_ju_regex_PatternCompiler() {
+}
+export { $h_ju_regex_PatternCompiler as $h_ju_regex_PatternCompiler };
+$h_ju_regex_PatternCompiler.prototype = $c_ju_regex_PatternCompiler.prototype;
+$c_ju_regex_PatternCompiler.prototype.compile__ju_regex_Pattern = (function() {
+  if (((256 & this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags) !== 0)) {
+    this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags = (64 | this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags);
+  }
+  var isLiteral = ((16 & this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags) !== 0);
+  if ((!isLiteral)) {
+    $p_ju_regex_PatternCompiler__processLeadingEmbeddedFlags__V(this);
+  }
+  if (((128 & this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags) !== 0)) {
+    $p_ju_regex_PatternCompiler__parseError__T__E(this, "CANON_EQ is not supported");
+  }
+  if (((8 & this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags) !== 0)) {
+    this.java$util$regex$PatternCompiler$$parseErrorRequireESVersion__T__T__E("MULTILINE", "2018");
+  }
+  if (((256 & this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags) !== 0)) {
+    this.java$util$regex$PatternCompiler$$parseErrorRequireESVersion__T__T__E("UNICODE_CHARACTER_CLASS", "2018");
+  }
+  if (isLiteral) {
+    var jsPattern = $p_ju_regex_PatternCompiler__literal__T__T(this, this.ju_regex_PatternCompiler__f_pattern);
+  } else {
+    if (($as_T(this.ju_regex_PatternCompiler__f_pattern.substring(this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex, ((2 + this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0))) === "\\G")) {
+      this.ju_regex_PatternCompiler__f_sticky = true;
+      this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((2 + this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+    }
+    var jsPattern = this.java$util$regex$PatternCompiler$$compileTopLevelOrInsideGroup__Z__T(false);
+  }
+  var baseJSFlags = ($m_ju_regex_PatternCompiler$().ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$_supportsDotAll ? "us" : "u");
+  var jsFlags = (((66 & this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags) === 66) ? (baseJSFlags + "i") : baseJSFlags);
+  return new $c_ju_regex_Pattern(this.ju_regex_PatternCompiler__f_pattern, this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags, jsPattern, jsFlags, this.ju_regex_PatternCompiler__f_sticky, (((-1) + $uI(this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$groupNumberMap.length)) | 0), this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$groupNumberMap, this.ju_regex_PatternCompiler__f_namedGroups);
+});
+$c_ju_regex_PatternCompiler.prototype.java$util$regex$PatternCompiler$$parseErrorRequireESVersion__T__T__E = (function(purpose, es) {
+  $p_ju_regex_PatternCompiler__parseError__T__E(this, (((((((purpose + " is not supported because it requires RegExp features of ECMAScript ") + es) + ".\n") + ((("If you only target environments with ES" + es) + "+, you can enable ES") + es)) + " features with\n") + ("  scalaJSLinkerConfig ~= { _.withESFeatures(_.withESVersion(ESVersion.ES" + es)) + ")) }\nor an equivalent configuration depending on your build tool."));
+});
+$c_ju_regex_PatternCompiler.prototype.java$util$regex$PatternCompiler$$compileTopLevelOrInsideGroup__Z__T = (function(insideGroup) {
+  var pattern = this.ju_regex_PatternCompiler__f_pattern;
+  var this$1 = $n(pattern);
+  var len = this$1.length;
+  var result = "";
+  while ((this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex !== len)) {
+    var dispatchCP = $f_T__codePointAt__I__I($n(pattern), this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex);
+    matchResult: {
+      switch (dispatchCP) {
+        case 41: {
+          if ((!insideGroup)) {
+            $p_ju_regex_PatternCompiler__parseError__T__E(this, "Unmatched closing ')'");
+          }
+          this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+          return result;
+          break;
+        }
+        case 124: {
+          if ((this.ju_regex_PatternCompiler__f_sticky && (!insideGroup))) {
+            $p_ju_regex_PatternCompiler__parseError__T__E(this, "\\G is not supported when there is an alternative at the top level");
+          }
+          this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+          result = (result + "|");
+          break matchResult;
+          break;
+        }
+        case 32:
+        case 9:
+        case 10:
+        case 11:
+        case 12:
+        case 13: {
+          if (((4 & this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags) !== 0)) {
+            this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+            break matchResult;
+          }
+          break;
+        }
+        case 35: {
+          if (((4 & this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags) !== 0)) {
+            this.java$util$regex$PatternCompiler$$skipSharpComment__V();
+            break matchResult;
+          }
+          break;
+        }
+        case 63:
+        case 42:
+        case 43:
+        case 123: {
+          $p_ju_regex_PatternCompiler__parseError__T__E(this, (("Dangling meta character '" + $m_ju_regex_PatternCompiler$().java$util$regex$PatternCompiler$$codePointToString__I__T(dispatchCP)) + "'"));
+          break;
+        }
+      }
+      var compiledGroupCountBeforeThisToken = this.ju_regex_PatternCompiler__f_compiledGroupCount;
+      switch (dispatchCP) {
+        case 92: {
+          var compiledToken = $p_ju_regex_PatternCompiler__compileEscape__T(this);
+          break;
+        }
+        case 91: {
+          var compiledToken = $p_ju_regex_PatternCompiler__compileCharacterClass__T(this);
+          break;
+        }
+        case 40: {
+          var compiledToken = $p_ju_regex_PatternCompiler__compileGroup__T(this);
+          break;
+        }
+        case 94: {
+          this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+          var compiledToken = "^";
+          break;
+        }
+        case 36: {
+          this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+          var compiledToken = "$";
+          break;
+        }
+        case 46: {
+          this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+          var rejected = (((32 & this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags) !== 0) ? "" : (((1 & this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$flags) !== 0) ? "\n" : "\n\r\u0085\u2028\u2029"));
+          var compiledToken = $m_ju_regex_PatternCompiler$().java$util$regex$PatternCompiler$$codePointNotAmong__T__T(rejected);
+          break;
+        }
+        default: {
+          this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex + ((dispatchCP >= 65536) ? 2 : 1)) | 0);
+          var compiledToken = $p_ju_regex_PatternCompiler__literal__I__T(this, dispatchCP);
+        }
+      }
+      result = (("" + result) + $p_ju_regex_PatternCompiler__compileRepeater__I__T__T(this, compiledGroupCountBeforeThisToken, compiledToken));
+    }
+  }
+  if (insideGroup) {
+    $p_ju_regex_PatternCompiler__parseError__T__E(this, "Unclosed group");
+  }
+  return result;
+});
+$c_ju_regex_PatternCompiler.prototype.java$util$regex$PatternCompiler$$skipSharpComment__V = (function() {
+  var pattern = this.ju_regex_PatternCompiler__f_pattern;
+  var this$1 = $n(pattern);
+  var len = this$1.length;
+  while (true) {
+    if ((this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex !== len)) {
+      var this$2 = $n(pattern);
+      var index = this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex;
+      var c = $charAt(this$2, index);
+      var $x_1 = (!(((((c === 10) || (c === 13)) || (c === 133)) || (c === 8232)) || (c === 8233)));
+    } else {
+      var $x_1 = false;
+    }
+    if ($x_1) {
+      this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex = ((1 + this.ju_regex_PatternCompiler__f_java$util$regex$PatternCompiler$$pIndex) | 0);
+    } else {
+      break;
+    }
+  }
+});
+var $d_ju_regex_PatternCompiler = new $TypeData().initClass($c_ju_regex_PatternCompiler, "java.util.regex.PatternCompiler", ({
+  ju_regex_PatternCompiler: 1
+}));
+export { $d_ju_regex_PatternCompiler as $d_ju_regex_PatternCompiler };
+function $p_ju_regex_PatternCompiler$__featureTest__T__Z($thiz, flags) {
+  try {
+    new RegExp("", flags);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+export { $p_ju_regex_PatternCompiler$__featureTest__T__Z as $p_ju_regex_PatternCompiler$__featureTest__T__Z };
+/** @constructor */
+function $c_ju_regex_PatternCompiler$() {
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$leadingEmbeddedFlagSpecifierRegExp = null;
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$renumberingRegExp = null;
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$_supportsUnicode = false;
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$_supportsSticky = false;
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$_supportsDotAll = false;
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$ASCIIDigit = null;
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$UnicodeDigit = null;
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$UniversalHorizontalWhiteSpace = null;
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$ASCIIWhiteSpace = null;
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$UnicodeWhitespace = null;
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$UniversalVerticalWhiteSpace = null;
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$ASCIIWordChar = null;
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$UnicodeWordChar = null;
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$asciiPOSIXCharacterClasses = null;
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$scriptCanonicalizeRegExp = null;
+  $n_ju_regex_PatternCompiler$ = this;
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$leadingEmbeddedFlagSpecifierRegExp = new RegExp("^\\(\\?([idmsuxU]*)(?:-([idmsuxU]*))?\\)");
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$renumberingRegExp = new RegExp("(\\\\+)(\\d+)", "g");
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$_supportsUnicode = true;
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$_supportsSticky = true;
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$_supportsDotAll = $p_ju_regex_PatternCompiler$__featureTest__T__Z(this, "us");
+  $p_ju_regex_PatternCompiler$__featureTest__T__Z(this, "d");
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$ASCIIDigit = new $c_ju_regex_PatternCompiler$CompiledCharClass(2, "0-9");
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$UnicodeDigit = new $c_ju_regex_PatternCompiler$CompiledCharClass(0, "Nd");
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$UniversalHorizontalWhiteSpace = new $c_ju_regex_PatternCompiler$CompiledCharClass(2, "\t \u00a0\u1680\u180e\u2000-\u200a\u202f\u205f\u3000");
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$ASCIIWhiteSpace = new $c_ju_regex_PatternCompiler$CompiledCharClass(2, "\t-\r ");
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$UnicodeWhitespace = new $c_ju_regex_PatternCompiler$CompiledCharClass(0, "White_Space");
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$UniversalVerticalWhiteSpace = new $c_ju_regex_PatternCompiler$CompiledCharClass(2, "\n-\r\u0085\u2028\u2029");
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$ASCIIWordChar = new $c_ju_regex_PatternCompiler$CompiledCharClass(2, "a-zA-Z_0-9");
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$UnicodeWordChar = new $c_ju_regex_PatternCompiler$CompiledCharClass(2, "\\p{Alphabetic}\\p{Mn}\\p{Me}\\p{Mc}\\p{Nd}\\p{Pc}\\p{Join_Control}");
+  var r = ({});
+  var value = new $c_ju_regex_PatternCompiler$CompiledCharClass(2, "a-z");
+  r.Lower = value;
+  var value$1 = new $c_ju_regex_PatternCompiler$CompiledCharClass(2, "A-Z");
+  r.Upper = value$1;
+  var value$2 = new $c_ju_regex_PatternCompiler$CompiledCharClass(2, "\u0000-\u007f");
+  r.ASCII = value$2;
+  var value$3 = new $c_ju_regex_PatternCompiler$CompiledCharClass(2, "A-Za-z");
+  r.Alpha = value$3;
+  var value$4 = new $c_ju_regex_PatternCompiler$CompiledCharClass(2, "0-9");
+  r.Digit = value$4;
+  var value$5 = new $c_ju_regex_PatternCompiler$CompiledCharClass(2, "0-9A-Za-z");
+  r.Alnum = value$5;
+  var value$6 = new $c_ju_regex_PatternCompiler$CompiledCharClass(2, "!-/:-@[-`{-~");
+  r.Punct = value$6;
+  var value$7 = new $c_ju_regex_PatternCompiler$CompiledCharClass(2, "!-~");
+  r.Graph = value$7;
+  var value$8 = new $c_ju_regex_PatternCompiler$CompiledCharClass(2, " -~");
+  r.Print = value$8;
+  var value$9 = new $c_ju_regex_PatternCompiler$CompiledCharClass(2, "\t ");
+  r.Blank = value$9;
+  var value$10 = new $c_ju_regex_PatternCompiler$CompiledCharClass(2, "\u0000-\u001f\u007f");
+  r.Cntrl = value$10;
+  var value$11 = new $c_ju_regex_PatternCompiler$CompiledCharClass(2, "0-9A-Fa-f");
+  r.XDigit = value$11;
+  var value$12 = new $c_ju_regex_PatternCompiler$CompiledCharClass(2, "\t-\r ");
+  r.Space = value$12;
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$asciiPOSIXCharacterClasses = r;
+  this.ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$scriptCanonicalizeRegExp = new RegExp("(?:^|_)[a-z]", "g");
+}
+export { $c_ju_regex_PatternCompiler$ as $c_ju_regex_PatternCompiler$ };
+$c_ju_regex_PatternCompiler$.prototype = new $h_O();
+$c_ju_regex_PatternCompiler$.prototype.constructor = $c_ju_regex_PatternCompiler$;
+/** @constructor */
+function $h_ju_regex_PatternCompiler$() {
+}
+export { $h_ju_regex_PatternCompiler$ as $h_ju_regex_PatternCompiler$ };
+$h_ju_regex_PatternCompiler$.prototype = $c_ju_regex_PatternCompiler$.prototype;
+$c_ju_regex_PatternCompiler$.prototype.compile__T__I__ju_regex_Pattern = (function(regex, flags) {
+  return new $c_ju_regex_PatternCompiler(regex, flags).compile__ju_regex_Pattern();
+});
+$c_ju_regex_PatternCompiler$.prototype.java$util$regex$PatternCompiler$$charToFlag__C__I = (function(c) {
+  switch (c) {
+    case 105: {
+      return 2;
+      break;
+    }
+    case 100: {
+      return 1;
+      break;
+    }
+    case 109: {
+      return 8;
+      break;
+    }
+    case 115: {
+      return 32;
+      break;
+    }
+    case 117: {
+      return 64;
+      break;
+    }
+    case 120: {
+      return 4;
+      break;
+    }
+    case 85: {
+      return 256;
+      break;
+    }
+    default: {
+      throw $ct_jl_IllegalArgumentException__T__(new $c_jl_IllegalArgumentException(), "bad in-pattern flag");
+    }
+  }
+});
+$c_ju_regex_PatternCompiler$.prototype.java$util$regex$PatternCompiler$$codePointNotAmong__T__T = (function(characters) {
+  return ((characters !== "") ? (("[^" + characters) + "]") : ($m_ju_regex_PatternCompiler$().ju_regex_PatternCompiler$__f_java$util$regex$PatternCompiler$$_supportsDotAll ? "." : "[\\d\\D]"));
+});
+$c_ju_regex_PatternCompiler$.prototype.java$util$regex$PatternCompiler$$codePointToString__I__T = (function(codePoint) {
+  return $as_T(String.fromCodePoint(codePoint));
+});
+var $d_ju_regex_PatternCompiler$ = new $TypeData().initClass($c_ju_regex_PatternCompiler$, "java.util.regex.PatternCompiler$", ({
+  ju_regex_PatternCompiler$: 1
+}));
+export { $d_ju_regex_PatternCompiler$ as $d_ju_regex_PatternCompiler$ };
+var $n_ju_regex_PatternCompiler$;
+function $m_ju_regex_PatternCompiler$() {
+  if ((!$n_ju_regex_PatternCompiler$)) {
+    $n_ju_regex_PatternCompiler$ = new $c_ju_regex_PatternCompiler$();
+  }
+  return $n_ju_regex_PatternCompiler$;
+}
+export { $m_ju_regex_PatternCompiler$ as $m_ju_regex_PatternCompiler$ };
+function $p_ju_regex_PatternCompiler$CharacterClassBuilder__addAlternative__T__V($thiz, alt) {
+  if (($thiz.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisConjunct === "")) {
+    $thiz.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisConjunct = alt;
+  } else {
+    $thiz.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisConjunct = (($thiz.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisConjunct + "|") + alt);
+  }
+}
+export { $p_ju_regex_PatternCompiler$CharacterClassBuilder__addAlternative__T__V as $p_ju_regex_PatternCompiler$CharacterClassBuilder__addAlternative__T__V };
+function $p_ju_regex_PatternCompiler$CharacterClassBuilder__conjunctResult__T($thiz) {
+  if ($thiz.ju_regex_PatternCompiler$CharacterClassBuilder__f_isNegated) {
+    var negThisSegment = $m_ju_regex_PatternCompiler$().java$util$regex$PatternCompiler$$codePointNotAmong__T__T($thiz.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment);
+    return (($thiz.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisConjunct === "") ? negThisSegment : (((("(?:(?!" + $thiz.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisConjunct) + ")") + negThisSegment) + ")"));
+  } else {
+    return (($thiz.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment === "") ? (($thiz.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisConjunct === "") ? "[^\\d\\D]" : (("(?:" + $thiz.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisConjunct) + ")")) : (($thiz.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisConjunct === "") ? (("[" + $thiz.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment) + "]") : (((("(?:" + $thiz.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisConjunct) + "|[") + $thiz.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment) + "])")));
+  }
+}
+export { $p_ju_regex_PatternCompiler$CharacterClassBuilder__conjunctResult__T as $p_ju_regex_PatternCompiler$CharacterClassBuilder__conjunctResult__T };
+function $p_ju_regex_PatternCompiler$CharacterClassBuilder__literalCodePoint__I__T($thiz, codePoint) {
+  var s = $m_ju_regex_PatternCompiler$().java$util$regex$PatternCompiler$$codePointToString__I__T(codePoint);
+  return (((((codePoint === 93) || (codePoint === 92)) || (codePoint === 45)) || (codePoint === 94)) ? ("\\" + s) : s);
+}
+export { $p_ju_regex_PatternCompiler$CharacterClassBuilder__literalCodePoint__I__T as $p_ju_regex_PatternCompiler$CharacterClassBuilder__literalCodePoint__I__T };
+/** @constructor */
+function $c_ju_regex_PatternCompiler$CharacterClassBuilder(asciiCaseInsensitive, isNegated) {
+  this.ju_regex_PatternCompiler$CharacterClassBuilder__f_asciiCaseInsensitive = false;
+  this.ju_regex_PatternCompiler$CharacterClassBuilder__f_isNegated = false;
+  this.ju_regex_PatternCompiler$CharacterClassBuilder__f_conjunction = null;
+  this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisConjunct = null;
+  this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment = null;
+  this.ju_regex_PatternCompiler$CharacterClassBuilder__f_asciiCaseInsensitive = asciiCaseInsensitive;
+  this.ju_regex_PatternCompiler$CharacterClassBuilder__f_isNegated = isNegated;
+  this.ju_regex_PatternCompiler$CharacterClassBuilder__f_conjunction = "";
+  this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisConjunct = "";
+  this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment = "";
+}
+export { $c_ju_regex_PatternCompiler$CharacterClassBuilder as $c_ju_regex_PatternCompiler$CharacterClassBuilder };
+$c_ju_regex_PatternCompiler$CharacterClassBuilder.prototype = new $h_O();
+$c_ju_regex_PatternCompiler$CharacterClassBuilder.prototype.constructor = $c_ju_regex_PatternCompiler$CharacterClassBuilder;
+/** @constructor */
+function $h_ju_regex_PatternCompiler$CharacterClassBuilder() {
+}
+export { $h_ju_regex_PatternCompiler$CharacterClassBuilder as $h_ju_regex_PatternCompiler$CharacterClassBuilder };
+$h_ju_regex_PatternCompiler$CharacterClassBuilder.prototype = $c_ju_regex_PatternCompiler$CharacterClassBuilder.prototype;
+$c_ju_regex_PatternCompiler$CharacterClassBuilder.prototype.finish__T = (function() {
+  var conjunct = $p_ju_regex_PatternCompiler$CharacterClassBuilder__conjunctResult__T(this);
+  return ((this.ju_regex_PatternCompiler$CharacterClassBuilder__f_conjunction === "") ? conjunct : ((("(?:" + this.ju_regex_PatternCompiler$CharacterClassBuilder__f_conjunction) + conjunct) + ")"));
+});
+$c_ju_regex_PatternCompiler$CharacterClassBuilder.prototype.startNewConjunct__V = (function() {
+  var conjunct = $p_ju_regex_PatternCompiler$CharacterClassBuilder__conjunctResult__T(this);
+  this.ju_regex_PatternCompiler$CharacterClassBuilder__f_conjunction = (this.ju_regex_PatternCompiler$CharacterClassBuilder__f_conjunction + (this.ju_regex_PatternCompiler$CharacterClassBuilder__f_isNegated ? (conjunct + "|") : (("(?=" + conjunct) + ")")));
+  this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisConjunct = "";
+  this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment = "";
+});
+$c_ju_regex_PatternCompiler$CharacterClassBuilder.prototype.addCharacterClass__ju_regex_PatternCompiler$CompiledCharClass__V = (function(cls) {
+  var x1 = $n(cls).ju_regex_PatternCompiler$CompiledCharClass__f_kind;
+  switch (x1) {
+    case 0: {
+      this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment = ((this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment + ("\\p{" + $n(cls).ju_regex_PatternCompiler$CompiledCharClass__f_data)) + "}");
+      break;
+    }
+    case 1: {
+      this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment = ((this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment + ("\\P{" + $n(cls).ju_regex_PatternCompiler$CompiledCharClass__f_data)) + "}");
+      break;
+    }
+    case 2: {
+      this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment = (("" + this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment) + $n(cls).ju_regex_PatternCompiler$CompiledCharClass__f_data);
+      break;
+    }
+    case 3: {
+      $p_ju_regex_PatternCompiler$CharacterClassBuilder__addAlternative__T__V(this, $m_ju_regex_PatternCompiler$().java$util$regex$PatternCompiler$$codePointNotAmong__T__T($n(cls).ju_regex_PatternCompiler$CompiledCharClass__f_data));
+      break;
+    }
+    default: {
+      throw new $c_jl_AssertionError(x1);
+    }
+  }
+});
+$c_ju_regex_PatternCompiler$CharacterClassBuilder.prototype.addCodePointsInString__T__I__I__V = (function(str, start, end) {
+  var i = start;
+  while ((i !== end)) {
+    var codePoint = $f_T__codePointAt__I__I($n(str), i);
+    this.addSingleCodePoint__I__V(codePoint);
+    i = ((i + ((codePoint >= 65536) ? 2 : 1)) | 0);
+  }
+});
+$c_ju_regex_PatternCompiler$CharacterClassBuilder.prototype.addSingleCodePoint__I__V = (function(codePoint) {
+  var s = $p_ju_regex_PatternCompiler$CharacterClassBuilder__literalCodePoint__I__T(this, codePoint);
+  if ((((-1024) & codePoint) === 56320)) {
+    this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment = (("" + s) + this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment);
+  } else {
+    this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment = (("" + this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment) + s);
+  }
+  if (this.ju_regex_PatternCompiler$CharacterClassBuilder__f_asciiCaseInsensitive) {
+    if (((codePoint >= 65) && (codePoint <= 90))) {
+      this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment = (("" + this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment) + $m_ju_regex_PatternCompiler$().java$util$regex$PatternCompiler$$codePointToString__I__T(((32 + codePoint) | 0)));
+    } else if (((codePoint >= 97) && (codePoint <= 122))) {
+      this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment = (("" + this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment) + $m_ju_regex_PatternCompiler$().java$util$regex$PatternCompiler$$codePointToString__I__T((((-32) + codePoint) | 0)));
+    }
+  }
+});
+$c_ju_regex_PatternCompiler$CharacterClassBuilder.prototype.addCodePointRange__I__I__V = (function(startCodePoint, endCodePoint) {
+  var s = (($p_ju_regex_PatternCompiler$CharacterClassBuilder__literalCodePoint__I__T(this, startCodePoint) + "-") + $p_ju_regex_PatternCompiler$CharacterClassBuilder__literalCodePoint__I__T(this, endCodePoint));
+  if ((((-1024) & startCodePoint) === 56320)) {
+    this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment = (s + this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment);
+  } else {
+    this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment = (this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment + s);
+  }
+  if (this.ju_regex_PatternCompiler$CharacterClassBuilder__f_asciiCaseInsensitive) {
+    var start = ((startCodePoint > 65) ? startCodePoint : 65);
+    var end = ((endCodePoint < 90) ? endCodePoint : 90);
+    if ((start <= end)) {
+      var $x_1 = this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment;
+      var start$1 = ((32 + start) | 0);
+      var end$1 = ((32 + end) | 0);
+      this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment = ($x_1 + (($p_ju_regex_PatternCompiler$CharacterClassBuilder__literalCodePoint__I__T(this, start$1) + "-") + $p_ju_regex_PatternCompiler$CharacterClassBuilder__literalCodePoint__I__T(this, end$1)));
+    }
+    var start$2 = ((startCodePoint > 97) ? startCodePoint : 97);
+    var end$2 = ((endCodePoint < 122) ? endCodePoint : 122);
+    if ((start$2 <= end$2)) {
+      var $x_2 = this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment;
+      var start$3 = (((-32) + start$2) | 0);
+      var end$3 = (((-32) + end$2) | 0);
+      this.ju_regex_PatternCompiler$CharacterClassBuilder__f_thisSegment = ($x_2 + (($p_ju_regex_PatternCompiler$CharacterClassBuilder__literalCodePoint__I__T(this, start$3) + "-") + $p_ju_regex_PatternCompiler$CharacterClassBuilder__literalCodePoint__I__T(this, end$3)));
+    }
+  }
+});
+var $d_ju_regex_PatternCompiler$CharacterClassBuilder = new $TypeData().initClass($c_ju_regex_PatternCompiler$CharacterClassBuilder, "java.util.regex.PatternCompiler$CharacterClassBuilder", ({
+  ju_regex_PatternCompiler$CharacterClassBuilder: 1
+}));
+export { $d_ju_regex_PatternCompiler$CharacterClassBuilder as $d_ju_regex_PatternCompiler$CharacterClassBuilder };
+function $p_ju_regex_PatternCompiler$CompiledCharClass__negated$lzycompute__ju_regex_PatternCompiler$CompiledCharClass($thiz) {
+  if ((!$thiz.ju_regex_PatternCompiler$CompiledCharClass__f_bitmap$0)) {
+    $thiz.ju_regex_PatternCompiler$CompiledCharClass__f_negated = new $c_ju_regex_PatternCompiler$CompiledCharClass((1 ^ $thiz.ju_regex_PatternCompiler$CompiledCharClass__f_kind), $thiz.ju_regex_PatternCompiler$CompiledCharClass__f_data);
+    $thiz.ju_regex_PatternCompiler$CompiledCharClass__f_bitmap$0 = true;
+  }
+  return $thiz.ju_regex_PatternCompiler$CompiledCharClass__f_negated;
+}
+export { $p_ju_regex_PatternCompiler$CompiledCharClass__negated$lzycompute__ju_regex_PatternCompiler$CompiledCharClass as $p_ju_regex_PatternCompiler$CompiledCharClass__negated$lzycompute__ju_regex_PatternCompiler$CompiledCharClass };
+/** @constructor */
+function $c_ju_regex_PatternCompiler$CompiledCharClass(kind, data) {
+  this.ju_regex_PatternCompiler$CompiledCharClass__f_negated = null;
+  this.ju_regex_PatternCompiler$CompiledCharClass__f_kind = 0;
+  this.ju_regex_PatternCompiler$CompiledCharClass__f_data = null;
+  this.ju_regex_PatternCompiler$CompiledCharClass__f_bitmap$0 = false;
+  this.ju_regex_PatternCompiler$CompiledCharClass__f_kind = kind;
+  this.ju_regex_PatternCompiler$CompiledCharClass__f_data = data;
+}
+export { $c_ju_regex_PatternCompiler$CompiledCharClass as $c_ju_regex_PatternCompiler$CompiledCharClass };
+$c_ju_regex_PatternCompiler$CompiledCharClass.prototype = new $h_O();
+$c_ju_regex_PatternCompiler$CompiledCharClass.prototype.constructor = $c_ju_regex_PatternCompiler$CompiledCharClass;
+/** @constructor */
+function $h_ju_regex_PatternCompiler$CompiledCharClass() {
+}
+export { $h_ju_regex_PatternCompiler$CompiledCharClass as $h_ju_regex_PatternCompiler$CompiledCharClass };
+$h_ju_regex_PatternCompiler$CompiledCharClass.prototype = $c_ju_regex_PatternCompiler$CompiledCharClass.prototype;
+$c_ju_regex_PatternCompiler$CompiledCharClass.prototype.negated__ju_regex_PatternCompiler$CompiledCharClass = (function() {
+  return ((!this.ju_regex_PatternCompiler$CompiledCharClass__f_bitmap$0) ? $p_ju_regex_PatternCompiler$CompiledCharClass__negated$lzycompute__ju_regex_PatternCompiler$CompiledCharClass(this) : this.ju_regex_PatternCompiler$CompiledCharClass__f_negated);
+});
+function $as_ju_regex_PatternCompiler$CompiledCharClass(obj) {
+  return (((obj instanceof $c_ju_regex_PatternCompiler$CompiledCharClass) || (obj === null)) ? obj : $throwClassCastException(obj, "java.util.regex.PatternCompiler$CompiledCharClass"));
+}
+export { $as_ju_regex_PatternCompiler$CompiledCharClass as $as_ju_regex_PatternCompiler$CompiledCharClass };
+function $isArrayOf_ju_regex_PatternCompiler$CompiledCharClass(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.ju_regex_PatternCompiler$CompiledCharClass)));
+}
+export { $isArrayOf_ju_regex_PatternCompiler$CompiledCharClass as $isArrayOf_ju_regex_PatternCompiler$CompiledCharClass };
+function $asArrayOf_ju_regex_PatternCompiler$CompiledCharClass(obj, depth) {
+  return (($isArrayOf_ju_regex_PatternCompiler$CompiledCharClass(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ljava.util.regex.PatternCompiler$CompiledCharClass;", depth));
+}
+export { $asArrayOf_ju_regex_PatternCompiler$CompiledCharClass as $asArrayOf_ju_regex_PatternCompiler$CompiledCharClass };
+var $d_ju_regex_PatternCompiler$CompiledCharClass = new $TypeData().initClass($c_ju_regex_PatternCompiler$CompiledCharClass, "java.util.regex.PatternCompiler$CompiledCharClass", ({
+  ju_regex_PatternCompiler$CompiledCharClass: 1
+}));
+export { $d_ju_regex_PatternCompiler$CompiledCharClass as $d_ju_regex_PatternCompiler$CompiledCharClass };
 function $s_RTLong__remainderUnsigned__RTLong__RTLong__RTLong(a, b) {
   var this$1 = $m_RTLong$();
   var lo = this$1.remainderUnsignedImpl__I__I__I__I__I($n(a).RTLong__f_lo, $n(a).RTLong__f_hi, $n(b).RTLong__f_lo, $n(b).RTLong__f_hi);
@@ -6209,6 +7719,68 @@ function $m_sc_StringOps$() {
   return $n_sc_StringOps$;
 }
 export { $m_sc_StringOps$ as $m_sc_StringOps$ };
+function $p_sc_StringParsers$__step$1__I__I__Z__I__T__s_Option($thiz, i, agg, isPositive, len$2, from$2) {
+  while (true) {
+    if ((i === len$2)) {
+      return ((!isPositive) ? new $c_s_Some(agg) : ((agg === (-2147483648)) ? $m_s_None$() : new $c_s_Some(((-agg) | 0))));
+    } else if ((agg < (-214748364))) {
+      return $m_s_None$();
+    } else {
+      var this$1 = $n(from$2);
+      var index = i;
+      var ch = $charAt(this$1, index);
+      var this$2 = $m_jl_Character$();
+      var codePoint = ch;
+      var digit = this$2.digitWithValidRadix__I__I__I(codePoint, 10);
+      if (((digit === (-1)) || ((agg === (-214748364)) && (digit === 9)))) {
+        return $m_s_None$();
+      } else {
+        var temp$i = ((1 + i) | 0);
+        var temp$agg = ((Math.imul(10, agg) - digit) | 0);
+        i = temp$i;
+        agg = temp$agg;
+      }
+    }
+  }
+}
+export { $p_sc_StringParsers$__step$1__I__I__Z__I__T__s_Option as $p_sc_StringParsers$__step$1__I__I__Z__I__T__s_Option };
+/** @constructor */
+function $c_sc_StringParsers$() {
+}
+export { $c_sc_StringParsers$ as $c_sc_StringParsers$ };
+$c_sc_StringParsers$.prototype = new $h_O();
+$c_sc_StringParsers$.prototype.constructor = $c_sc_StringParsers$;
+/** @constructor */
+function $h_sc_StringParsers$() {
+}
+export { $h_sc_StringParsers$ as $h_sc_StringParsers$ };
+$h_sc_StringParsers$.prototype = $c_sc_StringParsers$.prototype;
+$c_sc_StringParsers$.prototype.parseInt__T__s_Option = (function(from) {
+  var this$1 = $n(from);
+  var len = this$1.length;
+  if ((len === 0)) {
+    return $m_s_None$();
+  } else {
+    var this$2 = $n(from);
+    var first = $charAt(this$2, 0);
+    var this$3 = $m_jl_Character$();
+    var codePoint = first;
+    var v = this$3.digitWithValidRadix__I__I__I(codePoint, 10);
+    return ((len === 1) ? ((v > (-1)) ? new $c_s_Some(v) : $m_s_None$()) : ((v > (-1)) ? $p_sc_StringParsers$__step$1__I__I__Z__I__T__s_Option(this, 1, ((-v) | 0), true, len, from) : ((first === 43) ? $p_sc_StringParsers$__step$1__I__I__Z__I__T__s_Option(this, 1, 0, true, len, from) : ((first === 45) ? $p_sc_StringParsers$__step$1__I__I__Z__I__T__s_Option(this, 1, 0, false, len, from) : $m_s_None$()))));
+  }
+});
+var $d_sc_StringParsers$ = new $TypeData().initClass($c_sc_StringParsers$, "scala.collection.StringParsers$", ({
+  sc_StringParsers$: 1
+}));
+export { $d_sc_StringParsers$ as $d_sc_StringParsers$ };
+var $n_sc_StringParsers$;
+function $m_sc_StringParsers$() {
+  if ((!$n_sc_StringParsers$)) {
+    $n_sc_StringParsers$ = new $c_sc_StringParsers$();
+  }
+  return $n_sc_StringParsers$;
+}
+export { $m_sc_StringParsers$ as $m_sc_StringParsers$ };
 /** @constructor */
 function $c_scg_CommonErrors$() {
 }
@@ -6904,6 +8476,9 @@ $c_sr_ScalaRunTime$.prototype._toString__s_Product__T = (function(x) {
   var start = ($n(x).productPrefix__T() + "(");
   return $f_sc_IterableOnceOps__mkString__T__T__T__T(this$1, start, ",", ")");
 });
+$c_sr_ScalaRunTime$.prototype.genericWrapArray__O__sci_ArraySeq = (function(xs) {
+  return ((xs === null) ? null : $m_sci_ArraySeq$().unsafeWrapArray__O__sci_ArraySeq(xs));
+});
 $c_sr_ScalaRunTime$.prototype.wrapRefArray__AO__sci_ArraySeq = (function(xs) {
   if ((xs === null)) {
     return null;
@@ -7073,6 +8648,37 @@ function $m_sjs_js_defined$() {
   return $n_sjs_js_defined$;
 }
 export { $m_sjs_js_defined$ as $m_sjs_js_defined$ };
+/** @constructor */
+function $c_sjs_js_special_package$() {
+}
+export { $c_sjs_js_special_package$ as $c_sjs_js_special_package$ };
+$c_sjs_js_special_package$.prototype = new $h_O();
+$c_sjs_js_special_package$.prototype.constructor = $c_sjs_js_special_package$;
+/** @constructor */
+function $h_sjs_js_special_package$() {
+}
+export { $h_sjs_js_special_package$ as $h_sjs_js_special_package$ };
+$h_sjs_js_special_package$.prototype = $c_sjs_js_special_package$.prototype;
+$c_sjs_js_special_package$.prototype.objectLiteral__sci_Seq__sjs_js_Object = (function(properties) {
+  var result = ({});
+  $n(properties).foreach__F1__V(new $c_sr_AbstractFunction1_$$Lambda$70e1780b84463d18653aacefee3ab989ac625f28(((pair$2$2) => {
+    var pair$2 = $as_T2(pair$2$2);
+    result[$n(pair$2)._1__O()] = $n(pair$2)._2__O();
+  })));
+  return result;
+});
+var $d_sjs_js_special_package$ = new $TypeData().initClass($c_sjs_js_special_package$, "scala.scalajs.js.special.package$", ({
+  sjs_js_special_package$: 1
+}));
+export { $d_sjs_js_special_package$ as $d_sjs_js_special_package$ };
+var $n_sjs_js_special_package$;
+function $m_sjs_js_special_package$() {
+  if ((!$n_sjs_js_special_package$)) {
+    $n_sjs_js_special_package$ = new $c_sjs_js_special_package$();
+  }
+  return $n_sjs_js_special_package$;
+}
+export { $m_sjs_js_special_package$ as $m_sjs_js_special_package$ };
 /** @constructor */
 function $c_sjs_js_timers_package$() {
 }
@@ -7979,6 +9585,156 @@ $c_Lcom_raquo_laminar_keys_CompositeKey.prototype.$colon$eq__T__Lcom_raquo_lamin
   var normalizedItems = $m_Lcom_raquo_laminar_keys_CompositeKey$().normalize__T__T__sci_List(items, separator);
   return new $c_Lcom_raquo_laminar_modifiers_CompositeKeySetter(this, normalizedItems);
 });
+$c_Lcom_raquo_laminar_keys_CompositeKey.prototype.$less$minus$minus__Lcom_raquo_airstream_core_Source__Lcom_raquo_laminar_keys_CompositeKey$CompositeValueMapper__Lcom_raquo_laminar_modifiers_KeyUpdater = (function(items, valueMapper) {
+  return new $c_Lcom_raquo_laminar_modifiers_KeyUpdater(this, $n(items).toObservable__Lcom_raquo_airstream_core_Observable(), new $c_sjsr_AnonFunction3_$$Lambda$0321b7865d991d5a3e10ec941cd6461a4b204491(((element, nextRawItems, thisBinder) => {
+    var element$1 = $as_Lcom_raquo_laminar_nodes_ReactiveElement(element);
+    var thisBinder$1 = $as_Lcom_raquo_laminar_modifiers_Modifier(thisBinder);
+    var this$2 = $n(element$1);
+    var currentNormalizedItems = $f_Lcom_raquo_laminar_nodes_ReactiveElement__compositeValueItems__Lcom_raquo_laminar_keys_CompositeKey__Lcom_raquo_laminar_modifiers_Modifier__sci_List(this$2, this, thisBinder$1);
+    $n(valueMapper);
+    var separator = this.Lcom_raquo_laminar_keys_CompositeKey__f_separator;
+    var item = $as_T(nextRawItems);
+    var nextNormalizedItems = $m_Lcom_raquo_laminar_keys_CompositeKey$().normalize__T__T__sci_List(item, separator);
+    var this$4 = $n(nextNormalizedItems);
+    var f = ((elem) => {
+      var elem$1 = $as_T(elem);
+      return $n(currentNormalizedItems).contains__O__Z(elem$1);
+    });
+    var l = this$4;
+    block: {
+      var result;
+      while (true) {
+        if ($n(l).isEmpty__Z()) {
+          var result = $m_sci_Nil$();
+          break;
+        } else {
+          var h = $n(l).head__O();
+          var t = $as_sci_List($n(l).tail__O());
+          if (($uZ(f(h)) === true)) {
+            l = t;
+            continue;
+          }
+          var start = l;
+          var remaining = t;
+          while (true) {
+            if ($n(remaining).isEmpty__Z()) {
+              var result = start;
+              break block;
+            } else {
+              var x = $n(remaining).head__O();
+              if (($uZ(f(x)) !== true)) {
+                remaining = $as_sci_List($n(remaining).tail__O());
+                continue;
+              }
+              var firstMiss = remaining;
+              var newHead = new $c_sci_$colon$colon($n(start).head__O(), $m_sci_Nil$());
+              var toProcess = $as_sci_List($n(start).tail__O());
+              var currentLast = newHead;
+              while ((toProcess !== firstMiss)) {
+                var newElem = new $c_sci_$colon$colon($n(toProcess).head__O(), $m_sci_Nil$());
+                $n(currentLast).sci_$colon$colon__f_next = newElem;
+                currentLast = newElem;
+                toProcess = $as_sci_List($n(toProcess).tail__O());
+              }
+              var next = $as_sci_List($n(firstMiss).tail__O());
+              var nextToCopy = next;
+              while ((!$n(next).isEmpty__Z())) {
+                var head = $n(next).head__O();
+                if (($uZ(f(head)) !== true)) {
+                  next = $as_sci_List($n(next).tail__O());
+                } else {
+                  while ((nextToCopy !== next)) {
+                    var newElem$2 = new $c_sci_$colon$colon($n(nextToCopy).head__O(), $m_sci_Nil$());
+                    $n(currentLast).sci_$colon$colon__f_next = newElem$2;
+                    currentLast = newElem$2;
+                    nextToCopy = $as_sci_List($n(nextToCopy).tail__O());
+                  }
+                  nextToCopy = $as_sci_List($n(next).tail__O());
+                  next = $as_sci_List($n(next).tail__O());
+                }
+              }
+              if ((!$n(nextToCopy).isEmpty__Z())) {
+                $n(currentLast).sci_$colon$colon__f_next = nextToCopy;
+              }
+              var result = newHead;
+              break block;
+            }
+          }
+        }
+      }
+    }
+    var this$5 = $n(currentNormalizedItems);
+    var f$1 = ((elem$2) => {
+      var elem$3 = $as_T(elem$2);
+      return $n(nextNormalizedItems).contains__O__Z(elem$3);
+    });
+    var l$1 = this$5;
+    block$2: {
+      var result$1;
+      while (true) {
+        if ($n(l$1).isEmpty__Z()) {
+          var result$1 = $m_sci_Nil$();
+          break;
+        } else {
+          var h$1 = $n(l$1).head__O();
+          var t$1 = $as_sci_List($n(l$1).tail__O());
+          if (($uZ(f$1(h$1)) === true)) {
+            l$1 = t$1;
+            continue;
+          }
+          var start$1 = l$1;
+          var remaining$1 = t$1;
+          while (true) {
+            if ($n(remaining$1).isEmpty__Z()) {
+              var result$1 = start$1;
+              break block$2;
+            } else {
+              var x$1 = $n(remaining$1).head__O();
+              if (($uZ(f$1(x$1)) !== true)) {
+                remaining$1 = $as_sci_List($n(remaining$1).tail__O());
+                continue;
+              }
+              var firstMiss$1 = remaining$1;
+              var newHead$1 = new $c_sci_$colon$colon($n(start$1).head__O(), $m_sci_Nil$());
+              var toProcess$1 = $as_sci_List($n(start$1).tail__O());
+              var currentLast$1 = newHead$1;
+              while ((toProcess$1 !== firstMiss$1)) {
+                var newElem$1 = new $c_sci_$colon$colon($n(toProcess$1).head__O(), $m_sci_Nil$());
+                $n(currentLast$1).sci_$colon$colon__f_next = newElem$1;
+                currentLast$1 = newElem$1;
+                toProcess$1 = $as_sci_List($n(toProcess$1).tail__O());
+              }
+              var next$1 = $as_sci_List($n(firstMiss$1).tail__O());
+              var nextToCopy$1 = next$1;
+              while ((!$n(next$1).isEmpty__Z())) {
+                var head$1 = $n(next$1).head__O();
+                if (($uZ(f$1(head$1)) !== true)) {
+                  next$1 = $as_sci_List($n(next$1).tail__O());
+                } else {
+                  while ((nextToCopy$1 !== next$1)) {
+                    var newElem$2$1 = new $c_sci_$colon$colon($n(nextToCopy$1).head__O(), $m_sci_Nil$());
+                    $n(currentLast$1).sci_$colon$colon__f_next = newElem$2$1;
+                    currentLast$1 = newElem$2$1;
+                    nextToCopy$1 = $as_sci_List($n(nextToCopy$1).tail__O());
+                  }
+                  nextToCopy$1 = $as_sci_List($n(next$1).tail__O());
+                  next$1 = $as_sci_List($n(next$1).tail__O());
+                }
+              }
+              if ((!$n(nextToCopy$1).isEmpty__Z())) {
+                $n(currentLast$1).sci_$colon$colon__f_next = nextToCopy$1;
+              }
+              var result$1 = newHead$1;
+              break block$2;
+            }
+          }
+        }
+      }
+    }
+    var this$6 = $n(element$1);
+    $f_Lcom_raquo_laminar_nodes_ReactiveElement__updateCompositeValue__Lcom_raquo_laminar_keys_CompositeKey__Lcom_raquo_laminar_modifiers_Modifier__sci_List__sci_List__V(this$6, this, thisBinder$1, result, result$1);
+  })));
+});
 var $d_Lcom_raquo_laminar_keys_CompositeKey = new $TypeData().initClass($c_Lcom_raquo_laminar_keys_CompositeKey, "com.raquo.laminar.keys.CompositeKey", ({
   Lcom_raquo_laminar_keys_CompositeKey: 1,
   Lcom_raquo_laminar_keys_Key: 1
@@ -8835,6 +10591,164 @@ function $m_ju_Formatter$RootLocaleInfo$() {
   return $n_ju_Formatter$RootLocaleInfo$;
 }
 export { $m_ju_Formatter$RootLocaleInfo$ as $m_ju_Formatter$RootLocaleInfo$ };
+function $p_ju_regex_Matcher__ensureLastMatch__O($thiz) {
+  if (($thiz.ju_regex_Matcher__f_lastMatch === null)) {
+    throw $ct_jl_IllegalStateException__T__(new $c_jl_IllegalStateException(), "No match available");
+  }
+  return $thiz.ju_regex_Matcher__f_lastMatch;
+}
+export { $p_ju_regex_Matcher__ensureLastMatch__O as $p_ju_regex_Matcher__ensureLastMatch__O };
+/** @constructor */
+function $c_ju_regex_Matcher(pattern0, input0) {
+  this.ju_regex_Matcher__f_pattern0 = null;
+  this.ju_regex_Matcher__f_java$util$regex$Matcher$$input0 = null;
+  this.ju_regex_Matcher__f_regionStart0 = 0;
+  this.ju_regex_Matcher__f_inputstr = null;
+  this.ju_regex_Matcher__f_position = 0;
+  this.ju_regex_Matcher__f_lastMatch = null;
+  this.ju_regex_Matcher__f_pattern0 = pattern0;
+  this.ju_regex_Matcher__f_java$util$regex$Matcher$$input0 = input0;
+  this.ju_regex_Matcher__f_regionStart0 = 0;
+  $n(this.ju_regex_Matcher__f_java$util$regex$Matcher$$input0);
+  this.ju_regex_Matcher__f_inputstr = this.ju_regex_Matcher__f_java$util$regex$Matcher$$input0;
+  this.ju_regex_Matcher__f_position = 0;
+  this.ju_regex_Matcher__f_lastMatch = null;
+}
+export { $c_ju_regex_Matcher as $c_ju_regex_Matcher };
+$c_ju_regex_Matcher.prototype = new $h_O();
+$c_ju_regex_Matcher.prototype.constructor = $c_ju_regex_Matcher;
+/** @constructor */
+function $h_ju_regex_Matcher() {
+}
+export { $h_ju_regex_Matcher as $h_ju_regex_Matcher };
+$h_ju_regex_Matcher.prototype = $c_ju_regex_Matcher.prototype;
+$c_ju_regex_Matcher.prototype.find__Z = (function() {
+  var this$1 = $n(this.ju_regex_Matcher__f_pattern0);
+  var input = this.ju_regex_Matcher__f_inputstr;
+  var start = this.ju_regex_Matcher__f_position;
+  var mtch = this$1.java$util$regex$Pattern$$execFindInternal__T__I__O(input, start);
+  var end = $uI(this$1.ju_regex_Pattern__f_java$util$regex$Pattern$$jsRegExpForFind.lastIndex);
+  if ((mtch !== null)) {
+    var $x_1 = ((end === $uI(mtch.index)) ? ((1 + end) | 0) : end);
+  } else {
+    var this$2 = $n(this.ju_regex_Matcher__f_inputstr);
+    var $x_1 = ((1 + this$2.length) | 0);
+  }
+  this.ju_regex_Matcher__f_position = $x_1;
+  this.ju_regex_Matcher__f_lastMatch = mtch;
+  return (mtch !== null);
+});
+$c_ju_regex_Matcher.prototype.start__I = (function() {
+  return (($uI($p_ju_regex_Matcher__ensureLastMatch__O(this).index) + this.ju_regex_Matcher__f_regionStart0) | 0);
+});
+$c_ju_regex_Matcher.prototype.end__I = (function() {
+  var $x_1 = this.start__I();
+  var this$1 = $n(this.group__T());
+  return (($x_1 + this$1.length) | 0);
+});
+$c_ju_regex_Matcher.prototype.group__T = (function() {
+  var x = $p_ju_regex_Matcher__ensureLastMatch__O(this)[0];
+  return $as_T(x);
+});
+var $d_ju_regex_Matcher = new $TypeData().initClass($c_ju_regex_Matcher, "java.util.regex.Matcher", ({
+  ju_regex_Matcher: 1,
+  ju_regex_MatchResult: 1
+}));
+export { $d_ju_regex_Matcher as $d_ju_regex_Matcher };
+/** @constructor */
+function $c_ju_regex_Pattern(_pattern, _flags, jsPattern, jsFlags, sticky, groupCount, groupNumberMap, namedGroups) {
+  this.ju_regex_Pattern__f__pattern = null;
+  this.ju_regex_Pattern__f_java$util$regex$Pattern$$jsFlags = null;
+  this.ju_regex_Pattern__f_java$util$regex$Pattern$$sticky = false;
+  this.ju_regex_Pattern__f_java$util$regex$Pattern$$jsRegExpForFind = null;
+  this.ju_regex_Pattern__f__pattern = _pattern;
+  this.ju_regex_Pattern__f_java$util$regex$Pattern$$jsFlags = jsFlags;
+  this.ju_regex_Pattern__f_java$util$regex$Pattern$$sticky = sticky;
+  this.ju_regex_Pattern__f_java$util$regex$Pattern$$jsRegExpForFind = new RegExp(jsPattern, (this.ju_regex_Pattern__f_java$util$regex$Pattern$$jsFlags + (this.ju_regex_Pattern__f_java$util$regex$Pattern$$sticky ? "gy" : "g")));
+  new RegExp((("^(?:" + jsPattern) + ")$"), jsFlags);
+}
+export { $c_ju_regex_Pattern as $c_ju_regex_Pattern };
+$c_ju_regex_Pattern.prototype = new $h_O();
+$c_ju_regex_Pattern.prototype.constructor = $c_ju_regex_Pattern;
+/** @constructor */
+function $h_ju_regex_Pattern() {
+}
+export { $h_ju_regex_Pattern as $h_ju_regex_Pattern };
+$h_ju_regex_Pattern.prototype = $c_ju_regex_Pattern.prototype;
+$c_ju_regex_Pattern.prototype.java$util$regex$Pattern$$execFindInternal__T__I__O = (function(input, start) {
+  var regexp = this.ju_regex_Pattern__f_java$util$regex$Pattern$$jsRegExpForFind;
+  regexp.lastIndex = start;
+  return regexp.exec(input);
+});
+$c_ju_regex_Pattern.prototype.toString__T = (function() {
+  return this.ju_regex_Pattern__f__pattern;
+});
+$c_ju_regex_Pattern.prototype.java$util$regex$Pattern$$split__T__I__AT = (function(inputStr, limit) {
+  if ((inputStr === "")) {
+    return new ($d_T.getArrayOf().constr)([""]);
+  } else {
+    var lim = ((limit > 0) ? limit : 2147483647);
+    var this$1 = $n(inputStr);
+    var matcher = new $c_ju_regex_Matcher(this, this$1);
+    var result = [];
+    var prevEnd = 0;
+    while ((($uI(result.length) < (((-1) + lim) | 0)) && matcher.find__Z())) {
+      if ((matcher.end__I() !== 0)) {
+        var this$2 = $n(inputStr);
+        var beginIndex = prevEnd;
+        var endIndex = matcher.start__I();
+        if ((beginIndex < 0)) {
+          $charAt(this$2, beginIndex);
+        }
+        if ((endIndex > this$2.length)) {
+          $charAt(this$2, endIndex);
+        }
+        if ((endIndex < beginIndex)) {
+          $charAt(this$2, (-1));
+        }
+        var $x_1 = result.push($as_T(this$2.substring(beginIndex, endIndex)));
+        $uI($x_1);
+      }
+      prevEnd = matcher.end__I();
+    }
+    var this$3 = $n(inputStr);
+    var beginIndex$1 = prevEnd;
+    if (((beginIndex$1 < 0) || (beginIndex$1 > this$3.length))) {
+      $charAt(this$3, beginIndex$1);
+    }
+    result.push($as_T(this$3.substring(beginIndex$1)));
+    var actualLength = $uI(result.length);
+    if ((limit === 0)) {
+      while (true) {
+        if ((actualLength !== 0)) {
+          var x = result[(((-1) + actualLength) | 0)];
+          var $x_2 = ((x !== null) && $dp_equals__O__Z($n(x), ""));
+        } else {
+          var $x_2 = false;
+        }
+        if ($x_2) {
+          actualLength = (((-1) + actualLength) | 0);
+        } else {
+          break;
+        }
+      }
+    }
+    var r = new ($d_T.getArrayOf().constr)(actualLength);
+    var end = actualLength;
+    var i = 0;
+    while ((i < end)) {
+      var value = i;
+      r.set(value, $as_T(result[value]));
+      i = ((1 + i) | 0);
+    }
+    return r;
+  }
+});
+var $d_ju_regex_Pattern = new $TypeData().initClass($c_ju_regex_Pattern, "java.util.regex.Pattern", ({
+  ju_regex_Pattern: 1,
+  Ljava_io_Serializable: 1
+}));
+export { $d_ju_regex_Pattern as $d_ju_regex_Pattern };
 /** @constructor */
 function $c_s_$less$colon$less$() {
   this.s_$less$colon$less$__f_singleton = null;
@@ -9012,6 +10926,9 @@ $c_s_LowPriorityImplicits.prototype.wrapRefArray__AO__scm_ArraySeq$ofRef = (func
     return new $c_scm_ArraySeq$ofRef(xs);
   }
 });
+$c_s_LowPriorityImplicits.prototype.wrapIntArray__AI__scm_ArraySeq$ofInt = (function(xs) {
+  return ((xs !== null) ? new $c_scm_ArraySeq$ofInt(xs) : null);
+});
 $c_s_LowPriorityImplicits.prototype.wrapBooleanArray__AZ__scm_ArraySeq$ofBoolean = (function(xs) {
   return ((xs !== null) ? new $c_scm_ArraySeq$ofBoolean(xs) : null);
 });
@@ -9096,6 +11013,37 @@ function $asArrayOf_sci_MapNode(obj, depth) {
   return (($isArrayOf_sci_MapNode(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lscala.collection.immutable.MapNode;", depth));
 }
 export { $asArrayOf_sci_MapNode as $asArrayOf_sci_MapNode };
+function $p_sci_Range$__description__I__I__I__Z__T($thiz, start, end, step, isInclusive) {
+  return ((((start + (isInclusive ? " to " : " until ")) + end) + " by ") + step);
+}
+export { $p_sci_Range$__description__I__I__I__Z__T as $p_sci_Range$__description__I__I__I__Z__T };
+/** @constructor */
+function $c_sci_Range$() {
+}
+export { $c_sci_Range$ as $c_sci_Range$ };
+$c_sci_Range$.prototype = new $h_O();
+$c_sci_Range$.prototype.constructor = $c_sci_Range$;
+/** @constructor */
+function $h_sci_Range$() {
+}
+export { $h_sci_Range$ as $h_sci_Range$ };
+$h_sci_Range$.prototype = $c_sci_Range$.prototype;
+$c_sci_Range$.prototype.scala$collection$immutable$Range$$fail__I__I__I__Z__E = (function(start, end, step, isInclusive) {
+  throw $ct_jl_IllegalArgumentException__T__(new $c_jl_IllegalArgumentException(), ($p_sci_Range$__description__I__I__I__Z__T(this, start, end, step, isInclusive) + ": seqs cannot contain more than Int.MaxValue elements."));
+});
+var $d_sci_Range$ = new $TypeData().initClass($c_sci_Range$, "scala.collection.immutable.Range$", ({
+  sci_Range$: 1,
+  Ljava_io_Serializable: 1
+}));
+export { $d_sci_Range$ as $d_sci_Range$ };
+var $n_sci_Range$;
+function $m_sci_Range$() {
+  if ((!$n_sci_Range$)) {
+    $n_sci_Range$ = new $c_sci_Range$();
+  }
+  return $n_sci_Range$;
+}
+export { $m_sci_Range$ as $m_sci_Range$ };
 /** @constructor */
 function $c_sci_SetNode() {
 }
@@ -9595,6 +11543,38 @@ function $f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_lami
   return new $c_Lcom_raquo_laminar_nodes_TextNode($n(r).asString__O__T(value));
 }
 export { $f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_nodes_TextNode as $f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_nodes_TextNode };
+function $f_Lcom_raquo_laminar_api_Implicits__nodeOptionToModifier__s_Option__Lcom_raquo_laminar_modifiers_Modifier($thiz, nodes) {
+  var this$3 = $m_Lcom_raquo_laminar_modifiers_Modifier$();
+  var f = new $c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((element) => {
+    var element$1 = $as_Lcom_raquo_laminar_nodes_ReactiveElement(element);
+    var this$1 = $n(nodes);
+    if ((!this$1.isEmpty__Z())) {
+      var x0 = this$1.get__O();
+      var _$7 = $as_Lcom_raquo_laminar_nodes_ChildNode(x0);
+      var this$2 = $n(_$7);
+      $m_Lcom_raquo_laminar_nodes_ParentNode$().appendChild__Lcom_raquo_laminar_nodes_ParentNode__Lcom_raquo_laminar_nodes_ChildNode__O__Z(element$1, this$2, (void 0));
+    }
+  }));
+  return new $c_Lcom_raquo_laminar_modifiers_Modifier$$anon$2(f, this$3);
+}
+export { $f_Lcom_raquo_laminar_api_Implicits__nodeOptionToModifier__s_Option__Lcom_raquo_laminar_modifiers_Modifier as $f_Lcom_raquo_laminar_api_Implicits__nodeOptionToModifier__s_Option__Lcom_raquo_laminar_modifiers_Modifier };
+function $f_Lcom_raquo_laminar_api_Implicits__nodeSeqToModifier__O__Lcom_raquo_laminar_modifiers_RenderableSeq__Lcom_raquo_laminar_modifiers_Modifier($thiz, nodes, renderableSeq) {
+  var this$4 = $m_Lcom_raquo_laminar_modifiers_Modifier$();
+  var f = new $c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((element) => {
+    var element$1 = $as_Lcom_raquo_laminar_nodes_ReactiveElement(element);
+    $n(renderableSeq);
+    var values = $as_sc_Seq(nodes);
+    $m_Lcom_raquo_laminar_Seq$();
+    var nodesSeq = new $c_Lcom_raquo_laminar_Seq(values, null, null);
+    nodesSeq.foreach__F1__V(new $c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$9) => {
+      var _$9$1 = $as_Lcom_raquo_laminar_nodes_ChildNode(_$9);
+      var this$3 = $n(_$9$1);
+      $m_Lcom_raquo_laminar_nodes_ParentNode$().appendChild__Lcom_raquo_laminar_nodes_ParentNode__Lcom_raquo_laminar_nodes_ChildNode__O__Z(element$1, this$3, (void 0));
+    })));
+  }));
+  return new $c_Lcom_raquo_laminar_modifiers_Modifier$$anon$2(f, this$4);
+}
+export { $f_Lcom_raquo_laminar_api_Implicits__nodeSeqToModifier__O__Lcom_raquo_laminar_modifiers_RenderableSeq__Lcom_raquo_laminar_modifiers_Modifier as $f_Lcom_raquo_laminar_api_Implicits__nodeSeqToModifier__O__Lcom_raquo_laminar_modifiers_RenderableSeq__Lcom_raquo_laminar_modifiers_Modifier };
 /** @constructor */
 function $c_Lcom_raquo_laminar_api_Laminar$$anon$1() {
   this.Lcom_raquo_laminar_api_Laminar$$anon$1__f_onDomContentLoaded$lzy1 = null;
@@ -10170,6 +12150,10 @@ function $f_sc_IterableOps__sizeCompare__I__I($thiz, otherSize) {
   }
 }
 export { $f_sc_IterableOps__sizeCompare__I__I as $f_sc_IterableOps__sizeCompare__I__I };
+function $f_sc_IterableOps__map__F1__O($thiz, f) {
+  return $n($thiz.iterableFactory__sc_IterableFactory()).from__sc_IterableOnce__O($ct_sc_View$Map__sc_IterableOps__F1__(new $c_sc_View$Map(), $thiz, f));
+}
+export { $f_sc_IterableOps__map__F1__O as $f_sc_IterableOps__map__F1__O };
 function $is_sc_IterableOps(obj) {
   return (!(!((obj && obj.$classData) && obj.$classData.ancestors.sc_IterableOps)));
 }
@@ -10396,6 +12380,20 @@ $c_sci_BitmapIndexedMapNode.prototype.apply__O__I__I__I__O = (function(key, orig
     return $n(this.getNode__I__sci_MapNode($m_sci_Node$().indexFrom__I__I__I__I(this.sci_BitmapIndexedMapNode__f_nodeMap, mask, bitpos))).apply__O__I__I__I__O(key, originalHash, keyHash, ((5 + shift) | 0));
   } else {
     throw new $c_ju_NoSuchElementException(("key not found: " + key));
+  }
+});
+$c_sci_BitmapIndexedMapNode.prototype.get__O__I__I__I__s_Option = (function(key, originalHash, keyHash, shift) {
+  var mask = $m_sci_Node$().maskFrom__I__I__I(keyHash, shift);
+  var bitpos = $m_sci_Node$().bitposFrom__I__I(mask);
+  if (((this.sci_BitmapIndexedMapNode__f_dataMap & bitpos) !== 0)) {
+    var index = $m_sci_Node$().indexFrom__I__I__I__I(this.sci_BitmapIndexedMapNode__f_dataMap, mask, bitpos);
+    var key0 = this.getKey__I__O(index);
+    return ($m_sr_BoxesRunTime$().equals__O__O__Z(key, key0) ? new $c_s_Some(this.getValue__I__O(index)) : $m_s_None$());
+  } else if (((this.sci_BitmapIndexedMapNode__f_nodeMap & bitpos) !== 0)) {
+    var index$2 = $m_sci_Node$().indexFrom__I__I__I__I(this.sci_BitmapIndexedMapNode__f_nodeMap, mask, bitpos);
+    return $n(this.getNode__I__sci_MapNode(index$2)).get__O__I__I__I__s_Option(key, originalHash, keyHash, ((5 + shift) | 0));
+  } else {
+    return $m_s_None$();
   }
 });
 $c_sci_BitmapIndexedMapNode.prototype.getOrElse__O__I__I__I__F0__O = (function(key, originalHash, keyHash, shift, f) {
@@ -10749,6 +12747,43 @@ $c_sci_BitmapIndexedSetNode.prototype.updated__O__I__I__I__sci_BitmapIndexedSetN
   }
   return this.copyAndInsertValue__I__O__I__I__sci_BitmapIndexedSetNode(bitpos, element, originalHash, elementHash);
 });
+$c_sci_BitmapIndexedSetNode.prototype.removed__O__I__I__I__sci_BitmapIndexedSetNode = (function(element, originalHash, elementHash, shift) {
+  var mask = $m_sci_Node$().maskFrom__I__I__I(elementHash, shift);
+  var bitpos = $m_sci_Node$().bitposFrom__I__I(mask);
+  if (((this.sci_BitmapIndexedSetNode__f_dataMap & bitpos) !== 0)) {
+    var index = $m_sci_Node$().indexFrom__I__I__I__I(this.sci_BitmapIndexedSetNode__f_dataMap, mask, bitpos);
+    var element0 = this.getPayload__I__O(index);
+    if ($m_sr_BoxesRunTime$().equals__O__O__Z(element0, element)) {
+      var i = this.sci_BitmapIndexedSetNode__f_dataMap;
+      if (($m_jl_Integer$().bitCount__I__I(i) === 2)) {
+        var i$1 = this.sci_BitmapIndexedSetNode__f_nodeMap;
+        var $x_1 = ($m_jl_Integer$().bitCount__I__I(i$1) === 0);
+      } else {
+        var $x_1 = false;
+      }
+      if ($x_1) {
+        var newDataMap = ((shift === 0) ? (this.sci_BitmapIndexedSetNode__f_dataMap ^ bitpos) : $m_sci_Node$().bitposFrom__I__I($m_sci_Node$().maskFrom__I__I__I(elementHash, 0)));
+        return ((index === 0) ? new $c_sci_BitmapIndexedSetNode(newDataMap, 0, new $ac_O([this.getPayload__I__O(1)]), new $ac_I(new Int32Array([$n(this.sci_BitmapIndexedSetNode__f_originalHashes).get(1)])), (((-1) + this.sci_BitmapIndexedSetNode__f_size) | 0), $m_sc_Hashing$().improve__I__I($n(this.sci_BitmapIndexedSetNode__f_originalHashes).get(1))) : new $c_sci_BitmapIndexedSetNode(newDataMap, 0, new $ac_O([this.getPayload__I__O(0)]), new $ac_I(new Int32Array([$n(this.sci_BitmapIndexedSetNode__f_originalHashes).get(0)])), (((-1) + this.sci_BitmapIndexedSetNode__f_size) | 0), $m_sc_Hashing$().improve__I__I($n(this.sci_BitmapIndexedSetNode__f_originalHashes).get(0))));
+      } else {
+        return this.copyAndRemoveValue__I__I__sci_BitmapIndexedSetNode(bitpos, elementHash);
+      }
+    } else {
+      return this;
+    }
+  } else if (((this.sci_BitmapIndexedSetNode__f_nodeMap & bitpos) !== 0)) {
+    var index$2 = $m_sci_Node$().indexFrom__I__I__I__I(this.sci_BitmapIndexedSetNode__f_nodeMap, mask, bitpos);
+    var subNode = this.getNode__I__sci_SetNode(index$2);
+    var subNodeNew = $n(subNode).removed__O__I__I__I__sci_SetNode(element, originalHash, elementHash, ((5 + shift) | 0));
+    if ((subNodeNew === subNode)) {
+      return this;
+    } else {
+      var x1 = $n(subNodeNew).size__I();
+      return ((x1 === 1) ? ((this.sci_BitmapIndexedSetNode__f_size === $n(subNode).size__I()) ? $as_sci_BitmapIndexedSetNode(subNodeNew) : this.copyAndMigrateFromNodeToInline__I__I__sci_SetNode__sci_SetNode__sci_BitmapIndexedSetNode(bitpos, elementHash, subNode, subNodeNew)) : ((x1 > 1) ? this.copyAndSetNode__I__sci_SetNode__sci_SetNode__sci_BitmapIndexedSetNode(bitpos, subNode, subNodeNew) : this));
+    }
+  } else {
+    return this;
+  }
+});
 $c_sci_BitmapIndexedSetNode.prototype.mergeTwoKeyValPairs__O__I__I__O__I__I__I__sci_SetNode = (function(key0, originalKeyHash0, keyHash0, key1, originalKeyHash1, keyHash1, shift) {
   if ((shift >= 32)) {
     var this$4 = $m_sci_Vector$();
@@ -10812,6 +12847,17 @@ $c_sci_BitmapIndexedSetNode.prototype.copyAndInsertValue__I__O__I__I__sci_Bitmap
   var dstHashes = this.insertElement__AI__I__I__AI(this.sci_BitmapIndexedSetNode__f_originalHashes, dataIx, originalHash);
   return new $c_sci_BitmapIndexedSetNode((this.sci_BitmapIndexedSetNode__f_dataMap | bitpos), this.sci_BitmapIndexedSetNode__f_nodeMap, dst, dstHashes, ((1 + this.sci_BitmapIndexedSetNode__f_size) | 0), ((this.sci_BitmapIndexedSetNode__f_cachedJavaKeySetHashCode + elementHash) | 0));
 });
+$c_sci_BitmapIndexedSetNode.prototype.copyAndRemoveValue__I__I__sci_BitmapIndexedSetNode = (function(bitpos, elementHash) {
+  var dataIx = this.dataIndex__I__I(bitpos);
+  var src = this.sci_BitmapIndexedSetNode__f_content;
+  var dst = new $ac_O((((-1) + $n(src).u.length) | 0));
+  $systemArraycopyRefs($n(src), 0, dst, 0, dataIx);
+  var srcPos = ((1 + dataIx) | 0);
+  var length = (((-1) + (($n(src).u.length - dataIx) | 0)) | 0);
+  $systemArraycopyRefs($n(src), srcPos, dst, dataIx, length);
+  var dstHashes = this.removeElement__AI__I__AI(this.sci_BitmapIndexedSetNode__f_originalHashes, dataIx);
+  return new $c_sci_BitmapIndexedSetNode((this.sci_BitmapIndexedSetNode__f_dataMap ^ bitpos), this.sci_BitmapIndexedSetNode__f_nodeMap, dst, dstHashes, (((-1) + this.sci_BitmapIndexedSetNode__f_size) | 0), ((this.sci_BitmapIndexedSetNode__f_cachedJavaKeySetHashCode - elementHash) | 0));
+});
 $c_sci_BitmapIndexedSetNode.prototype.copyAndMigrateFromInlineToNode__I__I__sci_SetNode__sci_BitmapIndexedSetNode = (function(bitpos, elementHash, node) {
   var dataIx = this.dataIndex__I__I(bitpos);
   var idxNew = (((((-1) + $n(this.sci_BitmapIndexedSetNode__f_content).u.length) | 0) - this.nodeIndex__I__I(bitpos)) | 0);
@@ -10844,6 +12890,24 @@ $c_sci_BitmapIndexedSetNode.prototype.migrateFromInlineToNodeInPlace__I__I__sci_
   this.sci_BitmapIndexedSetNode__f_size = (((((-1) + this.sci_BitmapIndexedSetNode__f_size) | 0) + $n(node).size__I()) | 0);
   this.sci_BitmapIndexedSetNode__f_cachedJavaKeySetHashCode = ((((this.sci_BitmapIndexedSetNode__f_cachedJavaKeySetHashCode - keyHash) | 0) + $n(node).cachedJavaKeySetHashCode__I()) | 0);
   return this;
+});
+$c_sci_BitmapIndexedSetNode.prototype.copyAndMigrateFromNodeToInline__I__I__sci_SetNode__sci_SetNode__sci_BitmapIndexedSetNode = (function(bitpos, elementHash, oldNode, node) {
+  var idxOld = (((((-1) + $n(this.sci_BitmapIndexedSetNode__f_content).u.length) | 0) - this.nodeIndex__I__I(bitpos)) | 0);
+  var dataIxNew = this.dataIndex__I__I(bitpos);
+  var src = this.sci_BitmapIndexedSetNode__f_content;
+  var dst = new $ac_O($n(src).u.length);
+  $systemArraycopyRefs($n(src), 0, dst, 0, dataIxNew);
+  dst.set(dataIxNew, $n(node).getPayload__I__O(0));
+  var destPos = ((1 + dataIxNew) | 0);
+  var length = ((idxOld - dataIxNew) | 0);
+  $systemArraycopyRefs($n(src), dataIxNew, dst, destPos, length);
+  var srcPos = ((1 + idxOld) | 0);
+  var destPos$1 = ((1 + idxOld) | 0);
+  var length$1 = (((-1) + (($n(src).u.length - idxOld) | 0)) | 0);
+  $systemArraycopyRefs($n(src), srcPos, dst, destPos$1, length$1);
+  var hash = $n(node).getHash__I__I(0);
+  var dstHashes = this.insertElement__AI__I__I__AI(this.sci_BitmapIndexedSetNode__f_originalHashes, dataIxNew, hash);
+  return new $c_sci_BitmapIndexedSetNode((this.sci_BitmapIndexedSetNode__f_dataMap | bitpos), (this.sci_BitmapIndexedSetNode__f_nodeMap ^ bitpos), dst, dstHashes, ((1 + ((this.sci_BitmapIndexedSetNode__f_size - $n(oldNode).size__I()) | 0)) | 0), ((((this.sci_BitmapIndexedSetNode__f_cachedJavaKeySetHashCode - $n(oldNode).cachedJavaKeySetHashCode__I()) | 0) + $n(node).cachedJavaKeySetHashCode__I()) | 0));
 });
 $c_sci_BitmapIndexedSetNode.prototype.subsetOf__sci_SetNode__I__Z = (function(that, shift) {
   if ((this === that)) {
@@ -10976,6 +13040,9 @@ $c_sci_BitmapIndexedSetNode.prototype.foreachWithHash__F2__V = (function(f) {
 });
 $c_sci_BitmapIndexedSetNode.prototype.copy__sci_SetNode = (function() {
   return this.copy__sci_BitmapIndexedSetNode();
+});
+$c_sci_BitmapIndexedSetNode.prototype.removed__O__I__I__I__sci_SetNode = (function(element, originalHash, hash, shift) {
+  return this.removed__O__I__I__I__sci_BitmapIndexedSetNode(element, originalHash, hash, shift);
 });
 $c_sci_BitmapIndexedSetNode.prototype.updated__O__I__I__I__sci_SetNode = (function(element, originalHash, hash, shift) {
   return this.updated__O__I__I__I__sci_BitmapIndexedSetNode(element, originalHash, hash, shift);
@@ -11189,6 +13256,18 @@ $c_sci_HashCollisionSetNode.prototype.contains__O__I__I__I__Z = (function(elemen
 });
 $c_sci_HashCollisionSetNode.prototype.updated__O__I__I__I__sci_SetNode = (function(element, originalHash, hash, shift) {
   return (this.contains__O__I__I__I__Z(element, originalHash, hash, shift) ? this : new $c_sci_HashCollisionSetNode(originalHash, hash, $n(this.sci_HashCollisionSetNode__f_content).appended__O__sci_Vector(element)));
+});
+$c_sci_HashCollisionSetNode.prototype.removed__O__I__I__I__sci_SetNode = (function(element, originalHash, hash, shift) {
+  if ((!this.contains__O__I__I__I__Z(element, originalHash, hash, shift))) {
+    return this;
+  } else {
+    var this$1 = $n(this.sci_HashCollisionSetNode__f_content);
+    var pred = new $c_sr_AbstractFunction1_$$Lambda$70e1780b84463d18653aacefee3ab989ac625f28(((element0$2$2) => $m_sr_BoxesRunTime$().equals__O__O__Z(element0$2$2, element)));
+    var updatedContent = this$1.filterImpl__F1__Z__sci_Vector(pred, true);
+    var this$2 = $n(updatedContent);
+    var x1 = this$2.length__I();
+    return ((x1 === 1) ? new $c_sci_BitmapIndexedSetNode($m_sci_Node$().bitposFrom__I__I($m_sci_Node$().maskFrom__I__I__I(hash, 0)), 0, new $ac_O([$n(updatedContent).apply__I__O(0)]), new $ac_I(new Int32Array([originalHash])), 1, hash) : new $c_sci_HashCollisionSetNode(originalHash, hash, updatedContent));
+  }
 });
 $c_sci_HashCollisionSetNode.prototype.hasNodes__Z = (function() {
   return false;
@@ -14428,6 +16507,10 @@ function $f_Lcom_raquo_laminar_nodes_ReactiveElement__indexOfEventListener__Lcom
   }
 }
 export { $f_Lcom_raquo_laminar_nodes_ReactiveElement__indexOfEventListener__Lcom_raquo_laminar_modifiers_EventListener__I as $f_Lcom_raquo_laminar_nodes_ReactiveElement__indexOfEventListener__Lcom_raquo_laminar_modifiers_EventListener__I };
+function $f_Lcom_raquo_laminar_nodes_ReactiveElement__compositeValueItems__Lcom_raquo_laminar_keys_CompositeKey__Lcom_raquo_laminar_modifiers_Modifier__sci_List($thiz, prop, reason) {
+  return $n($as_sci_List($n($thiz.Lcom_raquo_laminar_nodes_ReactiveHtmlElement__f_com$raquo$laminar$nodes$ReactiveElement$$_compositeValues).getOrElse__O__F0__O(prop, new $c_sjsr_AnonFunction0_$$Lambda$92a2e254bbb9c06a0a02fc31abab59c51c18ecc1((() => $m_sci_Nil$()))))).collect__s_PartialFunction__sci_List(new $c_Lcom_raquo_laminar_nodes_ReactiveElement$$anon$1(reason));
+}
+export { $f_Lcom_raquo_laminar_nodes_ReactiveElement__compositeValueItems__Lcom_raquo_laminar_keys_CompositeKey__Lcom_raquo_laminar_modifiers_Modifier__sci_List as $f_Lcom_raquo_laminar_nodes_ReactiveElement__compositeValueItems__Lcom_raquo_laminar_keys_CompositeKey__Lcom_raquo_laminar_modifiers_Modifier__sci_List };
 function $f_Lcom_raquo_laminar_nodes_ReactiveElement__updateCompositeValue__Lcom_raquo_laminar_keys_CompositeKey__Lcom_raquo_laminar_modifiers_Modifier__sci_List__sci_List__V($thiz, key, reason, addItems, removeItems) {
   var keyItemsWithReason = $as_sci_List($n($thiz.Lcom_raquo_laminar_nodes_ReactiveHtmlElement__f_com$raquo$laminar$nodes$ReactiveElement$$_compositeValues).getOrElse__O__F0__O(key, new $c_sjsr_AnonFunction0_$$Lambda$92a2e254bbb9c06a0a02fc31abab59c51c18ecc1((() => $m_sci_Nil$()))));
   var f = ((item) => {
@@ -14828,6 +16911,67 @@ function $asArrayOf_Lcom_raquo_laminar_nodes_ReactiveElement(obj, depth) {
   return (($isArrayOf_Lcom_raquo_laminar_nodes_ReactiveElement(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lcom.raquo.laminar.nodes.ReactiveElement;", depth));
 }
 export { $asArrayOf_Lcom_raquo_laminar_nodes_ReactiveElement as $asArrayOf_Lcom_raquo_laminar_nodes_ReactiveElement };
+/** @constructor */
+function $c_Lcom_raquo_laminar_nodes_ReactiveElement$$anon$1(reason$5) {
+  this.Lcom_raquo_laminar_nodes_ReactiveElement$$anon$1__f_reason$1 = null;
+  this.Lcom_raquo_laminar_nodes_ReactiveElement$$anon$1__f_reason$1 = reason$5;
+}
+export { $c_Lcom_raquo_laminar_nodes_ReactiveElement$$anon$1 as $c_Lcom_raquo_laminar_nodes_ReactiveElement$$anon$1 };
+$c_Lcom_raquo_laminar_nodes_ReactiveElement$$anon$1.prototype = new $h_sr_AbstractPartialFunction();
+$c_Lcom_raquo_laminar_nodes_ReactiveElement$$anon$1.prototype.constructor = $c_Lcom_raquo_laminar_nodes_ReactiveElement$$anon$1;
+/** @constructor */
+function $h_Lcom_raquo_laminar_nodes_ReactiveElement$$anon$1() {
+}
+export { $h_Lcom_raquo_laminar_nodes_ReactiveElement$$anon$1 as $h_Lcom_raquo_laminar_nodes_ReactiveElement$$anon$1 };
+$h_Lcom_raquo_laminar_nodes_ReactiveElement$$anon$1.prototype = $c_Lcom_raquo_laminar_nodes_ReactiveElement$$anon$1.prototype;
+$c_Lcom_raquo_laminar_nodes_ReactiveElement$$anon$1.prototype.isDefinedAt__T2__Z = (function(x) {
+  if ((x !== null)) {
+    $as_T($n(x)._1__O());
+    var r = $as_Lcom_raquo_laminar_modifiers_Modifier($n(x)._2__O());
+    var x$3 = this.Lcom_raquo_laminar_nodes_ReactiveElement$$anon$1__f_reason$1;
+    if ((r === null)) {
+      var $x_1 = (x$3 === null);
+    } else {
+      var this$1 = $n(r);
+      var $x_1 = (this$1 === x$3);
+    }
+    if ($x_1) {
+      return true;
+    }
+  }
+  return false;
+});
+$c_Lcom_raquo_laminar_nodes_ReactiveElement$$anon$1.prototype.applyOrElse__T2__F1__O = (function(x, default$1) {
+  if ((x !== null)) {
+    var item = $as_T($n(x)._1__O());
+    var r = $as_Lcom_raquo_laminar_modifiers_Modifier($n(x)._2__O());
+    var x$3 = this.Lcom_raquo_laminar_nodes_ReactiveElement$$anon$1__f_reason$1;
+    if ((r === null)) {
+      var $x_1 = (x$3 === null);
+    } else {
+      var this$1 = $n(r);
+      var $x_1 = (this$1 === x$3);
+    }
+    if ($x_1) {
+      return item;
+    }
+  }
+  return $n(default$1).apply__O__O(x);
+});
+$c_Lcom_raquo_laminar_nodes_ReactiveElement$$anon$1.prototype.isDefinedAt__O__Z = (function(x) {
+  return this.isDefinedAt__T2__Z($as_T2(x));
+});
+$c_Lcom_raquo_laminar_nodes_ReactiveElement$$anon$1.prototype.applyOrElse__O__F1__O = (function(x, default$1) {
+  return this.applyOrElse__T2__F1__O($as_T2(x), default$1);
+});
+var $d_Lcom_raquo_laminar_nodes_ReactiveElement$$anon$1 = new $TypeData().initClass($c_Lcom_raquo_laminar_nodes_ReactiveElement$$anon$1, "com.raquo.laminar.nodes.ReactiveElement$$anon$1", ({
+  Lcom_raquo_laminar_nodes_ReactiveElement$$anon$1: 1,
+  sr_AbstractPartialFunction: 1,
+  F1: 1,
+  s_PartialFunction: 1,
+  Ljava_io_Serializable: 1
+}));
+export { $d_Lcom_raquo_laminar_nodes_ReactiveElement$$anon$1 as $d_Lcom_raquo_laminar_nodes_ReactiveElement$$anon$1 };
 function $ct_Ljava_io_FilterOutputStream__Ljava_io_OutputStream__($thiz, out) {
   return $thiz;
 }
@@ -16393,6 +18537,49 @@ var $d_sci_HashSetBuilder = new $TypeData().initClass($c_sci_HashSetBuilder, "sc
 }));
 export { $d_sci_HashSetBuilder as $d_sci_HashSetBuilder };
 /** @constructor */
+function $c_sci_IndexedSeq$() {
+  this.sc_SeqFactory$Delegate__f_delegate = null;
+  $ct_sc_SeqFactory$Delegate__sc_SeqFactory__(this, $m_sci_Vector$());
+}
+export { $c_sci_IndexedSeq$ as $c_sci_IndexedSeq$ };
+$c_sci_IndexedSeq$.prototype = new $h_sc_SeqFactory$Delegate();
+$c_sci_IndexedSeq$.prototype.constructor = $c_sci_IndexedSeq$;
+/** @constructor */
+function $h_sci_IndexedSeq$() {
+}
+export { $h_sci_IndexedSeq$ as $h_sci_IndexedSeq$ };
+$h_sci_IndexedSeq$.prototype = $c_sci_IndexedSeq$.prototype;
+$c_sci_IndexedSeq$.prototype.from__sc_IterableOnce__sci_IndexedSeq = (function(it) {
+  if ($is_sci_IndexedSeq(it)) {
+    var x2 = $as_sci_IndexedSeq(it);
+    return x2;
+  } else {
+    return $as_sci_IndexedSeq($c_sc_SeqFactory$Delegate.prototype.from__sc_IterableOnce__sc_SeqOps.call(this, it));
+  }
+});
+$c_sci_IndexedSeq$.prototype.from__sc_IterableOnce__O = (function(source) {
+  return this.from__sc_IterableOnce__sci_IndexedSeq(source);
+});
+$c_sci_IndexedSeq$.prototype.from__sc_IterableOnce__sc_SeqOps = (function(it) {
+  return this.from__sc_IterableOnce__sci_IndexedSeq(it);
+});
+var $d_sci_IndexedSeq$ = new $TypeData().initClass($c_sci_IndexedSeq$, "scala.collection.immutable.IndexedSeq$", ({
+  sci_IndexedSeq$: 1,
+  sc_SeqFactory$Delegate: 1,
+  sc_SeqFactory: 1,
+  sc_IterableFactory: 1,
+  Ljava_io_Serializable: 1
+}));
+export { $d_sci_IndexedSeq$ as $d_sci_IndexedSeq$ };
+var $n_sci_IndexedSeq$;
+function $m_sci_IndexedSeq$() {
+  if ((!$n_sci_IndexedSeq$)) {
+    $n_sci_IndexedSeq$ = new $c_sci_IndexedSeq$();
+  }
+  return $n_sci_IndexedSeq$;
+}
+export { $m_sci_IndexedSeq$ as $m_sci_IndexedSeq$ };
+/** @constructor */
 function $c_sci_LazyList$LazyBuilder() {
   this.sci_LazyList$LazyBuilder__f_next = null;
   this.sci_LazyList$LazyBuilder__f_list = null;
@@ -17644,6 +19831,17 @@ function $h_sci_VectorBuilder() {
 export { $h_sci_VectorBuilder as $h_sci_VectorBuilder };
 $h_sci_VectorBuilder.prototype = $c_sci_VectorBuilder.prototype;
 $c_sci_VectorBuilder.prototype.sizeHint__I__V = (function(size) {
+});
+$c_sci_VectorBuilder.prototype.initFrom__AO__V = (function(prefix1) {
+  this.sci_VectorBuilder__f_depth = 1;
+  var i = $n(prefix1).u.length;
+  this.sci_VectorBuilder__f_scala$collection$immutable$VectorBuilder$$len1 = (31 & i);
+  this.sci_VectorBuilder__f_scala$collection$immutable$VectorBuilder$$lenRest = ((i - this.sci_VectorBuilder__f_scala$collection$immutable$VectorBuilder$$len1) | 0);
+  this.sci_VectorBuilder__f_a1 = (($n(prefix1).u.length === 32) ? prefix1 : $m_ju_Arrays$().copyOfRange__AO__I__I__AO(prefix1, 0, 32));
+  if (((this.sci_VectorBuilder__f_scala$collection$immutable$VectorBuilder$$len1 === 0) && (this.sci_VectorBuilder__f_scala$collection$immutable$VectorBuilder$$lenRest > 0))) {
+    this.sci_VectorBuilder__f_scala$collection$immutable$VectorBuilder$$len1 = 32;
+    this.sci_VectorBuilder__f_scala$collection$immutable$VectorBuilder$$lenRest = (((-32) + this.sci_VectorBuilder__f_scala$collection$immutable$VectorBuilder$$lenRest) | 0);
+  }
 });
 $c_sci_VectorBuilder.prototype.initFrom__sci_Vector__sci_VectorBuilder = (function(v) {
   var x1 = $n(v).vectorSliceCount__I();
@@ -19556,6 +21754,11 @@ var $d_jl_NumberFormatException = new $TypeData().initClass($c_jl_NumberFormatEx
   Ljava_io_Serializable: 1
 }));
 export { $d_jl_NumberFormatException as $d_jl_NumberFormatException };
+function $f_T__codePointAt__I__I($thiz, index) {
+  $charAt($thiz, index);
+  return $uI($thiz.codePointAt(index));
+}
+export { $f_T__codePointAt__I__I as $f_T__codePointAt__I__I };
 function $f_T__hashCode__I($thiz) {
   var n = $thiz.length;
   var h = 0;
@@ -19594,6 +21797,19 @@ function $f_T__indexOf__I__I($thiz, ch) {
   return $uI($thiz.indexOf(str));
 }
 export { $f_T__indexOf__I__I as $f_T__indexOf__I__I };
+function $f_T__repeat__I__T($thiz, count) {
+  if ((count < 0)) {
+    throw $ct_jl_IllegalArgumentException__(new $c_jl_IllegalArgumentException());
+  } else {
+    return $as_T($thiz.repeat(count));
+  }
+}
+export { $f_T__repeat__I__T as $f_T__repeat__I__T };
+function $f_T__split__T__I__AT($thiz, regex, limit) {
+  var this$2 = $n($m_ju_regex_PatternCompiler$().compile__T__I__ju_regex_Pattern(regex, 0));
+  return this$2.java$util$regex$Pattern$$split__T__I__AT($thiz, limit);
+}
+export { $f_T__split__T__I__AT as $f_T__split__T__I__AT };
 function $f_T__toCharArray__AC($thiz) {
   var len = $thiz.length;
   var result = new $ac_C(len);
@@ -19679,6 +21895,45 @@ export { $d_ju_FormatterClosedException as $d_ju_FormatterClosedException };
 class $c_ju_IllegalFormatException extends $c_jl_IllegalArgumentException {
 }
 export { $c_ju_IllegalFormatException as $c_ju_IllegalFormatException };
+class $c_ju_regex_PatternSyntaxException extends $c_jl_IllegalArgumentException {
+  constructor(desc, regex, index) {
+    super();
+    this.ju_regex_PatternSyntaxException__f_desc = null;
+    this.ju_regex_PatternSyntaxException__f_regex = null;
+    this.ju_regex_PatternSyntaxException__f_index = 0;
+    this.ju_regex_PatternSyntaxException__f_desc = desc;
+    this.ju_regex_PatternSyntaxException__f_regex = regex;
+    this.ju_regex_PatternSyntaxException__f_index = index;
+    $ct_jl_Throwable__T__jl_Throwable__Z__Z__(this, null, null, true, true);
+  }
+  getMessage__T() {
+    var idx = this.ju_regex_PatternSyntaxException__f_index;
+    var re = this.ju_regex_PatternSyntaxException__f_regex;
+    var indexHint = ((idx < 0) ? "" : (" near index " + idx));
+    var base = (((this.ju_regex_PatternSyntaxException__f_desc + indexHint) + "\n") + re);
+    if (((idx >= 0) && (re !== null))) {
+      var this$1 = $n(re);
+      var $x_1 = (idx < this$1.length);
+    } else {
+      var $x_1 = false;
+    }
+    if ($x_1) {
+      return (((base + "\n") + $f_T__repeat__I__T(" ", idx)) + "^");
+    } else {
+      return base;
+    }
+  }
+}
+export { $c_ju_regex_PatternSyntaxException as $c_ju_regex_PatternSyntaxException };
+var $d_ju_regex_PatternSyntaxException = new $TypeData().initClass($c_ju_regex_PatternSyntaxException, "java.util.regex.PatternSyntaxException", ({
+  ju_regex_PatternSyntaxException: 1,
+  jl_IllegalArgumentException: 1,
+  jl_RuntimeException: 1,
+  jl_Exception: 1,
+  jl_Throwable: 1,
+  Ljava_io_Serializable: 1
+}));
+export { $d_ju_regex_PatternSyntaxException as $d_ju_regex_PatternSyntaxException };
 /** @constructor */
 function $c_s_None$() {
 }
@@ -19816,6 +22071,9 @@ $c_sc_AbstractIterable.prototype.fromSpecific__sc_IterableOnce__sc_IterableOps =
 });
 $c_sc_AbstractIterable.prototype.newSpecificBuilder__scm_Builder = (function() {
   return $n(this.iterableFactory__sc_IterableFactory()).newBuilder__scm_Builder();
+});
+$c_sc_AbstractIterable.prototype.map__F1__O = (function(f) {
+  return $f_sc_IterableOps__map__F1__O(this, f);
 });
 $c_sc_AbstractIterable.prototype.foreach__F1__V = (function(f) {
   $f_sc_IterableOnceOps__foreach__F1__V(this, f);
@@ -20043,6 +22301,16 @@ function $f_sc_StrictOptimizedSeqOps__distinctBy__F1__O($thiz, f) {
   return $n(builder).result__O();
 }
 export { $f_sc_StrictOptimizedSeqOps__distinctBy__F1__O as $f_sc_StrictOptimizedSeqOps__distinctBy__F1__O };
+function $f_sc_StrictOptimizedSeqOps__appended__O__O($thiz, elem) {
+  var b = $n($thiz.iterableFactory__sc_SeqFactory()).newBuilder__scm_Builder();
+  $f_scm_Builder__sizeHint__sc_IterableOnce__I__V($n(b), $thiz, 1);
+  var this$1 = $n(b);
+  this$1.addAll__sc_IterableOnce__scm_Growable($thiz);
+  var this$2 = $n(b);
+  this$2.addOne__O__scm_Growable(elem);
+  return $n(b).result__O();
+}
+export { $f_sc_StrictOptimizedSeqOps__appended__O__O as $f_sc_StrictOptimizedSeqOps__appended__O__O };
 function $f_sc_StrictOptimizedSeqOps__appendedAll__sc_IterableOnce__O($thiz, suffix) {
   var b = $n($thiz.iterableFactory__sc_SeqFactory()).newBuilder__scm_Builder();
   var this$1 = $n(b);
@@ -20648,6 +22916,92 @@ var $d_sci_NewVectorIterator = new $TypeData().initClass($c_sci_NewVectorIterato
   jl_Cloneable: 1
 }));
 export { $d_sci_NewVectorIterator as $d_sci_NewVectorIterator };
+/** @constructor */
+function $c_sci_RangeIterator(start, step, lastElement, initiallyEmpty) {
+  this.sci_RangeIterator__f_step = 0;
+  this.sci_RangeIterator__f_lastElement = 0;
+  this.sci_RangeIterator__f__hasNext = false;
+  this.sci_RangeIterator__f__next = 0;
+  this.sci_RangeIterator__f_step = step;
+  this.sci_RangeIterator__f_lastElement = lastElement;
+  this.sci_RangeIterator__f__hasNext = (!initiallyEmpty);
+  this.sci_RangeIterator__f__next = start;
+}
+export { $c_sci_RangeIterator as $c_sci_RangeIterator };
+$c_sci_RangeIterator.prototype = new $h_sc_AbstractIterator();
+$c_sci_RangeIterator.prototype.constructor = $c_sci_RangeIterator;
+/** @constructor */
+function $h_sci_RangeIterator() {
+}
+export { $h_sci_RangeIterator as $h_sci_RangeIterator };
+$h_sci_RangeIterator.prototype = $c_sci_RangeIterator.prototype;
+$c_sci_RangeIterator.prototype.knownSize__I = (function() {
+  return (this.sci_RangeIterator__f__hasNext ? ((1 + ((((this.sci_RangeIterator__f_lastElement - this.sci_RangeIterator__f__next) | 0) / $checkIntDivisor(this.sci_RangeIterator__f_step)) | 0)) | 0) : 0);
+});
+$c_sci_RangeIterator.prototype.hasNext__Z = (function() {
+  return this.sci_RangeIterator__f__hasNext;
+});
+$c_sci_RangeIterator.prototype.next__I = (function() {
+  if ((!this.sci_RangeIterator__f__hasNext)) {
+    $n($m_sc_Iterator$().sc_Iterator$__f_scala$collection$Iterator$$_empty).next__O();
+  }
+  var value = this.sci_RangeIterator__f__next;
+  this.sci_RangeIterator__f__hasNext = (value !== this.sci_RangeIterator__f_lastElement);
+  this.sci_RangeIterator__f__next = ((value + this.sci_RangeIterator__f_step) | 0);
+  return value;
+});
+$c_sci_RangeIterator.prototype.drop__I__sc_Iterator = (function(n) {
+  if ((n > 0)) {
+    var value = this.sci_RangeIterator__f__next;
+    var hi = (value >> 31);
+    var value$1 = Math.imul(this.sci_RangeIterator__f_step, n);
+    var hi$1 = (value$1 >> 31);
+    var lo = ((value + value$1) | 0);
+    var hi$2 = ((((hi + hi$1) | 0) + ((((value & value$1) | ((value | value$1) & (~lo))) >>> 31) | 0)) | 0);
+    if ((this.sci_RangeIterator__f_step > 0)) {
+      var value$2 = this.sci_RangeIterator__f_lastElement;
+      var hi$3 = (value$2 >> 31);
+      if (((hi$3 === hi$2) ? ((value$2 >>> 0) < (lo >>> 0)) : (hi$3 < hi$2))) {
+        var a__lo = value$2;
+        var a__hi = hi$3;
+      } else {
+        var a__lo = lo;
+        var a__hi = hi$2;
+      }
+      this.sci_RangeIterator__f__next = a__lo;
+      var value$3 = this.sci_RangeIterator__f_lastElement;
+      var hi$4 = (value$3 >> 31);
+      this.sci_RangeIterator__f__hasNext = ((hi$2 === hi$4) ? ((lo >>> 0) <= (value$3 >>> 0)) : (hi$2 < hi$4));
+    } else if ((this.sci_RangeIterator__f_step < 0)) {
+      var value$4 = this.sci_RangeIterator__f_lastElement;
+      var hi$5 = (value$4 >> 31);
+      if (((hi$5 === hi$2) ? ((value$4 >>> 0) > (lo >>> 0)) : (hi$5 > hi$2))) {
+        var a$1__lo = value$4;
+        var a$1__hi = hi$5;
+      } else {
+        var a$1__lo = lo;
+        var a$1__hi = hi$2;
+      }
+      this.sci_RangeIterator__f__next = a$1__lo;
+      var value$5 = this.sci_RangeIterator__f_lastElement;
+      var hi$6 = (value$5 >> 31);
+      this.sci_RangeIterator__f__hasNext = ((hi$2 === hi$6) ? ((lo >>> 0) >= (value$5 >>> 0)) : (hi$2 > hi$6));
+    }
+  }
+  return this;
+});
+$c_sci_RangeIterator.prototype.next__O = (function() {
+  return this.next__I();
+});
+var $d_sci_RangeIterator = new $TypeData().initClass($c_sci_RangeIterator, "scala.collection.immutable.RangeIterator", ({
+  sci_RangeIterator: 1,
+  sc_AbstractIterator: 1,
+  sc_Iterator: 1,
+  sc_IterableOnce: 1,
+  sc_IterableOnceOps: 1,
+  Ljava_io_Serializable: 1
+}));
+export { $d_sci_RangeIterator as $d_sci_RangeIterator };
 function $ct_sci_Set$SetNIterator__I__($thiz, n) {
   $thiz.sci_Set$SetNIterator__f_current = 0;
   $thiz.sci_Set$SetNIterator__f_remainder = n;
@@ -23426,11 +25780,15 @@ var $d_sc_View$DistinctBy = new $TypeData().initClass($c_sc_View$DistinctBy, "sc
 }));
 export { $d_sc_View$DistinctBy as $d_sc_View$DistinctBy };
 function $ct_sc_View$Map__sc_IterableOps__F1__($thiz, underlying, f) {
+  $thiz.sc_View$Map__f_underlying = underlying;
+  $thiz.sc_View$Map__f_f = f;
   return $thiz;
 }
 export { $ct_sc_View$Map__sc_IterableOps__F1__ as $ct_sc_View$Map__sc_IterableOps__F1__ };
 /** @constructor */
 function $c_sc_View$Map() {
+  this.sc_View$Map__f_underlying = null;
+  this.sc_View$Map__f_f = null;
 }
 export { $c_sc_View$Map as $c_sc_View$Map };
 $c_sc_View$Map.prototype = new $h_sc_AbstractView();
@@ -23440,6 +25798,30 @@ function $h_sc_View$Map() {
 }
 export { $h_sc_View$Map as $h_sc_View$Map };
 $h_sc_View$Map.prototype = $c_sc_View$Map.prototype;
+$c_sc_View$Map.prototype.iterator__sc_Iterator = (function() {
+  var this$1 = $n($n(this.sc_View$Map__f_underlying).iterator__sc_Iterator());
+  var f = this.sc_View$Map__f_f;
+  return new $c_sc_Iterator$$anon$9(this$1, f);
+});
+$c_sc_View$Map.prototype.knownSize__I = (function() {
+  return $n(this.sc_View$Map__f_underlying).knownSize__I();
+});
+$c_sc_View$Map.prototype.isEmpty__Z = (function() {
+  return $n(this.sc_View$Map__f_underlying).isEmpty__Z();
+});
+var $d_sc_View$Map = new $TypeData().initClass($c_sc_View$Map, "scala.collection.View$Map", ({
+  sc_View$Map: 1,
+  sc_AbstractView: 1,
+  sc_AbstractIterable: 1,
+  sc_Iterable: 1,
+  sc_IterableOnce: 1,
+  sc_IterableOps: 1,
+  sc_IterableOnceOps: 1,
+  sc_IterableFactoryDefaults: 1,
+  sc_View: 1,
+  Ljava_io_Serializable: 1
+}));
+export { $d_sc_View$Map as $d_sc_View$Map };
 function $f_Lcom_raquo_airstream_common_SingleParentSignal__$init$__V($thiz) {
   $thiz.Lcom_raquo_airstream_misc_MapSignal__f_parentIsSignal = ($thiz.Lcom_raquo_airstream_misc_MapSignal__f_parent !== null);
   $thiz.Lcom_raquo_airstream_misc_MapSignal__f__parentLastUpdateId = (-1);
@@ -24150,6 +26532,8 @@ function $ct_sc_SeqView$Map__sc_SeqOps__F1__($thiz, underlying, f) {
 export { $ct_sc_SeqView$Map__sc_SeqOps__F1__ as $ct_sc_SeqView$Map__sc_SeqOps__F1__ };
 /** @constructor */
 function $c_sc_SeqView$Map() {
+  this.sc_View$Map__f_underlying = null;
+  this.sc_View$Map__f_f = null;
   this.sc_SeqView$Map__f_underlying = null;
   this.sc_SeqView$Map__f_f = null;
 }
@@ -24165,7 +26549,7 @@ $c_sc_SeqView$Map.prototype.distinctBy__F1__O = (function(f) {
   return $f_sc_SeqOps__distinctBy__F1__O(this, f);
 });
 $c_sc_SeqView$Map.prototype.indexWhere__F1__I__I = (function(p, from) {
-  var this$1 = $ct_sc_IndexedSeqView$IndexedSeqViewIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewIterator(), this);
+  var this$1 = $n(this.iterator__sc_Iterator());
   return $f_sc_Iterator__indexWhere__F1__I__I(this$1, p, from);
 });
 $c_sc_SeqView$Map.prototype.isEmpty__Z = (function() {
@@ -24185,6 +26569,8 @@ function $c_Lcom_raquo_laminar_api_package$$anon$1() {
   this.Lcom_raquo_laminar_api_package$$anon$1__f_h1bitmap$1 = false;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_h2$lzy1 = null;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_h2bitmap$1 = false;
+  this.Lcom_raquo_laminar_api_package$$anon$1__f_h3$lzy1 = null;
+  this.Lcom_raquo_laminar_api_package$$anon$1__f_h3bitmap$1 = false;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_a$lzy1 = null;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_abitmap$1 = false;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_span$lzy1 = null;
@@ -24195,10 +26581,6 @@ function $c_Lcom_raquo_laminar_api_package$$anon$1() {
   this.Lcom_raquo_laminar_api_package$$anon$1__f_inputbitmap$1 = false;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_button$lzy1 = null;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_buttonbitmap$1 = false;
-  this.Lcom_raquo_laminar_api_package$$anon$1__f_select$lzy1 = null;
-  this.Lcom_raquo_laminar_api_package$$anon$1__f_selectbitmap$1 = false;
-  this.Lcom_raquo_laminar_api_package$$anon$1__f_option$lzy1 = null;
-  this.Lcom_raquo_laminar_api_package$$anon$1__f_optionbitmap$1 = false;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_textArea$lzy1 = null;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_textAreabitmap$1 = false;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_p$lzy1 = null;
@@ -24221,10 +26603,14 @@ function $c_Lcom_raquo_laminar_api_package$$anon$1() {
   this.Lcom_raquo_laminar_api_package$$anon$1__f_altbitmap$1 = false;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_cols$lzy1 = null;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_colsbitmap$1 = false;
+  this.Lcom_raquo_laminar_api_package$$anon$1__f_placeholder$lzy1 = null;
+  this.Lcom_raquo_laminar_api_package$$anon$1__f_placeholderbitmap$1 = false;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_rows$lzy1 = null;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_rowsbitmap$1 = false;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_onClick$lzy1 = null;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_onClickbitmap$1 = false;
+  this.Lcom_raquo_laminar_api_package$$anon$1__f_onMouseEnter$lzy1 = null;
+  this.Lcom_raquo_laminar_api_package$$anon$1__f_onMouseEnterbitmap$1 = false;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_onChange$lzy1 = null;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_onChangebitmap$1 = false;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_onInput$lzy1 = null;
@@ -24283,6 +26669,13 @@ $c_Lcom_raquo_laminar_api_package$$anon$1.prototype.h2__Lcom_raquo_laminar_tags_
   }
   return this.Lcom_raquo_laminar_api_package$$anon$1__f_h2$lzy1;
 });
+$c_Lcom_raquo_laminar_api_package$$anon$1.prototype.h3__Lcom_raquo_laminar_tags_HtmlTag = (function() {
+  if ((!this.Lcom_raquo_laminar_api_package$$anon$1__f_h3bitmap$1)) {
+    this.Lcom_raquo_laminar_api_package$$anon$1__f_h3$lzy1 = new $c_Lcom_raquo_laminar_tags_HtmlTag("h3", false);
+    this.Lcom_raquo_laminar_api_package$$anon$1__f_h3bitmap$1 = true;
+  }
+  return this.Lcom_raquo_laminar_api_package$$anon$1__f_h3$lzy1;
+});
 $c_Lcom_raquo_laminar_api_package$$anon$1.prototype.a__Lcom_raquo_laminar_tags_HtmlTag = (function() {
   if ((!this.Lcom_raquo_laminar_api_package$$anon$1__f_abitmap$1)) {
     this.Lcom_raquo_laminar_api_package$$anon$1__f_a$lzy1 = new $c_Lcom_raquo_laminar_tags_HtmlTag("a", false);
@@ -24317,20 +26710,6 @@ $c_Lcom_raquo_laminar_api_package$$anon$1.prototype.button__Lcom_raquo_laminar_t
     this.Lcom_raquo_laminar_api_package$$anon$1__f_buttonbitmap$1 = true;
   }
   return this.Lcom_raquo_laminar_api_package$$anon$1__f_button$lzy1;
-});
-$c_Lcom_raquo_laminar_api_package$$anon$1.prototype.select__Lcom_raquo_laminar_tags_HtmlTag = (function() {
-  if ((!this.Lcom_raquo_laminar_api_package$$anon$1__f_selectbitmap$1)) {
-    this.Lcom_raquo_laminar_api_package$$anon$1__f_select$lzy1 = new $c_Lcom_raquo_laminar_tags_HtmlTag("select", false);
-    this.Lcom_raquo_laminar_api_package$$anon$1__f_selectbitmap$1 = true;
-  }
-  return this.Lcom_raquo_laminar_api_package$$anon$1__f_select$lzy1;
-});
-$c_Lcom_raquo_laminar_api_package$$anon$1.prototype.option__Lcom_raquo_laminar_tags_HtmlTag = (function() {
-  if ((!this.Lcom_raquo_laminar_api_package$$anon$1__f_optionbitmap$1)) {
-    this.Lcom_raquo_laminar_api_package$$anon$1__f_option$lzy1 = new $c_Lcom_raquo_laminar_tags_HtmlTag("option", false);
-    this.Lcom_raquo_laminar_api_package$$anon$1__f_optionbitmap$1 = true;
-  }
-  return this.Lcom_raquo_laminar_api_package$$anon$1__f_option$lzy1;
 });
 $c_Lcom_raquo_laminar_api_package$$anon$1.prototype.textArea__Lcom_raquo_laminar_tags_HtmlTag = (function() {
   if ((!this.Lcom_raquo_laminar_api_package$$anon$1__f_textAreabitmap$1)) {
@@ -24416,6 +26795,14 @@ $c_Lcom_raquo_laminar_api_package$$anon$1.prototype.cols__Lcom_raquo_laminar_key
   }
   return this.Lcom_raquo_laminar_api_package$$anon$1__f_cols$lzy1;
 });
+$c_Lcom_raquo_laminar_api_package$$anon$1.prototype.placeholder__Lcom_raquo_laminar_keys_HtmlProp = (function() {
+  if ((!this.Lcom_raquo_laminar_api_package$$anon$1__f_placeholderbitmap$1)) {
+    var codec = $m_Lcom_raquo_laminar_codecs_package$().Lcom_raquo_laminar_codecs_package$__f_StringAsIsCodec;
+    this.Lcom_raquo_laminar_api_package$$anon$1__f_placeholder$lzy1 = new $c_Lcom_raquo_laminar_keys_HtmlProp("placeholder", codec);
+    this.Lcom_raquo_laminar_api_package$$anon$1__f_placeholderbitmap$1 = true;
+  }
+  return this.Lcom_raquo_laminar_api_package$$anon$1__f_placeholder$lzy1;
+});
 $c_Lcom_raquo_laminar_api_package$$anon$1.prototype.rows__Lcom_raquo_laminar_keys_HtmlProp = (function() {
   if ((!this.Lcom_raquo_laminar_api_package$$anon$1__f_rowsbitmap$1)) {
     var codec = $m_Lcom_raquo_laminar_codecs_package$().Lcom_raquo_laminar_codecs_package$__f_IntAsIsCodec;
@@ -24430,6 +26817,13 @@ $c_Lcom_raquo_laminar_api_package$$anon$1.prototype.onClick__Lcom_raquo_laminar_
     this.Lcom_raquo_laminar_api_package$$anon$1__f_onClickbitmap$1 = true;
   }
   return this.Lcom_raquo_laminar_api_package$$anon$1__f_onClick$lzy1;
+});
+$c_Lcom_raquo_laminar_api_package$$anon$1.prototype.onMouseEnter__Lcom_raquo_laminar_keys_EventProp = (function() {
+  if ((!this.Lcom_raquo_laminar_api_package$$anon$1__f_onMouseEnterbitmap$1)) {
+    this.Lcom_raquo_laminar_api_package$$anon$1__f_onMouseEnter$lzy1 = new $c_Lcom_raquo_laminar_keys_EventProp("mouseenter");
+    this.Lcom_raquo_laminar_api_package$$anon$1__f_onMouseEnterbitmap$1 = true;
+  }
+  return this.Lcom_raquo_laminar_api_package$$anon$1__f_onMouseEnter$lzy1;
 });
 $c_Lcom_raquo_laminar_api_package$$anon$1.prototype.onChange__Lcom_raquo_laminar_keys_EventProp = (function() {
   if ((!this.Lcom_raquo_laminar_api_package$$anon$1__f_onChangebitmap$1)) {
@@ -24602,6 +26996,8 @@ var $d_sc_IndexedSeqView$Id = new $TypeData().initClass($c_sc_IndexedSeqView$Id,
 export { $d_sc_IndexedSeqView$Id as $d_sc_IndexedSeqView$Id };
 /** @constructor */
 function $c_sc_IndexedSeqView$Map(underlying, f) {
+  this.sc_View$Map__f_underlying = null;
+  this.sc_View$Map__f_f = null;
   this.sc_SeqView$Map__f_underlying = null;
   this.sc_SeqView$Map__f_f = null;
   $ct_sc_SeqView$Map__sc_SeqOps__F1__(this, underlying, f);
@@ -24816,6 +27212,9 @@ $c_sci_Set$EmptySet$.prototype.contains__O__Z = (function(elem) {
 $c_sci_Set$EmptySet$.prototype.iterator__sc_Iterator = (function() {
   return $m_sc_Iterator$().sc_Iterator$__f_scala$collection$Iterator$$_empty;
 });
+$c_sci_Set$EmptySet$.prototype.excl__O__sci_SetOps = (function(elem) {
+  return this;
+});
 $c_sci_Set$EmptySet$.prototype.incl__O__sci_SetOps = (function(elem) {
   return new $c_sci_Set$Set1(elem);
 });
@@ -24929,6 +27328,9 @@ $c_sci_Set$Set1.prototype.contains__O__Z = (function(elem) {
 $c_sci_Set$Set1.prototype.incl__O__sci_Set = (function(elem) {
   return (this.contains__O__Z(elem) ? this : new $c_sci_Set$Set2(this.sci_Set$Set1__f_elem1, elem));
 });
+$c_sci_Set$Set1.prototype.excl__O__sci_Set = (function(elem) {
+  return ($m_sr_BoxesRunTime$().equals__O__O__Z(elem, this.sci_Set$Set1__f_elem1) ? $m_sci_Set$EmptySet$() : this);
+});
 $c_sci_Set$Set1.prototype.iterator__sc_Iterator = (function() {
   var a = this.sci_Set$Set1__f_elem1;
   return new $c_sc_Iterator$$anon$20(a);
@@ -24938,6 +27340,9 @@ $c_sci_Set$Set1.prototype.exists__F1__Z = (function(p) {
 });
 $c_sci_Set$Set1.prototype.forall__F1__Z = (function(p) {
   return $uZ($n(p).apply__O__O(this.sci_Set$Set1__f_elem1));
+});
+$c_sci_Set$Set1.prototype.excl__O__sci_SetOps = (function(elem) {
+  return this.excl__O__sci_Set(elem);
 });
 $c_sci_Set$Set1.prototype.incl__O__sci_SetOps = (function(elem) {
   return this.incl__O__sci_Set(elem);
@@ -25011,6 +27416,9 @@ $c_sci_Set$Set2.prototype.contains__O__Z = (function(elem) {
 $c_sci_Set$Set2.prototype.incl__O__sci_Set = (function(elem) {
   return (this.contains__O__Z(elem) ? this : new $c_sci_Set$Set3(this.sci_Set$Set2__f_elem1, this.sci_Set$Set2__f_elem2, elem));
 });
+$c_sci_Set$Set2.prototype.excl__O__sci_Set = (function(elem) {
+  return ($m_sr_BoxesRunTime$().equals__O__O__Z(elem, this.sci_Set$Set2__f_elem1) ? new $c_sci_Set$Set1(this.sci_Set$Set2__f_elem2) : ($m_sr_BoxesRunTime$().equals__O__O__Z(elem, this.sci_Set$Set2__f_elem2) ? new $c_sci_Set$Set1(this.sci_Set$Set2__f_elem1) : this));
+});
 $c_sci_Set$Set2.prototype.iterator__sc_Iterator = (function() {
   return new $c_sci_Set$Set2$$anon$1(this);
 });
@@ -25034,6 +27442,9 @@ $c_sci_Set$Set2.prototype.exists__F1__Z = (function(p) {
 });
 $c_sci_Set$Set2.prototype.forall__F1__Z = (function(p) {
   return ($uZ($n(p).apply__O__O(this.sci_Set$Set2__f_elem1)) && $uZ($n(p).apply__O__O(this.sci_Set$Set2__f_elem2)));
+});
+$c_sci_Set$Set2.prototype.excl__O__sci_SetOps = (function(elem) {
+  return this.excl__O__sci_Set(elem);
 });
 $c_sci_Set$Set2.prototype.incl__O__sci_SetOps = (function(elem) {
   return this.incl__O__sci_Set(elem);
@@ -25109,6 +27520,9 @@ $c_sci_Set$Set3.prototype.contains__O__Z = (function(elem) {
 $c_sci_Set$Set3.prototype.incl__O__sci_Set = (function(elem) {
   return (this.contains__O__Z(elem) ? this : new $c_sci_Set$Set4(this.sci_Set$Set3__f_elem1, this.sci_Set$Set3__f_elem2, this.sci_Set$Set3__f_elem3, elem));
 });
+$c_sci_Set$Set3.prototype.excl__O__sci_Set = (function(elem) {
+  return ($m_sr_BoxesRunTime$().equals__O__O__Z(elem, this.sci_Set$Set3__f_elem1) ? new $c_sci_Set$Set2(this.sci_Set$Set3__f_elem2, this.sci_Set$Set3__f_elem3) : ($m_sr_BoxesRunTime$().equals__O__O__Z(elem, this.sci_Set$Set3__f_elem2) ? new $c_sci_Set$Set2(this.sci_Set$Set3__f_elem1, this.sci_Set$Set3__f_elem3) : ($m_sr_BoxesRunTime$().equals__O__O__Z(elem, this.sci_Set$Set3__f_elem3) ? new $c_sci_Set$Set2(this.sci_Set$Set3__f_elem1, this.sci_Set$Set3__f_elem2) : this)));
+});
 $c_sci_Set$Set3.prototype.iterator__sc_Iterator = (function() {
   return new $c_sci_Set$Set3$$anon$2(this);
 });
@@ -25136,6 +27550,9 @@ $c_sci_Set$Set3.prototype.exists__F1__Z = (function(p) {
 });
 $c_sci_Set$Set3.prototype.forall__F1__Z = (function(p) {
   return (($uZ($n(p).apply__O__O(this.sci_Set$Set3__f_elem1)) && $uZ($n(p).apply__O__O(this.sci_Set$Set3__f_elem2))) && $uZ($n(p).apply__O__O(this.sci_Set$Set3__f_elem3)));
+});
+$c_sci_Set$Set3.prototype.excl__O__sci_SetOps = (function(elem) {
+  return this.excl__O__sci_Set(elem);
 });
 $c_sci_Set$Set3.prototype.incl__O__sci_SetOps = (function(elem) {
   return this.incl__O__sci_Set(elem);
@@ -25227,6 +27644,9 @@ $c_sci_Set$Set4.prototype.incl__O__sci_Set = (function(elem) {
     return this$6.incl__O__sci_HashSet(elem);
   }
 });
+$c_sci_Set$Set4.prototype.excl__O__sci_Set = (function(elem) {
+  return ($m_sr_BoxesRunTime$().equals__O__O__Z(elem, this.sci_Set$Set4__f_elem1) ? new $c_sci_Set$Set3(this.sci_Set$Set4__f_elem2, this.sci_Set$Set4__f_elem3, this.sci_Set$Set4__f_elem4) : ($m_sr_BoxesRunTime$().equals__O__O__Z(elem, this.sci_Set$Set4__f_elem2) ? new $c_sci_Set$Set3(this.sci_Set$Set4__f_elem1, this.sci_Set$Set4__f_elem3, this.sci_Set$Set4__f_elem4) : ($m_sr_BoxesRunTime$().equals__O__O__Z(elem, this.sci_Set$Set4__f_elem3) ? new $c_sci_Set$Set3(this.sci_Set$Set4__f_elem1, this.sci_Set$Set4__f_elem2, this.sci_Set$Set4__f_elem4) : ($m_sr_BoxesRunTime$().equals__O__O__Z(elem, this.sci_Set$Set4__f_elem4) ? new $c_sci_Set$Set3(this.sci_Set$Set4__f_elem1, this.sci_Set$Set4__f_elem2, this.sci_Set$Set4__f_elem3) : this))));
+});
 $c_sci_Set$Set4.prototype.iterator__sc_Iterator = (function() {
   return new $c_sci_Set$Set4$$anon$3(this);
 });
@@ -25261,6 +27681,9 @@ $c_sci_Set$Set4.prototype.forall__F1__Z = (function(p) {
 });
 $c_sci_Set$Set4.prototype.buildTo__scm_Builder__scm_Builder = (function(builder) {
   return $as_scm_Builder($n($n($n($n(builder).addOne__O__scm_Growable(this.sci_Set$Set4__f_elem1)).addOne__O__scm_Growable(this.sci_Set$Set4__f_elem2)).addOne__O__scm_Growable(this.sci_Set$Set4__f_elem3)).addOne__O__scm_Growable(this.sci_Set$Set4__f_elem4));
+});
+$c_sci_Set$Set4.prototype.excl__O__sci_SetOps = (function(elem) {
+  return this.excl__O__sci_Set(elem);
 });
 $c_sci_Set$Set4.prototype.incl__O__sci_SetOps = (function(elem) {
   return this.incl__O__sci_Set(elem);
@@ -25334,6 +27757,9 @@ $c_sci_Map$EmptyMap$.prototype.apply__O__E = (function(key) {
 });
 $c_sci_Map$EmptyMap$.prototype.contains__O__Z = (function(key) {
   return false;
+});
+$c_sci_Map$EmptyMap$.prototype.get__O__s_Option = (function(key) {
+  return $m_s_None$();
 });
 $c_sci_Map$EmptyMap$.prototype.getOrElse__O__F0__O = (function(key, default$1) {
   return $n(default$1).apply__O();
@@ -25457,6 +27883,9 @@ $c_sci_Map$Map1.prototype.apply__O__O = (function(key) {
 $c_sci_Map$Map1.prototype.contains__O__Z = (function(key) {
   return $m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map1__f_key1);
 });
+$c_sci_Map$Map1.prototype.get__O__s_Option = (function(key) {
+  return ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map1__f_key1) ? new $c_s_Some(this.sci_Map$Map1__f_value1) : $m_s_None$());
+});
 $c_sci_Map$Map1.prototype.getOrElse__O__F0__O = (function(key, default$1) {
   return ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map1__f_key1) ? this.sci_Map$Map1__f_value1 : $n(default$1).apply__O());
 });
@@ -25567,6 +27996,9 @@ $c_sci_Map$Map2.prototype.apply__O__O = (function(key) {
 });
 $c_sci_Map$Map2.prototype.contains__O__Z = (function(key) {
   return ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key1) || $m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key2));
+});
+$c_sci_Map$Map2.prototype.get__O__s_Option = (function(key) {
+  return ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key1) ? new $c_s_Some(this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$value1) : ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key2) ? new $c_s_Some(this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$value2) : $m_s_None$()));
 });
 $c_sci_Map$Map2.prototype.getOrElse__O__F0__O = (function(key, default$1) {
   return ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key1) ? this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$value1 : ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key2) ? this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$value2 : $n(default$1).apply__O()));
@@ -25687,6 +28119,9 @@ $c_sci_Map$Map3.prototype.apply__O__O = (function(key) {
 });
 $c_sci_Map$Map3.prototype.contains__O__Z = (function(key) {
   return (($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key1) || $m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key2)) || $m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key3));
+});
+$c_sci_Map$Map3.prototype.get__O__s_Option = (function(key) {
+  return ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key1) ? new $c_s_Some(this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value1) : ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key2) ? new $c_s_Some(this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value2) : ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key3) ? new $c_s_Some(this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value3) : $m_s_None$())));
 });
 $c_sci_Map$Map3.prototype.getOrElse__O__F0__O = (function(key, default$1) {
   return ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key1) ? this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value1 : ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key2) ? this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value2 : ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key3) ? this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value3 : $n(default$1).apply__O())));
@@ -25817,6 +28252,9 @@ $c_sci_Map$Map4.prototype.apply__O__O = (function(key) {
 });
 $c_sci_Map$Map4.prototype.contains__O__Z = (function(key) {
   return ((($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key1) || $m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key2)) || $m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key3)) || $m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key4));
+});
+$c_sci_Map$Map4.prototype.get__O__s_Option = (function(key) {
+  return ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key1) ? new $c_s_Some(this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value1) : ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key2) ? new $c_s_Some(this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value2) : ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key3) ? new $c_s_Some(this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value3) : ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key4) ? new $c_s_Some(this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value4) : $m_s_None$()))));
 });
 $c_sci_Map$Map4.prototype.getOrElse__O__F0__O = (function(key, default$1) {
   return ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key1) ? this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value1 : ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key2) ? this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value2 : ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key3) ? this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value3 : ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key4) ? this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value4 : $n(default$1).apply__O()))));
@@ -25957,6 +28395,12 @@ $c_sci_HashSet.prototype.incl__O__sci_HashSet = (function(element) {
   var newRootNode = $n(this.sci_HashSet__f_rootNode).updated__O__I__I__I__sci_BitmapIndexedSetNode(element, elementUnimprovedHash, elementHash, 0);
   return $p_sci_HashSet__newHashSetOrThis__sci_BitmapIndexedSetNode__sci_HashSet(this, newRootNode);
 });
+$c_sci_HashSet.prototype.excl__O__sci_HashSet = (function(element) {
+  var elementUnimprovedHash = $m_sr_Statics$().anyHash__O__I(element);
+  var elementHash = $m_sc_Hashing$().improve__I__I(elementUnimprovedHash);
+  var newRootNode = $n(this.sci_HashSet__f_rootNode).removed__O__I__I__I__sci_BitmapIndexedSetNode(element, elementUnimprovedHash, elementHash, 0);
+  return $p_sci_HashSet__newHashSetOrThis__sci_BitmapIndexedSetNode__sci_HashSet(this, newRootNode);
+});
 $c_sci_HashSet.prototype.subsetOf__sc_Set__Z = (function(that) {
   if (this.isEmpty__Z()) {
     return true;
@@ -25992,6 +28436,9 @@ $c_sci_HashSet.prototype.hashCode__I = (function() {
   var it = new $c_sci_SetHashIterator(this.sci_HashSet__f_rootNode);
   var hash = $m_s_util_hashing_MurmurHash3$().unorderedHash__sc_IterableOnce__I__I(it, $m_s_util_hashing_MurmurHash3$().s_util_hashing_MurmurHash3$__f_setSeed);
   return hash;
+});
+$c_sci_HashSet.prototype.excl__O__sci_SetOps = (function(elem) {
+  return this.excl__O__sci_HashSet(elem);
 });
 $c_sci_HashSet.prototype.incl__O__sci_SetOps = (function(elem) {
   return this.incl__O__sci_HashSet(elem);
@@ -26582,6 +29029,11 @@ $c_sci_HashMap.prototype.apply__O__O = (function(key) {
   var keyHash = $m_sc_Hashing$().improve__I__I(keyUnimprovedHash);
   return $n(this.sci_HashMap__f_rootNode).apply__O__I__I__I__O(key, keyUnimprovedHash, keyHash, 0);
 });
+$c_sci_HashMap.prototype.get__O__s_Option = (function(key) {
+  var keyUnimprovedHash = $m_sr_Statics$().anyHash__O__I(key);
+  var keyHash = $m_sc_Hashing$().improve__I__I(keyUnimprovedHash);
+  return $n(this.sci_HashMap__f_rootNode).get__O__I__I__I__s_Option(key, keyUnimprovedHash, keyHash, 0);
+});
 $c_sci_HashMap.prototype.getOrElse__O__F0__O = (function(key, default$1) {
   var keyUnimprovedHash = $m_sr_Statics$().anyHash__O__I(key);
   var keyHash = $m_sc_Hashing$().improve__I__I(keyUnimprovedHash);
@@ -27105,6 +29557,69 @@ $c_sci_Vector.prototype.length__I = (function() {
 });
 $c_sci_Vector.prototype.iterator__sc_Iterator = (function() {
   return (($m_sci_Vector0$() === this) ? $m_sci_Vector$().sci_Vector$__f_scala$collection$immutable$Vector$$emptyIterator : new $c_sci_NewVectorIterator(this, this.length__I(), this.vectorSliceCount__I()));
+});
+$c_sci_Vector.prototype.filterImpl__F1__Z__sci_Vector = (function(pred, isFlipped) {
+  var i = 0;
+  var len = $n(this.sci_Vector__f_prefix1).u.length;
+  while ((i !== len)) {
+    if (($uZ($n(pred).apply__O__O($n(this.sci_Vector__f_prefix1).get(i))) === isFlipped)) {
+      var bitmap = 0;
+      var j = ((1 + i) | 0);
+      while ((j < len)) {
+        if (($uZ($n(pred).apply__O__O($n(this.sci_Vector__f_prefix1).get(j))) !== isFlipped)) {
+          bitmap = (bitmap | (1 << j));
+        }
+        j = ((1 + j) | 0);
+      }
+      var $x_1 = i;
+      var i$1 = bitmap;
+      var newLen = (($x_1 + $m_jl_Integer$().bitCount__I__I(i$1)) | 0);
+      if ((this instanceof $c_sci_BigVector)) {
+        var b = new $c_sci_VectorBuilder();
+        var k = 0;
+        while ((k < i)) {
+          b.addOne__O__sci_VectorBuilder($n(this.sci_Vector__f_prefix1).get(k));
+          k = ((1 + k) | 0);
+        }
+        k = ((1 + i) | 0);
+        while ((i !== newLen)) {
+          if ((((1 << k) & bitmap) !== 0)) {
+            b.addOne__O__sci_VectorBuilder($n(this.sci_Vector__f_prefix1).get(k));
+            i = ((1 + i) | 0);
+          }
+          k = ((1 + k) | 0);
+        }
+        $n($as_sci_BigVector(this)).foreachRest__F1__V(new $c_sr_AbstractFunction1_$$Lambda$70e1780b84463d18653aacefee3ab989ac625f28(((pred, isFlipped, b) => ((v$2$2) => (($uZ($n(pred).apply__O__O(v$2$2)) !== isFlipped) ? b.addOne__O__sci_VectorBuilder(v$2$2) : (void 0))))(pred, isFlipped, b)));
+        return b.result__sci_Vector();
+      } else {
+        if ((newLen === 0)) {
+          return $m_sci_Vector0$();
+        }
+        var newData = new $ac_O(newLen);
+        var src = this.sci_Vector__f_prefix1;
+        var length = i;
+        $systemArraycopyRefs($n(src), 0, newData, 0, length);
+        var k$2 = ((1 + i) | 0);
+        while ((i !== newLen)) {
+          if ((((1 << k$2) & bitmap) !== 0)) {
+            newData.set(i, $n(this.sci_Vector__f_prefix1).get(k$2));
+            i = ((1 + i) | 0);
+          }
+          k$2 = ((1 + k$2) | 0);
+        }
+        return new $c_sci_Vector1(newData);
+      }
+    }
+    i = ((1 + i) | 0);
+  }
+  if ((this instanceof $c_sci_BigVector)) {
+    var b$2 = new $c_sci_VectorBuilder();
+    b$2.initFrom__AO__V(this.sci_Vector__f_prefix1);
+    $n($as_sci_BigVector(this)).foreachRest__F1__V(new $c_sr_AbstractFunction1_$$Lambda$70e1780b84463d18653aacefee3ab989ac625f28(((v$2$2$1) => (($uZ($n(pred).apply__O__O(v$2$2$1)) !== isFlipped) ? b$2.addOne__O__sci_VectorBuilder(v$2$2$1) : (void 0)))));
+    return b$2.result__sci_Vector();
+  } else {
+    return this;
+  }
 });
 $c_sci_Vector.prototype.className__T = (function() {
   return "Vector";
@@ -29417,6 +31932,19 @@ function $h_sci_BigVector() {
 }
 export { $h_sci_BigVector as $h_sci_BigVector };
 $h_sci_BigVector.prototype = $c_sci_BigVector.prototype;
+$c_sci_BigVector.prototype.foreachRest__F1__V = (function(f) {
+  var c = this.vectorSliceCount__I();
+  var i = 1;
+  while ((i < c)) {
+    var $x_1 = $m_sci_VectorStatics$();
+    var idx = i;
+    var c$1 = ((c / 2) | 0);
+    var a = ((idx - c$1) | 0);
+    var sign = (a >> 31);
+    $x_1.foreachRec__I__AO__F1__V((((-1) + ((((1 + c$1) | 0) - (((a ^ sign) - sign) | 0)) | 0)) | 0), this.vectorSlice__I__AO(i), f);
+    i = ((1 + i) | 0);
+  }
+});
 function $as_sci_BigVector(obj) {
   return (((obj instanceof $c_sci_BigVector) || (obj === null)) ? obj : $throwClassCastException(obj, "scala.collection.immutable.BigVector"));
 }
