@@ -282,6 +282,7 @@ p {
 
 /* Exercise Image Styles */
 .exercise-image {
+  display: block;
   text-align: center;
   margin: 1rem 0;
   padding: 1rem;
@@ -317,6 +318,7 @@ p {
 
 /* Exercise Content Styles */
 .exercise-content {
+  display: block;
   background: white;
   padding: 1.5rem;
   border-radius: 8px;
@@ -606,4 +608,15 @@ button.btn-error:hover {
   outline: none;
   border-color: #667eea;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+/* Aufgabe 5 ASCII Encoding */
+.aufgabe5-container {
+  display: flex;
+  gap: 240px;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+}
+
+.aufgabe5-ascii-table {
+  margin-left: 32px;
 }
