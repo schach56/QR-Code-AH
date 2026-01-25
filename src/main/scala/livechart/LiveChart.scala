@@ -2031,8 +2031,8 @@ object Main:
                     }
                   },
                   s"Reihe ${r + 1}: " + (status match {
-                    case Some(true)  => "✓ Korrekt"
-                    case Some(false) => "✗ Falsch"
+                    case Some(true)  => "Richtig!"
+                    case Some(false) => "Falsch"
                     case None        => ""
                   })
                 )
@@ -2171,8 +2171,8 @@ object Main:
                     }
                   },
                   s"$section, Reihe $rowNum: " + (status match {
-                    case Some(true)  => "✓ Korrekt"
-                    case Some(false) => "✗ Falsch"
+                    case Some(true)  => "Richtig!"
+                    case Some(false) => "Falsch"
                     case None        => ""
                   })
                 )
@@ -2644,24 +2644,27 @@ Der Reed-Solomon-Code arbeitet mit Mathematischen Gleichungen und kann sowohl Su
     div(
       cls := "quiz-mc-answer",
       div(
-        children <-- Signal.fromValue(choices).map(_.zipWithIndex.map { case ((labelText, _), idx) =>
-          div(
-            cls := "quiz-radio-option",
-            input(
-              typ := "radio",
-              idAttr := s"question-$questionIndex-$idx",
-              value := idx.toString,
-              onChange --> { _ =>
-                selectedVar.set(Some(idx))
-                answersVar.update(answers => answers + (questionIndex -> labelText))
-              }
-            ),
-            label(
-              forId := s"question-$questionIndex-$idx",
-              labelText
+        children <-- selectedVar.signal.map { selected =>
+          choices.zipWithIndex.map { case ((labelText, _), idx) =>
+            div(
+              cls := "quiz-radio-option",
+              input(
+                typ := "radio",
+                idAttr := s"question-$questionIndex-$idx",
+                value := idx.toString,
+                checked := selected.contains(idx),
+                onChange --> { _ =>
+                  selectedVar.set(Some(idx))
+                  answersVar.update(answers => answers + (questionIndex -> labelText))
+                }
+              ),
+              label(
+                forId := s"question-$questionIndex-$idx",
+                labelText
+              )
             )
-          )
-        })
+          }
+        }
       ),
       button(
         "Antwort überprüfen",
@@ -2678,8 +2681,8 @@ Der Reed-Solomon-Code arbeitet mit Mathematischen Gleichungen und kann sowohl Su
         }
       ),
       child <-- feedbackVar.signal.map {
-        case Some(true)  => span(cls := "feedback-correct", "✓ Korrekt!")
-        case Some(false) => span(cls := "feedback-incorrect", "✗ Nicht korrekt. Versuche es nochmal!")
+        case Some(true)  => span(cls := "feedback-correct", "Richtig!")
+        case Some(false) => span(cls := "feedback-incorrect", "Nicht ganz richtig. Versuche es nochmal!")
         case None        => emptyNode
       }
     )
