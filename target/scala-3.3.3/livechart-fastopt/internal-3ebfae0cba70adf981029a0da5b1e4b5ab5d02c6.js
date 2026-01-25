@@ -13320,6 +13320,30 @@ function $f_s_Product3__productElement__I__O($thiz, n) {
   }
 }
 export { $f_s_Product3__productElement__I__O as $f_s_Product3__productElement__I__O };
+function $f_s_Product4__productElement__I__O($thiz, n) {
+  switch (n) {
+    case 0: {
+      return $thiz.T4__f__1;
+      break;
+    }
+    case 1: {
+      return $thiz.T4__f__2;
+      break;
+    }
+    case 2: {
+      return $thiz.T4__f__3;
+      break;
+    }
+    case 3: {
+      return $thiz.T4__f__4;
+      break;
+    }
+    default: {
+      throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), (n + " is out of bounds (min 0, max 3)"));
+    }
+  }
+}
+export { $f_s_Product4__productElement__I__O as $f_s_Product4__productElement__I__O };
 function $ct_sc_ClassTagIterableFactory$AnyIterableDelegate__sc_ClassTagIterableFactory__($thiz, delegate) {
   $thiz.sc_ClassTagIterableFactory$AnyIterableDelegate__f_delegate = delegate;
   return $thiz;
@@ -18540,6 +18564,22 @@ function $f_Lcom_raquo_airstream_state_Var__update__F1__V($thiz, mod) {
   new $c_Lcom_raquo_airstream_core_Transaction(code);
 }
 export { $f_Lcom_raquo_airstream_state_Var__update__F1__V as $f_Lcom_raquo_airstream_state_Var__update__F1__V };
+function $is_Lcom_raquo_airstream_state_Var(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Lcom_raquo_airstream_state_Var)));
+}
+export { $is_Lcom_raquo_airstream_state_Var as $is_Lcom_raquo_airstream_state_Var };
+function $as_Lcom_raquo_airstream_state_Var(obj) {
+  return (($is_Lcom_raquo_airstream_state_Var(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "com.raquo.airstream.state.Var"));
+}
+export { $as_Lcom_raquo_airstream_state_Var as $as_Lcom_raquo_airstream_state_Var };
+function $isArrayOf_Lcom_raquo_airstream_state_Var(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Lcom_raquo_airstream_state_Var)));
+}
+export { $isArrayOf_Lcom_raquo_airstream_state_Var as $isArrayOf_Lcom_raquo_airstream_state_Var };
+function $asArrayOf_Lcom_raquo_airstream_state_Var(obj, depth) {
+  return (($isArrayOf_Lcom_raquo_airstream_state_Var(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lcom.raquo.airstream.state.Var;", depth));
+}
+export { $asArrayOf_Lcom_raquo_airstream_state_Var as $asArrayOf_Lcom_raquo_airstream_state_Var };
 /** @constructor */
 function $c_Lcom_raquo_airstream_state_Var$$anon$1(outer) {
   this.Lcom_raquo_airstream_state_Var$$anon$1__f_$outer = null;
@@ -19792,6 +19832,74 @@ var $d_T3 = new $TypeData().initClass($c_T3, "scala.Tuple3", ({
   Ljava_io_Serializable: 1
 }));
 export { $d_T3 as $d_T3 };
+/** @constructor */
+function $c_T4(_1, _2, _3, _4) {
+  this.T4__f__1 = null;
+  this.T4__f__2 = null;
+  this.T4__f__3 = null;
+  this.T4__f__4 = null;
+  this.T4__f__1 = _1;
+  this.T4__f__2 = _2;
+  this.T4__f__3 = _3;
+  this.T4__f__4 = _4;
+}
+export { $c_T4 as $c_T4 };
+$c_T4.prototype = new $h_O();
+$c_T4.prototype.constructor = $c_T4;
+/** @constructor */
+function $h_T4() {
+}
+export { $h_T4 as $h_T4 };
+$h_T4.prototype = $c_T4.prototype;
+$c_T4.prototype.productArity__I = (function() {
+  return 4;
+});
+$c_T4.prototype.productElement__I__O = (function(n) {
+  return $f_s_Product4__productElement__I__O(this, n);
+});
+$c_T4.prototype.toString__T = (function() {
+  return (((((((("(" + this.T4__f__1) + ",") + this.T4__f__2) + ",") + this.T4__f__3) + ",") + this.T4__f__4) + ")");
+});
+$c_T4.prototype.productPrefix__T = (function() {
+  return "Tuple4";
+});
+$c_T4.prototype.productIterator__sc_Iterator = (function() {
+  return new $c_sr_ScalaRunTime$$anon$1(this);
+});
+$c_T4.prototype.hashCode__I = (function() {
+  var this$2 = $m_s_util_hashing_MurmurHash3$();
+  return this$2.productHash__s_Product__I__Z__I(this, (-889275714), false);
+});
+$c_T4.prototype.equals__O__Z = (function(x$1) {
+  if ((this === x$1)) {
+    return true;
+  } else if ((x$1 instanceof $c_T4)) {
+    var Tuple4$1 = $as_T4(x$1);
+    return (($m_sr_BoxesRunTime$().equals__O__O__Z(this.T4__f__1, $n(Tuple4$1).T4__f__1) && $m_sr_BoxesRunTime$().equals__O__O__Z(this.T4__f__2, $n(Tuple4$1).T4__f__2)) && ($m_sr_BoxesRunTime$().equals__O__O__Z(this.T4__f__3, $n(Tuple4$1).T4__f__3) && $m_sr_BoxesRunTime$().equals__O__O__Z(this.T4__f__4, $n(Tuple4$1).T4__f__4)));
+  } else {
+    return false;
+  }
+});
+function $as_T4(obj) {
+  return (((obj instanceof $c_T4) || (obj === null)) ? obj : $throwClassCastException(obj, "scala.Tuple4"));
+}
+export { $as_T4 as $as_T4 };
+function $isArrayOf_T4(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.T4)));
+}
+export { $isArrayOf_T4 as $isArrayOf_T4 };
+function $asArrayOf_T4(obj, depth) {
+  return (($isArrayOf_T4(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lscala.Tuple4;", depth));
+}
+export { $asArrayOf_T4 as $asArrayOf_T4 };
+var $d_T4 = new $TypeData().initClass($c_T4, "scala.Tuple4", ({
+  T4: 1,
+  s_Product4: 1,
+  s_Product: 1,
+  s_Equals: 1,
+  Ljava_io_Serializable: 1
+}));
+export { $d_T4 as $d_T4 };
 /** @constructor */
 function $c_sc_ClassTagSeqFactory$AnySeqDelegate(delegate) {
   this.sc_ClassTagIterableFactory$AnyIterableDelegate__f_delegate = null;
@@ -30502,6 +30610,8 @@ function $c_Lcom_raquo_laminar_api_package$$anon$1() {
   this.Lcom_raquo_laminar_api_package$$anon$1__f_h2bitmap$1 = false;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_h3$lzy1 = null;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_h3bitmap$1 = false;
+  this.Lcom_raquo_laminar_api_package$$anon$1__f_h4$lzy1 = null;
+  this.Lcom_raquo_laminar_api_package$$anon$1__f_h4bitmap$1 = false;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_a$lzy1 = null;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_abitmap$1 = false;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_span$lzy1 = null;
@@ -30550,6 +30660,10 @@ function $c_Lcom_raquo_laminar_api_package$$anon$1() {
   this.Lcom_raquo_laminar_api_package$$anon$1__f_altbitmap$1 = false;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_cols$lzy1 = null;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_colsbitmap$1 = false;
+  this.Lcom_raquo_laminar_api_package$$anon$1__f_forId$lzy1 = null;
+  this.Lcom_raquo_laminar_api_package$$anon$1__f_forIdbitmap$1 = false;
+  this.Lcom_raquo_laminar_api_package$$anon$1__f_idAttr$lzy1 = null;
+  this.Lcom_raquo_laminar_api_package$$anon$1__f_idAttrbitmap$1 = false;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_placeholder$lzy1 = null;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_placeholderbitmap$1 = false;
   this.Lcom_raquo_laminar_api_package$$anon$1__f_rows$lzy1 = null;
@@ -30624,6 +30738,13 @@ $c_Lcom_raquo_laminar_api_package$$anon$1.prototype.h3__Lcom_raquo_laminar_tags_
     this.Lcom_raquo_laminar_api_package$$anon$1__f_h3bitmap$1 = true;
   }
   return this.Lcom_raquo_laminar_api_package$$anon$1__f_h3$lzy1;
+});
+$c_Lcom_raquo_laminar_api_package$$anon$1.prototype.h4__Lcom_raquo_laminar_tags_HtmlTag = (function() {
+  if ((!this.Lcom_raquo_laminar_api_package$$anon$1__f_h4bitmap$1)) {
+    this.Lcom_raquo_laminar_api_package$$anon$1__f_h4$lzy1 = new $c_Lcom_raquo_laminar_tags_HtmlTag("h4", false);
+    this.Lcom_raquo_laminar_api_package$$anon$1__f_h4bitmap$1 = true;
+  }
+  return this.Lcom_raquo_laminar_api_package$$anon$1__f_h4$lzy1;
 });
 $c_Lcom_raquo_laminar_api_package$$anon$1.prototype.a__Lcom_raquo_laminar_tags_HtmlTag = (function() {
   if ((!this.Lcom_raquo_laminar_api_package$$anon$1__f_abitmap$1)) {
@@ -30799,6 +30920,22 @@ $c_Lcom_raquo_laminar_api_package$$anon$1.prototype.cols__Lcom_raquo_laminar_key
     this.Lcom_raquo_laminar_api_package$$anon$1__f_colsbitmap$1 = true;
   }
   return this.Lcom_raquo_laminar_api_package$$anon$1__f_cols$lzy1;
+});
+$c_Lcom_raquo_laminar_api_package$$anon$1.prototype.forId__Lcom_raquo_laminar_keys_HtmlProp = (function() {
+  if ((!this.Lcom_raquo_laminar_api_package$$anon$1__f_forIdbitmap$1)) {
+    var codec = $m_Lcom_raquo_laminar_codecs_package$().Lcom_raquo_laminar_codecs_package$__f_StringAsIsCodec;
+    this.Lcom_raquo_laminar_api_package$$anon$1__f_forId$lzy1 = new $c_Lcom_raquo_laminar_keys_HtmlProp("htmlFor", codec);
+    this.Lcom_raquo_laminar_api_package$$anon$1__f_forIdbitmap$1 = true;
+  }
+  return this.Lcom_raquo_laminar_api_package$$anon$1__f_forId$lzy1;
+});
+$c_Lcom_raquo_laminar_api_package$$anon$1.prototype.idAttr__Lcom_raquo_laminar_keys_HtmlProp = (function() {
+  if ((!this.Lcom_raquo_laminar_api_package$$anon$1__f_idAttrbitmap$1)) {
+    var codec = $m_Lcom_raquo_laminar_codecs_package$().Lcom_raquo_laminar_codecs_package$__f_StringAsIsCodec;
+    this.Lcom_raquo_laminar_api_package$$anon$1__f_idAttr$lzy1 = new $c_Lcom_raquo_laminar_keys_HtmlProp("id", codec);
+    this.Lcom_raquo_laminar_api_package$$anon$1__f_idAttrbitmap$1 = true;
+  }
+  return this.Lcom_raquo_laminar_api_package$$anon$1__f_idAttr$lzy1;
 });
 $c_Lcom_raquo_laminar_api_package$$anon$1.prototype.placeholder__Lcom_raquo_laminar_keys_HtmlProp = (function() {
   if ((!this.Lcom_raquo_laminar_api_package$$anon$1__f_placeholderbitmap$1)) {

@@ -95,11 +95,19 @@ object Main:
       "Eine Möglichkeit mit Fehlern umzugehen ist es, eine Prüfsumme zu verwenden. Dabei werden bestimmte Zeichen in der Nachricht gezählt und die Anzahl der Zeichen an das Ende angehangen. Ein Beispiel wäre, dass die Zeichenanzahl gezählt wird. Aus der Nachricht 'Hallo' würde dann die Nachricht 'Hallo5' werden. \nBeschreibe, welche Arten von Fehlern mit dieser Methode erkannt oder korrigiert werden können. Begründe deine Antwort.",
       "Beschreibe eine Methode, wie Fehler nicht nur erkannt, sondern auch korrigiert werden können am Beispiel der Nachricht '12345'. (Tipp: Überlege dir, was du machst, wenn eine Information von einer Person im Gespräch nicht verstanden wurde.)",
       "Beschreibe jeweils wie viel % der Nachricht maximal unleserlich sein dürfen, damit die Nachricht trotzdem noch korrekt gelesen werden kann. \na) Ursprüngliche Nachricht: '12' Nachricht mit Fehlerkorrektur: '1212' \nb) Ursprüngliche Nachricht: '123' Nachricht mit Fehlerkorrektur: '123123123' \nc) Ursprüngliche Nachricht: '1' Nachricht mit Fehlerkorrektur: '1111111111'",
-      "Lückentext: Prüfsummen fügen ______ zur Nachricht hinzu, um Fehler erkennen zu können. Bei einfachen Wiederholungen hilft Redundanz, aber sie erhöht den ______. Substitutionsfehler lassen sich besser mit einem ______-Code erkennen. Fülle die Lücken passend aus.",
+      "Lückentext",
       "In dem folgenden QR Code kannst du eine Nachricht in das Textfeld eingeben. Mit dem Button 'Metadaten anzeigen' kannst du dir zusätzlich die Metadaten in den QR Code laden. Durch einen klick auf 'Fehlerkorrektur anzeigen' kannst du dir die Fehlerkorrektur-Pixel anzeigen lassen. Teste verschiedene Eingaben.",
       "Erkläre in eigenen Worten, wie die Fehlerkorrektur in QR Codes funktioniert. Gehe dabei auf den Zusammenhang zwischen zusätzlichen Daten und Korrekturlevel ein. Erläutere Zusätzlich, wie die Fehlerkorrektur im QR Code dargestellt wird."
     ),
-    "anwendung" -> List(),
+    "anwendung" -> List(
+      "Beschreibe drei Anwendungen, in denen QR-Codes sinnvoll eingesetzt werden. Begründe jeweils kurz. Nenne auch ein Beispiel, wo QR-Codes ungeeignet sind und begründe.",
+      "Plane eine konkrete Anwendung im Schulalltag: Beschreibe Ziel, Inhalt des QR-Codes und Ort der Platzierung.",
+      "Die Schulleitung überlegt, wie man Erfassen könnte, welche Schüler das Gelände verlassen. Momentan wird dafür eine Lehrkraft eingesetzt, welches sich die Hausaufgabenhefte zeigen lässt. \nIn dem Hausaufgabenheft werden Name und Geburtsdatum des Schülers überprüft. Ein Schüler darf das Gelände verlassen, wenn er über 16 Jahre alt ist. \nErläutere je 2 Vor- und Nachteile dieser Methode.",
+      "Erläutere, wie du den Sachverhalt aus Aufgabe 3 mit einem QR-Code lösen würdest. Gehe dabei auch darauf ein, welche Daten im QR Code gespeichert werden müssen.",
+      "Nimm begründet Stellung zum Nutzen von QR Codes im Anwendungsfall von Aufgabe 3.",
+      "Eine Lehrkraft äußert Bedenken darüber, dass Schüler zum einen die QR Codes Manipulieren könnten, um falsche Daten zu speichern. Zum anderen befürchtet die Lehrkraft, dass die QR Codes nach einem Jahr verschmutzen oder beschädigt sind, da das Lesen eines QR Codes nicht mehr möglich ist, wenn schon ein Pixel umgefärbt ist.  \nErläutere, wie du auf diese Bedenken reagierst. Begründe deine Antworten.",
+      "Um das Speichern der Daten einmal auszuprobieren, erstelle einen QR Code mit deinen Daten(Du kannst dir dafür natürlich auch welche ausdenken). \nGehe dafür auf die Webseite 'https://www.qrcode-generator.de/' und wähle dort den Typ 'VCard' aus. und Fülle die Informationen aus. \nÜberprüfe, ob der QR Code funktioniert, indem du ihn mit deinem Smartphone scannst. Wenn alles funktioniert hat, kannst du dir den QR Code als Bild speichern, Ausdrucken und in deine Handyhülle legen. \nBeschreibe, welche Daten du auserdem in einer VCard speichern könntest und welche Vorteile dies hat."
+    ),
     "zusammenfassung" -> List()
   )
 
@@ -156,8 +164,13 @@ object Main:
   end renderQRCodeExercise
 
   // QR Code Exercise with metadata button
-  def renderQRCodeExerciseWithMetadata(exerciseNumber: Int, taskText: String, explanation: String): Element =
-    val messageTextVar = Var("")
+  def renderQRCodeExerciseWithMetadata(
+    exerciseNumber: Int,
+    taskText: String,
+    explanation: String,
+    sharedMessageVar: Option[Var[String]] = None
+  ): Element =
+    val messageTextVar = sharedMessageVar.getOrElse(Var(""))
     val exceedsLimitVar = Var(false)
     val showMetadata = Var(false)
     val metadataActive = Var(false)
@@ -1285,14 +1298,108 @@ object Main:
           else if hash == "#anwendung" then  
             div(
               h1("Anwendung"),
-              TimeBadge(30),
+              TimeBadge(45),
+              renderExercise(
+                "Beschreibe drei Anwendungen, in denen QR-Codes sinnvoll eingesetzt werden. Begründe jeweils kurz. Nenne auch ein Beispiel, wo QR-Codes ungeeignet sind und begründe.",
+                Set("sinnvoll", "ungeeignet", "begründe"),
+                1,
+                None,
+                "anwendung"
+              ),
+              renderExercise(
+                "Plane eine konkrete Anwendung im Schulalltag: Beschreibe Ziel, Inhalt des QR-Codes und Ort der Platzierung.",
+                Set("Schule", "Ziel", "Platzierung"),
+                2,
+                None,
+                "anwendung"
+              ),
+              renderExercise(
+                "Die Schulleitung überlegt, wie man Erfassen könnte, welche Schüler das Gelände verlassen. Momentan wird dafür eine Lehrkraft eingesetzt, welches sich die Hausaufgabenhefte zeigen lässt. \n"+
+                "In dem Hausaufgabenheft werden Name und Geburtsdatum des Schülers überprüft. Ein Schüler darf das Gelände verlassen, wenn er über 16 Jahre alt ist. \n" +
+                "Erläutere je 2 Vor- und Nachteile dieser Methode.",
+                Set("Vorteil", "Nachteil"),
+                3,
+                None,
+                "anwendung"
+              ),
+              renderExercise(
+                "Erläutere, wie du den Sachverhalt aus Aufgabe 3 mit einem QR-Code lösen würdest. Gehe dabei auch darauf ein, welche Daten im QR Code gespeichert werden müssen.",
+                Set(),
+                4,
+                None,
+                "anwendung"
+              ),
+              renderExercise(
+                "Nimm begründet Stellung zum Nutzen von QR Codes im Anwendungsfall von Aufgabe 3.",
+                Set(),
+                5,
+                None,
+                "anwendung"
+              ),
+              renderExercise(
+                "Eine Lehrkraft äußert Bedenken darüber, dass Schüler zum einen die QR Codes Manipulieren könnten, um falsche Daten zu speichern. Zum anderen befürchtet die Lehrkraft, dass die QR Codes nach einem Jahr verschmutzen oder beschädigt sind, da das Lesen eines QR Codes nicht mehr möglich ist, wenn schon ein Pixel umgefärbt ist.  \n" +
+                "Erläutere, wie du auf diese Bedenken reagierst. Begründe deine Antworten.",
+                Set(),
+                6,
+                None,
+                "anwendung"
+              ),
+              renderExercise(
+                "Um das Speichern der Daten einmal auszuprobieren, erstelle einen QR Code mit deinen Daten(Du kannst dir dafür natürlich auch welche ausdenken). \n" + 
+                "Gehe dafür auf die Webseite 'https://www.qrcode-generator.de/' und wähle dort den Typ 'VCard' aus. und Fülle die Informationen aus. \n" +
+                "Überprüfe, ob der QR Code funktioniert, indem du ihn mit deinem Smartphone scannst. Wenn alles funktioniert hat, kannst du dir den QR Code als Bild speichern, Ausdrucken und in deine Handyhülle legen. \n" +
+                "Beschreibe, welche Daten du auserdem in einer VCard speichern könntest und welche Vorteile dies hat.",
+                Set(),
+                7,
+                None,
+                "anwendung"
+              ),
               Rating("anwendung"),
               chapterNavigation("#anwendung")
             )
           else if hash == "#zusammenfassung" then
             div(
               h1("Zusammenfassung"),
-              TimeBadge(35),
+              TimeBadge(60),
+              {
+                val zusammenfassungMessageVar = Var("")
+                val generatedQrTextVar = Var(Option.empty[String])
+                div(
+                  styleAttr := "display: flex; flex-direction: column; gap: 1rem; align-items: flex-start; margin-bottom: 2rem;",
+                  renderQRCodeExerciseWithMetadata(
+                    1,
+                    "fehlerkorrektur",
+                    "In dem folgenden QR Code kannst du eine Nachricht in das Textfeld eingeben. Mit dem Button 'Metadaten anzeigen' kannst du dir zusätzlich die Metadaten in den QR Code laden. Durch einen klick auf 'Fehlerkorrektur anzeigen' kannst du dir die Fehlerkorrektur-Pixel anzeigen lassen. Durch einen Klick auf 'Maske anwenden' wird die Maske auf den QR Code angewnadt. Teste verschiedene Eingaben und überprüfee das Ergebnis mit einem QR Code Scanner.",
+                    sharedMessageVar = Some(zusammenfassungMessageVar)
+                  ),
+                  button(
+                    "Maske anwenden",
+                    styleAttr := "padding: 1rem 2rem; background-color: #667eea; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1rem;",
+                    onClick --> { _ =>
+                      val current = zusammenfassungMessageVar.now().trim
+                      if current.nonEmpty then
+                        generatedQrTextVar.set(Some(current))
+                    }
+                  ),
+                  child <-- generatedQrTextVar.signal.map {
+                    case Some(txt) =>
+                      div(
+                        styleAttr := "margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;",
+                        h4("Generierter QR-Code"),
+                        generateQRCode(txt, 220)
+                      )
+                    case None => emptyNode
+                  }
+                )
+              },
+              renderExercise(
+                "Erkläre anhand von Aufgabe 1, wie genau dieser Erstellt wird. Gehe dabei auf die einzelnen Schritte ein, die notwendig sind, um aus einer Nachricht einen QR Code zu generieren.",
+                Set(),
+                2,
+                None,
+                "anwendung"
+              ),
+              renderZusammenfassungQuiz(),
               Rating("zusammenfassung"),
               chapterNavigation("#zusammenfassung")
             )
@@ -1311,19 +1418,33 @@ object Main:
                 "Viel Spaß!"
               ),
               div(
-                
-                renderExercise(
-                  "Scanne die QR Codes und beschreibe deren Inhalte. Beschreibe zusätzlich, die Gemeinsamkeiten.", 
-                  Set("qr"), 
-                  1, 
-                  Some(div(
-                    cls := "qr-codes-grid",
-                    generateQRCodeWithCaption("https://example.com", "Beispiel QR-Code 1", 150),
-                    imageWithCaption("/qr-example.png", "Beispiel QR-Code 2", 150),
-                    generateQRCodeWithCaption("Benutze das Wort: QRCode in deiner Abgabe", "Beispiel QR-Code 3", 150)
-                  )),
-                  "einfuehrung"
-                ),
+                {
+                  val showInfoBoxVar = Var(false)
+                  div(
+                    renderExercise(
+                      "Scanne die QR Codes und beschreibe deren Inhalte. Beschreibe zusätzlich, die Gemeinsamkeiten.", 
+                      Set("qr"), 
+                      1, 
+                      Some(div(
+                        cls := "qr-codes-grid",
+                        generateQRCodeWithCaption("https://example.com", "Beispiel QR-Code 1", 150),
+                        imageWithCaption("/qr-example.png", "Beispiel QR-Code 2", 150),
+                        generateQRCodeWithCaption("Benutze das Wort: QRCode in deiner Abgabe", "Beispiel QR-Code 3", 150)
+                      )),
+                      "einfuehrung",
+                      Some(() => showInfoBoxVar.set(true))
+                    ),
+                    child <-- showInfoBoxVar.signal.map { show =>
+                      if show then
+                        Infotext(
+                          "Informationen zur Bearbeitung",
+                          "Durch das klicken auf den Abgeben Button bei den Aufgaben werden deine Antworten lokal in deinem Browser gespeichert. Dieser färbt sich grün, wenn alle Schlüsselwörter, welche gefordert waren im Text vorhanden ware. Ansonsten färbt er sich Rot. Zusätzlich gibt es im Arbeitsheft immer wieder Informationsboxen, welche nach dem Klicken des Abgeben Buttons angezeigt werden. " 
+                        )
+                      else
+                        emptyNode
+                    }
+                  )
+                },
                 renderExerciseMC(
                   "Welche Aussage trifft zu QR-Codes?",
                   List(
@@ -2405,6 +2526,178 @@ Der Reed-Solomon-Code arbeitet mit Mathematischen Gleichungen und kann sowohl Su
       )
     )
   end renderExerciseMC
+
+  def renderZusammenfassungQuiz(): Element =
+    // Define 20 quiz questions with mixed types
+    val quizQuestions = List(
+      // Text input questions
+      ("In welcher Form liegen die Daten in einem QR Code vor", "text", List(), Set("schwarz", "weiß")),
+      ("Nenne die drei Elemente eines QR-Codes.", "text", List(), Set("position", "meta", "daten")),
+      ("Wie viele verschiedene Zeichen können mit 8 Bits dargestellt werden?", "text", List(), Set("256")),
+      ("Erkläre, warum Maskierung in QR-Codes wichtig ist.", "text", List(), Set("lesbar", "kontrast", "erkennung")),
+      ("Wofür ist die Fehlerkorrektur in QR-Codes wichtig?", "text", List(), Set("unleserlich", "beschädigt")),
+      
+      // Multiple choice questions
+      ("Welche Form haben die Positionsmarker im QR-Code?", "mc", List(("Quadrate", true), ("Raute", false), ("Kreise", false), ("Dreiecke", false)), Set()),
+      ("Was ist die Hauptaufgabe des Timing Patterns?", "mc", List(("Größe und Position der Pixel bestimmen", true), ("Daten speichern", false), ("Fehler korrigieren", false), ("Masken anwenden", false)), Set()),
+      ("Welche Aussage zu ASCII ist richtig?", "mc", List(("ASCII kodiert Buchstaben mit 7 oder 8 Bits", true), ("ASCII kann beliebig lange Zeichenketten speichern", false), ("ASCII ist nur für Zahlen", false), ("ASCII wurde für QR-Codes erfunden", false)), Set()),
+      ("Wie viele Masken probiert der QR-Code Standard?", "mc", List(("1 Masken", false), ("8 Masken", true), ("300 Masken", false), ("Unbegrenzt viele", false)), Set()),
+      ("Was ist XOR und seine Besonderheit?", "mc", List(("XOR ist eine logische Operation, die ihre eigene Umkehrfunktion ist", true), ("XOR kann nur für Zahlen verwendet werden", false), ("XOR wurde für QR-Codes erfunden", false), ("XOR hat keine praktische Anwendung", false)), Set()),
+      
+      // More text questions
+      ("Beschreibe den Prozess der Kodierung einer Nachricht in einen QR-Code.", "text", List(), Set("ascii","buchstabe","pixel")),
+      ("Was versteht man unter Redundanz bei der Fehlerkorrektur?", "text", List(), Set("wiederholung")),
+      ("Nenne zwei Vorteile, Ascii als Kodierung zu benutzen, im Gegensatz zu einer eigenen Kodierung.", "text", List(), Set("standard", "kodierung")),
+      
+      // More multiple choice
+      ("Welche Fehlerkorrektur-Level gibt es in QR-Codes?", "mc", List(("L (7%), M (15%), Q (25%), H (30%)", true), ("L (10%), M (20%), Q (30%), H (80%)", false), ("Nur L und H", false), ("Es gibt nur eine Ebene", false)), Set()),
+      ("Warum müssen die Metadaten in einem QR-Code gespeichert werden?", "mc", List(("Um den Scanner darüber zu informieren, welche Maske, Fehlerkorrektur und Version verwendet wurde", true), ("Um die Nachricht zu verschlüsseln", false), ("Um Platz zu sparen", false), ("Um die Lesbarkeit zu verbessern", false)), Set()),
+      
+      // Final text questions
+      ("Warum darf in den Positionsmakern keine Daten gespeichert werden?", "text", List(), Set("erkennung")),
+      ("Beschreibe, wie die Maske wieder Rückgängig gemacht wird.", "text", List(), Set("ernut", "gleiche")),
+      ("Durch das dreifache schreiben einer Nachricht können wie viel % der Nachricht unleserlich sein? ", "text", List(), Set("66")),
+      ("Nenne 3 Anwendungen für QR-Codes, welche du bei der Erstellung der Visitenkarte gesehen hast.", "text", List(), Set("Text", "URL", "VCard")),
+      ("Beschreibe ein Szenario aus dem Schulalltag, in dem QR-Codes sinnvoll eingesetzt werden könnten.", "text", List(), Set("schule", "szenario", "beispiel", "einsatz"))
+    )
+
+    val questionsVar: Var[List[(String, String, List[(String, Boolean)], Set[String])]] = Var(quizQuestions)
+    val answersVar: Var[Map[Int, String]] = Var(Map())
+    val resultsVar: Var[Option[String]] = Var(None)
+
+    div(
+      cls := "quiz-container",
+      h2("QR Code Quiz"),
+      p("Beantworte die folgenden 20 Fragen. Textfragen erfordern bestimmte Schlüsselwörter, Multiple-Choice-Fragen haben nur eine richtige Antwort."),
+      
+      children <-- questionsVar.signal.map { questions =>
+        questions.zipWithIndex.map { case ((question, qType, choices, keywords), idx) =>
+          val questionNum = idx + 1
+          div(
+            cls := "quiz-question",
+            h4(s"Frage $questionNum: $question"),
+            if qType == "text" then
+              renderQuizTextQuestion(question, idx, answersVar, keywords)
+            else
+              renderQuizMCQuestion(question, idx, choices, answersVar)
+          )
+        }
+      },
+      
+      child <-- resultsVar.signal.map {
+        case Some(result) =>
+          div(
+            cls := "quiz-result",
+            h3("Ergebnis"),
+            p(result)
+          )
+        case None =>
+          emptyNode
+      }
+    )
+  end renderZusammenfassungQuiz
+
+  def renderQuizTextQuestion(question: String, questionIndex: Int, answersVar: Var[Map[Int, String]], keywords: Set[String]): Element =
+    val textVar = Var("")
+    val feedbackVar: Var[Option[Boolean]] = Var(None)
+
+    div(
+      cls := "quiz-text-answer",
+      textArea(
+        rows := 6,
+        cols := 60,
+        placeholder := "Deine Antwort hier...",
+        styleAttr := "font-size: 1rem; padding: 0.75rem;",
+        controlled(
+          value <-- textVar.signal,
+          onInput.mapToValue --> { text =>
+            textVar.set(text)
+            answersVar.update(answers => answers + (questionIndex -> text))
+          }
+        )
+      ),
+      button(
+        "Antwort überprüfen",
+        onClick --> { _ =>
+          val text = textVar.now()
+          val isCorrect = keywords.nonEmpty && keywords.exists(k => text.toLowerCase.contains(k.toLowerCase))
+          feedbackVar.set(Some(isCorrect))
+        },
+        cls <-- feedbackVar.signal.map {
+          case Some(true)  => "btn-success"
+          case Some(false) => "btn-error"
+          case None        => ""
+        }
+      ),
+      child <-- feedbackVar.signal.map {
+        case Some(true)  => span(cls := "feedback-correct", " Richtig!")
+        case Some(false) => span(cls := "feedback-incorrect", "Nicht ganz richtig. Versuche es nochmal!")
+        case None        => emptyNode
+      }
+    )
+  end renderQuizTextQuestion
+
+  def renderQuizMCQuestion(question: String, questionIndex: Int, choices: List[(String, Boolean)], answersVar: Var[Map[Int, String]]): Element =
+    val selectedVar: Var[Option[Int]] = Var(None)
+    val feedbackVar: Var[Option[Boolean]] = Var(None)
+
+    div(
+      cls := "quiz-mc-answer",
+      div(
+        children <-- Signal.fromValue(choices).map(_.zipWithIndex.map { case ((labelText, _), idx) =>
+          div(
+            cls := "quiz-radio-option",
+            input(
+              typ := "radio",
+              idAttr := s"question-$questionIndex-$idx",
+              value := idx.toString,
+              onChange --> { _ =>
+                selectedVar.set(Some(idx))
+                answersVar.update(answers => answers + (questionIndex -> labelText))
+              }
+            ),
+            label(
+              forId := s"question-$questionIndex-$idx",
+              labelText
+            )
+          )
+        })
+      ),
+      button(
+        "Antwort überprüfen",
+        onClick --> { _ =>
+          selectedVar.now().foreach { idx =>
+            val isCorrect = choices(idx)._2
+            feedbackVar.set(Some(isCorrect))
+          }
+        },
+        cls <-- feedbackVar.signal.map {
+          case Some(true)  => "btn-success"
+          case Some(false) => "btn-error"
+          case None        => ""
+        }
+      ),
+      child <-- feedbackVar.signal.map {
+        case Some(true)  => span(cls := "feedback-correct", "✓ Korrekt!")
+        case Some(false) => span(cls := "feedback-incorrect", "✗ Nicht korrekt. Versuche es nochmal!")
+        case None        => emptyNode
+      }
+    )
+  end renderQuizMCQuestion
+
+  def calculateQuizScore(questions: List[(String, String, List[(String, Boolean)], Set[String])], answers: Map[Int, String]): Int =
+    questions.zipWithIndex.count { case ((question, qType, choices, keywords), idx) =>
+      answers.get(idx).exists { answer =>
+        if qType == "text" then
+          keywords.nonEmpty && keywords.exists(k => answer.toLowerCase.contains(k.toLowerCase))
+        else
+          // For MC, find the correct choice
+          choices.zipWithIndex.exists { case ((choice, isCorrect), cIdx) =>
+            isCorrect && choice == answer
+          }
+      }
+    }
+  end calculateQuizScore
 
   def counterButton(): Element =
     val counter = Var(0)
