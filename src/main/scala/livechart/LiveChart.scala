@@ -893,7 +893,7 @@ object Main:
                 TimeBadge(70),
                 cls := "nachricht-section",
                 renderExercise(
-                  "Beschreibe, wie ein QR Code aufgebaut ist. Vermute, wie die Daten im QR Code dargestellt werden.",
+                  "Beschreibe, wie ein QR-Code aufgebaut ist. Vermute, wie die Daten im QR-Code dargestellt werden.",
                   Set("pixel", "schwarz", "weiß"),
                   1,
                   Some(generateQRCode("Hallo Welt", 200)),
@@ -1004,7 +1004,7 @@ object Main:
                 )
               },
               renderExercise(
-                "Erläutere einen Vorteile der festen Länge von 8 Pixeln pro Buchstabe. Wie viele verschiedene Zeichen können mit 8 Pixeln dargestellt werden?",
+                "Erläutere Vorteile der festen Länge von 8 Pixeln pro Buchstabe. Wie viele verschiedene Zeichen können mit 8 Pixeln dargestellt werden?",
                 Set("256", "vorteil", "eindeutig"),
                 6,
                 None,
@@ -1013,18 +1013,18 @@ object Main:
               renderQRCodeExercise(
                 7,
                 "Verschlüssele eine Nachricht mit QR-Code.",
-                "Als nächstes überführen wir das Gelernte in eine QR-Code Darstellung. Dafür schauen wir uns an, wie Nachrichten in QR Codes dargestellt werden. " +
+                "Als nächstes überführen wir das Gelernte in eine QR-Code Darstellung. Dafür schauen wir uns an, wie Nachrichten in QR-Codes dargestellt werden. " +
                 "Gib eine Nachricht ein und beobachte, wie diese als QR-Code in Pixel umgewandelt wird. Jeder Buchstabe wird dabei in 8 Bits (seine ASCII-Kodierung) übersetzt und färbt entsprechende Pixel schwarz."
               ),
               renderExercise(
-                "Beschreibe, was dir bei der QR-Code Darstellung aufgefallen ist. Wie wird ein Buchstabe in Pixel umgewandelt? Wie bilden sich die Wörter? Gibt es Beschränkungen?",
+                "Erkläre, was dir bei der QR-Code Darstellung aufgefallen ist. Gehe dabei auf folgende Fragen ein: Wie wird ein Buchstabe in Pixel umgewandelt? Wie bilden sich die Wörter? Gibt es Beschränkungen?",
                 Set("ascii", "pixel"),
                 8,
                 None,
                 "nachricht"
               ),
               renderExercise(
-                "Erkläre, wie du weißt, wann ein neuer Buchstabe anfängt, wenn du nur die Pixel siehst.",
+                "Erkläre, anhand welcher Merkmale sich erkennen lässt, wo bei einer Pixelabbildung ein neuer Buchstabe beginnt.",
                 Set("8"),
                 9,
                 None,
@@ -1045,11 +1045,11 @@ object Main:
                     if show then
                       Infotext(
                         "Festgelegte Bereiche im QR-Code",
-                        "Ein QR-Code hat mehrere festgelegte Bereiche, die für die Erkennung und Dekodierung essentiell sind: " +
+                        "Ein QR-Code hat mehrere festgelegte Bereiche, die für die Erkennung und Dekodierung essentiell sind. " +
                         "Die drei Positionsmarker (auch Position Detection Patterns genannt) befinden sich in den drei Ecken des QR-Codes und sind 7×7 Pixel große Quadrate mit einem schwarzen 3x3 Quadrat im Inneren. " +
                         "Sie ermöglichen es Scannern, die Ausrichtung und Lage des QR-Codes zu erkennen. " +
-                        "Das Timing Pattern sind abwechselnde schwarze und weiße Bereiche, die sich horizontal und vertikal an bestimmten Stellen im QR Code sind. Diese helfen die Größe und Position der einzelnen Pixel zu bestimmen. " +
-                        "Diese beiden festgelegten Bereiche dürfen nie mit Daten überschrieben werden, da diese dafür sorgen, dass ein QR Code überhaupt von einer Kamera erkannt werden kann. " +
+                        "Die Timing Pattern sind abwechselnde schwarze und weiße Bereiche, die sich horizontal und vertikal an bestimmten Stellen im QR-Codes befinden. Diese helfen, die Größe und Position der einzelnen Pixel zu bestimmen. " +
+                        "Diese beiden festgelegten Bereiche dürfen nie mit Daten überschrieben werden, da diese dafür sorgen, dass ein QR-Code überhaupt von einer Kamera erkannt werden kann. " +
                         "Weiterhin gibt es am Anfang der Nachricht noch einen festen Bereich, der die Länge der Nachricht kodiert. Hier wird in 8 Bits angegeben, wie viele Zeichen die Nachricht hat."
                       )
                     else
@@ -1089,7 +1089,7 @@ object Main:
                   if show then
                     Infotext(
                       "Maskierung im QR-Code",
-                      "Wie du vielleicht bemerkt hast, war der QR-Code schwer zu scannen. Um dies zu verhindern werden nach einem bestimmten Muster die einzelnen Pixel umgefärbt." +
+                      "Wie du vielleicht bemerkt hast, war der QR-Code schwer zu scannen. Um dies zu verhindern, werden nach einem bestimmten Muster die einzelnen Pixel umgefärbt. " +
                       "Diesen Prozess nennt man Maskierung. Die Maskierung sorgt dafür, dass der QR-Code besser lesbar ist und von Scannern zuverlässiger erkannt werden kann." 
                     )
                   else
@@ -1110,9 +1110,9 @@ object Main:
                   if show then
                     Infotext(
                       "Mehrere Masken in QR-Codes",
-                      "Um das Problem einer festen Maske zu lösen, werden in QR-Codes 8 verschiedene Masken probiert. " +
+                      "Um das Problem einer festen Maske zu lösen, werden in QR-Codes 8 verschiedene Masken nacheinander angewandt. " +
                       "Daraufhin wird jeweils bewertet, welche Maske den größten Kontrast zwischen schwarzen und weißen Pixeln generiert. Zusätzlich werden andere Kriterien, wie das Vermeiden des Timingpatterns, berücksichtigt. Die Maske die am Besten alle Kriterien erfüllt, wird ausgewählt. " +
-                      "Diese Maske wird anschließend auf den QR-Code angewandt. Dadurch wird sichergestellt, dass der QR-Code optimal lesbar ist. Die Verschiedenen Masken sind im Bild dargestellt. Unter jeder Maske steht hierbei die Berechnungsvorschrift, die angibt, welche Pixel umgefärbt werden. Das % Zeichen steht hierbei für den Modulo-Operator, also den Rest einer Division.",
+                      "Diese Maske wird anschließend auf den QR-Code angewandt. Dadurch wird sichergestellt, dass der QR-Code optimal lesbar ist. Die verschiedenen Masken sind im Bild dargestellt. Unter jeder Maske steht hierbei die Berechnungsvorschrift, die angibt, welche Pixel umgefärbt werden. Das \"%\" Zeichen steht hierbei für den Modulo-Operator - also den Rest einer Division.",
                       Some("/qr-masken.png")
                     )
                   else
@@ -1140,7 +1140,7 @@ object Main:
                       "Der Scanner weiß deshalb, welche Maske angewandt wurde, weil Metadaten (Daten über die Daten) auch in Form von Pixeln an bestimmten Stellen im QR-Code festgehalten werden. " +
                       "Zu diesen Metadaten zählt unter anderem die Nummer der verwendeten Maske. Diese Information wird an spezifischen Positionen im QR-Code kodiert, " +
                       "damit der Scanner diese auslesen und die entsprechende Maske rückgängig machen kann, um die ursprünglichen Daten zu rekonstruieren. " +
-                      "Weitere Metadaten sind beispielsweise die verwendete Fehlerkorrektur-Stufe oder die Versionsnummer des QR-Codes."
+                      "Weitere Metadaten sind beispielsweise die verwendete Fehlerkorrektur-Stufe und die Versionsnummer des QR-Codes."
                     )
                   else
                     emptyNode
@@ -1157,9 +1157,9 @@ object Main:
                 child <-- showMaskierungAufgabe8InfoVar.signal.map { show =>
                   if show then
                     Infotext(
-                      "Eleganz der XOR-Operation",
-                      "Die Tatsache, dass die XOR-Operation ihre eigene Umkehrfunktion ist ist sehr praktisch! Dies führt dazu, dass durch 2maliges Anwenden der gleichen Maske die ursprünglichen Daten wiederhergestellt werden. " +
-                      "Der Scanner muss dadurch keine zwei verschiedene Funktionen implementieren - eine zum Maskieren und eine zum Demaskieren. " +
+                      "Vorteile der XOR-Operation",
+                      "Die Tatsache, dass die XOR-Operation ihre eigene Umkehrfunktion ist, ist sehr praktisch. Dies führt dazu, dass durch 2-maliges Anwenden der gleichen Maske die ursprünglichen Daten wiederhergestellt werden. " +
+                      "Der Scanner muss dadurch keine zwei verschiedenen Funktionen implementieren - eine zum Maskieren und eine zum Demaskieren. " +
                       "Stattdessen kann er einfach die gleiche XOR-Funktion ein zweites Mal anwenden. Dies spart Speicherplatz und " +
                       "reduziert Komplexität. Diese Eigenschaft macht XOR zu einer effizienten Wahl für die Maskierung in QR-Codes. " +
                       ""
@@ -1188,7 +1188,7 @@ object Main:
                 val showFehlerkorrekturAufgabe3InfoVar = Var(false)
                 div(
                   renderExercise(
-                    "Hin und wieder kommt es vor, dass Leute Sticker auf QR Codes kleben, welche in der Öffentlichkeit zu sehen sind. Vergleiche die beiden QR-Codes. Vermute, welcher der beiden QR Codes durch einen Scanner gelesen werden kann. Begründe deine Vermutung.",
+                    "Hin und wieder kommt es vor, dass Leute Sticker auf QR-Codes kleben, welche in der Öffentlichkeit zu sehen sind. Vergleiche die beiden QR-Codes. Vermute, welcher der beiden QR-Codes durch einen Scanner gelesen werden kann. Begründe deine Vermutung.",
                     Set("Sticker", "lesbar"),
                     1,
                     Some(
@@ -1209,7 +1209,7 @@ object Main:
                     "fehlerkorrektur"
                   ),
                   renderExercise(
-                    "Versuche nun beide QR Codes zu scannen. Beschreibe deine Beobachtungen.",
+                    "Versuche nun beide QR-Codes zu scannen. Beschreibe deine Beobachtungen.",
                     Set("lesbar"),
                     2,
                     None,
@@ -1221,7 +1221,7 @@ object Main:
                       Infotext(
                         "Hinweis zur Fehlerkorrektur",
                         "Wie dir vielleicht aufgefallen ist, konnte der QR-Code mit den Stickern trotzdem gescannt werden. " +
-                        "Wie genau das möglich ist und welche Grenzen es dabei gibt, schauen wir uns im folgenden an. " +
+                        "Wie genau das möglich ist und welche Grenzen es dabei gibt, schauen wir uns im Folgenden an. " +
                         "Dafür gehen wir erst einmal weg von QR-Codes und betrachten ein einfaches Beispiel einer Textnachricht. "
                       )
                     else
@@ -1230,7 +1230,7 @@ object Main:
                   renderExercise(
                     "Vergleiche die beiden Situationen. Beurteile, welcher der beiden Fehler schwieriger zu korrigieren und erkennen ist. \n" +
                     "Situation 1: Du teilst mit einer Notiz einem Freund deine Adresse mit. Leider verschmiert die Tinte an einer Stelle, sodass statt einem Buchstabe ein schwarzer Fleck zu sehen ist. \n" +
-                    "Situation 2: Du teilst mit einer Notiz einem Freund deine Adresse mit. Leider hast du dich bei der Hausnummer vertippt und statt 23 steht dort 32.",
+                    "Situation 2: Du teilst mit einer Notiz einem Freund deine Adresse mit. Leider hast du dich bei der Hausnummer verschrieben und statt 23 steht dort 32.",
                     Set(),
                     3,
                     None,
@@ -1241,7 +1241,7 @@ object Main:
                     if show then
                       Infotext(
                         "Fehlertypen erkennen",
-                        "Es gibt wie du vielleicht schon bemerkt hast zwei Haupttypen von Fehlern: " +
+                        "Es gibt zwei Haupttypen von Fehlern: " +
                         "Ausfallsfehler (auch Löschfehler genannt): Ein Zeichen wird vollständig entfernt oder ist unlesbar. " +
                         "Substitutionsfehler: Ein Zeichen wird durch ein anderes ersetzt. " +
                         "Substitutionsfehler sind oft schwieriger zu erkennen, da der Text syntaktisch korrekt bleibt, aber semantisch falsch ist. " +
@@ -1280,11 +1280,11 @@ object Main:
                   renderQRCodeExerciseWithMetadata(
                     8,
                     "fehlerkorrektur",
-                    "In dem folgenden QR Code kannst du eine Nachricht in das Textfeld eingeben. Mit dem Button 'Metadaten anzeigen' kannst du dir zusätzlich die Metadaten in den QR Code laden. Durch einen klick auf 'Fehlerkorrektur anzeigen' kannst du dir die Fehlerkorrektur-Pixel anzeigen lassen. Teste verschiedene Eingaben."
+                    "Im folgenden QR-Code kannst du eine Nachricht in das Textfeld eingeben. Mit dem Button 'Metadaten anzeigen' kannst du dir zusätzlich die Metadaten in den QR-Code laden. Durch einen Klick auf 'Fehlerkorrektur anzeigen' kannst du dir die Fehlerkorrektur-Pixel anzeigen lassen. Teste verschiedene Eingaben."
                     
                   ),
                   renderExercise(
-                    "Erkläre in eigenen Worten, wie die Fehlerkorrektur in QR Codes funktioniert. Gehe dabei auf den Zusammenhang zwischen zusätzlichen Daten und Korrekturlevel ein. Erläutere Zusätzlich, wie die Fehlerkorrektur im QR Code dargestellt wird.",
+                    "Erkläre in eigenen Worten, wie die Fehlerkorrektur in QR-Codes funktioniert. Gehe dabei auf den Zusammenhang zwischen zusätzlichen Daten und dem Korrekturlevel ein. Erläutere zusätzlich, wie die Fehlerkorrektur im QR-Code dargestellt wird.",
                     Set(),
                     9,
                     None,
@@ -1300,8 +1300,8 @@ object Main:
               h1("Anwendung"),
               TimeBadge(45),
               renderExercise(
-                "Beschreibe drei Anwendungen, in denen QR-Codes sinnvoll eingesetzt werden. Begründe jeweils kurz. Nenne auch ein Beispiel, wo QR-Codes ungeeignet sind und begründe.",
-                Set("sinnvoll", "ungeeignet", "begründe"),
+                "Beschreibe drei Anwendungen, in denen QR-Codes sinnvoll eingesetzt werden. Begründe jeweils kurz.",
+                Set("sinnvoll"),
                 1,
                 None,
                 "anwendung"
@@ -1314,7 +1314,7 @@ object Main:
                 "anwendung"
               ),
               renderExercise(
-                "Die Schulleitung überlegt, wie man Erfassen könnte, welche Schüler das Gelände verlassen. Momentan wird dafür eine Lehrkraft eingesetzt, welches sich die Hausaufgabenhefte zeigen lässt. \n"+
+                "Die Schulleitung überlegt, wie man erfassen könnte, welche Schüler das Gelände verlassen. Momentan wird dafür eine Lehrkraft eingesetzt, welche sich die Hausaufgabenhefte zeigen lässt. \n"+
                 "In dem Hausaufgabenheft werden Name und Geburtsdatum des Schülers überprüft. Ein Schüler darf das Gelände verlassen, wenn er über 16 Jahre alt ist. \n" +
                 "Erläutere je 2 Vor- und Nachteile dieser Methode.",
                 Set("Vorteil", "Nachteil"),
@@ -1323,21 +1323,21 @@ object Main:
                 "anwendung"
               ),
               renderExercise(
-                "Erläutere, wie du den Sachverhalt aus Aufgabe 3 mit einem QR-Code lösen würdest. Gehe dabei auch darauf ein, welche Daten im QR Code gespeichert werden müssen.",
+                "Erläutere, wie du den Sachverhalt aus Aufgabe 3 mit einem QR-Code lösen würdest. Gehe dabei auch darauf ein, welche Daten im QR-Code gespeichert werden müssen.",
                 Set(),
                 4,
                 None,
                 "anwendung"
               ),
               renderExercise(
-                "Nimm begründet Stellung zum Nutzen von QR Codes im Anwendungsfall von Aufgabe 3.",
+                "Nimm begründet Stellung zum Nutzen von QR-Codes im Anwendungsfall von Aufgabe 3.",
                 Set(),
                 5,
                 None,
                 "anwendung"
               ),
               renderExercise(
-                "Eine Lehrkraft äußert Bedenken darüber, dass Schüler zum einen die QR Codes Manipulieren könnten, um falsche Daten zu speichern. Zum anderen befürchtet die Lehrkraft, dass die QR Codes nach einem Jahr verschmutzen oder beschädigt sind, da das Lesen eines QR Codes nicht mehr möglich ist, wenn schon ein Pixel umgefärbt ist.  \n" +
+                "Eine Lehrkraft äußert Bedenken darüber, dass Schüler zum einen die QR-Codes manipulieren könnten, um falsche Daten zu speichern. Zum anderen befürchtet die Lehrkraft, dass die QR-Codes nach einem Jahr verschmutzen oder beschädigt sind, da das Lesen eines QR-Codes nicht mehr möglich ist, wenn schon ein Pixel umgefärbt ist.  \n" +
                 "Erläutere, wie du auf diese Bedenken reagierst. Begründe deine Antworten.",
                 Set(),
                 6,
@@ -1345,10 +1345,10 @@ object Main:
                 "anwendung"
               ),
               renderExercise(
-                "Um das Speichern der Daten einmal auszuprobieren, erstelle einen QR Code mit deinen Daten(Du kannst dir dafür natürlich auch welche ausdenken). \n" + 
-                "Gehe dafür auf die Webseite 'https://www.qrcode-generator.de/' und wähle dort den Typ 'VCard' aus. und Fülle die Informationen aus. \n" +
-                "Überprüfe, ob der QR Code funktioniert, indem du ihn mit deinem Smartphone scannst. Wenn alles funktioniert hat, kannst du dir den QR Code als Bild speichern, Ausdrucken und in deine Handyhülle legen. \n" +
-                "Beschreibe, welche Daten du auserdem in einer VCard speichern könntest und welche Vorteile dies hat.",
+                "Um das Speichern der Daten einmal auszuprobieren, erstelle einen QR-Code mit deinen Daten (Du kannst dir dafür natürlich auch welche ausdenken). \n" + 
+                "Gehe dafür auf die Webseite 'https://www.qrcode-generator.de/' und wähle dort den Typ 'VCard' aus. Fülle die Informationen aus. \n" +
+                "Überprüfe, ob der QR-Code funktioniert, indem du ihn mit deinem Smartphone scannst. Wenn alles funktioniert hat, kannst du dir den QR-Code als Bild speichern, ausdrucken und in deine Handyhülle legen. \n" +
+                "Beschreibe, welche Daten du außerdem in einer VCard speichern könntest und welche Vorteile dies hat.",
                 Set(),
                 7,
                 None,
@@ -1369,7 +1369,7 @@ object Main:
                   renderQRCodeExerciseWithMetadata(
                     1,
                     "fehlerkorrektur",
-                    "In dem folgenden QR Code kannst du eine Nachricht in das Textfeld eingeben. Mit dem Button 'Metadaten anzeigen' kannst du dir zusätzlich die Metadaten in den QR Code laden. Durch einen klick auf 'Fehlerkorrektur anzeigen' kannst du dir die Fehlerkorrektur-Pixel anzeigen lassen. Durch einen Klick auf 'Maske anwenden' wird die Maske auf den QR Code angewnadt. Teste verschiedene Eingaben und überprüfee das Ergebnis mit einem QR Code Scanner.",
+                    "Im folgenden QR-Code kannst du eine Nachricht in das Textfeld eingeben. Mit dem Button 'Metadaten anzeigen' kannst du dir zusätzlich die Metadaten in den QR-Code laden. Durch einen Klick auf 'Fehlerkorrektur anzeigen' kannst du dir die Fehlerkorrektur-Pixel anzeigen lassen. Durch einen Klick auf 'Maske anwenden' wird die Maske auf den QR-Code angewandt. Teste verschiedene Eingaben und überprüfe das Ergebnis mit einem QR-Code Scanner.",
                     sharedMessageVar = Some(zusammenfassungMessageVar)
                   ),
                   button(
@@ -1393,7 +1393,7 @@ object Main:
                 )
               },
               renderExercise(
-                "Erkläre anhand von Aufgabe 1, wie genau dieser Erstellt wird. Gehe dabei auf die einzelnen Schritte ein, die notwendig sind, um aus einer Nachricht einen QR Code zu generieren.",
+                "Erkläre anhand von Aufgabe 1, wie genau der QR-Code erstellt wird. Gehe dabei auf die einzelnen Schritte ein, die notwendig sind, um aus einer Nachricht einen QR-Code zu generieren.",
                 Set(),
                 2,
                 None,
@@ -1409,10 +1409,10 @@ object Main:
               TimeBadge(15),
               Infotext(
                 "Einleitung",
-                "Du kennst das bestimmt, dass du mit dein Smartphone  kurz einen QR-Code scannst und  " +
+                "Du kennst das bestimmt, dass du mit deinem Smartphone kurz einen QR-Code scannst und  " +
                 "anschließend zu einer Webseite weitergeleitet wirst. Doch was genau passiert dabei? " +
                 "Für welche Anwendungen ist es sinnvoll einen QR-Code zu nutzen und für welche nicht? " +
-                "Die Antworten auf diese Fragen findest du in den folgenden Kapiteln, welche du auf der Linken seite auswählen kannst. " +
+                "Die Antworten auf diese Fragen findest du in den folgenden Kapiteln, welche du auf der linken Seite auswählen kannst. " +
                 "In der rechten oberen Ecke findest du jeweils eine Zeitabschätzung, wie lange das Kapitel dauert." +
                 "\n" +
                 "Viel Spaß!"
@@ -1422,7 +1422,7 @@ object Main:
                   val showInfoBoxVar = Var(false)
                   div(
                     renderExercise(
-                      "Scanne die QR Codes und beschreibe deren Inhalte. Beschreibe zusätzlich, die Gemeinsamkeiten.", 
+                      "Scanne die QR-Codes und beschreibe deren Inhalte. Beschreibe zusätzlich die Gemeinsamkeiten.", 
                       Set("qr"), 
                       1, 
                       Some(div(
@@ -1438,7 +1438,7 @@ object Main:
                       if show then
                         Infotext(
                           "Informationen zur Bearbeitung",
-                          "Durch das klicken auf den Abgeben Button bei den Aufgaben werden deine Antworten lokal in deinem Browser gespeichert. Dieser färbt sich grün, wenn alle Schlüsselwörter, welche gefordert waren im Text vorhanden ware. Ansonsten färbt er sich Rot. Zusätzlich gibt es im Arbeitsheft immer wieder Informationsboxen, welche nach dem Klicken des Abgeben Buttons angezeigt werden. " 
+                          "Durch das Klicken auf den \"Abgeben\" Button bei den Aufgaben werden deine Antworten lokal in deinem Browser gespeichert. Dieser färbt sich grün, wenn alle Schlüsselwörter, welche gefordert waren, im Text vorhanden sind. Ansonsten färbt er sich rot. Zusätzlich gibt es im Arbeitsheft immer wieder Informationsboxen, welche nach dem Klicken des \"Abgeben\" Buttons angezeigt werden. " 
                         )
                       else
                         emptyNode
@@ -1446,16 +1446,16 @@ object Main:
                   )
                 },
                 renderExerciseMC(
-                  "Welche Aussage trifft zu QR-Codes?",
+                  "Welche Aussage trifft auf QR-Codes zu?",
                   List(
-                    ("QR Codes haben eine feste Größe", false),
-                    ("QR Codes können ausschließlich Links speichern", false),
-                    ("Man kann sich bei der Erstellung eines QR Codes den Text selbst aussuchen", true)
+                    ("QR-Codes haben eine feste Größe.", false),
+                    ("QR-Codes können ausschließlich Links speichern.", false),
+                    ("Man kann sich bei der Erstellung eines QR-Codes den Text selbst aussuchen.", true)
                   ),
                   2,
                   "einfuehrung"
                 ),
-                renderExercise("Beschreibe, welche Vorstellungen du hast, wie QR Codes funktionieren.", Set(), 3, None, "einfuehrung"),
+                renderExercise("Beschreibe, welche Vorstellungen du davon hast, wie QR-Codes funktionieren.", Set(), 3, None, "einfuehrung"),
               ),
               Rating("einfuehrung"),
               chapterNavigation("#einfuehrung")
@@ -1722,8 +1722,8 @@ object Main:
       // Header mit Titel
       div(
         cls := "navbar-header",
-        h2("QR Code"),
-        p("Wie wird ein QR Code erstellt?" )
+        h2("QR-Code"),
+        p("Wie wird ein QR-Code erstellt?" )
       ),
       // Navigation Items
       div(
@@ -1808,7 +1808,7 @@ object Main:
 
     div(
       h2("Aufgabe 2"),
-      p("Links sind die Ursprünglichen Daten dargestellt. In der Mitte kannst du die Maske definieren. Rechts wird das Ergebnis der Maskierung, welche durch eine XOR-Operation realisiert wird, angezeigt."),
+      p("Links sind die ursprünglichen Daten dargestellt. In der Mitte kannst du die Maske definieren. Rechts wird das Ergebnis der Maskierung, welche durch eine XOR-Operation realisiert wird, angezeigt."),
       div(
         styleAttr := "display: flex; gap: 20px; justify-content: center; align-items: flex-start;",
         div(
@@ -1833,12 +1833,12 @@ object Main:
       div(
         styleAttr := "margin-top: 2rem; padding: 1rem; background: #f0f0f0; border-radius: 8px;",
         h3("Maskierung beschreiben"),
-        p("Beschreibe, wie die Maskierung funktioniert. Ergänze die Sätze:"),
+        p("Beschreibe, wie die Maskierung funktioniert. Ergänze die Sätze."),
         div(
           styleAttr := "margin: 1rem 0;",
           div(
             styleAttr <-- getLineStyle(check1).map(s => s"margin-bottom: 1rem; padding: 0.5rem; $s"),
-            span("Wenn Ursprüngliche Daten = schwarz und Maske = schwarz, dann ist das Ergebnis: "),
+            span("Wenn ursprüngliche Daten schwarz und die Maske schwarz dargestellt sind, dann ist das Ergebnis: "),
             input(
               typ := "text",
               placeholder := "",
@@ -1851,7 +1851,7 @@ object Main:
           ),
           div(
             styleAttr <-- getLineStyle(check2).map(s => s"margin-bottom: 1rem; padding: 0.5rem; $s"),
-            span("Wenn Ursprüngliche Daten = schwarz und Maske = weiß, dann ist das Ergebnis: "),
+            span("Wenn ursprüngliche Daten schwarz und die Maske weiß dargestellt sind, dann ist das Ergebnis: "),
             input(
               typ := "text",
               placeholder := "",
@@ -1864,7 +1864,7 @@ object Main:
           ),
           div(
             styleAttr <-- getLineStyle(check3).map(s => s"margin-bottom: 1rem; padding: 0.5rem; $s"),
-            span("Wenn Ursprüngliche Daten = weiß und Maske = schwarz, dann ist das Ergebnis: "),
+            span("Wenn ursprüngliche Daten weiß und die Maske schwarz dargestellt sind, dann ist das Ergebnis: "),
             input(
               typ := "text",
               placeholder := "",
@@ -1877,7 +1877,7 @@ object Main:
           ),
           div(
             styleAttr <-- getLineStyle(check4).map(s => s"margin-bottom: 1rem; padding: 0.5rem; $s"),
-            span("Wenn Ursprüngliche Daten = weiß und Maske = weiß, dann ist das Ergebnis: "),
+            span("Wenn ursprüngliche Daten weiß und die Maske weiß dargestellt sind, dann ist das Ergebnis: "),
             input(
               typ := "text",
               placeholder := "",
@@ -1958,7 +1958,7 @@ object Main:
 
     div(
       h2("Aufgabe 3"),
-      p("Links und in der Mitte sind die Ursprünglichen Daten und die Maske vorgegeben. Rechts kannst du die Maskierten Daten eintragen. Bestimme durch Anwenden der XOR-Operation die korrekten Maskierten Daten."),
+      p("Links und in der Mitte sind die ursprünglichen Daten und die Maske vorgegeben. Rechts kannst du die maskierten Daten eintragen. Bestimme durch Anwenden der XOR-Operation die korrekten maskierten Daten."),
       div(
         styleAttr := "display: flex; gap: 20px; justify-content: center; align-items: flex-start;",
         div(
@@ -1973,7 +1973,7 @@ object Main:
         ),
         div(
           styleAttr := "text-align: center; display: flex; flex-direction: column; align-items: center;",
-          h3(styleAttr := "margin: 0 0 0.5rem 0;", "Maskierte Daten"),
+          h3(styleAttr := "margin: 0 0 0.5rem 0;", "maskierte Daten"),
           div(
             cls := "pixel-grid",
             styleAttr := "grid-template-columns: repeat(4, 28px); grid-auto-rows: 28px; display: inline-grid; gap: 1px; background: #ccc; padding: 8px; border-radius: 4px;",
@@ -2088,7 +2088,7 @@ object Main:
         ),
         div(
           styleAttr := "text-align: center; display: flex; flex-direction: column; align-items: center;",
-          h3(styleAttr := "margin: 0 0 0.5rem 0;", "1x Maskiert"),
+          h3(styleAttr := "margin: 0 0 0.5rem 0;", "1x maskiert"),
           div(
             cls := "pixel-grid",
             styleAttr := "grid-template-columns: repeat(4, 28px); grid-auto-rows: 28px; display: inline-grid; gap: 1px; background: #ccc; padding: 8px; border-radius: 4px;",
@@ -2105,7 +2105,7 @@ object Main:
         ),
         div(
           styleAttr := "text-align: center; display: flex; flex-direction: column; align-items: center;",
-          h3(styleAttr := "margin: 0 0 0.5rem 0;", "2x Maskiert"),
+          h3(styleAttr := "margin: 0 0 0.5rem 0;", "2x maskiert"),
           div(
             cls := "pixel-grid",
             styleAttr := "grid-template-columns: repeat(4, 28px); grid-auto-rows: 28px; display: inline-grid; gap: 1px; background: #ccc; padding: 8px; border-radius: 4px;",
@@ -2160,7 +2160,7 @@ object Main:
             ul(
               (0 until 8).toList.map { idx =>
                 val status = statuses.lift(idx).flatten
-                val section = if idx < 4 then "1x Maskiert" else "2x Maskiert"
+                val section = if idx < 4 then "1x maskiert" else "2x maskiert"
                 val rowNum = (idx % 4) + 1
                 li(
                   styleAttr <-- rowStatusVar.signal.map { _ =>
@@ -2299,6 +2299,7 @@ object Main:
                 onInput.mapToValue --> answer4.writer
               )
             ),
+            span("." ),
           )
         ),
         button(
@@ -2332,13 +2333,13 @@ object Main:
             "Fehlerkorrektur in QR-Codes",
             """In QR-Codes wird Reed-Solomon-Codes zur Fehlerkorrektur genutzt. Dies ist ein besonders leistungsfähiges Verfahren, das beide Fehlerarten zum Teil korrigieren kann. Die Fehlerkorrektur wird dabei sowohl auf die Daten, als auch auf die Metadaten (z.B. Formatinformationen, Maske) angewendet.
 
-Dabei werden QR Codes nach Fehlertoleranzstufen klassifiziert. Die Fehlertoleranz liegt dabei zwischen 7% und 30% und gibt an wieviel % des QR-Codes beschädigt sein können, ohne dass die Information verloren geht. Die vier Stufen sind:
+Dabei werden QR-Codes nach Fehlertoleranzstufen klassifiziert. Die Fehlertoleranz liegt dabei zwischen 7% und 30% und gibt an wieviel % des QR-Codes beschädigt sein können, ohne dass die Information verloren geht. Die vier Stufen sind:
 • Level L: 7% Fehlertoleranz (niedrig) 
 • Level M: 15% Fehlertoleranz (mittel) 
 • Level Q: 25% Fehlertoleranz (hoch)   
 • Level H: 30% Fehlertoleranz (sehr hoch) 
 
-Der Reed-Solomon-Code arbeitet mit Mathematischen Gleichungen und kann sowohl Substitutionsfehler (falsche Pixel) als auch Löschfehler (fehlende Bereiche) korrigieren. Dies macht QR-Codes sehr robust gegenüber Verschmutzung, Beschädigung oder teilweiser Verdeckung."""
+Der Reed-Solomon-Code arbeitet mit mathematischen Gleichungen und kann sowohl Substitutionsfehler (falsche Pixel) als auch Löschfehler (fehlende Bereiche) korrigieren. Dies macht QR-Codes sehr robust gegenüber Verschmutzung, Beschädigung oder teilweiser Verdeckung."""
           )
         else
           emptyNode
@@ -2531,7 +2532,7 @@ Der Reed-Solomon-Code arbeitet mit Mathematischen Gleichungen und kann sowohl Su
     // Define 20 quiz questions with mixed types
     val quizQuestions = List(
       // Text input questions
-      ("In welcher Form liegen die Daten in einem QR Code vor", "text", List(), Set("schwarz", "weiß")),
+      ("In welcher Form liegen die Daten in einem QR-Code vor?", "text", List(), Set("schwarz", "weiß")),
       ("Nenne die drei Elemente eines QR-Codes.", "text", List(), Set("position", "meta", "daten")),
       ("Wie viele verschiedene Zeichen können mit 8 Bits dargestellt werden?", "text", List(), Set("256")),
       ("Erkläre, warum Maskierung in QR-Codes wichtig ist.", "text", List(), Set("lesbar", "kontrast", "erkennung")),
@@ -2541,24 +2542,24 @@ Der Reed-Solomon-Code arbeitet mit Mathematischen Gleichungen und kann sowohl Su
       ("Welche Form haben die Positionsmarker im QR-Code?", "mc", List(("Quadrate", true), ("Raute", false), ("Kreise", false), ("Dreiecke", false)), Set()),
       ("Was ist die Hauptaufgabe des Timing Patterns?", "mc", List(("Größe und Position der Pixel bestimmen", true), ("Daten speichern", false), ("Fehler korrigieren", false), ("Masken anwenden", false)), Set()),
       ("Welche Aussage zu ASCII ist richtig?", "mc", List(("ASCII kodiert Buchstaben mit 7 oder 8 Bits", true), ("ASCII kann beliebig lange Zeichenketten speichern", false), ("ASCII ist nur für Zahlen", false), ("ASCII wurde für QR-Codes erfunden", false)), Set()),
-      ("Wie viele Masken probiert der QR-Code Standard?", "mc", List(("1 Masken", false), ("8 Masken", true), ("300 Masken", false), ("Unbegrenzt viele", false)), Set()),
+      ("Wie viele Masken werden in einem QR-Code probiert?", "mc", List(("1 Maske", false), ("8 Masken", true), ("300 Masken", false), ("Unbegrenzt viele", false)), Set()),
       ("Was ist XOR und seine Besonderheit?", "mc", List(("XOR ist eine logische Operation, die ihre eigene Umkehrfunktion ist", true), ("XOR kann nur für Zahlen verwendet werden", false), ("XOR wurde für QR-Codes erfunden", false), ("XOR hat keine praktische Anwendung", false)), Set()),
       
       // More text questions
       ("Beschreibe den Prozess der Kodierung einer Nachricht in einen QR-Code.", "text", List(), Set("ascii","buchstabe","pixel")),
       ("Was versteht man unter Redundanz bei der Fehlerkorrektur?", "text", List(), Set("wiederholung")),
-      ("Nenne zwei Vorteile, Ascii als Kodierung zu benutzen, im Gegensatz zu einer eigenen Kodierung.", "text", List(), Set("standard", "kodierung")),
+      ("Nenne zwei Vorteile, ASCII als Kodierung zu benutzen, im Gegensatz zu einer eigenen Kodierung.", "text", List(), Set("standard", "kodierung")),
       
       // More multiple choice
       ("Welche Fehlerkorrektur-Level gibt es in QR-Codes?", "mc", List(("L (7%), M (15%), Q (25%), H (30%)", true), ("L (10%), M (20%), Q (30%), H (80%)", false), ("Nur L und H", false), ("Es gibt nur eine Ebene", false)), Set()),
       ("Warum müssen die Metadaten in einem QR-Code gespeichert werden?", "mc", List(("Um den Scanner darüber zu informieren, welche Maske, Fehlerkorrektur und Version verwendet wurde", true), ("Um die Nachricht zu verschlüsseln", false), ("Um Platz zu sparen", false), ("Um die Lesbarkeit zu verbessern", false)), Set()),
       
       // Final text questions
-      ("Warum darf in den Positionsmakern keine Daten gespeichert werden?", "text", List(), Set("erkennung")),
-      ("Beschreibe, wie die Maske wieder Rückgängig gemacht wird.", "text", List(), Set("ernut", "gleiche")),
-      ("Durch das dreifache schreiben einer Nachricht können wie viel % der Nachricht unleserlich sein? ", "text", List(), Set("66")),
+      ("Warum dürfen in den Positionsmarkern keine Daten gespeichert werden?", "text", List(), Set("erkennung")),
+      ("Beschreibe, wie die Maske wieder rückgängig gemacht wird.", "text", List(), Set("ernut", "gleiche")),
+      ("Durch das dreifache Schreiben einer Nachricht können wie viel % der Nachricht unleserlich sein? ", "text", List(), Set("66")),
       ("Nenne 3 Anwendungen für QR-Codes, welche du bei der Erstellung der Visitenkarte gesehen hast.", "text", List(), Set("Text", "URL", "VCard")),
-      ("Beschreibe ein Szenario aus dem Schulalltag, in dem QR-Codes sinnvoll eingesetzt werden könnten.", "text", List(), Set("schule", "szenario", "beispiel", "einsatz"))
+      ("Beschreibe ein Szenario aus dem Schulalltag, in dem QR-Codes sinnvoll eingesetzt werden könnten.", "text", List(), Set("schule","einsatz"))
     )
 
     val questionsVar: Var[List[(String, String, List[(String, Boolean)], Set[String])]] = Var(quizQuestions)
