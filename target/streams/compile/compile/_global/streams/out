@@ -1,7 +1,18 @@
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E018] Syntax Error: C:\Users\Hoehlenhund\livechart\src\main\scala\livechart\LiveChart.scala:1441:403 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m1441 |[0m                          [31m"Durch das klicken auf den Abgeben Button bei den Aufgaben werden deine Antworten lokal in deinem Browser gespeichert. Dieser färbt sich grün, wenn alle Schlüsselwörter, welche gefordert waren im Text vorhanden ware. Ansonsten färbt er sich Rot. Zusätzlich gibt es im Arbeitsheft immer wieder Informationsboxen, welche nach dem Klicken des Abgeben Buttons angezeigt werden. "[0m +[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m     |[0m                                                                                                                                                                                                                                                                                                                                                                                                                   ^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m     |[0m                                   expression expected but [31m')'[0m found[0m
-[0m[[0m[31merror[0m] [0m[0m[31m     |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m     |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m[33m-- [E029] Pattern Match Exhaustivity Warning: C:\Users\Hoehlenhund\livechart\src\main\scala\livechart\LiveChart.scala:3015:16 [0m[0m[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m3015 |[0m                [33mcase[0m ((completed: Set[String], unlocked: Boolean), merkzettelCreated: Boolean) =>[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m[33m     |[0m                ^[0m[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m     |[0m                [33mmatch[0m may not be exhaustive.[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m     |[0m[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m     |[0m                It would fail on pattern case: (_, _, _)[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m     |[0m[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m     |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- Error: C:\Users\Hoehlenhund\livechart\src\main\scala\livechart\LiveChart.scala:3015:21 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m3015 |[0m                [33mcase[0m ((completed: Set[String], unlocked: Boolean), merkzettelCreated: Boolean) =>[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m     |[0m                     ^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m     |[0mthis case is unreachable since type ?1.Composed is not a subclass of [33mclass[0m [35mTuple2[0m[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m[33m-- Unchecked Warning: C:\Users\Hoehlenhund\livechart\src\main\scala\livechart\LiveChart.scala:3015:23 [0m[0m[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m3015 |[0m                [33mcase[0m ((completed: Set[String], unlocked: Boolean), merkzettelCreated: Boolean) =>[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m[33m     |[0m                       ^[0m[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m     |[0mthe type test for Set[String] cannot be checked at runtime because its type arguments can't be determined from Any[0m
+[0m[[0m[33mwarn[0m] [0m[0mtwo warnings found[0m
 [0m[[0m[31merror[0m] [0m[0mone error found[0m
