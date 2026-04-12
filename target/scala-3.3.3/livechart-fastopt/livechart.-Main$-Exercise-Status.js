@@ -1,11 +1,13 @@
 'use strict';
 import * as $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6 from "./internal-3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.js";
 /** @constructor */
-function $c_Llivechart_Main$ExerciseStatus(lastCheck, showSolution) {
+function $c_Llivechart_Main$ExerciseStatus(lastCheck, showSolution, wrongAttempts) {
   this.Llivechart_Main$ExerciseStatus__f_lastCheck = null;
   this.Llivechart_Main$ExerciseStatus__f_showSolution = false;
+  this.Llivechart_Main$ExerciseStatus__f_wrongAttempts = 0;
   this.Llivechart_Main$ExerciseStatus__f_lastCheck = lastCheck;
   this.Llivechart_Main$ExerciseStatus__f_showSolution = showSolution;
+  this.Llivechart_Main$ExerciseStatus__f_wrongAttempts = wrongAttempts;
 }
 export { $c_Llivechart_Main$ExerciseStatus as $c_Llivechart_Main$ExerciseStatus };
 $c_Llivechart_Main$ExerciseStatus.prototype = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$h_O();
@@ -31,14 +33,17 @@ $c_Llivechart_Main$ExerciseStatus.prototype.hashCode__I = (function() {
   var data$2 = (this.Llivechart_Main$ExerciseStatus__f_showSolution ? 1231 : 1237);
   acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().mix__I__I__I(hash$2, data$2);
   var hash$3 = acc;
-  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().finalizeHash__I__I__I(hash$3, 2);
+  var data$3 = this.Llivechart_Main$ExerciseStatus__f_wrongAttempts;
+  acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().mix__I__I__I(hash$3, data$3);
+  var hash$4 = acc;
+  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().finalizeHash__I__I__I(hash$4, 3);
 });
 $c_Llivechart_Main$ExerciseStatus.prototype.equals__O__Z = (function(x$0) {
   if ((this === x$0)) {
     return true;
   } else if ((x$0 instanceof $c_Llivechart_Main$ExerciseStatus)) {
     var x$0$2 = $as_Llivechart_Main$ExerciseStatus(x$0);
-    if ((this.Llivechart_Main$ExerciseStatus__f_showSolution === $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$0$2).Llivechart_Main$ExerciseStatus__f_showSolution)) {
+    if (((this.Llivechart_Main$ExerciseStatus__f_showSolution === $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$0$2).Llivechart_Main$ExerciseStatus__f_showSolution) && (this.Llivechart_Main$ExerciseStatus__f_wrongAttempts === $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$0$2).Llivechart_Main$ExerciseStatus__f_wrongAttempts))) {
       var x = this.Llivechart_Main$ExerciseStatus__f_lastCheck;
       var x$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$0$2).Llivechart_Main$ExerciseStatus__f_lastCheck;
       var $x_1 = ((x === null) ? (x$2 === null) : $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x).equals__O__Z(x$2));
@@ -59,19 +64,29 @@ $c_Llivechart_Main$ExerciseStatus.prototype.toString__T = (function() {
   return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$()._toString__s_Product__T(this);
 });
 $c_Llivechart_Main$ExerciseStatus.prototype.productArity__I = (function() {
-  return 2;
+  return 3;
 });
 $c_Llivechart_Main$ExerciseStatus.prototype.productPrefix__T = (function() {
   return "ExerciseStatus";
 });
 $c_Llivechart_Main$ExerciseStatus.prototype.productElement__I__O = (function(n) {
-  if ((n === 0)) {
-    return this.Llivechart_Main$ExerciseStatus__f_lastCheck;
+  switch (n) {
+    case 0: {
+      return this.Llivechart_Main$ExerciseStatus__f_lastCheck;
+      break;
+    }
+    case 1: {
+      return this.Llivechart_Main$ExerciseStatus__f_showSolution;
+      break;
+    }
+    case 2: {
+      return this.Llivechart_Main$ExerciseStatus__f_wrongAttempts;
+      break;
+    }
+    default: {
+      throw $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$ct_jl_IndexOutOfBoundsException__T__(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_jl_IndexOutOfBoundsException(), ("" + n));
+    }
   }
-  if ((n === 1)) {
-    return this.Llivechart_Main$ExerciseStatus__f_showSolution;
-  }
-  throw $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$ct_jl_IndexOutOfBoundsException__T__(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_jl_IndexOutOfBoundsException(), ("" + n));
 });
 function $as_Llivechart_Main$ExerciseStatus(obj) {
   return (((obj instanceof $c_Llivechart_Main$ExerciseStatus) || (obj === null)) ? obj : $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$throwClassCastException(obj, "livechart.Main$ExerciseStatus"));

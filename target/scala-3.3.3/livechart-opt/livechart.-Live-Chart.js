@@ -4,10 +4,10 @@ import * as $j_livechart$002e$002dLive$002dChart$0024package$0024 from "./livech
 var $p;
 function $s_Llivechart_LiveChart__main__AT__V(args) {
   try {
-    $j_livechart$002e$002dLive$002dChart$0024package$0024.$m_Llivechart_LiveChart$package$().w3();
+    $j_livechart$002e$002dLive$002dChart$0024package$0024.$m_Llivechart_LiveChart$package$().yX();
   } catch (e) {
     if (false) {
-      $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_util_CommandLineParser$().zo(e);
+      $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_util_CommandLineParser$().D2(e);
     } else {
       throw e;
     }

@@ -3,12 +3,12 @@ import * as $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6 from "./int
 var $p;
 /** @constructor */
 function $c_Llivechart_Main$ChapterData(chapter, exercises, rating) {
-  this.fS = null;
-  this.cn = null;
-  this.cB = null;
-  this.fS = chapter;
-  this.cn = exercises;
-  this.cB = rating;
+  this.gC = null;
+  this.c2 = null;
+  this.d3 = null;
+  this.gC = chapter;
+  this.c2 = exercises;
+  this.d3 = rating;
 }
 export { $c_Llivechart_Main$ChapterData as $c_Llivechart_Main$ChapterData };
 $p = $c_Llivechart_Main$ChapterData.prototype = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$h_O();
@@ -18,27 +18,27 @@ function $h_Llivechart_Main$ChapterData() {
 }
 export { $h_Llivechart_Main$ChapterData as $h_Llivechart_Main$ChapterData };
 $h_Llivechart_Main$ChapterData.prototype = $p;
-$p.c4 = (function() {
+$p.c1 = (function() {
   return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Product$$anon$1(this);
 });
-$p.N = (function() {
-  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_util_hashing_MurmurHash3$().cK(this, (-889275714), false);
+$p.V = (function() {
+  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_util_hashing_MurmurHash3$().dm(this, (-889275714), false);
 });
-$p.z = (function(x$0) {
+$p.C = (function(x$0) {
   if ((this === x$0)) {
     return true;
   } else if ((x$0 instanceof $c_Llivechart_Main$ChapterData)) {
-    if ((this.fS === x$0.fS)) {
-      var x = this.cn;
-      var x$2 = x$0.cn;
-      var $x_1 = ((x === null) ? (x$2 === null) : x.z(x$2));
+    if ((this.gC === x$0.gC)) {
+      var x = this.c2;
+      var x$2 = x$0.c2;
+      var $x_1 = ((x === null) ? (x$2 === null) : x.C(x$2));
     } else {
       var $x_1 = false;
     }
     if ($x_1) {
-      var x$3 = this.cB;
-      var x$4 = x$0.cB;
-      return ((x$3 === null) ? (x$4 === null) : x$3.z(x$4));
+      var x$3 = this.d3;
+      var x$4 = x$0.d3;
+      return ((x$3 === null) ? (x$4 === null) : x$3.C(x$4));
     } else {
       return false;
     }
@@ -46,27 +46,27 @@ $p.z = (function(x$0) {
     return false;
   }
 });
-$p.L = (function() {
-  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().ha(this);
+$p.R = (function() {
+  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().hd(this);
 });
-$p.bM = (function() {
+$p.bK = (function() {
   return 3;
 });
-$p.bO = (function() {
+$p.bM = (function() {
   return "ChapterData";
 });
-$p.bN = (function(n) {
+$p.bL = (function(n) {
   switch (n) {
     case 0: {
-      return this.fS;
+      return this.gC;
       break;
     }
     case 1: {
-      return this.cn;
+      return this.c2;
       break;
     }
     case 2: {
-      return this.cB;
+      return this.d3;
       break;
     }
     default: {
@@ -75,13 +75,13 @@ $p.bN = (function(n) {
   }
 });
 function $isArrayOf_Llivechart_Main$ChapterData(obj, depth) {
-  return (!(!(((obj && obj.$classData) && (obj.$classData.D === depth)) && obj.$classData.B.n.bS)));
+  return (!(!(((obj && obj.$classData) && (obj.$classData.D === depth)) && obj.$classData.B.n.c0)));
 }
 export { $isArrayOf_Llivechart_Main$ChapterData as $isArrayOf_Llivechart_Main$ChapterData };
 var $d_Llivechart_Main$ChapterData = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$TypeData().i($c_Llivechart_Main$ChapterData, "livechart.Main$ChapterData", ({
-  bS: 1,
+  c0: 1,
   d: 1,
-  z: 1,
+  x: 1,
   a: 1
 }));
 export { $d_Llivechart_Main$ChapterData as $d_Llivechart_Main$ChapterData };

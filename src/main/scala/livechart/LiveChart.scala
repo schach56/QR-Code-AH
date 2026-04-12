@@ -5,6 +5,7 @@ import org.scalajs.dom
 import org.scalajs.dom.document
 import org.scalajs.dom.html.Div
 import com.raquo.laminar.api.L.{*, given}
+import scala.collection.mutable
 
 // import javascriptLogo from "/javascript.svg"
 @js.native @JSImport("/javascript.svg", JSImport.Default)
@@ -43,7 +44,501 @@ object Main:
   // QR data for maskierung
   val qrDataVar: Var[String] = Var("Hier stehen die QR Daten")
   val currentHashVar: Var[String] = Var(dom.window.location.hash)
-  try dom.window.addEventListener("hashchange", (_: dom.Event) => currentHashVar.set(dom.window.location.hash)) catch { case _: Throwable => () }
+
+  def chapterTitle(chapterKey: String, lang: String): String =
+    (chapterKey, lang) match
+      case ("einfuehrung", "en") => "Introduction"
+      case ("nachricht", "en") => "Writing Messages"
+      case ("maskierung", "en") => "Masking"
+      case ("fehlerkorrektur", "en") => "Error Correction"
+      case ("praxisanwendungen", "en") => "Practical Applications"
+      case ("zusammenfassung", "en") => "Summary"
+      case ("barcodes", "en") => "Barcodes"
+      case ("einfuehrung", _) => "Einleitung"
+      case ("nachricht", _) => "Nachrichten schreiben"
+      case ("maskierung", _) => "Maskierung"
+      case ("fehlerkorrektur", _) => "Fehlerkorrektur"
+      case ("praxisanwendungen", _) => "Praxisanwendungen"
+      case ("zusammenfassung", _) => "Zusammenfassung"
+      case ("barcodes", _) => "Barcodes"
+      case _ => chapterKey
+
+  def loadWorkbookLanguage(): String =
+    try
+      val stored = dom.window.localStorage.getItem("qr-workbook-language")
+      if stored == "en" then "en" else "de"
+    catch
+      case _: Throwable => "de"
+
+  def saveWorkbookLanguage(language: String): Unit =
+    try
+      val normalized = if language == "en" then "en" else "de"
+      dom.window.localStorage.setItem("qr-workbook-language", normalized)
+    catch
+      case _: Throwable => ()
+
+  val languageVar: Var[String] = Var(loadWorkbookLanguage())
+
+  def setWorkbookLanguage(language: String): Unit =
+    val normalized = if language == "en" then "en" else "de"
+    languageVar.set(normalized)
+    saveWorkbookLanguage(normalized)
+
+  private val baseEnMap: Map[String, String] = Map(
+    "Aufgabe" -> "Task",
+    "Abgeben" -> "Submit",
+    "Antwort überprüfen" -> "Check answer",
+    "Nochmal versuchen" -> "Try again",
+    "Lösung zeigen" -> "Show solution",
+    "Richtig!" -> "Correct!",
+    "Nicht ganz richtig. Versuche es nochmal!" -> "Not quite right. Try again!",
+    "Richtig! Sehr gut" -> "Correct! Very good",
+    "Autor" -> "Author",
+    "gesperrt" -> "locked",
+    "Einleitung" -> "Introduction",
+    "Nachrichten schreiben" -> "Writing Messages",
+    "Maskierung" -> "Masking",
+    "Fehlerkorrektur" -> "Error Correction",
+    "Praxisanwendungen" -> "Practical Applications",
+    "Zusammenfassung" -> "Summary",
+    "Barcode" -> "Barcodes",
+    "Deine Angaben" -> "Your Details",
+    "Name:" -> "Name:",
+    "Dein Name" -> "Your name",
+    "Beispiel QR-Code 1" -> "Example QR code 1",
+    "Beispiel QR-Code 2" -> "Example QR code 2",
+    "Beispiel QR-Code 3" -> "Example QR code 3",
+    "Inhalt von QR-Code 1 beschreiben..." -> "Describe content of QR code 1...",
+    "Inhalt von QR-Code 2 beschreiben..." -> "Describe content of QR code 2...",
+    "Inhalt von QR-Code 3 beschreiben..." -> "Describe content of QR code 3...",
+    "Deine Nachricht hier..." -> "Your message here...",
+    "Deine Antwort hier..." -> "Your answer here...",
+    "Deine Anmerkungen hier..." -> "Your notes here...",
+    "Laenge anzeigen" -> "Show length",
+    "Metadaten anzeigen" -> "Show metadata",
+    "Fehlerkorrektur anzeigen" -> "Show error correction",
+    "Alle Zeichen müssen eindeutig kodiert sein!" -> "All characters must be encoded uniquely!",
+    "Kodierung gespeichert" -> "Encoding saved",
+    "QR-Codes haben immer gleich viele weiße und schwarze Pixel." -> "QR codes always have the same number of white and black pixels.",
+    "QR-Codes können ausschließlich Links speichern." -> "QR codes can only store links.",
+    "QR-Codes können verschiedene Arten von Informationen speichern, nicht nur Links." -> "QR codes can store different types of information, not just links.",
+    "Benötigte Arbeitsmittel anzeigen" -> "Show required materials",
+    "Benötigte Arbeitsmittel ausblenden" -> "Hide required materials",
+    "QR-Code-Scanner installieren und verwenden" -> "Install and use QR code scanner",
+    "Abgabe der JSON-Datei am Ende" -> "Submit the JSON file at the end",
+    "Metadaten" -> "Metadata",
+    "Fehlerkorrektur" -> "Error correction",
+    "Maske" -> "Mask",
+    "Bewertung dieses Kapitels" -> "Chapter rating",
+    "Ich habe den Inhalt verstanden." -> "I understood the content.",
+    "5 Sterne = vollständige Zustimmung, 1 Stern = überhaupt nicht" -> "5 stars = fully agree, 1 star = not at all",
+    "Die Schwierigkeit der Inhalte war:" -> "The difficulty of the content was:",
+    "5 Sterne = sehr schwierig, 1 Stern = sehr leicht" -> "5 stars = very difficult, 1 star = very easy",
+    "Die Aufgaben haben mir Spaß gemacht." -> "I enjoyed the tasks.",
+    "5 Sterne = viel Spaß, 1 Stern = wenig Spaß" -> "5 stars = a lot of fun, 1 star = little fun",
+    "Die Zeitangaben für das Kapitel waren:" -> "The time estimates for the chapter were:",
+    "5 Sterne = viel zu hoch, 1 Stern = viel zu niedrig" -> "5 stars = much too high, 1 star = much too low",
+    "Zusätzliche Anmerkungen:" -> "Additional notes:"
+  )
+
+  private val translationCacheVar: Var[Map[String, String]] = Var(Map.empty)
+  private val originalTextByNode: mutable.HashMap[dom.Node, String] = mutable.HashMap.empty
+  private var translationObserver: Option[dom.MutationObserver] = None
+
+  private val exactSentenceEnMap: Map[String, String] = Map(
+    "Scanne die QR-Codes und beschreibe deren Inhalte. Beschreibe zusätzlich die Gemeinsamkeiten." -> "Scan the QR codes and describe their contents. Also describe the similarities.",
+    "Eigenes Merkblatt" -> "Your own cheat sheet",
+    "Hier siehst du deine Antworten von der Zusammenfassung der vorherigen Kapitel. Du kannst sie nochmal anpassen. Überpfüfe dafür jeweils ob in deiner Antwort die wichtigen Dinge stehen. Die wichtigsten Themen sind unter dem jeweiligen Eingabefeld nochmal zusammengefasst. Am Ende kannst du dir dann ein PDF mit deinen Antworten erstellen, das du dir abspeichern oder ausdrucken kannst." -> "Here you can see your answers from the summaries of the previous chapters. You can adjust them again. Check whether your answer includes the important points. The most important topics are summarised again below each input field. At the end, you can create a PDF with your answers that you can save or print.",
+    "Einfuhrung" -> "Introduction",
+    "Wichtige Stichwörter: Was sind QR Codes? Wofür werden sie verwendet? Wie stelle ich mir vor, dass QR Codes funktionieren? Was wusste ich vorher?" -> "Important keywords: What are QR codes? What are they used for? How do I imagine QR codes work? What did I know beforehand?",
+    "Wichtige Stichwörter: Binärdarstellung, ASCII, UTF-8, Kodierung, Dekodierung, Datenbereich im QR Code" -> "Important keywords: binary representation, ASCII, UTF-8, encoding, decoding, data area in the QR code",
+    "Wichtige Stichwörter: Maskierungsmuster, Demaskierung, Musterauswahl, Optimierung der Lesbarkeit, XOR-Verknüpfung, visuelle Verbesserung" -> "Important keywords: masking patterns, demasking, pattern selection, readability optimization, XOR operation, visual improvement",
+    "Wichtige Stichwörter: Redundanz, Reed-Solomon-Code, Fehlerkorrekturstufe vs benötigter Speicher, Wiederherstellung beschädigter Daten, Löschfehler vs Substitutionsfehler, QR-Versionen" -> "Important keywords: redundancy, Reed-Solomon code, error-correction level vs required storage, recovery of damaged data, deletion errors vs substitution errors, QR versions",
+    "Wichtige Stichwörter: Vorteile (schnelles Scannen, Fehlertoleranz, viele Daten), Nachteile (Sicherheitsrisiken, Platzbedarf), Anwendungsbeispiele" -> "Important keywords: advantages (fast scanning, fault tolerance, lots of data), disadvantages (security risks, space requirements), application examples",
+    "Merkzettel erstellen" -> "Create cheat sheet",
+    "Mein Merkzettel zu QR Codes" -> "My cheat sheet on QR codes",
+    "(keine Antwort)" -> "(no answer)",
+    "Diese Vorstellung hatte ich am Anfang von QR Codes" -> "These were my initial ideas about QR codes",
+    "So werden aus Nachrichten Pixelmuster in den QR Code geschrieben" -> "How messages are turned into pixel patterns in the QR code",
+    "So funktioniert die Maskierung und Demaskierung und dafuer ist sie gut" -> "How masking and demasking work and why they are useful",
+    "Das bedeutet Fehlerkorrektur und so wird sie im QR Code umgesetzt" -> "What error correction means and how it is implemented in the QR code",
+    "Das sind die Vor- und Nachteile bei der Verwendung von QR Codes" -> "These are the advantages and disadvantages of using QR codes",
+    "Welche Aussage trifft auf QR-Codes zu?" -> "Which statement about QR codes is correct?",
+    "Beschreibe in mindestens 30 Worten, welche Vorstellungen du davon hast, wie QR-Codes funktionieren." -> "Describe in at least 30 words what you think about how QR codes work.",
+    "Beschreibe, wie ein QR-Code aufgebaut ist. Vermute, wie die Daten im QR-Code dargestellt werden." -> "Describe how a QR code is structured. Assume how the data is represented in the QR code.",
+    "Überlege dir eine eigene Kodierung für die Buchstaben 'M', 'I', 'S', 'P'. Nutze die Pixel, um deine Kodierung darzustellen." -> "Create your own encoding for the letters 'M', 'I', 'S', 'P'. Use the pixels to represent your encoding.",
+    "Schreibe das Wort 'MISSISSIPPI' mit deiner eigenen Kodierung aus Aufgabe 2." -> "Write the word 'MISSISSIPPI' using your own encoding from task 2.",
+    "Erkläre die Nachteile einer eigenen, nicht standardisierten Kodierung." -> "Explain the disadvantages of a custom, non-standardized encoding.",
+    "Kodiere das Wort 'INFORMATIK' mithilfe der ASCII-Tabelle." -> "Encode the word 'INFORMATIK' using the ASCII table.",
+    "Kodiere das Wort 'INFORMATIK' mithilfe der ASCII-Tabelle. Rechts siehst du die ASCII-Tabelle, links kodierst du jeden Buchstaben (0 = weiß, 1 = schwarz)." -> "Encode the word 'INFORMATIK' using the ASCII table. On the right you see the ASCII table; on the left you encode each letter (0 = white, 1 = black).",
+    "Buchstaben zum kodieren" -> "Letters to encode",
+    "Zeichen" -> "Character",
+    "Dezimal" -> "Decimal",
+    "Binärdarstellung" -> "Binary representation",
+    "Erläutere einen Vorteil der festen Länge von 8 Pixeln pro Buchstabe." -> "Explain one advantage of the fixed length of 8 pixels per letter.",
+    "Wie viele verschiedene Zeichen können mit 8 Pixeln dargestellt werden?" -> "How many different characters can be represented with 8 pixels?",
+    "Verschlüssele eine Nachricht mit QR-Code." -> "Encrypt a message using a QR code.",
+    "Beschreibe, welche Beschränkungen dir beim Bearbeiten von Aufgabe 8 aufgefallen sind." -> "Describe which limitations you noticed while working on task 8.",
+    "Ziehe die Zahlen 1-8 auf die Felder im Grid, um zu zeigen in welcher Reihenfolge die Bits des ersten Buchstabens in Aufgabe 8 kodiert werden." -> "Drag the numbers 1-8 onto the grid fields to show the order in which the bits of the first letter are encoded in task 8.",
+    "Als nächstes überführen wir das Gelernte in eine QR-Code Darstellung. Dafür schauen wir uns an, wie Nachrichten in QR-Codes dargestellt werden. Gib eine Nachricht ein und beobachte, wie diese als QR-Code in Pixel umgewandelt wird. Jeder Buchstabe wird dabei in 8 Bits (seine ASCII-Kodierung) übersetzt und färbt entsprechende Pixel schwarz." -> "Next, we apply what we have learned to a QR code representation. We look at how messages are displayed in QR codes. Enter a message and observe how it is converted into pixels. Each letter is translated into 8 bits (its ASCII encoding) and colours the corresponding pixels black.",
+    "Ziehe die Zahlen 1-8 auf die Felder im Grid, um zu zeigen in welcher Reihenfolge die Bits des ersten Buchstabens in Aufgabe 8 kodiert werden. Als Hilfe kannst du dir die UTF8-Kodierung des Buchstabens anschauen, indem du ihn in das Feld rechts neben dem Pfeil eingibst. " -> "Drag the numbers 1–8 onto the grid fields to show the order in which the bits of the first letter from task 8 are encoded. As a help, you can view the UTF-8 encoding of a letter by entering it in the field to the right of the arrow. ",
+    "2x4 Raster" -> "2x4 Grid",
+    "Binär (8 Bit)" -> "Binary (8 Bit)",
+    "Zurücksetzen" -> "Reset",
+    "✓ Sehr gut! Alle Felder sind richtig." -> "✓ Great! All fields are correct.",
+    "Bereiche eines QR-Codes" -> "QR Code Areas",
+    "Trotz verschiedenen Einsatzmöglichkeiten haben QR Codes einen ähnlichem Aussehen." -> "Despite their different use cases, QR codes look similar.",
+    " Die roten Bereiche in den Ecken heißen " -> " The red areas in the corners are called ",
+    ". Diese dienen dazu, dass die Handykamera den Anfang und das Ende des QR Codes erfassen kann." -> ". They allow the camera to detect the start and end of the QR code.",
+    "Positionsmarker" -> "Position markers",
+    " Die Blaue Stelle ist ein " -> " The blue element is an ",
+    ". Dieser Hilft den QR Code auf unebenen Flächen (z.B Verpackungen) zu lesen." -> ". It helps read the QR code on uneven surfaces (e.g. packaging).",
+    "Ausrichtungsmarker" -> "Alignment marker",
+    " Der Grüne Bereich sind die " -> " The green areas are the ",
+    "(Synchronisationslinien). Hier wechseln sich schwarze und weiße Pixel ab. Mithilfe dieser Anordnung wird die Größe des QR Codes bestimmt." -> "(synchronization lines). Black and white pixels alternate here. This arrangement determines the size of the QR code.",
+    " Da viele verschiedene QR Code Versionen existieren, wird eine " -> " Since many different QR code versions exist, a ",
+    " festgehalten. Die " -> " is stored. The ",
+    " sind Informationen über den Aufbau des QR Codes (z.B die Verwendete Maske)." -> " contains information about the QR code structure (e.g. the mask used).",
+    "Versionsnummer" -> "Version number",
+    "Beschriebe, wie die Länge der Nachricht im QR-Code gespeichert wird." -> "Describe how the message length is stored in the QR code.",
+    "Vermute, warum du nicht alle Pixel zur Verwendung für die Nachricht hast." -> "Assume why you cannot use all pixels for the message.",
+    "Fasse in eigenen Worten zusammen, wie QR Codes aufgebaut sind. Gehe dabei auf die Bestandteile ein und wie Nachrichten kodiert und gespeichert werden und wie die Buchstaben in das Pixelmuster umgewandelt werden. Nutze dafür mindestens 50 Wörter." -> "Summarize in your own words how QR codes are structured. Include the components, how messages are encoded and stored, and how letters are converted into the pixel pattern. Use at least 50 words.",
+    "Beschreibe was beim scannen des QR Codes passiert und stelle begründete Vermutungen dazu an." -> "Describe what happens when scanning the QR code and provide justified assumptions.",
+    "Beschreibe, wie die Maskierung funktioniert. Ergänze die Sätze." -> "Describe how masking works. Complete the sentences.",
+    "Berechne durch Anwenden der XOR-Operation die korrekten maskierten Daten." -> "Calculate the correct masked data by applying the XOR operation.",
+    "Erkläre die Berechnungsvorschrift einer Maske deiner Wahl." -> "Explain the calculation rule of a mask of your choice.",
+    "Vermute, woher der Scanner weiß, welche Maske angewandt wurde." -> "Assume how the scanner knows which mask was applied.",
+    "Beschreibe, was dir bei der doppelten Maskierung aufgefallen ist. Erkläre, wofür diese Eigenschaft nützlich sein könnte." -> "Describe what you noticed about double masking. Explain why this property could be useful.",
+    "Durch verschiedene Umstände kann es dazu kommen, dass bestimmte Teile des QR-Codes beschädigt werden und somit nicht mehr erkennbar sind. Vergleiche die drei QR-Codes. Vermute, welcher der drei QR-Codes durch einen Scanner gelesen werden kann. Begründe deine Vermutung." -> "Due to various circumstances, certain parts of a QR code can be damaged and become unreadable. Compare the three QR codes. Assume which of the three can be read by a scanner and justify your assumption.",
+    "Überprüfe nun deine Vermutung, indem du die QR-Codes scannst. Stelle Vermutungen an, wie das umgesetzt wird." -> "Now verify your assumption by scanning the QR codes. Make assumptions about how this is implemented.",
+    "QR-Code mit Stickern" -> "QR code with stickers",
+    "QR-Code ohne Sticker" -> "QR code without stickers",
+    "QR-Code mit Logo" -> "QR code with logo",
+    "Vermute welcher QR Code sich scannen lässt." -> "Assume which QR code can be scanned.",
+    "Wie dir vielleicht aufgefallen ist, konnte die QR-Code mit den Überdfeckungen trotzdem gescannt werden. Wie genau das möglich ist und welche Grenzen es dabei gibt, schauen wir uns im Folgenden an. Dafür gehen wir erst einmal weg von QR-Codes und betrachten ein einfaches Beispiel einer Textnachricht. " -> "As you may have noticed, the QR code with the covered areas could still be scanned. We will now look at how this is possible and what its limits are. To do that, we first step away from QR codes and look at a simple example of a text message. ",
+    "Vergleiche die beiden Situationen. Beurteile, welcher der beiden Fehler schwieriger zu korrigieren und erkennen ist. \nSituation 1: Du teilst deine Adresse deinem Freund mit einer Notiz mit. Leider verschmiert die Tinte an einer Stelle, sodass statt einem Buchstabe ein schwarzer Fleck zu sehen ist. \nSituation 2: Du teilst deine Adresse deinem Freund mit einer Notiz mit. Leider hast du dich bei der Hausnummer verschrieben und statt 13 steht dort 73." -> "Compare the two situations. Assess which of the two errors is harder to detect and correct. \nSituation 1: You share your address with your friend using a note. Unfortunately, the ink is smudged in one place, so instead of one letter there is a black blot. \nSituation 2: You share your address with your friend using a note. Unfortunately, you made a mistake in the house number and wrote 73 instead of 13.",
+    "Eine Möglichkeit mit Fehlern umzugehen ist es, eine Prüfsumme zu verwenden. Dabei werden bestimmte Zeichen in der Nachricht gezählt und die Anzahl der Zeichen an das Ende angehangen. Ein Beispiel wäre, dass die Zeichenanzahl gezählt wird. Aus der Nachricht 'Hallo' würde dann die Nachricht 'Hallo5' werden. \nBeschreibe, welche Arten von Fehlern mit dieser Methode erkannt oder korrigiert werden können. Begründe deine Antwort." -> "One way to deal with errors is to use a checksum. Certain characters in the message are counted and the number of characters is appended to the end. One example would be counting the number of characters. The message 'Hallo' would then become the message 'Hallo5'. \nDescribe which types of errors can be detected or corrected with this method. Justify your answer.",
+    "Beschreibe jeweils wie viel % der Nachricht maximal unleserlich sein dürfen, damit die Nachricht trotzdem noch korrekt gelesen werden kann. \na) Ursprüngliche Nachricht: '12' Nachricht mit Fehlerkorrektur: '1212' \nb) Ursprüngliche Nachricht: '123' Nachricht mit Fehlerkorrektur: '123123123' \nc) Ursprüngliche Nachricht: '1' Nachricht mit Fehlerkorrektur: '1111111111'" -> "For each case, describe what maximum percentage of the message may be unreadable so that the message can still be read correctly. \na) Original message: '12' message with error correction: '1212' \nb) Original message: '123' message with error correction: '123123123' \nc) Original message: '1' message with error correction: '1111111111'",
+    "Hinweis: Berechne den Anteil unleserlicher Daten in Prozent aus dem Verhältnis von Originalnachricht zur Fehlerkorrektur-Nachricht." -> "Hint: Calculate the percentage of unreadable data from the ratio of the original message to the error-correction message.",
+    "Überlege dir, wie die Anzahl der zusätzlichen Daten mit der Fehlerkorrektur zusammenhängt. Erkläre warum ein hohes Korrekturlevel (Die Möglichkeit trotz vieler Fehler die Nachricht noch zu lesen) nicht immer die beste Wahl ist." -> "Think about how the amount of additional data is related to error correction. Explain why a high correction level (the ability to still read the message despite many errors) is not always the best choice.",
+    "Mehr Fehlerkorrektur erhöht die Zuverlaessigkeit, benötigt aber mehr Speicherplatz. Dadurch sinkt der maximale Speicher für die Daten. Ein höheres Korrekturlevel ist nur dann sinnvoll, wenn viele Störungen erwartet werden." -> "More error correction increases reliability, but requires more storage space. This reduces the maximum available storage for data. A higher correction level is only useful when many disturbances are expected.",
+    "Im folgenden QR-Code kannst du eine Nachricht in das Textfeld eingeben. Mit einem Klick auf 'Metadaten anzeigen' kannst du dir zusätzlich die Metadaten(Versionsnummer + Maskennummer) in den QR-Code laden. Durch einen Klick auf 'Fehlerkorrektur anzeigen' kannst du dir die Fehlerkorrektur-Pixel anzeigen lassen. Teste verschiedene Eingaben. \nBeachte, dass der QR Code nicht Scanbar ist, da keine Maske auf den QR Code angewandt wird." -> "In the following QR code, you can enter a message in the text field. By clicking 'Show metadata', you can additionally load the metadata (version number + mask number) into the QR code. By clicking 'Show error correction', you can display the error-correction pixels. Test different inputs. \nNote that the QR code is not scannable because no mask is applied to the QR code.",
+    "Beschreibe drei Anwendungen, in denen QR-Codes sinnvoll eingesetzt werden. Begründe jeweils kurz." -> "Describe three applications in which QR codes are useful. Briefly justify each one.",
+    "Plane eine konkrete Anwendung im Schulalltag: Beschreibe Ziel, Inhalt des QR-Codes und Ort der Platzierung." -> "Plan a concrete application in everyday school life: describe the goal, the QR code content, and where it is placed.",
+    "Recherchiere im Internet nach Barcodes. Beschreibe den Aufbau eines typischen Barcodes." -> "Research barcodes on the internet. Describe the structure of a typical barcode.",
+    "Erkläre, wie die Fehlerkorrektur bei Barcodes funktioniert und welche Probleme es dabei gibt." -> "Explain how error correction works in barcodes and what problems there are.",
+    "Vergleiche Barcodes mit QR-Codes. Nenne jeweils 2 Gemeinsamkeiten und 2 Unterschiede." -> "Compare barcodes with QR codes. Name 2 similarities and 2 differences.",
+    "Stell dir vor, du sollst für ein Projekt entscheiden, ob Barcodes oder QR-Codes verwendet werden. Nimm begründet Stellung, wofür du dich entscheiden würdest und in welchen Situationen welche Technologie sinnvoller ist." -> "Imagine you have to decide for a project whether to use barcodes or QR codes. Give a reasoned opinion on what you would choose and in which situations each technology is more suitable.",
+    "Hinweis: Betrachte den QR-Code genau. Welche Farben haben die einzelnen Pixel und wofür könnten sie stehen?" -> "Hint: Look closely at the QR code. What colors do the individual pixels have and what could they represent?",
+    "Hinweis: Überlege, welche Zusatzinformation ohne gemeinsamen Standard mitgeschickt werden muss." -> "Hint: Think about which additional information must be sent without a shared standard.",
+    "Hinweis: Überlege dir, wie du jeweils erkennst, wo ein Buchstabe endet und der nächste beginnt." -> "Hint: Think about how you can recognize where one letter ends and the next begins.",
+    "Hinweis: Beziehe dich auf begrenzten Speicherplatz und reservierte QR-Code-Bereiche." -> "Hint: Refer to limited storage space and reserved QR code areas.",
+    "Hinweis: Suche den festen Bereich vor den Nutzdaten, in dem die Zeichenanzahl codiert wird." -> "Hint: Look for the fixed area before the payload where the character count is encoded.",
+    "Hinweis: Achte auf große gleichfarbige Flächen und erkläre, warum Scanner damit Probleme haben können." -> "Hint: Look for large areas of the same color and explain why scanners may have problems with them.",
+    "Hinweis: Gehe darauf ein, wie ungünstige Muster entstehen können und wie diese aussehen." -> "Hint: Explain how unfavorable patterns can occur and what they look like.",
+    "Hinweis: Erkläre eine konkrete Maskenregel mit Zeile, Spalte und Modulo." -> "Hint: Explain a concrete mask rule using row, column, and modulo.",
+    "Hinweis: Vergleiche die Ursprungsdaten mit einmaligem und zweimaligem Maskierten Daten. " -> "Hint: Compare the original data with once-masked and twice-masked data.",
+    "Hinweis: Nenne drei konkrete Einsatzbereiche und begründe jeweils den praktischen Nutzen. Nutze dabei das Wort sinnvoll." -> "Hint: Name three concrete use cases and justify the practical benefit of each. Use the word useful.",
+    "Hinweis: Formuliere Ziel, QR-Inhalt und Platzierung als drei getrennte Punkte." -> "Hint: Formulate goal, QR content, and placement as three separate points.",
+    "Hinweis: Nenne je zwei Vor- und Nachteile der aktuellen Kontrolle und trenne sie klar." -> "Hint: Name two advantages and two disadvantages of the current control and separate them clearly.",
+    "Nenne drei konkrete Einsatzbereiche und begründe jeweils den praktischen Nutzen. Nutze dabei das Wort sinnvoll." -> "Name three specific use cases and justify the practical benefit of each. Use the word useful.",
+    "Sinnvoll sind z.B. Ticketkontrolle, Produktinfos im Handel und schnelle Links auf Plakaten." -> "Useful examples are ticket checks, product information in retail, and quick links on posters.",
+    "Maximale Anzahl an Zeichen für den QR Code Typen erreicht" -> "Maximum number of characters for this QR code type reached",
+    "Sehr gut, jetzt hast du deine erste Nachricht mit deiner selbstgewählten Kodierung kodiert!" -> "Great, you have now encoded your first message using your own encoding scheme!",
+    "Überprüfe deine Eingabe nochmal!" -> "Check your input again!",
+    "Kodierung" -> "Encoding",
+    "ASCII als Standard" -> "ASCII as a standard",
+    "Maskierung im QR-Code" -> "Masking in QR codes",
+    "Mehrere Masken in QR-Codes" -> "Multiple masks in QR codes",
+    "Metadaten in QR-Codes" -> "Metadata in QR codes",
+    "Vorteile der XOR-Operation" -> "Advantages of the XOR operation",
+    "Hinweis zur Fehlerkorrektur" -> "Note on error correction",
+    "Fehlertypen erkennen" -> "Recognizing error types",
+    "Redundanz statt Wiederholung" -> "Redundancy instead of repetition",
+    "Speicheraustausch in QR-Codes" -> "Storage trade-off in QR codes",
+    "Informationen zur Bearbeitung" -> "Information for working on tasks",
+    "Fehlerkorrektur in QR-Codes" -> "Error correction in QR codes",
+    "Erläutere, wie du den Sachverhalt aus Aufgabe 3 mit einem QR-Code lösen würdest. Gehe dabei auch darauf ein, welche Daten im QR-Code gespeichert werden müssen und wie die Ausgangskontrolle dadurch automatisiert funktionieren könnte." -> "Explain how you would solve the situation from task 3 using a QR code. Also address which data must be stored in the QR code and how exit control could be automated.",
+    "Nimm begründet Stellung zum Nutzen von QR-Codes im Anwendungsfall von Aufgabe 3." -> "Take a reasoned position on the usefulness of QR codes in the application case from task 3.",
+    "Eine Lehrkraft äußert Bedenken darüber, dass Schüler zum einen die QR-Codes manipulieren könnten, um falsche Daten zu speichern. \nErläutere, wie du auf diese Bedenken reagierst. Begründe deine Antwort." -> "A teacher expresses concerns that students could manipulate QR codes to store false data. Explain how you would respond to these concerns. Justify your answer.",
+    "Eine andere Lehrkraft befürchtet, dass die QR-Codes nach einem Jahr verschmutzen oder beschädigt sind, da das Lesen eines QR-Codes nicht mehr möglich ist, wenn schon ein Pixel umgefärbt ist. \nGehe auf die Bedenken ein und erläutere, ob du diese teilst oder nicht. Begründe deine Antwort." -> "Another teacher fears that QR codes will become dirty or damaged after one year because a QR code can no longer be read once even one pixel changes. Address these concerns and explain whether you agree or disagree. Justify your answer.",
+    "Eine Bank überlegt, QR-Codes für das Speichern von Banking-Daten (wie Kontonummer, PIN und Passwörter) auf Kundenkarten zu nutzen. \nErläutere, warum dies keine sinnvolle Anwendung für QR-Codes ist. Nenne mindestens zwei Gründe." -> "A bank is considering using QR codes on customer cards to store banking data (such as account number, PIN, and passwords). Explain why this is not a sensible use of QR codes. Give at least two reasons.",
+    "Nenne ein weiteres Beispiel, bei dem der Einsatz von QR-Codes problematisch oder nicht sinnvoll wäre. Begründe deine Antwort." -> "Name another example where using QR codes would be problematic or not sensible. Justify your answer.",
+    "Vergleiche die Vor- und Nachteile von QR-Codes bei sensiblen Daten (wie Bankdaten) mit denen bei öffentlichen Informationen (wie Website-Links). Nutze dafür 50 Worten." -> "Compare the advantages and disadvantages of QR codes for sensitive data (such as bank data) with those for public information (such as website links). Use 50 words.",
+    "Beschreibe, welche Daten du außerdem in einer VCard speichern könntest und welche Vorteile dies hat." -> "Describe which additional data you could store in a VCard and what advantages this has.",
+    "Im folgenden QR-Code kannst du eine Nachricht in das Textfeld eingeben. Mit den Checkboxen kannst du Metadaten anzeigen oder die Fehlerkorrektur-Pixel sehen. Teste verschiedene Eingaben und überprüfe das Ergebnis mit einem QR-Code Scanner." -> "In the following QR code, you can enter a message in the text field. Use the checkboxes to display metadata or error-correction pixels. Test different inputs and verify the result with a QR code scanner.",
+    "Beschreibe in eigenen Worten die Bestandteile eines QR-Codes und deren Funktion mit mindestens 50 Wörtern." -> "Describe in your own words the components of a QR code and their function using at least 50 words.",
+    "Scannbarer QR Code" -> "Scannable QR code",
+    "Noch erforderlich:" -> "Still required:",
+    "Benötigte Arbeitsmaterialien" -> "Required materials",
+    "Geräte" -> "Devices",
+    "Computer mit Internetzugang" -> "Computer with internet access",
+    "Smartphone mit Kamera" -> "Smartphone with camera",
+    "Scanner-Tools" -> "Scanner tools",
+    "Apps und Kamera" -> "Apps and camera",
+    "QR-Code-Scanner-App" -> "QR code scanner app",
+    "Alternativ: Kamera-App mit QR-Scan" -> "Alternative: camera app with QR scan",
+    "Um QR-Codes mit deinem Smartphone zu scannen, benötigst du eine Scanner-App:\nDas Arbeitsheft wurde mit der App 'QR- & Barcode- Scanner'aus dem Appstore von TeaCapps getestet. Für eine reibungslose Bearbeitung wird empfohlen, diese App zu verwenden.\nDie meisten Handys haben heute auch in der Kamera einen eingebauten QR-Code Scanner. Dieser kann auch benutzt werden.\nUm einen QR-Code zu scannen, öffne die Scanner-App oder die Kamera deines Smartphones und richte sie auf den QR-Code. Die App oder Kamera erkennt den Code automatisch und zeigt dir den Inhalt an.\nTipp: Achte darauf, dass der QR-Code gut beleuchtet und nicht zu verdeckt ist, damit der Scanner ihn schnell erkennen kann." -> "To scan QR codes with your smartphone, you need a scanner app:\nThis workbook was tested with the app 'QR- & Barcode-Scanner' from TeaCapps in the app store. For smooth processing, it is recommended to use this app.\nMost phones today also have a built-in QR code scanner in the camera. This can be used as well.\nTo scan a QR code, open the scanner app or your smartphone camera and point it at the QR code. The app or camera recognizes the code automatically and shows its content.\nTip: Make sure the QR code is well lit and not too covered so the scanner can detect it quickly.",
+    "Am Ende des Arbeitsheftes gibst du deine Ergebnisse als JSON-Datei ab.\nKlicke dazu auf den Button \"Ergebnisse Abgeben\" in der Navigation. Dadurch wird eine Datei mit deinen Antworten heruntergeladen.\nLade diese Datei nach der Bearbeitung des Arbeitsheftes in den Abgabeordner hoch." -> "At the end of the workbook, submit your results as a JSON file.\nClick the \"Submit Results\" button in the navigation. This downloads a file with your answers.\nAfter finishing the workbook, upload this file to the submission folder.",
+    "Du kennst das bestimmt, dass du mit deinem Smartphone kurz einen QR-Code scannst und  anschließend zu einer Webseite weitergeleitet wirst. Doch was genau passiert dabei? Für welche Anwendungen ist es sinnvoll einen QR-Code zu nutzen und für welche nicht? Die Antworten auf diese Fragen findest du in den folgenden Kapiteln, welche du auf der linken Seite auswählen kannst. In der rechten oberen Ecke findest du jeweils eine Zeitabschätzung, wie lange das Kapitel dauert.\nViel Spaß!" -> "You probably know this: you quickly scan a QR code with your smartphone and are then redirected to a website. But what exactly happens? For which applications is it useful to use a QR code and for which not? You will find answers to these questions in the following chapters, which you can select on the left side. In the upper right corner, you will find an estimated time for each chapter.\nHave fun!",
+    "Scanne die QR-Codes und beschreibe deren Inhalte in den Textfeldern unter den QR Codes. Beschreibe zusätzlich die Gemeinsamkeiten." -> "Scan the QR codes and describe their contents in the text fields below the QR codes. Also describe the similarities.",
+    "Die QR-Codes enthalten unterschiedliche Inhalte wie eine Webseite, Kontaktdaten von Max Mustermann und einen Hinweis für die Abgabe." -> "The QR codes contain different content such as a website, contact details of Max Mustermann, and a submission hint.",
+    "Hinweis: Der Hinweis für eine korrekte Abgabe befindet sich im dritten QR-Code." -> "Hint: The hint for correct submission is located in the third QR code.",
+    "Durch das Klicken auf den \"Abgeben\" Button bei den Aufgaben werden deine Antworten lokal in deinem Browser gespeichert. Das Textfeld färbt sich grün, wenn alle Schlüsselwörter, welche gefordert waren, im Text vorhanden sind. Ansonsten färbt es sich rot. Zusätzlich gibt es im Arbeitsheft immer wieder Informationsboxen, welche nach dem Bearbeiten der Aufgabe angezeigt werden. Falls du mal bei einer Aufgabe nicht weiter kommen solltest, kannst du dir durch einen Klick auf 'Lösung zeigen' die Lösung anzeigen lassen. Alle Benötigen Keywörter sind in der Lösung fett markiert. Probiere es an der Aufgabe 1 einemal selbst aus, indem du deine Eingabe änderst, falls du sie beim ersten mal richtig gelöst hast." -> "By clicking the \"Submit\" button in tasks, your answers are saved locally in your browser. The text field turns green when all required keywords are present in the text. Otherwise, it turns red. In addition, the workbook contains information boxes that are shown after completing tasks. If you get stuck, you can click 'Show solution' to display the solution. All required keywords are marked in bold in the solution. Try it yourself in task 1 by changing your input if you solved it correctly on your first try.",
+    "Was kommt als Nächstes?" -> "What comes next?",
+    "Nun kannst du frei wählen, in welcher Reihenfolge du die Kapitel Nachrichten schreiben, Maskierung und Fehlerkorrektur bearbeitest." -> "Now you can freely choose the order in which you complete the chapters Writing Messages, Masking, and Error Correction.",
+    "Wenn du alle drei Kapitel bearbeitet hast, kannst du zum Kapitel Praxisanwendungen übergehen, in welchem du dein Wissen auf konkrete Anwendungsfälle übertragen kannst." -> "After completing all three chapters, you can move on to the Practical Applications chapter, where you can transfer your knowledge to concrete use cases.",
+    "Im Kapitel Zusammenfassung erstellst du dir zum Schluss dann deinen eigenen Spickzettel, auf dem die wichtigsten Informationen zu QR-Codes übersichtlich dargestellt sind. Dafür werden jeweils deine Antworten aus den Kapiteln mit verwendet. Diese kannst du zum Schluss nochmal anpassen." -> "In the Summary chapter, you create your own cheat sheet at the end, where the most important information about QR codes is presented clearly. Your answers from the chapters are used for this. You can adjust them again at the end.",
+    "Wenn du damit auch Fertig bist, kannst du dir im Zusatzkapitel Barcode noch einen kurzen Überblick über eindimensionale Barcodes verschaffen und diese mit QR-Codes vergleichen." -> "When you are done with that as well, you can get a short overview of one-dimensional barcodes in the additional Barcode chapter and compare them with QR codes.",
+    "Aufgabe 11" -> "Task 11",
+    "Um das Speichern der Daten einmal auszuprobieren, erstelle einen QR-Code mit deinen Daten (Du kannst dir dafür natürlich auch welche ausdenken)." -> "To try data storage yourself, create a QR code with your data (you can of course make up data).",
+    "Gehe dafür auf die Webseite " -> "Go to the website ",
+    " und wähle dort den Typ 'VCard' aus. Fülle die Informationen aus." -> " and select the type 'VCard' there. Fill in the information.",
+    "Überprüfe, ob der QR-Code funktioniert, indem du ihn mit deinem Smartphone scannst. Wenn alles funktioniert hat, kannst du dir den QR-Code als Bild speichern, ausdrucken und in deine Handyhülle legen." -> "Check whether the QR code works by scanning it with your smartphone. If everything works, you can save the QR code as an image, print it, and put it in your phone case.",
+    "Hake alle Kästchen nach dem Abarbeiten ab." -> "Tick all boxes after completing the steps.",
+    "Die Webseite geöffnet" -> "Opened the website",
+    " Typ 'VCard' ausgewählt und Informationen ausgefüllt" -> " Selected type 'VCard' and filled in information",
+    " QR-Code mit Smartphone gescannt und getestet" -> " Scanned and tested QR code with smartphone",
+    " QR-Code als Bild gespeichert/ausgedruckt" -> " Saved/printed QR code as image",
+    "Richtrig!" -> "Correct!",
+    "XOR-Operator" -> "XOR operator",
+    "Der XOR-Operator (exklusives Oder) liefert genau dann 1, wenn die beiden Eingaben unterschiedlich sind. Bei der Maskierung bedeutet das, dass alle Pixel die bei der Maske schwarz gefärbt sind, umgekehrt werden. " -> "The XOR operator (exclusive OR) returns 1 exactly when the two inputs are different. In masking, this means that all pixels that are black in the mask are inverted.",
+    "Links und in der Mitte sind die ursprünglichen Daten und die Maske vorgegeben. Rechts kannst du die maskierten Daten eintragen. Bestimme durch Anwenden der XOR-Operation die korrekten maskierten Daten." -> "On the left and in the middle, the original data and the mask are given. On the right, you can enter the masked data. Determine the correct masked data by applying the XOR operation.",
+    "Links sind die ursprünglichen Daten dargestellt. In der Mitte kannst du die Maske definieren. Rechts wird das Ergebnis der Maskierung, welche durch eine XOR-Operation realisiert wird, angezeigt." -> "The original data is shown on the left. In the middle, you can define the mask. On the right, the result of the masking, implemented via an XOR operation, is displayed.",
+    "In dieser Aufgabe wollen wir eine besondere Eigenschaft der XOR Operation untersuchen. Berechne dafür im ersten Schritt die maskierten Daten." -> "In this task, we examine a special property of the XOR operation. First, calculate the masked data.",
+    "Wende die Maske anschließend ein zweites Mal auf die maskierten Daten an. Trage deine Ergebnisse in die Felder mit blauem Rahmen ein." -> "Then apply the mask a second time to the masked data. Enter your results in the blue-framed fields.",
+    "Ursprüngliche Daten" -> "Original data",
+    "Maskierte Daten" -> "Masked data",
+    "maskierte Daten" -> "masked data",
+    "1x Maskiert" -> "Masked once",
+    "2x Maskiert" -> "Masked twice",
+    "Maskierung beschreiben" -> "Describe masking",
+    "Wenn ursprüngliche Daten schwarz und die Maske schwarz dargestellt sind, dann ist das Ergebnis: " -> "If original data is black and the mask is black, then the result is: ",
+    "Wenn ursprüngliche Daten schwarz und die Maske weiß dargestellt sind, dann ist das Ergebnis: " -> "If original data is black and the mask is white, then the result is: ",
+    "Wenn ursprüngliche Daten weiß und die Maske schwarz dargestellt sind, dann ist das Ergebnis: " -> "If original data is white and the mask is black, then the result is: ",
+    "Wenn ursprüngliche Daten weiß und die Maske weiß dargestellt sind, dann ist das Ergebnis: " -> "If original data is white and the mask is white, then the result is: ",
+    "- Wählen -" -> "- Select -",
+    "schwarz" -> "black",
+    "weiß" -> "white",
+    "Aufgabe 9" -> "Task 9",
+    "Ergänze die Lücken im folgenden Text:" -> "Complete the gaps in the following text:",
+    "Je mehr Daten zur Fehlererkennung und -korrektur genutzt werden, desto " -> "The more data is used for error detection and correction, the ",
+    " ist die Wahrscheinlichkeit, Fehler zu erkennen und zu korrigieren." -> " the probability of detecting and correcting errors.",
+    "Substutionsfehler lassen sich  " -> "Substitution errors can be ",
+    "verbessern, als Löschfehler." -> " improved than deletion errors.",
+    "Prüfsummen dienen vor allem zur " -> "Checksums are primarily used for ",
+    "und nicht zur" -> "and not for",
+    "-- auswählen --" -> "-- select --",
+    "niedriger" -> "lower",
+    "größer" -> "higher",
+    "leichter" -> "easier",
+    "schwerer" -> "harder",
+    "Stell dir vor, du sollst für ein Projekt entscheiden, ob Barcodes oder QR-Codes verwendet werden. Nimm begründet Stellung, wofür du dich entscheiden würdest und in welchen Situationen welche Codes sinnvoller sind." -> "Imagine you have to decide for a project whether barcodes or QR codes should be used. Give a reasoned opinion on what you would choose and in which situations which codes are more suitable.",
+    "Beschreibe eine Methode, wie Fehler nicht nur erkannt, sondern auch korrigiert werden können am Beispiel der Nachricht '12345'. (Tipp: Überlege dir, was du machst, wenn deine Information von einer Person im Gespräch nicht verstanden wurde.)" -> "Describe a method for not only detecting errors but also correcting them using the message '12345' as an example. (Tip: Think about what you do when your information is not understood by someone in conversation.)",
+    "Vergleiche die beiden Situationen. Beurteile, welcher der beiden Fehler schwieriger zu korrigieren und erkennen ist. \n" -> "Compare the two situations. Assess which of the two errors is more difficult to detect and correct.\n",
+    "Was sind die Probleme mit diesem Verfahren? Überlege dir dazu, wie die Nachricht 'Hallo5' mit einer Prüfsumme aussehen müsste." -> "What are the problems with this method? Think about what the message 'Hallo5' with a checksum would have to look like.",
+    "Beschreibe jeweils wie viel % der Nachricht maximal unleserlich sein dürfen, damit die Nachricht trotzdem noch korrekt gelesen werden kann. \n" -> "Describe for each case what maximum percentage of the message may be unreadable so that the message can still be read correctly.\n",
+    "Erkläre, welche Auswirkungen ein hohes Fehlerkorrektur in QR-Codes auf die Menge der Daten hat." -> "Explain how a high error-correction level in QR codes affects the amount of data.",
+    "Erkläre in eigenen Worten, wie die Fehlerkorrektur in QR-Codes funktioniert. Gehe dabei auf den Zusammenhang zwischen zusätzlichen Daten und dem Korrekturlevel ein. Erläutere zusätzlich, wie die Fehlerkorrektur im QR-Code dargestellt wird. Nutze dafür mindestens 50 Wörter." -> "Explain in your own words how error correction in QR codes works. Include the connection between additional data and correction level. Also explain how error correction is represented in the QR code. Use at least 50 words.",
+    "Erläutere am Beispiel der Daten von Aufgabe 3, was die Probleme sind, wenn man nur eine feste Maske verwendet." -> "Using the data from task 3 as an example, explain the problems that arise when only one fixed mask is used.",
+    "Erläutere am Beispiel der Daten von Aufgabe 3, was die Probleme sind, wenn man nur eine feste Maske verwendet. Beschreibe zusätzlich eine mögliche Lösung, um diese Probleme zu umgehen." -> "Using the data from task 3 as an example, explain the problems that arise when only one fixed mask is used. Also describe a possible solution to avoid these problems.",
+    "Erläutere an einem Beispiel, wie die Maskierung und Demaskierung funktioniert. Gehe dabei auf die Probleme einer festen Maske ein und erkläre, wie die Auswahl der besten Maske funktioniert. Nutze dafür mindestens 50 Wörter." -> "Using an example, explain how masking and demasking work. Address the problems of a fixed mask and explain how the best mask is selected. Use at least 50 words.",
+    "Hinweis: Überlege dir welche Fehlerart erkannt wird." -> "Hint: Think about which error type is detected.",
+    "Hinweis: Entscheide dich für eine Situation. Überlege dir bei welcher Notiz du mehr Probleme hast den Fehler zu erkennen." -> "Hint: Choose one situation. Think about for which note you have more difficulty detecting the error.",
+    "Hinweis: Nutze Redundanz. Überlege dir, wie du die Nachricht so erweitern kannst, dass sie auch bei Fehlern noch lesbar bleibt." -> "Hint: Use redundancy. Think about how you can extend the message so it remains readable even with errors.",
+    "Hinweis: Prüfe die Mehrdeutigkeit am Beispiel 'Hallo5' und warum die Zuordnung nicht eindeutig ist." -> "Hint: Check the ambiguity using the example 'Hallo5' and why the assignment is not unique.",
+    "Hinweis: Versuche mit dem Scanner so nah an die QR Codes zu gehen, sodass nur ein QR-Code gleichzeitig im Fokus ist." -> "Hint: Try moving the scanner close enough to the QR codes so only one QR code is in focus at a time.",
+    "Hinweis: Beschreibe, wie die Menge der übertragenen Daten mit dem Korrekturlevel zusammenhängt." -> "Hint: Describe how the amount of transmitted data relates to the correction level.",
+    "Hinweis: Erkläre, wie sich Korrekturlevel und Datenkapazität gegenseitig beeinflussen." -> "Hint: Explain how correction level and data capacity influence each other.",
+    "a) 50 %, b) 66 %, c) 90 % können unleserlich sein und die Nachricht ist noch rekonstruierbar." -> "a) 50%, b) 66%, c) 90% may be unreadable and the message is still reconstructable.",
+    "Eine Möglichkeit mit Fehlern umzugehen ist es, eine Prüfsumme zu verwenden. Dabei werden bestimmte Zeichen in der Nachricht gezählt und die Anzahl der Zeichen an das Ende angehangen." -> "One way to deal with errors is to use a checksum. Certain characters in the message are counted and the number is appended at the end.",
+    "Das Problem ist, dass durch das erhalten einer Nachricht nicht klar ist, ob die Nachricht 'Hallo' mit der Prüfsumme '5' oder die Nachricht 'Hallo5' mit der Prüfsumme '6' gemeint ist. Es gibt also keine eindeutige Zuordnung zwischen Nachricht und Prüfsumme." -> "The problem is that when receiving a message, it is unclear whether 'Hallo' with checksum '5' or 'Hallo5' with checksum '6' is meant. So there is no unique mapping between message and checksum.",
+    "Man kann die Nachricht 2 mal senden, z.B. 1234512345. Wenn der erste Teil der Nachricht unleserlich ist, kann die Nachricht durch den 2. Teil dann immernoch gelesen werden." -> "You can send the message twice, e.g. 1234512345. If the first part is unreadable, the message can still be read from the second part.",
+    "Situation 2 ist schwerer zu erkennen und zu korrigieren, da der Fehler nicht sofort auffällt. Die falsche Hausnummer wirkt auf den ersten Blick plausibel, obwohl sie inhaltlich falsch ist." -> "Situation 2 is harder to detect and correct because the error is not immediately obvious. The wrong house number seems plausible at first glance although it is factually wrong.",
+    "Eine Pruefsumme kann Ausfallfehler oder fehlende Zeichen erkennen, aber nicht direkt korrigieren." -> "A checksum can detect dropout errors or missing characters, but cannot correct them directly.",
+    "Mehr Fehlerkorrektur bedeutet mehr genutzen Speicher. Dadurch steigt die Robustheit, aber es bleibt weniger Platz für Daten. Ein hohes Korrekturlevel ist nur sinnvoll, wenn die Umgebung viele Fehler verursacht." -> "More error correction means more used memory. This increases robustness, but leaves less space for data. A high correction level is only useful if the environment causes many errors.",
+    "Durch die Bildschirmauflösung und Kamerafehler kann es dazu kommen, dass fälschlicherweise nicht alle QR Codes scanbar waren. Das ist jedoch nicht schlimm!" -> "Due to screen resolution and camera errors, it can happen that not all QR codes appeared scannable by mistake. That is not a problem.",
+    "Die 4 verschiedenen Buchstabenmuster" -> "The 4 different letter patterns",
+    "Im QR-Code werden die Buchstaben in einem Zickzack-Muster kodiert. Es gibt dabei 4 verschiedene Ausprägungen, welche im Bild dargestellt sind.\n\nDiese wechselnde Richtung ermöglicht eine effiziente Nutzung des verfügbaren Platzes im QR-Code." -> "In the QR code, letters are encoded in a zigzag pattern. There are 4 different variants, which are shown in the image.\n\nThis alternating direction enables efficient use of the available space in the QR code.",
+    "Jeder Pixel kann 2 Farben darstellen. Überlege dir als erstes eine Lösung für eine kleine Pixelanzahl." -> "Each pixel can represent 2 colors. First think of a solution for a small number of pixels.",
+    "Die Länge der Nachricht wird in einem festen Bereich am Anfang der Nachricht gespeichert. Dieser Bereich ist 8 Bits lang und gibt die Anzahl der Zeichen in Binärdarstellung an." -> "The message length is stored in a fixed area at the beginning of the message. This area is 8 bits long and specifies the number of characters in binary form.",
+    "Die Länge der Nachricht ist beschränkt, da die Anzahl der Pixel im QR-Code begrenzt ist. Je länger die Nachricht, desto mehr Pixel werden benötigt. Irgendwann gibt es nicht genug Pixel, um die gesamte Nachricht darzustellen. Zusätzlich gibt es bestimmte Bereiche, welche nicht genutzt werden." -> "The message length is limited because the number of pixels in the QR code is limited. The longer the message, the more pixels are needed. At some point there are not enough pixels to represent the full message. In addition, certain areas cannot be used.",
+    "Eine feste Maske kann je nach Daten unguenstige Muster erzeugen, z. B. das viele benachbarte Pixel schwarz sind. Dadurch wird der QR-Code für einen Scanner schlechter lesbar oder kann mit Timing-Patterns(abwechselnd schwarze und weiße Pixel) kollidieren. " -> "A fixed mask can create unfavourable patterns depending on the data, for example when many neighbouring pixels are black. This makes the QR code harder for a scanner to read or can cause collisions with timing patterns (alternating black and white pixels). ",
+    "Es können insgesamt 2^8 = 256 verschiedene Zeichen dargestellt werden." -> "A total of 2^8 = 256 different characters can be represented.",
+    "Ein Vorteil der festen Länge ist die eindeutige Trennung der Buchstaben." -> "One advantage of fixed length is the clear separation of letters.",
+    "Ohne Standard muss bei einer Kodierung zusätzlich auch die Kodierungsvorschrift (also wie Buchstaben in Pixel umgewandelt werden) mit übergeben werden. Sonst kennen andere die Kodierungsvorschrift nicht, und die Nachrichten kann nicht wieder dekodiert(Zurück in Buchstaben) umgewandelt werden." -> "Without a standard, an encoding rule (how letters are converted to pixels) must also be transmitted. Otherwise, others do not know the rule and cannot decode the messages back into letters.",
+    "Der QR-Code wirkt unlesbar, weil viele schwarze Bereiche zusammenhaengen. Eine Maskierung sorgt spaeter fuer bessere Lesbarkeit." -> "The QR code appears unreadable because many black areas are connected. Masking later improves readability.",
+    "Wird die Maske zweimal angewandt, entstehen wieder die Ursprungsdaten. Das vereinfacht das Maskieren und Demaskieren, da für beides die gleiche Maske genutzt werden kann." -> "If the mask is applied twice, the original data appears again. This simplifies masking and demasking because the same mask can be used for both.",
+    "In der Schule koennte das Ziel sein, Material zu verteilen; der QR-Code enthaelt den Link, die Platzierung ist am Klassenraum." -> "At school, the goal could be to distribute material; the QR code contains the link, and it is placed at the classroom.",
+    "Ein Vorteil ist die direkte Kontrolle durch eine Lehrkraft. Dieser kann die Schüler aufhalten und ist flexibel in der Entscheidung. Ein Nachteil ist der hohe Aufwand und moegliche Fehler beim Nachschlagen." -> "One advantage is direct control by a teacher. They can stop students and decide flexibly. One disadvantage is the high effort and possible lookup errors.",
+    "Trade-off Fehlerkorrektur" -> "Error correction trade-off",
+    "Abgabe der JSON-Datei am Ende" -> "Submit the JSON file at the end",
+    "Eine Kodierungsvorschrift beschreibt, wie Informationen (z.B. Buchstaben) in eine andere Form (z.B. Pixel) umgewandelt(kodiert) werden. Bei QR-Codes werden Buchstaben in schwarze und weiße Pixel kodiert. Jeder Buchstabe bekommt dabei ein bestimmtes Muster. \nJeder Buchstabe muss ein eindeutiges Muster haben, damit man die Nachricht später wieder zurück in die ursprüngliche Form umgewandelt (dekodieren) werden kann. \nIn der Praxis wird hierfür kein Zufälliges Muster verwendet. Hier werden Buchstaben in Zahlen kodiert, welche anschließend in Bits (0 und 1) dargestellt werden. Dies geschieht über die Binärdarstellung der Zahl. Zum Schluss werden die Bits als schwarze (1) und weiße (0) Pixel dargestellt." -> "An encoding rule describes how information (e.g. letters) is converted (encoded) into another form (e.g. pixels). In QR codes, letters are encoded as black and white pixels. Each letter gets a specific pattern.\nEach letter must have a unique pattern so that the message can later be converted back (decoded) into its original form.\nIn practice, no random pattern is used. Letters are encoded into numbers, which are then represented in bits (0 and 1). This happens through the binary representation of the number. Finally, the bits are shown as black (1) and white (0) pixels.",
+    "ASCII (American Standard Code for Information Interchange) oder auf Deutsch Amerikanischer Standard-Code für den Informationsaustausch ist ein verbreiteter Standard, bei dem jeder Buchstabe einer eindeutigen Zahl von 0-127 zugeordnet ist, die als 7 Bit-Kombination dargestellt wird. Das verhindert Mehrdeutigkeiten, erleichtert das gemeinsame Verständnis und führt dazu, dass die Kodierung nicht übergeben werden muss, da diese bekannt ist.\nEine Erweiterung von ASCII ist die 8-Bit-Kodierung UTF-8, die zusätzlich weitere Zeichen (z.B. Umlaute) kodieren kann, aber die ersten 128 Zeichen sind identisch zu ASCII. In QR-Codes wird die UTF-8-Kodierung verwendet." -> "ASCII (American Standard Code for Information Interchange) is a common standard in which each letter is assigned a unique number from 0-127, represented as a 7-bit combination. This prevents ambiguity, supports shared understanding, and means the encoding rule does not need to be transmitted because it is known.\nAn extension of ASCII is 8-bit UTF-8 encoding, which can additionally encode more characters (e.g. umlauts), while the first 128 characters are identical to ASCII. QR codes use UTF-8 encoding.",
+    "Trotz verschiedenen Einsatzmöglichkeiten haben QR Codes einen ähnlichem Aussehen." -> "Despite different use cases, QR codes have a similar appearance.",
+    " Die roten Bereiche in den Ecken heißen " -> " The red areas in the corners are called ",
+    ". Diese dienen dazu, dass die Handykamera den Anfang und das Ende des QR Codes erfassen kann." -> ". They allow the phone camera to detect the beginning and end of the QR code.",
+    " Die Blaue Stelle ist ein " -> " The blue area is an ",
+    ". Dieser Hilft den QR Code auf unebenen Flächen (z.B Verpackungen) zu lesen." -> ". It helps read the QR code on uneven surfaces (e.g. packaging).",
+    " Der Grüne Bereich sind die " -> " The green area contains the ",
+    "(Synchronisationslinien). Hier wechseln sich schwarze und weiße Pixel ab. Mithilfe dieser Anordnung wird die Größe des QR Codes bestimmt." -> "(synchronization lines). Black and white pixels alternate here. This arrangement is used to determine the size of the QR code.",
+    " Da viele verschiedene QR Code Versionen existieren, wird eine " -> " Because many different QR code versions exist, a ",
+    " festgehalten. Die " -> " is recorded. The ",
+    " sind Informationen über den Aufbau des QR Codes (z.B die Verwendete Maske)." -> " are information about the structure of the QR code (e.g. the mask used).",
+    " Weiterhin haben alle QR Codes einen weißen Rand um den Code, damit dieser gelesen werden kann. Diesen Rand nennt man die Randzone. \nDie genauen bereiche können je nach QR Code Version variieren, aber es gibt immer bestimmte Bereiche, die nicht für die Nachricht verwendet werden können." -> " Furthermore, all QR codes have a white border around the code so it can be read. This border is called the quiet zone.\nThe exact areas may vary depending on the QR code version, but there are always certain areas that cannot be used for the message.",
+    "Wie du vielleicht bemerkt hast, war der QR-Code von einem Scanner nicht lesbar. Um einen Besseren Kontrast zwischen weißen und schwarzen Pixeln herzustellen, werden Pixel nach einem bestimmten Muster(Maske) umgefärbt. Diesen Prozess nennt man Maskierung. Die Maskierung sorgt dafür, dass der QR-Code besser lesbar ist und von Scannern zuverlässiger erkannt werden kann.\nAls nächstes schauen wir uns einmal an, wie genau die Maskierung funktioniert, welche Probleme es dabei gibt und wie diese gelöst werden können." -> "As you may have noticed, the QR code was not readable by a scanner. To create better contrast between white and black pixels, pixels are recolored according to a certain pattern (mask). This process is called masking. Masking makes the QR code more readable and allows scanners to recognize it more reliably.\nNext, we will look at how masking works in detail, what problems occur, and how they can be solved.",
+    "Um das Problem einer festen Maske zu lösen, werden in QR-Codes 8 verschiedene Masken nacheinander angewandt. Daraufhin wird jeweils bewertet, welche Maske den größten Kontrast zwischen schwarzen und weißen Pixeln generiert. Zusätzlich werden andere Kriterien, wie das Vermeiden des Timingpatterns(abwechselnde schwarze und weiße Pixel), berücksichtigt. Die Maske, die  alle Kriterien am Besten erfüllt, wird ausgewählt. Diese Maske wird anschließend auf den QR-Code angewandt. Dadurch wird sichergestellt, dass der QR-Code optimal lesbar ist. Die verschiedenen Masken sind im Bild dargestellt. Unter jeder Maske steht hierbei die Berechnungsvorschrift, die angibt, welche Pixel umgefärbt werden. Das \"%\" Zeichen steht hierbei für den Modulo-Operator - also den Rest einer Division." -> "To solve the problem of a fixed mask, 8 different masks are applied one after another in QR codes. Then each mask is evaluated to determine which one generates the highest contrast between black and white pixels. Additional criteria are considered as well, such as avoiding timing patterns (alternating black and white pixels). The mask that best fulfills all criteria is selected. This mask is then applied to the QR code. This ensures the QR code is optimally readable. The different masks are shown in the image. Below each mask is the calculation rule indicating which pixels are recolored. The \"%\" sign stands for the modulo operator, i.e. the remainder of a division.",
+    "Der Scanner weiß deshalb, welche Maske angewandt wurde, weil Metadaten (Daten über die Daten) auch in Form von Pixeln an bestimmten Stellen im QR-Code festgehalten werden. " -> "The scanner knows which mask was applied because metadata (data about data) is also stored as pixels at specific positions in the QR code. ",
+    "Die Metadaten werden im Bild gelb und orange dargestellt." -> "The metadata is shown in yellow and orange in the image.",
+    "Zu diesen Metadaten zählt unter anderem die Nummer der verwendeten Maske. Diese Information wird an spezifischen Positionen im QR-Code kodiert." -> "This metadata includes, among other things, the number of the mask used. This information is encoded at specific positions in the QR code.",
+    "Damit der Scanner diese auslesen und die entsprechende Maske rückgängig machen kann, um die ursprünglichen Daten zu rekonstruieren." -> "This allows the scanner to read it and reverse the corresponding mask to reconstruct the original data.",
+    "Weitere Metadaten sind beispielsweise die verwendete Fehlerkorrektur-Stufe und die Versionsnummer des QR-Codes." -> "Other metadata includes, for example, the error-correction level used and the QR code version number.",
+    "Die Tatsache, dass die XOR-Operation ihre eigene Umkehrfunktion ist, ist sehr praktisch. Dies führt dazu, dass durch 2-maliges Anwenden der gleichen Maske die ursprünglichen Daten wiederhergestellt werden. Der Scanner muss dadurch keine zwei verschiedenen Funktionen implementieren - eine zum Maskieren und eine zum Demaskieren. Stattdessen kann er einfach die gleiche XOR-Funktion ein zweites Mal anwenden. Dies spart Speicherplatz und reduziert Komplexität. " -> "The fact that XOR is its own inverse is very practical. This means that applying the same mask twice restores the original data. Therefore, the scanner does not need to implement two different functions, one for masking and one for demasking. Instead, it can simply apply the same XOR function a second time. This saves memory and reduces complexity. ",
+    "Es gibt zwei Haupttypen von Fehlern: \nAusfallfehler (auch Löschfehler genannt): Ein Zeichen wird vollständig entfernt oder ist unlesbar. \nSubstitutionsfehler: Ein Zeichen wird durch ein anderes ersetzt. \nSubstitutionsfehler sind oft schwieriger zu erkennen, da der Text syntaktisch(richtige Zeichen werden verwendet) korrekt bleibt, aber semantisch (Bedeutung der Zeichen) falsch ist. \nDurch Redundanz (zusätzliche Informationen) können beide Fehlertypen erkannt und teilweise korrigiert werden." -> "There are two main types of errors:\nDropout errors (also called deletion errors): a character is completely removed or unreadable.\nSubstitution errors: one character is replaced by another.\nSubstitution errors are often harder to detect because the text remains syntactically correct (valid characters are used) but semantically wrong (meaning is wrong).\nThrough redundancy (additional information), both error types can be detected and partially corrected.",
+    "Nochmal senden (oder nochmal scannen) sollte möglichst vermieden werden. Besser ist es, die Redundanz in einer einzigen Nachricht zu übertragen, z.B. indem die Nachricht doppelt enthalten ist. So entsteht nur ein Kommunikationsprozess statt zwei getrennten Übertragungen. Kommunikationsprozesse sollten minimiert werden, um Zeitaufwand und Fehlerquellen zu reduzieren." -> "Resending (or rescanning) should be avoided if possible. It is better to transmit redundancy within a single message, for example by including the message twice. This creates only one communication process instead of two separate transmissions. Communication processes should be minimized to reduce time effort and error sources.",
+    "QR-Codes haben eine maximale Größe und damit einen begrenzten Gesamtspeicher. Ein Teil des Speichers wird immer für die Positionsmuster, Trennzeichen und Formatinformationen benötigt. Der restliche Speicher wird aufgeteilt zwischen Datenspeicher (für die eigentliche Information) und Fehlerkorrektur (für die Redundanz). Je höher das Korrekturlevel, desto mehr Speicher ist für Redundanz reserviert und desto weniger Speicher steht für die Daten zur Verfügung. Dies ist ein klassischer Trade-off: Mehr Fehlertoleranz bedeutet weniger Kapazität für Daten. \nUm das Problem der festen größe zu umgehen, gibt es verschiedene QR-Code Versionen mit unterschiedlicher Anzahl an Pixeln. Je mehr Daten gespeichert werden sollen, desto höher muss die Version gewählt werden, um genug Speicherplatz zu haben. Allerdings steigt mit der Version auch die Größe des QR-Codes, was wiederum die Lesbarkeit beeinträchtigen kann. Daher ist es wichtig, die richtige Balance zwischen Datenmenge, Fehlerkorrektur und QR-Code Größe zu finden. Die Größte Version 40 hat 177 x 177 Pixel." -> "QR codes have a maximum size and therefore limited total storage. Part of the storage is always needed for position patterns, separators, and format information. The remaining storage is split between data storage (actual information) and error correction (redundancy). The higher the correction level, the more storage is reserved for redundancy and the less remains for data. This is a classic trade-off: more error tolerance means less capacity for data.\nTo overcome the problem of fixed size, there are different QR code versions with different numbers of pixels. The more data that should be stored, the higher the version must be to provide enough storage space. However, with higher versions, the QR code also becomes larger, which can reduce readability. Therefore, it is important to find the right balance between data amount, error correction, and QR code size. The largest version, 40, has 177 x 177 pixels.",
+    "In QR-Codes werden Reed-Solomon-Codes zur Fehlerkorrektur genutzt. Dies ist ein besonders leistungsfähiges Verfahren, das beide Fehlerarten zum Teil korrigieren kann. Die Fehlerkorrektur wird dabei sowohl auf die Daten, als auch auf die Metadaten (z.B. Formatinformationen, Maske) angewendet. \n\nDabei werden QR-Codes nach Fehlertoleranzstufen klassifiziert. Die Fehlertoleranz liegt dabei zwischen 7% und 30% und gibt an wieviel % des QR-Codes beschädigt sein können, ohne dass die Information verloren geht. Die vier Stufen sind:\n• Level L: 7% Fehlertoleranz (Low) \n• Level M: 15% Fehlertoleranz (Medium) \n• Level Q: 25% Fehlertoleranz (Quartile)   \n• Level H: 30% Fehlertoleranz (High) \n\nDie Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt wurde. Sie nutzen jedoch mehr Mathematik und sind etwas effizienter als Nachrichten doppelt zu schreiben. Die genau Funktionsweise übersteigt den Rahmen dieses Kurses, weshalb diese nicht weiter behandelt wird. Zum Nachlesen: https://de.wikipedia.org/wiki/Reed-Solomon-Code" -> "In QR codes, Reed-Solomon codes are used for error correction. This is a very powerful method that can partially correct both error types. Error correction is applied both to data and metadata (e.g. format information, mask).\n\nQR codes are classified by error-tolerance levels. Error tolerance ranges between 7% and 30% and indicates how much of the QR code can be damaged without losing information. The four levels are:\n• Level L: 7% error tolerance (Low)\n• Level M: 15% error tolerance (Medium)\n• Level Q: 25% error tolerance (Quartile)\n• Level H: 30% error tolerance (High)\n\nIn principle, Reed-Solomon codes work exactly as discussed in the excursus. However, they use more mathematics and are somewhat more efficient than writing messages twice. The exact mechanism is beyond the scope of this course and is therefore not covered further. For further reading: https://de.wikipedia.org/wiki/Reed-Solomon-Code"
+  )
+
+  private def hasLetters(text: String): Boolean =
+    text.exists(ch => ch.isLetter)
+
+  private def autoTranslateGermanToEnglish(text: String): String =
+    exactSentenceEnMap.get(text).getOrElse(text)
+
+  private def translatedNow(original: String, lang: String): String =
+    if lang != "en" then original
+    else
+      baseEnMap.get(original)
+        .orElse(translationCacheVar.now().get(original))
+        .getOrElse {
+          val generated = autoTranslateGermanToEnglish(original)
+          translationCacheVar.update(_ + (original -> generated))
+          generated
+        }
+
+  private val keywordEnMap: Map[String, String] = Map(
+    "schwarz" -> "black",
+    "weiß" -> "white",
+    "weiss" -> "white",
+    "zusätzlich" -> "additional",
+    "Kodierungsvorschrift" -> "encoding rule",
+    "Trennung" -> "separation",
+    "eindeutig" -> "unique",
+    "Länge" -> "length",
+    "Anfang" -> "start",
+    "unlesbar" -> "unreadable",
+    "Muster" -> "pattern",
+    "Maske" -> "mask",
+    "Zeile" -> "row",
+    "Spalte" -> "column",
+    "ursprünglich" -> "original",
+    "Ursprungsdaten" -> "original data",
+    "Daten" -> "data",
+    "sinnvoll" -> "useful",
+    "Schule" -> "school",
+    "Ziel" -> "goal",
+    "Platzierung" -> "placement",
+    "Vorteil" -> "advantage",
+    "Nachteil" -> "disadvantage",
+    "begrenzt" -> "limited",
+    "nochmal" -> "again"
+  )
+
+  private def keywordVariants(keyword: String): Set[String] =
+    val trimmed = keyword.trim
+    if trimmed.isEmpty then Set.empty
+    else
+      val lower = trimmed.toLowerCase
+      val mapped = keywordEnMap.get(trimmed).orElse(keywordEnMap.get(lower)).toSet
+      val translated = Set(translatedNow(trimmed, "en")).filter(_ != trimmed)
+      (Set(trimmed, lower) ++ mapped ++ mapped.map(_.toLowerCase) ++ translated ++ translated.map(_.toLowerCase)).filter(_.nonEmpty)
+
+  private def matchesKeywords(inputText: String, keywords: Set[String]): Boolean =
+    if keywords.isEmpty || keywords.exists(_.trim.isEmpty) then true
+    else
+      val haystack = inputText.toLowerCase
+      keywords.exists { keyword =>
+        keywordVariants(keyword).exists(variant => haystack.contains(variant.toLowerCase))
+      }
+
+  private def translateSolutionWords(words: Set[String], lang: String): Set[String] =
+    if lang != "en" then words
+    else words.flatMap(keywordVariants)
+
+  private def translateTextNode(node: dom.Node, lang: String): Unit =
+    val current = Option(node.textContent).getOrElse("")
+    if current.trim.nonEmpty && hasLetters(current) then
+      if lang == "en" then
+        // Always translate from the current text to avoid stale cached originals
+        // overriding dynamic Laminar labels (e.g. Submit/Try again state changes).
+        val target = translatedNow(current, lang)
+        if current != target then
+          originalTextByNode.update(node, current)
+          node.textContent = target
+      else
+        // Restore previously translated static text when switching back to German.
+        originalTextByNode.get(node).foreach { original =>
+          if current != original then
+            node.textContent = original
+        }
+
+  private def walkAndTranslate(node: dom.Node, lang: String): Unit =
+    if node == null then
+      ()
+    else if node.nodeType == dom.Node.TEXT_NODE then
+      translateTextNode(node, lang)
+    else if node.nodeType == dom.Node.ELEMENT_NODE then
+      val el = node.asInstanceOf[dom.Element]
+      val tag = el.tagName.toLowerCase
+      if tag != "script" && tag != "style" then
+        var child = node.firstChild
+        while child != null do
+          val next = child.nextSibling
+          walkAndTranslate(child, lang)
+          child = next
+
+  def applyDomLanguage(): Unit =
+    val root = dom.document.getElementById("app")
+    if root != null then
+      walkAndTranslate(root, languageVar.now())
+
+  def initLanguageTranslationRuntime(): Unit =
+    if translationObserver.isEmpty then
+      val observer = new dom.MutationObserver((_: js.Array[dom.MutationRecord], _: dom.MutationObserver) =>
+        if languageVar.now() == "en" then
+          applyDomLanguage()
+      )
+      val root = dom.document.getElementById("app")
+      if root != null then
+        observer.observe(
+          root,
+          dom.MutationObserverInit(
+            childList = true,
+            subtree = true,
+            characterData = true
+          )
+        )
+        translationObserver = Some(observer)
+        applyDomLanguage()
+
+  def scrollContentToTop(): Unit =
+    try
+      // In this layout, the chapter content scrolls inside .main-content.
+      dom.window.scrollTo(0, 0)
+      dom.document.querySelector(".main-content") match
+        case el: org.scalajs.dom.HTMLElement => el.scrollTop = 0
+        case _ => ()
+    catch
+      case _: Throwable => ()
+
+  try
+    dom.window.addEventListener("hashchange", (_: dom.Event) =>
+      currentHashVar.set(dom.window.location.hash)
+      scrollContentToTop()
+    )
+  catch
+    case _: Throwable => ()
 
   // Global storage for responses and ratings
   case class ChapterData(
@@ -70,7 +565,7 @@ object Main:
     "einfuehrung" -> List(
       "Scanne die QR-Codes und beschreibe deren Inhalte. Beschreibe zusätzlich die Gemeinsamkeiten.",
       "Welche Aussage trifft auf QR-Codes zu?",
-      "Beschreibe in 50 Worten, welche Vorstellungen du davon hast, wie QR-Codes funktionieren."
+      "Beschreibe in mindestens 30 Worten, welche Vorstellungen du davon hast, wie QR-Codes funktionieren."
     ),
     "nachricht" -> List(
       "Beschreibe, wie ein QR-Code aufgebaut ist. Vermute, wie die Daten im QR-Code dargestellt werden.",
@@ -122,8 +617,8 @@ object Main:
       "Eine andere Lehrkraft befürchtet, dass die QR-Codes nach einem Jahr verschmutzen oder beschädigt sind, da das Lesen eines QR-Codes nicht mehr möglich ist, wenn schon ein Pixel umgefärbt ist. \nGehe auf die Bedenken ein und erläutere, ob du diese teilst oder nicht. Begründe deine Antwort.",
       "Eine Bank überlegt, QR-Codes für das Speichern von Banking-Daten (wie Kontonummer, PIN und Passwörter) auf Kundenkarten zu nutzen. \nErläutere, warum dies keine sinnvolle Anwendung für QR-Codes ist. Nenne mindestens zwei Gründe.",
       "Nenne ein weiteres Beispiel, bei dem der Einsatz von QR-Codes problematisch oder nicht sinnvoll wäre. Begründe deine Antwort.",
-      "Um das Speichern der Daten einmal auszuprobieren, erstelle einen QR-Code mit deinen Daten (Du kannst dir dafür natürlich auch welche ausdenken). \nGehe dafür auf die Webseite 'https://www.qrcode-generator.de/' und wähle dort den Typ 'VCard' aus. Fülle die Informationen aus. \nÜberprüfe, ob der QR-Code funktioniert, indem du ihn mit deinem Smartphone scannst. Wenn alles funktioniert hat, kannst du dir den QR-Code als Bild speichern, ausdrucken und in deine Handyhülle legen. \nBeschreibe, welche Daten du außerdem in einer VCard speichern könntest und welche Vorteile dies hat.",
-      "Vergleiche die Vor- und Nachteile von QR-Codes bei sensiblen Daten (wie Bankdaten) mit denen bei öffentlichen Informationen (wie Website-Links). Nutze dafür 50 Worten."
+      "Vergleiche die Vor- und Nachteile von QR-Codes bei sensiblen Daten (wie Bankdaten) mit denen bei öffentlichen Informationen (wie Website-Links). Nutze dafür 50 Worten.",
+      "Beschreibe, welche Daten du außerdem in einer VCard speichern könntest und welche Vorteile dies hat."
     ),
     "zusammenfassung" -> List(
       "Im folgenden QR-Code kannst du eine Nachricht in das Textfeld eingeben. Mit den Checkboxen kannst du Metadaten anzeigen oder die Fehlerkorrektur-Pixel sehen. Teste verschiedene Eingaben und überprüfe das Ergebnis mit einem QR-Code Scanner.",
@@ -189,6 +684,16 @@ object Main:
 
   val studentNameVar: Var[String] = Var(loadStudentName())
 
+  def isAdminName(name: String): Boolean =
+    name.trim.equalsIgnoreCase("admin")
+
+  val isAdminModeSignal: Signal[Boolean] = studentNameVar.signal.map(isAdminName)
+
+  def withAdminOverride(baseSignal: Signal[Boolean]): Signal[Boolean] =
+    baseSignal.combineWith(isAdminModeSignal).map { case (baseValue, isAdmin) =>
+      baseValue || isAdmin
+    }
+
   def loadMerkzettelCreated(): Boolean =
     try
       val stored = dom.window.localStorage.getItem("qr-merkzettel-created")
@@ -205,15 +710,27 @@ object Main:
   val merkzettelCreatedVar: Var[Boolean] = Var(loadMerkzettelCreated())
 
   // QR Code Exercise with text input and simulation
-  def renderQRCodeExercise(exerciseNumber: Int, taskText: String, explanation: String): Element =
-    val messageTextVar = Var("")
+  def renderQRCodeExercise(exerciseNumber: Int, chapter: String, taskText: String, explanation: String): Element =
+    val initialText =
+      if chapter.nonEmpty then
+        loadFromLocalStorage(chapter)
+          .flatMap(_.exercises.find(_.task == taskText).flatMap(_.answer))
+          .getOrElse("")
+      else
+        ""
+    val messageTextVar = Var(initialText)
     val exceedsLimitVar = Var(false)
     val showLengthVar = Var(false)
     val maxChars = 17
     div(
       cls := "qr-text-input-section",
-      h3(s"Aufgabe $exerciseNumber"),
-      p(explanation),
+      h3(child.text <-- languageVar.signal.map(lang => if lang == "en" then s"Task $exerciseNumber" else s"Aufgabe $exerciseNumber")),
+      p(child.text <-- languageVar.signal.map(lang => translatedNow(explanation, lang))),
+      child <-- messageTextVar.signal.map { text =>
+        if chapter.nonEmpty then
+          persistExerciseAnswer(chapter, taskText, text)
+        emptyNode
+      },
       div(
         styleAttr := "margin-top: 1rem; display: flex; gap: 2rem; align-items: flex-start;",
         // Linke Spalte: Input und Checkbox
@@ -223,7 +740,7 @@ object Main:
             cls := "qr-input-container",
             input(
               typ := "text",
-              placeholder := "Deine Nachricht hier...",
+              placeholder <-- languageVar.signal.map(lang => translatedNow("Deine Nachricht hier...", lang)),
               cls := "message-input",
               styleAttr := "min-height: 50px; font-size: 16px;",
               controlled(
@@ -238,17 +755,17 @@ object Main:
                 } --> messageTextVar.writer
               )
             ),
-            child <-- exceedsLimitVar.signal.map { exceeds =>
+            child <-- Signal.combineWithFn(exceedsLimitVar.signal, languageVar.signal) { (exceeds, lang) =>
               if exceeds then
                 div(
                   styleAttr := "color: red; font-weight: bold; margin-top: 0.5rem;",
-                  "Maximale Anzahl an Zeichen für den QR Code Typen erreicht"
+                  translatedNow("Maximale Anzahl an Zeichen für den QR Code Typen erreicht", lang)
                 )
               else
                 emptyNode
             }
           ),
-          child <-- showLengthVar.signal.map { showLength =>
+          child <-- Signal.combineWithFn(showLengthVar.signal, languageVar.signal) { (_, lang) =>
             label(
               styleAttr := "margin-top: 1rem; display: inline-flex; align-items: center; gap: 0.6rem; background: #e8f2ff; color: #1f3b73; padding: 0.5rem 0.8rem; border-radius: 10px; border: 1px solid #c7d9f5; font-weight: 600; font-size: 1.05rem; cursor: pointer;",
               input(
@@ -259,7 +776,7 @@ object Main:
                   onInput.mapToChecked --> showLengthVar.writer
                 )
               ),
-              span("Laenge anzeigen")
+              span(translatedNow("Laenge anzeigen", lang))
             )
           }
         ),
@@ -277,11 +794,19 @@ object Main:
   // QR Code Exercise with metadata button
   def renderQRCodeExerciseWithMetadata(
     exerciseNumber: Int,
+    chapter: String,
     taskText: String,
     explanation: String,
     sharedMessageVar: Option[Var[String]] = None
   ): Element =
-    val messageTextVar = sharedMessageVar.getOrElse(Var(""))
+    val initialText =
+      if chapter.nonEmpty then
+        loadFromLocalStorage(chapter)
+          .flatMap(_.exercises.find(_.task == taskText).flatMap(_.answer))
+          .getOrElse("")
+      else
+        ""
+    val messageTextVar = sharedMessageVar.getOrElse(Var(initialText))
     val exceedsLimitVar = Var(false)
     val showMetadata = Var(false)
     val metadataActive = Var(false)
@@ -328,8 +853,13 @@ object Main:
     
     div(
       cls := "qr-text-input-section",
-      h3(s"Aufgabe $exerciseNumber"),
-      p(explanation),
+      h3(child.text <-- languageVar.signal.map(lang => if lang == "en" then s"Task $exerciseNumber" else s"Aufgabe $exerciseNumber")),
+      p(child.text <-- languageVar.signal.map(lang => translatedNow(explanation, lang))),
+      child <-- messageTextVar.signal.map { text =>
+        if chapter.nonEmpty then
+          persistExerciseAnswer(chapter, taskText, text)
+        emptyNode
+      },
       div(
         styleAttr := "margin-top: 1rem; display: flex; gap: 2rem; align-items: flex-start;",
         // Linke Spalte: Input und Checkboxen
@@ -339,7 +869,7 @@ object Main:
             cls := "qr-input-container",
             input(
               typ := "text",
-              placeholder := "Deine Nachricht hier...",
+              placeholder <-- languageVar.signal.map(lang => translatedNow("Deine Nachricht hier...", lang)),
               cls := "message-input",
               styleAttr := "min-height: 50px; font-size: 16px;",
               controlled(
@@ -354,11 +884,11 @@ object Main:
                 } --> messageTextVar.writer
               )
             ),
-            child <-- exceedsLimitVar.signal.map { exceeds =>
+            child <-- Signal.combineWithFn(exceedsLimitVar.signal, languageVar.signal) { (exceeds, lang) =>
               if exceeds then
                 div(
                   styleAttr := "color: red; font-weight: bold; margin-top: 0.5rem;",
-                  "Maximale Anzahl an Zeichen für den QR Code Typen erreicht"
+                  translatedNow("Maximale Anzahl an Zeichen für den QR Code Typen erreicht", lang)
                 )
               else
                 emptyNode
@@ -374,7 +904,7 @@ object Main:
                 onChange.map(_.target.asInstanceOf[org.scalajs.dom.HTMLInputElement].checked) --> metadataActive.writer,
                 styleAttr := "cursor: pointer;"
               ),
-              span("Metadaten anzeigen", styleAttr := "font-weight: 500;")
+              span(child.text <-- languageVar.signal.map(lang => translatedNow("Metadaten anzeigen", lang)), styleAttr := "font-weight: 500;")
             ),
             label(
               styleAttr := "display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.75rem 1rem; background-color: #bbdefb; border-radius: 4px; border: 1px solid #64b5f6; user-select: none; white-space: nowrap;",
@@ -384,7 +914,7 @@ object Main:
                 onChange.map(_.target.asInstanceOf[org.scalajs.dom.HTMLInputElement].checked) --> errorCorrectionActive.writer,
                 styleAttr := "cursor: pointer;"
               ),
-              span("Fehlerkorrektur anzeigen", styleAttr := "font-weight: 500;")
+              span(child.text <-- languageVar.signal.map(lang => translatedNow("Fehlerkorrektur anzeigen", lang)), styleAttr := "font-weight: 500;")
             )
           )
         ),
@@ -555,6 +1085,14 @@ object Main:
           grid(row)(col) = 2  // Mark as data pixel
       }
 
+    val lengthBitPositions: Set[(Int, Int)] =
+      (0 until 8)
+        .flatMap { idx =>
+          val posIdx = 4 + idx
+          if posIdx < dataPositions.length then Some(dataPositions(posIdx)) else None
+        }
+        .toSet
+
     val lastCharPositions: Set[(Int, Int)] =
       if text.nonEmpty then
         val lastIdx = text.length - 1
@@ -582,8 +1120,17 @@ object Main:
             val isBlack = cellValue > 0  // 1 = fixed pattern, 2 = data pixel
             val pixelNumber = rowIdx * size + colIdx
             val isLastChar = lastCharPositions.contains((rowIdx, colIdx))
+            val isLengthBit = showLength && lengthBitPositions.contains((rowIdx, colIdx))
+            val bgColor =
+              if isLengthBit then
+                if cellValue == 2 then "#1565c0" else "#bbdefb"
+              else if isBlack then
+                "black"
+              else
+                "white"
+            val textColor = if isLengthBit || isBlack then "white" else "gray"
             div(
-              styleAttr := s"width: 24px; height: 24px; background: ${if isBlack then "black" else "white"}; display: flex; align-items: center; justify-content: center; font-size: 8px; color: ${if isBlack then "white" else "gray"}; font-weight: bold; overflow: hidden; ${if isLastChar then "outline: 2px solid red;" else ""}",
+              styleAttr := s"width: 24px; height: 24px; background: $bgColor; display: flex; align-items: center; justify-content: center; font-size: 8px; color: $textColor; font-weight: bold; overflow: hidden; ${if isLastChar then "outline: 2px solid red;" else ""}",
               cls := "qr-pixel",
               ""
             )
@@ -922,7 +1469,10 @@ object Main:
     val sortedExercises: List[ExerciseResponse] = allExercisesForChapter.map { task =>
       exerciseMap.getOrElse(task, ExerciseResponse(task, None))
     }
-    data.copy(exercises = sortedExercises)
+    // Keep additional stored tasks so answers are not lost if a task text changed.
+    val knownTasks = allExercisesForChapter.toSet
+    val additionalExercises = data.exercises.filterNot(ex => knownTasks.contains(ex.task))
+    data.copy(exercises = sortedExercises ++ additionalExercises)
 
   // Persist a single exercise answer (keeps order aligned with chapterExercises)
   def persistExerciseAnswer(chapter: String, taskText: String, answer: String): Unit =
@@ -999,14 +1549,14 @@ object Main:
     catch
       case _: Throwable => None
 
-  case class ExerciseStatus(lastCheck: Option[Boolean], showSolution: Boolean)
+  case class ExerciseStatus(lastCheck: Option[Boolean], showSolution: Boolean, wrongAttempts: Int)
 
   def exerciseStatusKey(chapter: String, taskText: String): String =
     s"qr-status-$chapter-${taskText.hashCode}"
 
   def loadExerciseStatus(chapter: String, taskText: String): ExerciseStatus =
     if chapter.isEmpty then
-      ExerciseStatus(None, false)
+      ExerciseStatus(None, false, 0)
     else
       try
         val stored = dom.window.localStorage.getItem(exerciseStatusKey(chapter, taskText))
@@ -1014,12 +1564,15 @@ object Main:
           val parsed = scala.scalajs.js.JSON.parse(stored)
           val lastCheckValue = parsed.asInstanceOf[scala.scalajs.js.Dynamic].lastCheck
           val lastCheck = if lastCheckValue == null || lastCheckValue == scala.scalajs.js.undefined then None else Some(lastCheckValue.asInstanceOf[Boolean])
-          val showSolution = parsed.asInstanceOf[scala.scalajs.js.Dynamic].showSolution.asInstanceOf[Boolean]
-          ExerciseStatus(lastCheck, showSolution)
+          val showSolutionValue = parsed.asInstanceOf[scala.scalajs.js.Dynamic].showSolution
+          val showSolution = if showSolutionValue == null || showSolutionValue == scala.scalajs.js.undefined then false else showSolutionValue.asInstanceOf[Boolean]
+          val wrongAttemptsValue = parsed.asInstanceOf[scala.scalajs.js.Dynamic].wrongAttempts
+          val wrongAttempts = if wrongAttemptsValue == null || wrongAttemptsValue == scala.scalajs.js.undefined then 0 else wrongAttemptsValue.toString.toIntOption.getOrElse(0)
+          ExerciseStatus(lastCheck, showSolution, wrongAttempts)
         else
-          ExerciseStatus(None, false)
+          ExerciseStatus(None, false, 0)
       catch
-        case _: Throwable => ExerciseStatus(None, false)
+        case _: Throwable => ExerciseStatus(None, false, 0)
 
   def saveExerciseStatus(chapter: String, taskText: String, status: ExerciseStatus): Unit =
     if chapter.nonEmpty then
@@ -1027,7 +1580,8 @@ object Main:
         val json = scala.scalajs.js.JSON.stringify(
           scala.scalajs.js.Dynamic.literal(
             lastCheck = status.lastCheck.map(_.asInstanceOf[scala.scalajs.js.Any]).orNull,
-            showSolution = status.showSolution
+            showSolution = status.showSolution,
+            wrongAttempts = status.wrongAttempts
           )
         )
         dom.window.localStorage.setItem(exerciseStatusKey(chapter, taskText), json)
@@ -1071,7 +1625,46 @@ object Main:
     val chapter = "nachricht"
     val taskKey = "aufgabe10_completed"  // Simple key for persistence
     val patternInfoKey = "qr-infobox-nachricht-10-patterns"
-    val taskText = "Ziehe die Zahlen 1-8 auf die Felder im Grid, um die Reihenfolge der Bits zu zeigen."
+    val taskText = "Ziehe die Zahlen 1-8 auf die Felder im Grid, um zu zeigen in welcher Reihenfolge die Bits des ersten Buchstabens in Aufgabe 8 kodiert werden."
+    val previewCharVar: Var[String] = Var("")
+
+    def parseSavedGrid(answer: String): Map[(Int, Int), Int] =
+      val gridPart = answer.split(";grid=", 2).lift(1).getOrElse("")
+      if gridPart.isBlank then
+        Map.empty
+      else
+        gridPart
+          .split("\\|")
+          .toList
+          .flatMap { entry =>
+            entry.split(":", 2) match
+              case Array(posPart, valuePart) =>
+                posPart.split(",", 2) match
+                  case Array(rowPart, colPart) =>
+                    (rowPart.toIntOption, colPart.toIntOption, valuePart.toIntOption) match
+                      case (Some(r), Some(c), Some(v)) if r >= 0 && r < rows && c >= 0 && c < cols && v >= 1 && v <= 8 =>
+                        Some((r, c) -> v)
+                      case _ => None
+                  case _ => None
+              case _ => None
+          }
+          .toMap
+
+    def serializeGridState(grid: Map[(Int, Int), Int], isCompleted: Boolean): String =
+      val encodedGrid =
+        (0 until rows).flatMap { r =>
+          (0 until cols).flatMap { c =>
+            grid.get((r, c)).map(v => s"$r,$c:$v")
+          }
+        }.mkString("|")
+      s"completed=$isCompleted;grid=$encodedGrid"
+
+    val savedTaskAnswer: Option[String] =
+      loadFromLocalStorage(chapter)
+        .flatMap(_.exercises.find(_.task == taskText).flatMap(_.answer))
+
+    val loadedGrid: Map[(Int, Int), Int] = savedTaskAnswer.map(parseSavedGrid).getOrElse(Map.empty)
+    val loadedCompletedFromTask = savedTaskAnswer.exists(_.contains("completed=true"))
     
     // Correct solution based on zigzag pattern
     val correctSolution = Map(
@@ -1080,9 +1673,16 @@ object Main:
       (2, 0) -> 4, (2, 1) -> 3,  // Row 3: 4 3
       (3, 0) -> 2, (3, 1) -> 1   // Bottom row: 2 1
     )
+
+    def toBinary8(value: Int): String =
+      Integer.toBinaryString(value & 0xFF).reverse.padTo(8, '0').reverse
+
+    def bitAtPosition(bitsMsbToLsb: String, posNumber: Int): Char =
+      // Position 8 = MSB, Position 1 = LSB (passend zum 2x4-Raster aus Aufgabe 8)
+      bitsMsbToLsb.charAt(8 - posNumber)
     
     // State: Map from grid position (row, col) to placed number (1-8)
-    val gridNumbers: Var[Map[(Int, Int), Int]] = Var(Map.empty)
+    val gridNumbers: Var[Map[(Int, Int), Int]] = Var(loadedGrid)
     
     // State: Set of numbers that have been placed
     val placedNumbers: Signal[Set[Int]] = gridNumbers.signal.map(_.values.toSet)
@@ -1095,10 +1695,10 @@ object Main:
       {
         try
           val stored = dom.window.localStorage.getItem(s"qr-chapter-$chapter-$taskKey")
-          stored == "true"
+          stored == "true" || loadedCompletedFromTask
         catch
           case _: Throwable =>
-            false
+            loadedCompletedFromTask
       }
     
     // State: Track if all correct
@@ -1108,8 +1708,12 @@ object Main:
       markInfoBoxShown(patternInfoKey, showPatternInfoVar)
     
     div(
-      h2("Aufgabe 10"),
-      p("Ziehe die Zahlen 1-8 auf die Felder im Grid, um zu zeigen in welcher Reihenfolge die Bits des ersten Buchstabens in Aufgabe 8 kodiert werden."),
+      h2(child.text <-- languageVar.signal.map(lang => if lang == "en" then "Task 10" else "Aufgabe 10")),
+      p(child.text <-- languageVar.signal.map(lang => translatedNow("Ziehe die Zahlen 1-8 auf die Felder im Grid, um zu zeigen in welcher Reihenfolge die Bits des ersten Buchstabens in Aufgabe 8 kodiert werden. Als Hilfe kannst du dir die UTF8-Kodierung des Buchstabens anschauen, indem du ihn in das Feld rechts neben dem Pfeil eingibst. ", lang))),
+      child <-- Signal.combine(gridNumbers.signal, allCorrect.signal).map { case (gridMap, isCompleted) =>
+        persistExerciseAnswer(chapter, taskText, serializeGridState(gridMap, isCompleted))
+        emptyNode
+      },
       div(
         styleAttr := "display: flex; flex-direction: column; gap: 15px; margin: 20px 0;",
         // Main area: Number blocks and grid with arrow
@@ -1189,13 +1793,73 @@ object Main:
               styleAttr := "font-size: 0.9rem; font-weight: bold; color: #4a9eff; margin-top: 5px;",
               "Start"
             )
+          ),
+          // Zeichen -> ASCII Vorschau (rechts neben dem Pfeil)
+          div(
+            styleAttr := "display: flex; align-items: flex-start; gap: 1.4rem; padding: 1.2rem; border: 2px solid #c7d9f5; border-radius: 12px; background: #f7fbff;",
+            div(
+              styleAttr := "display: flex; flex-direction: column; gap: 0.5rem;",
+              span(child.text <-- languageVar.signal.map(lang => translatedNow("Zeichen", lang)), styleAttr := "font-size: 1rem; color: #1f3b73; font-weight: 700;"),
+              input(
+                typ := "text",
+                maxLength := 1,
+                placeholder := "A",
+                styleAttr := "width: 64px; text-align: center; font-size: 1.4rem; padding: 0.35rem; border: 2px solid #9bb8e8; border-radius: 6px;",
+                controlled(
+                  value <-- previewCharVar.signal,
+                  onInput.mapToValue.map(_.take(1)) --> previewCharVar.writer
+                )
+              )
+            ),
+            div(
+              styleAttr := "display: flex; flex-direction: column; gap: 0.5rem;",
+              span(child.text <-- languageVar.signal.map(lang => translatedNow("2x4 Raster", lang)), styleAttr := "font-size: 1rem; color: #1f3b73; font-weight: 700;"),
+              child <-- previewCharVar.signal.map { inputValue =>
+                val asciiOpt = inputValue.headOption.map(_.toInt)
+                val bits = asciiOpt.map(toBinary8)
+                div(
+                  styleAttr := "display: grid; grid-template-columns: repeat(2, 34px); gap: 3px; background: #cfd8dc; padding: 3px; border-radius: 6px;",
+                  (0 until rows).flatMap { rowIdx =>
+                    (0 until cols).map { colIdx =>
+                      val posNum = correctSolution((rowIdx, colIdx))
+                      val bitChar = bits.map(b => bitAtPosition(b, posNum))
+                      val isOn = bitChar.contains('1')
+                      div(
+                        styleAttr := s"width: 34px; height: 34px; background: ${if bits.isEmpty then "#ffffff" else if isOn then "#111111" else "#ffffff"}; border: 1px solid #607d8b;"
+                      )
+                    }
+                  }.toList
+                )
+              }
+            ),
+            div(
+              styleAttr := "display: flex; flex-direction: column; gap: 0.8rem; min-width: 180px;",
+               child <-- previewCharVar.signal.combineWith(languageVar.signal).map { case (inputValue, lang) =>
+                val asciiOpt = inputValue.headOption.map(_.toInt)
+                val decimalText = asciiOpt.map(_.toString).getOrElse("-")
+                val binaryText = asciiOpt.map(toBinary8).getOrElse("--------")
+                div(
+                  styleAttr := "display: flex; flex-direction: column; gap: 0.8rem;",
+                  div(
+                    styleAttr := "padding: 0.6rem 0.75rem; background: #e3f2fd; border: 1px solid #90caf9; border-radius: 8px;",
+                     div(styleAttr := "font-size: 0.9rem; color: #0d47a1; font-weight: 700;", translatedNow("Dezimal", lang)),
+                    div(styleAttr := "font-size: 1.4rem; font-weight: 700; color: #0d47a1;", decimalText)
+                  ),
+                  div(
+                    styleAttr := "padding: 0.6rem 0.75rem; background: #e8f5e9; border: 1px solid #a5d6a7; border-radius: 8px;",
+                     div(styleAttr := "font-size: 0.9rem; color: #1b5e20; font-weight: 700;", translatedNow("Binär (8 Bit)", lang)),
+                    div(styleAttr := "font-size: 1.2rem; font-family: monospace; font-weight: 700; color: #1b5e20;", binaryText)
+                  )
+                )
+              }
+            )
           )
         ),
         // Buttons
         div(
           styleAttr := "display: flex; gap: 10px; align-items: center;",
           button(
-            "Zurücksetzen",
+             child.text <-- languageVar.signal.map(lang => translatedNow("Zurücksetzen", lang)),
             onClick --> (_ => {
               gridNumbers.set(Map.empty)
               errorPositions.set(Set.empty)
@@ -1204,7 +1868,7 @@ object Main:
             styleAttr := "padding: 8px 16px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem;"
           ),
           button(
-            "Abgeben",
+             child.text <-- languageVar.signal.map(lang => translatedNow("Abgeben", lang)),
             onClick --> (_ => {
               val current = gridNumbers.now()
               // Check if all positions are filled
@@ -1236,7 +1900,7 @@ object Main:
           child <-- allCorrect.signal.map { isCorrect =>
             if isCorrect then
               span(
-                "✓ Sehr gut! Alle Felder sind richtig.",
+                 child.text <-- languageVar.signal.map(lang => translatedNow("✓ Sehr gut! Alle Felder sind richtig.", lang)),
                 styleAttr := "color: #4caf50; font-weight: bold; font-size: 0.95rem;"
               )
             else
@@ -1245,7 +1909,7 @@ object Main:
         )
       ),
       // Info text shown when all correct
-      child <-- showPatternInfoVar.signal.map { showInfo =>
+      child <-- withAdminOverride(showPatternInfoVar.signal).map { showInfo =>
         if showInfo then
           Infotext(
             "Die 4 verschiedenen Buchstabenmuster",
@@ -1256,14 +1920,6 @@ object Main:
         else
           emptyNode
       },
-      div(
-        styleAttr := "margin-top: 10px; padding: 12px; background-color: #f0f8ff; border-left: 4px solid #4a9eff; border-radius: 4px;",
-        strong("Tipp: "),
-        span(
-          "Ein Buchstabe wird in ASCII kodiert, was 8 Bits entspricht. Überlege, wie diese 8 Bits (8 Pixel) angeordnet werden können, " +
-          "um einen Buchstaben darzustellen. In welcher Reihenfolge werden die Bits gelesen?"
-        )
-      )
     )
 
   def AufgabeKodierung(): Element =
@@ -1281,12 +1937,12 @@ object Main:
     
     div(
       div(
-        h2("Aufgabe 2"),
-        p("Überlege dir eine eigene Kodierung für die Buchstaben 'M', 'I', 'S', 'P'. Nutze die Pixel, um deine Kodierung darzustellen."),
+        h2(child.text <-- languageVar.signal.map(lang => if lang == "en" then "Task 2" else "Aufgabe 2")),
+        p(child.text <-- languageVar.signal.map(lang => translatedNow("Überlege dir eine eigene Kodierung für die Buchstaben 'M', 'I', 'S', 'P'. Nutze die Pixel, um deine Kodierung darzustellen.", lang))),
         child <-- lastCheckVar.signal.map {
           case Some(false) => 
             p(
-              "Alle Zeichen müssen eindeutig kodiert sein!",
+              child.text <-- languageVar.signal.map(lang => translatedNow("Alle Zeichen müssen eindeutig kodiert sein!", lang)),
               styleAttr := "color: red; font-weight: bold; margin: 10px 0;"
             )
           case _ => emptyNode
@@ -1333,9 +1989,9 @@ object Main:
               cls := "pixel-submit-area",
               styleAttr := "display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 10px;",
               button(
-                child.text <-- lastCheckVar.signal.map {
-                  case Some(false) => "Nochmal versuchen"
-                  case _ => "Abgeben"
+                child.text <-- lastCheckVar.signal.combineWith(languageVar.signal).map {
+                  case (Some(false), lang) => translatedNow("Nochmal versuchen", lang)
+                  case (_, lang) => translatedNow("Abgeben", lang)
                 },
                 onClick --> { _ =>
                 val current = pixelGrid.now()
@@ -1380,7 +2036,7 @@ object Main:
             child <-- lastCheckVar.signal.map {
               case Some(true) =>
                 span(
-                  "Kodierung gespeichert",
+                  child.text <-- languageVar.signal.map(lang => translatedNow("Kodierung gespeichert", lang)),
                   styleAttr := "color: green; font-weight: bold;"
                 )
               case _ => emptyNode
@@ -1390,8 +2046,8 @@ object Main:
       )
       ),
       div(
-        h2("Aufgabe 3"),
-        p("Schreibe das Wort 'MISSISSIPPI' mit deiner eigenen Kodierung aus Aufgabe 2."),
+        h2(child.text <-- languageVar.signal.map(lang => if lang == "en" then "Task 3" else "Aufgabe 3")),
+        p(child.text <-- languageVar.signal.map(lang => translatedNow("Schreibe das Wort 'MISSISSIPPI' mit deiner eigenen Kodierung aus Aufgabe 2.", lang))),
         {
           val taskText3 = "Schreibe das Wort 'MISSISSIPPI' mit deiner eigenen Kodierung aus Aufgabe 2."
           val rows3 = 11
@@ -1464,9 +2120,9 @@ object Main:
                 cls := "pixel-submit-area",
                 styleAttr := "display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 10px;",
                 button(
-                  child.text <-- lastCheckVar3.signal.map {
-                    case Some(false) => "Nochmal versuchen"
-                    case _ => "Abgeben"
+                  child.text <-- lastCheckVar3.signal.combineWith(languageVar.signal).map {
+                    case (Some(false), lang) => translatedNow("Nochmal versuchen", lang)
+                    case (_, lang) => translatedNow("Abgeben", lang)
                   },
                   onClick --> { _ =>
                     val current = pixelGrid3.now()
@@ -1515,12 +2171,12 @@ object Main:
                 child <-- lastCheckVar3.signal.map {
                   case Some(true) =>
                     span(
-                      "Sehr gut, jetzt hast du deine erste Nachricht mit deiner selbstgewählten Kodierung kodiert!",
+                      child.text <-- languageVar.signal.map(lang => translatedNow("Sehr gut, jetzt hast du deine erste Nachricht mit deiner selbstgewählten Kodierung kodiert!", lang)),
                       styleAttr := "color: green; font-weight: bold;"
                     )
                   case Some(false) =>
                     span(
-                      "Überprüfe deine Eingabe nochmal!",
+                      child.text <-- languageVar.signal.map(lang => translatedNow("Überprüfe deine Eingabe nochmal!", lang)),
                       styleAttr := "color: red; font-weight: bold;"
                     )
                   case _ => emptyNode
@@ -1536,6 +2192,11 @@ object Main:
   def appElement(): Element =
     div(
       cls := "app-container",
+      onMountCallback(_ => initLanguageTranslationRuntime()),
+      child <-- languageVar.signal.map { _ =>
+        applyDomLanguage()
+        emptyNode
+      },
       renderMenu(),
       // Main content area
       div(
@@ -1548,8 +2209,8 @@ object Main:
               val showInfoVar = infoBoxVar("qr-infobox-nachricht-1")
               val showAsciiInfoVar = infoBoxVar("qr-infobox-nachricht-4")
               div(
-                h1("Nachrichten schreiben"),
-                TimeBadge(70),
+                h1(child.text <-- languageVar.signal.map(lang => chapterTitle("nachricht", lang))),
+                TimeBadge(60),
                 cls := "nachricht-section",
                 renderExercise(
                   "Beschreibe, wie ein QR-Code aufgebaut ist. Vermute, wie die Daten im QR-Code dargestellt werden.",
@@ -1561,17 +2222,18 @@ object Main:
                   Some(() => markInfoBoxShown("qr-infobox-nachricht-1", showInfoVar)),
                   solutionText = Some(
                     "Ein QR-Code besteht aus einem Raster Pixeln. Die Farbe der Pixel ist dabei schwarz oder weiß."
-                  )
+                  ),
+                  wrongHint = Some("Hinweis: Betrachte den QR-Code genau. Welche Farben haben die einzelnen Pixel und wofür könnten sie stehen?")
                 ),
-                child <-- showInfoVar.signal.map { show =>
+                child <-- withAdminOverride(showInfoVar.signal).map { show =>
                   if show then
                     Infotext(
                       "Kodierung",
-                      "Eine Kodierung ist eine Vorschrift, wie Informationen (z.B. Buchstaben) in eine andere Form (z.B. Pixel) umgewandelt werden. " +
+                      "Eine Kodierungsvorschrift beschreibt, wie Informationen (z.B. Buchstaben) in eine andere Form (z.B. Pixel) umgewandelt(kodiert) werden. " +
                       "Bei QR-Codes werden Buchstaben in schwarze und weiße Pixel kodiert. Jeder Buchstabe bekommt dabei ein bestimmtes Muster. \n" +
-                      "Wichtig ist, dass die Kodierung eindeutig ist: Jeder Buchstabe muss ein eindeutiges Muster haben, damit man die Nachricht später wieder dekodieren kann. \n" +
-                      "In der Praxis wird hierfür kein Zufälliges Muster verwendet. Hier werden Buchstaben in Zahlen kodiert, welche anschließend in Bits (0 und 1) dargestellt werden. Dies geschieht über die Binärdarstellung der Zahl." + 
-                      "Zum Schluss werden die Bits als Schwarze (1) und Weiße (0) Pixel dargestellt."
+                      "Jeder Buchstabe muss ein eindeutiges Muster haben, damit man die Nachricht später wieder zurück in die ursprüngliche Form umgewandelt (dekodieren) werden kann. \n" +
+                      "In der Praxis wird hierfür kein Zufälliges Muster verwendet. Hier werden Buchstaben in Zahlen kodiert, welche anschließend in Bits (0 und 1) dargestellt werden. Dies geschieht über die Binärdarstellung der Zahl. " + 
+                      "Zum Schluss werden die Bits als schwarze (1) und weiße (0) Pixel dargestellt."
                     )
                   else
                     emptyNode
@@ -1579,7 +2241,7 @@ object Main:
                 AufgabeKodierung(),
               renderExercise(
                 "Erkläre die Nachteile einer eigenen, nicht standardisierten Kodierung.",
-                Set("umgewandelt", "zusätzlich"),
+                Set("zusätzlich", "Kodierungsvorschrift"),
                 4,
                 None,
                 "nachricht",
@@ -1587,9 +2249,10 @@ object Main:
                 Some(() => markInfoBoxShown("qr-infobox-nachricht-4", showAsciiInfoVar)),
                 solutionText = Some(
                   "Ohne Standard muss bei einer Kodierung zusätzlich auch die Kodierungsvorschrift (also wie Buchstaben in Pixel umgewandelt werden) mit übergeben werden. Sonst kennen andere die Kodierungsvorschrift nicht, und die Nachrichten kann nicht wieder dekodiert(Zurück in Buchstaben) umgewandelt werden."
-                )
+                ),
+                wrongHint = Some("Hinweis: Überlege, welche Zusatzinformation ohne gemeinsamen Standard mitgeschickt werden muss.")
               ),
-              child <-- showAsciiInfoVar.signal.map { show =>
+              child <-- withAdminOverride(showAsciiInfoVar.signal).map { show =>
                 if show then
                   Infotext(
                     "ASCII als Standard",
@@ -1620,8 +2283,8 @@ object Main:
                   ("a", 97, "01100001"), ("b", 98, "01100010"), ("c", 99, "01100011")
                 )
                 div(
-                  h2("Aufgabe 5"),
-                  p("Kodiere das Wort 'INFORMATIK' mithilfe der ASCII-Tabelle. Rechts siehst du die ASCII-Tabelle, links kodierst du jeden Buchstaben (0 = weiß, 1 = schwarz)."),
+                  h2(child.text <-- languageVar.signal.map(lang => if lang == "en" then "Task 5" else "Aufgabe 5")),
+                  p(child.text <-- languageVar.signal.map(lang => translatedNow("Kodiere das Wort 'INFORMATIK' mithilfe der ASCII-Tabelle. Rechts siehst du die ASCII-Tabelle, links kodierst du jeden Buchstaben (0 = weiß, 1 = schwarz).", lang))),
                   div(
                     cls := "aufgabe5-container",
                     renderPixelAreaWithLabels(
@@ -1648,9 +2311,9 @@ object Main:
                       cls := "ascii-table aufgabe5-ascii-table",
                       thead(
                         tr(
-                          th("Zeichen", styleAttr := "text-align: center; padding: 0 14px;"),
-                          th("Dezimal", styleAttr := "text-align: center; padding: 0 14px;"),
-                          th("Binärdarstellung", styleAttr := "text-align: center; padding: 0 14px;")
+                          th(child.text <-- languageVar.signal.map(lang => translatedNow("Zeichen", lang)), styleAttr := "text-align: center; padding: 0 14px;"),
+                          th(child.text <-- languageVar.signal.map(lang => translatedNow("Dezimal", lang)), styleAttr := "text-align: center; padding: 0 14px;"),
+                          th(child.text <-- languageVar.signal.map(lang => translatedNow("Binärdarstellung", lang)), styleAttr := "text-align: center; padding: 0 14px;")
                         )
                       ),
                       tbody(
@@ -1668,13 +2331,14 @@ object Main:
               },
               renderExercise(
                 "Erläutere einen Vorteil der festen Länge von 8 Pixeln pro Buchstabe.",
-                Set("vorteil", "eindeutig"),
+                Set("Trennung", "eindeutig"),
                 6,
                 None,
                 "nachricht",
                 solutionText = Some(
                   "Ein Vorteil der festen Länge ist die eindeutige Trennung der Buchstaben."
-                )
+                ),
+                wrongHint = Some("Hinweis: Überlege dir, wie du jeweils erkennst, wo ein Buchstabe endet und der nächste beginnt.")
               ),
               renderExercise(
                 "Wie viele verschiedene Zeichen können mit 8 Pixeln dargestellt werden?",
@@ -1686,10 +2350,11 @@ object Main:
                   "Es können insgesamt 2^8 = 256 verschiedene Zeichen dargestellt werden."
                 ),
                 numericOnly = true,
-                wrongHint = Some("Jeder Pixel kann 2 Farben darstellen. Überlege dir als erstes eine Lösung für 1,2,3 und 4 Pixel.")
+                wrongHint = Some("Jeder Pixel kann 2 Farben darstellen. Überlege dir als erstes eine Lösung für eine kleine Pixelanzahl.")
               ),
               renderQRCodeExercise(
                 8,
+                "nachricht",
                 "Verschlüssele eine Nachricht mit QR-Code.",
                 "Als nächstes überführen wir das Gelernte in eine QR-Code Darstellung. Dafür schauen wir uns an, wie Nachrichten in QR-Codes dargestellt werden. " +
                 "Gib eine Nachricht ein und beobachte, wie diese als QR-Code in Pixel umgewandelt wird. Jeder Buchstabe wird dabei in 8 Bits (seine ASCII-Kodierung) übersetzt und färbt entsprechende Pixel schwarz."
@@ -1702,7 +2367,8 @@ object Main:
                 "nachricht",
                 solutionText = Some(
                   "Die Länge der Nachricht ist beschränkt, da die Anzahl der Pixel im QR-Code begrenzt ist. Je länger die Nachricht, desto mehr Pixel werden benötigt. Irgendwann gibt es nicht genug Pixel, um die gesamte Nachricht darzustellen. Zusätzlich gibt es bestimmte Bereiche, welche nicht genutzt werden."
-                )
+                ),
+                wrongHint = Some("Hinweis: Beziehe dich auf begrenzten Speicherplatz und reservierte QR-Code-Bereiche.")
               ),
               AufgabePixelAnordnung(),
               renderExercise(
@@ -1713,7 +2379,8 @@ object Main:
                 "nachricht",
                 solutionText = Some(
                   "Die Länge der Nachricht wird in einem festen Bereich am Anfang der Nachricht gespeichert. Dieser Bereich ist 8 Bits lang und gibt die Anzahl der Zeichen in Binärdarstellung an."
-                )
+                ),
+                wrongHint = Some("Hinweis: Suche den festen Bereich vor den Nutzdaten, in dem die Zeichenanzahl codiert wird.")
               ),
               {
                 val showQRFixedAreasInfoVar = infoBoxVar("qr-infobox-nachricht-10")
@@ -1727,37 +2394,40 @@ object Main:
                     None,
                     Some(() => markInfoBoxShown("qr-infobox-nachricht-10", showQRFixedAreasInfoVar)),
                   ),
-                  child <-- showQRFixedAreasInfoVar.signal.map { show =>
+                  child <-- withAdminOverride(showQRFixedAreasInfoVar.signal).map { show =>
                     if show then
                       div(
                         cls := "infotext",
-                        h3("Bereiche eines QR-Codes"),
-                        img(alt := "QR-Code Bereiche", src := resolveImageUrl("qr_Bereiche.png"), styleAttr := "max-width: 400px; margin: 1rem 0; border-radius: 4px;"),
-                        p("Trotz verschiedenen Einsatzmöglichkeiten haben QR Codes einen ähnlichem Aussehen."),
-                        p(
-                          " Die roten Bereiche in den Ecken heißen ",
-                          span("Positionsmarker", styleAttr := "color: #FF0000; font-weight: bold;"),
-                          ". Diese dienen dazu, dass die Handykamera den Anfang und das Ende des QR Codes erfassen kann."
-                        ),
-                        p(
-                          " Die Blaue Stelle ist ein ",
-                          span("Ausrichtungsmarker", styleAttr := "color: #0000FF; font-weight: bold;"),
-                          ". Dieser Hilft den QR Code auf unebenen Flächen (z.B Verpackungen) zu lesen."
-                        ),
-                        p(
-                          " Der Grüne Bereich sind die ",
-                          span("Timing-Patterns", styleAttr := "color: #00AA00; font-weight: bold;"),
-                          "(Synchronisationslinien). Hier wechseln sich schwarze und weiße Pixel ab. Mithilfe dieser Anordnung wird die Größe des QR Codes bestimmt."
-                        ),
-                        p(
-                          " Da viele verschiedene QR Code Versionen existieren, wird eine ",
-                          span("Versionsnummer", styleAttr := "color: #FFCC00; font-weight: bold;"),
-                          " festgehalten. Die ",
-                          span("Metadaten", styleAttr := "color: #FF8800; font-weight: bold;"),
-                          " sind Informationen über den Aufbau des QR Codes (z.B die Verwendete Maske)."
-                        ),
-                        p(" Weiterhin haben alle QR Codes einen weißen Rand um den Code, damit dieser gelesen werden kann. Diesen Rand nennt man die Randzone. \n"
-                        + "Die genauen bereiche können je nach QR Code Version variieren, aber es gibt immer bestimmte Bereiche, die nicht für die Nachricht verwendet werden können.")
+                         children <-- languageVar.signal.map { lang =>
+                           List(
+                             h3(translatedNow("Bereiche eines QR-Codes", lang)),
+                             img(alt := "QR-Code Bereiche", src := resolveImageUrl("qr_Bereiche.png"), styleAttr := "max-width: 400px; margin: 1rem 0; border-radius: 4px;"),
+                             p(translatedNow("Trotz verschiedenen Einsatzmöglichkeiten haben QR Codes einen ähnlichem Aussehen.", lang)),
+                             p(
+                               translatedNow(" Die roten Bereiche in den Ecken heißen ", lang),
+                               span(translatedNow("Positionsmarker", lang), styleAttr := "color: #FF0000; font-weight: bold;"),
+                               translatedNow(". Diese dienen dazu, dass die Handykamera den Anfang und das Ende des QR Codes erfassen kann.", lang)
+                             ),
+                             p(
+                               translatedNow(" Die Blaue Stelle ist ein ", lang),
+                               span(translatedNow("Ausrichtungsmarker", lang), styleAttr := "color: #0000FF; font-weight: bold;"),
+                               translatedNow(". Dieser Hilft den QR Code auf unebenen Flächen (z.B Verpackungen) zu lesen.", lang)
+                             ),
+                             p(
+                               translatedNow(" Der Grüne Bereich sind die ", lang),
+                               span("Timing-Patterns", styleAttr := "color: #00AA00; font-weight: bold;"),
+                               translatedNow("(Synchronisationslinien). Hier wechseln sich schwarze und weiße Pixel ab. Mithilfe dieser Anordnung wird die Größe des QR Codes bestimmt.", lang)
+                             ),
+                             p(
+                               translatedNow(" Da viele verschiedene QR Code Versionen existieren, wird eine ", lang),
+                               span(translatedNow("Versionsnummer", lang), styleAttr := "color: #FFCC00; font-weight: bold;"),
+                               translatedNow(" festgehalten. Die ", lang),
+                               span(translatedNow("Metadaten", lang), styleAttr := "color: #FF8800; font-weight: bold;"),
+                               translatedNow(" sind Informationen über den Aufbau des QR Codes (z.B die Verwendete Maske).", lang)
+                             ),
+                             p(translatedNow(" Weiterhin haben alle QR Codes einen weißen Rand um den Code, damit dieser gelesen werden kann. Diesen Rand nennt man die Randzone. \nDie genauen bereiche können je nach QR Code Version variieren, aber es gibt immer bestimmte Bereiche, die nicht für die Nachricht verwendet werden können.", lang))
+                           )
+                         }
                       )
                     else
                       emptyNode
@@ -1784,8 +2454,8 @@ object Main:
               val showMaskierungAufgabe6InfoVar = infoBoxVar("qr-infobox-maskierung-6")
               val showMaskierungAufgabe8InfoVar = infoBoxVar("qr-infobox-maskierung-8")
               div(
-                h1("Maskierung"),
-                TimeBadge(45),
+                h1(child.text <-- languageVar.signal.map(lang => chapterTitle("maskierung", lang))),
+                TimeBadge(40),
                 renderExercise(
                    "Beschreibe was beim scannen des QR Codes passiert und stelle begründete Vermutungen dazu an.",
                   Set("unlesbar", "schwarze"),
@@ -1796,13 +2466,14 @@ object Main:
                   Some(() => markInfoBoxShown("qr-infobox-maskierung-1", showMaskierungInfoVar)),
                   solutionText = Some(
                     "Der QR-Code wirkt unlesbar, weil viele schwarze Bereiche zusammenhaengen. Eine Maskierung sorgt spaeter fuer bessere Lesbarkeit."
-                  )
+                  ),
+                  wrongHint = Some("Hinweis: Achte auf große gleichfarbige Flächen und erkläre, warum Scanner damit Probleme haben können.")
                 ),
-                child <-- showMaskierungInfoVar.signal.map { show =>
+                child <-- withAdminOverride(showMaskierungInfoVar.signal).map { show =>
                   if show then
                     Infotext(
                       "Maskierung im QR-Code",
-                      "Wie du vielleicht bemerkt hast, war der QR-Code von einem Scanner nicht lesbar. Um einen Besseren Kontrast zwischen weißen und schwarzen Pixeln herzustellen, werden Pixel nach einem bestimmten Muster(Maske) umgefärbt." +
+                      "Wie du vielleicht bemerkt hast, war der QR-Code von einem Scanner nicht lesbar. Um einen Besseren Kontrast zwischen weißen und schwarzen Pixeln herzustellen, werden Pixel nach einem bestimmten Muster(Maske) umgefärbt. " +
                       "Diesen Prozess nennt man Maskierung. Die Maskierung sorgt dafür, dass der QR-Code besser lesbar ist und von Scannern zuverlässiger erkannt werden kann.\n" +
                       "Als nächstes schauen wir uns einmal an, wie genau die Maskierung funktioniert, welche Probleme es dabei gibt und wie diese gelöst werden können."
                     )
@@ -1814,7 +2485,7 @@ object Main:
                 renderExercise(
                   "Erläutere am Beispiel der Daten von Aufgabe 3, was die Probleme sind, wenn man nur eine feste Maske verwendet." +
                   " Beschreibe zusätzlich eine mögliche Lösung, um diese Probleme zu umgehen.",
-                  Set("schwarz", "Maske"),
+                  Set("Muster", "Maske"),
                   4,
                   None,
                   "maskierung",
@@ -1822,10 +2493,11 @@ object Main:
                   Some(() => markInfoBoxShown("qr-infobox-maskierung-4", showMaskierungAufgabe4InfoVar)),
                   solutionText = Some(
                     "Eine feste Maske kann je nach Daten unguenstige Muster erzeugen, z. B. das viele benachbarte Pixel schwarz sind. " +
-                    "Dadurch wird der QR-Code für einen Scanner schlechter lesbar oder kann mit Timing-Patterns kollidieren. " 
-                  )
+                    "Dadurch wird der QR-Code für einen Scanner schlechter lesbar oder kann mit Timing-Patterns(abwechselnd schwarze und weiße Pixel) kollidieren. " 
+                  ),
+                  wrongHint = Some("Hinweis: Gehe darauf ein, wie ungünstige Muster entstehen können und wie diese aussehen.")
                 ),
-                child <-- showMaskierungAufgabe4InfoVar.signal.map { show =>
+                child <-- withAdminOverride(showMaskierungAufgabe4InfoVar.signal).map { show =>
                   if show then
                     Infotext(
                       "Mehrere Masken in QR-Codes",
@@ -1846,7 +2518,8 @@ object Main:
                   solutionText = Some(
                     "Beispiel: Maske 0 verwendet (Zeile + Spalte) % 2 == 0. " +
                     "Das bedeutet: Wenn die Summe aus Zeilen- und Spaltenindex gerade ist, wird das Pixel umgefaerbt."
-                  )
+                  ),
+                  wrongHint = Some("Hinweis: Erkläre eine konkrete Maskenregel mit Zeile, Spalte und Modulo.")
                 ),
                 renderExercise(
                   "Vermute, woher der Scanner weiß, welche Maske angewandt wurde.",
@@ -1857,7 +2530,7 @@ object Main:
                   None,
                   Some(() => markInfoBoxShown("qr-infobox-maskierung-6", showMaskierungAufgabe6InfoVar))
                 ),
-                child <-- showMaskierungAufgabe6InfoVar.signal.map { show =>
+                child <-- withAdminOverride(showMaskierungAufgabe6InfoVar.signal).map { show =>
                   if show then
                     div(
                       cls := "infotext",
@@ -1879,17 +2552,18 @@ object Main:
                 renderMaskierungAufgabe7(),
                 renderExercise(
                   "Beschreibe, was dir bei der doppelten Maskierung aufgefallen ist. Erkläre, wofür diese Eigenschaft nützlich sein könnte.",
-                  Set("Daten"),
+                  Set("ursprünglich", "Daten","Ursprungsdaten"),
                   8,
                   None,
                   "maskierung",
                   None,
                   Some(() => markInfoBoxShown("qr-infobox-maskierung-8", showMaskierungAufgabe8InfoVar)),
                   solutionText = Some(
-                    "Wird die Maske zweimal angewandt, entstehen wieder die urspruenglichen Daten. Das vereinfacht das Maskieren und Demaskieren."
-                  )
+                    "Wird die Maske zweimal angewandt, entstehen wieder die Ursprungsdaten. Das vereinfacht das Maskieren und Demaskieren, da für beides die gleiche Maske genutzt werden kann."
+                  ),
+                  wrongHint = Some("Hinweis: Vergleiche die Ursprungsdaten mit einmaligem und zweimaligem Maskierten Daten. ")
                 ),
-                child <-- showMaskierungAufgabe8InfoVar.signal.map { show =>
+                child <-- withAdminOverride(showMaskierungAufgabe8InfoVar.signal).map { show =>
                   if show then
                     Infotext(
                       "Vorteile der XOR-Operation",
@@ -1917,8 +2591,8 @@ object Main:
             }
           else if hash == "#fehlerkorrektur" then  
             div(
-              h1("Fehlerkorrektur"),
-              TimeBadge(45),
+              h1(child.text <-- languageVar.signal.map(lang => chapterTitle("fehlerkorrektur", lang))),
+              TimeBadge(40),
               {
                 val showFehlerkorrekturAufgabe2InfoVar = infoBoxVar("qr-infobox-fehlerkorrektur-2")
                 val showFehlerkorrekturAufgabe3InfoVar = infoBoxVar("qr-infobox-fehlerkorrektur-3")
@@ -1936,17 +2610,17 @@ object Main:
                         div(
                           styleAttr := "text-align: center;",
                           imageWithFallback("qr_mitfehler", "QR-Code mit Stickern", 220),
-                          p("QR-Code mit Stickern")
+                          p(child.text <-- languageVar.signal.map(lang => translatedNow("QR-Code mit Stickern", lang)))
                         ),
                         div(
                           styleAttr := "text-align: center;",
                           imageWithFallback("qr_ohnefehler", "QR-Code ohne Sticker", 220),
-                          p("QR-Code ohne Sticker")
+                          p(child.text <-- languageVar.signal.map(lang => translatedNow("QR-Code ohne Sticker", lang)))
                         ),
                         div(
                           styleAttr := "text-align: center;",
                           imageWithFallback("qr_MitLogo", "QR-Code mit Logo", 220),
-                          p("QR-Code mit Logo")
+                          p(child.text <-- languageVar.signal.map(lang => translatedNow("QR-Code mit Logo", lang)))
                         )
                       )
                     ),
@@ -1977,7 +2651,7 @@ object Main:
                       ("QR-Code mit Logo", true)
                     ))
                   ),
-                  child <-- showFehlerkorrekturAufgabe2InfoVar.signal.map { show =>
+                  child <-- withAdminOverride(showFehlerkorrekturAufgabe2InfoVar.signal).map { show =>
                     if show then
                       Infotext(
                         "Hinweis zur Fehlerkorrektur",
@@ -1990,24 +2664,28 @@ object Main:
                   },
                   renderExercise(
                     "Vergleiche die beiden Situationen. Beurteile, welcher der beiden Fehler schwieriger zu korrigieren und erkennen ist. \n" +
-                    "Situation 1: Du telst deine Adresse deinem Freund mit einer Notiz mit. Leider verschmiert die Tinte an einer Stelle, sodass statt einem Buchstabe ein schwarzer Fleck zu sehen ist. \n" +
-                    "Situation 2: Du telst deine Adresse deinem Freund mit einer Notiz mit. Leider hast du dich bei der Hausnummer verschrieben und statt 13 steht dort 73.",
-                    Set(),
+                    "Situation 1: Du teilst deine Adresse deinem Freund mit einer Notiz mit. Leider verschmiert die Tinte an einer Stelle, sodass statt einem Buchstabe ein schwarzer Fleck zu sehen ist. \n" +
+                    "Situation 2: Du teilst deine Adresse deinem Freund mit einer Notiz mit. Leider hast du dich bei der Hausnummer verschrieben und statt 13 steht dort 73.",
+                    Set("Situation 2"),
                     3,
                     None,
                     "fehlerkorrektur",
                     None,
                     Some(() => markInfoBoxShown("qr-infobox-fehlerkorrektur-3", showFehlerkorrekturAufgabe3InfoVar)),
+                    solutionText = Some(
+                      "Situation 2 ist schwerer zu erkennen und zu korrigieren, da der Fehler nicht sofort auffällt. Die falsche Hausnummer wirkt auf den ersten Blick plausibel, obwohl sie inhaltlich falsch ist."
+                    ),
+                    wrongHint = Some("Hinweis: Entscheide dich für eine Situation. Überlege dir bei welcher Notiz du mehr Probleme hast den Fehler zu erkennen."),
                     isExcursus = true
                   ),
-                  child <-- showFehlerkorrekturAufgabe3InfoVar.signal.map { show =>
+                  child <-- withAdminOverride(showFehlerkorrekturAufgabe3InfoVar.signal).map { show =>
                     if show then
                       Infotext(
                         "Fehlertypen erkennen",
-                        "Es gibt zwei Haupttypen von Fehlern: " +
-                        "Ausfallsfehler (auch Löschfehler genannt): Ein Zeichen wird vollständig entfernt oder ist unlesbar. " +
-                        "Substitutionsfehler: Ein Zeichen wird durch ein anderes ersetzt. " +
-                        "Substitutionsfehler sind oft schwieriger zu erkennen, da der Text syntaktisch korrekt bleibt, aber semantisch falsch ist. " +
+                        "Es gibt zwei Haupttypen von Fehlern: \n" +
+                        "Ausfallfehler (auch Löschfehler genannt): Ein Zeichen wird vollständig entfernt oder ist unlesbar. \n" +
+                        "Substitutionsfehler: Ein Zeichen wird durch ein anderes ersetzt. \n" +
+                        "Substitutionsfehler sind oft schwieriger zu erkennen, da der Text syntaktisch(richtige Zeichen werden verwendet) korrekt bleibt, aber semantisch (Bedeutung der Zeichen) falsch ist. \n" +
                         "Durch Redundanz (zusätzliche Informationen) können beide Fehlertypen erkannt und teilweise korrigiert werden."
                       )
                     else
@@ -2017,29 +2695,31 @@ object Main:
                     "Eine Möglichkeit mit Fehlern umzugehen ist es, eine Prüfsumme zu verwenden. Dabei werden bestimmte Zeichen in der Nachricht gezählt und die Anzahl der Zeichen an das Ende angehangen. "+
                     "Ein Beispiel wäre, dass die Zeichenanzahl gezählt wird. Aus der Nachricht 'Hallo' würde dann die Nachricht 'Hallo5' werden. \n" +
                     "Beschreibe, welche Arten von Fehlern mit dieser Methode erkannt oder korrigiert werden können. Begründe deine Antwort.",
-                    Set("Ausfallsfehler"),
+                    Set("Ausfallfehler, Löschfehler"),
                     4,
                     None,
                     "fehlerkorrektur",
                     solutionText = Some(
-                      "Eine Pruefsumme kann Ausfallsfehler oder fehlende Zeichen erkennen, aber nicht direkt korrigieren."
+                      "Eine Pruefsumme kann Ausfallfehler oder fehlende Zeichen erkennen, aber nicht direkt korrigieren."
                     ),
+                    wrongHint = Some("Hinweis: Überlege dir welche Fehlerart erkannt wird."),
                     isExcursus = true
                   ),
                   renderExercise(
                     "Was sind die Probleme mit diesem Verfahren? Überlege dir dazu, wie die Nachricht 'Hallo5' mit einer Prüfsumme aussehen müsste.",
-                    Set("Eindeutig"),
+                    Set("Hallo5"),
                     5,
                     None,
                     "fehlerkorrektur",
                     solutionText = Some(
                       "Das Problem ist, dass durch das erhalten einer Nachricht nicht klar ist, ob die Nachricht 'Hallo' mit der Prüfsumme '5' oder die Nachricht 'Hallo5' mit der Prüfsumme '6' gemeint ist. Es gibt also keine eindeutige Zuordnung zwischen Nachricht und Prüfsumme."
                     ),
+                    wrongHint = Some("Hinweis: Prüfe die Mehrdeutigkeit am Beispiel 'Hallo5' und warum die Zuordnung nicht eindeutig ist."),
                     isExcursus = true
                   ),
                   renderExercise(
-                    "Beschreibe eine Methode, wie Fehler nicht nur erkannt, sondern auch korrigiert werden können am Beispiel der Nachricht '12345'. (Tipp: Überlege dir, was du machst, wenn eine Information von einer Person im Gespräch nicht verstanden wurde.)",
-                    Set("2"),
+                    "Beschreibe eine Methode, wie Fehler nicht nur erkannt, sondern auch korrigiert werden können am Beispiel der Nachricht '12345'. (Tipp: Überlege dir, was du machst, wenn deine Information von einer Person im Gespräch nicht verstanden wurde.)",
+                    Set("2","nochmal", "1234512345"),
                     6,
                     None,
                     "fehlerkorrektur",
@@ -2047,14 +2727,15 @@ object Main:
                     solutionText = Some(
                       "Man kann die Nachricht 2 mal senden, z.B. 1234512345. Wenn der erste Teil der Nachricht unleserlich ist, kann die Nachricht durch den 2. Teil dann immernoch gelesen werden."
                     ),
+                    wrongHint = Some("Hinweis: Nutze Redundanz. Überlege dir, wie du die Nachricht so erweitern kannst, dass sie auch bei Fehlern noch lesbar bleibt."),
                     isExcursus = true
                   ),
-                  child <-- showFehlerkorrekturAufgabe6InfoVar.signal.map { show =>
+                  child <-- withAdminOverride(showFehlerkorrekturAufgabe6InfoVar.signal).map { show =>
                     if show then
                       Infotext(
                         "Redundanz statt Wiederholung",
-                        "Nochmal senden (oder nochmal scannen) sollte möglichst vermieden werden. Besser ist es, die Redundanz in einer einzigen Nachricht zu uebertragen, z.B. indem die Nachricht doppelt enthalten ist. " +
-                        "So entsteht nur ein Kommunikationsprozess statt zwei getrennten Uebertragungen. Kommunikationsprozesse sollten minimiert werden, um Zeitaufwand und Fehlerquellen zu reduzieren."
+                        "Nochmal senden (oder nochmal scannen) sollte möglichst vermieden werden. Besser ist es, die Redundanz in einer einzigen Nachricht zu übertragen, z.B. indem die Nachricht doppelt enthalten ist. " +
+                        "So entsteht nur ein Kommunikationsprozess statt zwei getrennten Übertragungen. Kommunikationsprozesse sollten minimiert werden, um Zeitaufwand und Fehlerquellen zu reduzieren."
                       )
                     else
                       emptyNode
@@ -2078,7 +2759,7 @@ object Main:
                     showEditor = false
                   ),
                   renderExercise(
-                    "Überlege dir, wie die Anzahl der zusätzlichen Daten mit der Fehlerkorrektur zusammenhängt. Erkläre warum ein hohes Korrekturlevel nicht immer die beste Wahl ist.",
+                    "Überlege dir, wie die Anzahl der zusätzlichen Daten mit der Fehlerkorrektur zusammenhängt. Erkläre warum ein hohes Korrekturlevel (Die Möglichkeit trotz vieler Fehler die Nachricht noch zu lesen) nicht immer die beste Wahl ist.",
                     Set("Daten", "zusätzlich"),
                     8,
                     None,
@@ -2087,9 +2768,10 @@ object Main:
                     solutionText = Some(
                       "Mehr Fehlerkorrektur bedeutet mehr genutzen Speicher. Dadurch steigt die Robustheit, aber es bleibt weniger Platz für Daten. Ein hohes Korrekturlevel ist nur sinnvoll, wenn die Umgebung viele Fehler verursacht."
                     ),
+                    wrongHint = Some("Hinweis: Beschreibe, wie die Menge der übertragenen Daten mit dem Korrekturlevel zusammenhängt."),
                     isExcursus = true
                   ),
-                  child <-- showFehlerkorrekturAufgabe8InfoVar.signal.map { show =>
+                  child <-- withAdminOverride(showFehlerkorrekturAufgabe8InfoVar.signal).map { show =>
                     if show then
                       Infotext(
                         "Trade-off Fehlerkorrektur",
@@ -2101,8 +2783,8 @@ object Main:
                   },
                   renderFehlerkorrekturLueckentext(),
                   renderExercise(
-                    "Erkläre, wie in QR-Codes mehr Daten gespeichert werden können und welche Auswirkungen das auf die Fehlerkorrektur hat.",
-                    Set("weniger", "Daten"),
+                    "Erkläre, welche Auswirkungen ein hohes Fehlerkorrektur in QR-Codes auf die Menge der Daten hat.",
+                    Set("begrenzt", "Daten"),
                     10,
                     None,
                     "fehlerkorrektur",
@@ -2110,9 +2792,10 @@ object Main:
                     solutionText = Some(
                       "Der verfügbare Speicher eines QR-Codes ist begrenzt. Wird ein höheres Korrekturlevel gewählt, wird mehr Speicher für Fehlerkorrektur benötigt, sodass weniger Platz für Daten bleibt. " +
                       "Umgekehrt: Werden alle verfügbaren Plätze mit Daten gefüllt, muss ein niedriges Korrekturlevel gewählt werden, um Redundanz zu sparen."
-                    )
+                    ),
+                    wrongHint = Some("Hinweis: Erkläre, wie sich Korrekturlevel und Datenkapazität gegenseitig beeinflussen.")
                   ),
-                  child <-- showFehlerkorrekturAufgabe10InfoVar.signal.map { show =>
+                  child <-- withAdminOverride(showFehlerkorrekturAufgabe10InfoVar.signal).map { show =>
                     if show then
                       Infotext(
                         "Speicheraustausch in QR-Codes",
@@ -2128,6 +2811,7 @@ object Main:
                   renderQRCodeExerciseWithMetadata(
                     11,
                     "fehlerkorrektur",
+                    "Im folgenden QR-Code kannst du eine Nachricht in das Textfeld eingeben. Mit einem Klick auf 'Metadaten anzeigen' kannst du dir zusätzlich die Metadaten(Versionsnummer + Maskennummer) in den QR-Code laden. Durch einen Klick auf 'Fehlerkorrektur anzeigen' kannst du dir die Fehlerkorrektur-Pixel anzeigen lassen. Teste verschiedene Eingaben. \nBeachte, dass der QR Code nicht Scanbar ist, da keine Maske auf den QR Code angewandt wird.",
                     "Im folgenden QR-Code kannst du eine Nachricht in das Textfeld eingeben. Mit einem Klick auf 'Metadaten anzeigen' kannst du dir zusätzlich die Metadaten(Versionsnummer + Maskennummer) in den QR-Code laden. Durch einen Klick auf 'Fehlerkorrektur anzeigen' kannst du dir die Fehlerkorrektur-Pixel anzeigen lassen. Teste verschiedene Eingaben. \n" +
                     "Beachte, dass der QR Code nicht Scanbar ist, da keine Maske auf den QR Code angewandt wird."
                     
@@ -2147,8 +2831,8 @@ object Main:
             )
           else if hash == "#praxisanwendungen" then  
             div(
-              h1("Praxisanwendungen"),
-              TimeBadge(45),
+              h1(child.text <-- languageVar.signal.map(lang => chapterTitle("praxisanwendungen", lang))),
+              TimeBadge(50),
               renderExercise(
                 "Beschreibe drei Anwendungen, in denen QR-Codes sinnvoll eingesetzt werden. Begründe jeweils kurz.",
                 Set("sinnvoll"),
@@ -2157,7 +2841,8 @@ object Main:
                 "praxisanwendungen",
                 solutionText = Some(
                   "Sinnvoll sind z.B. Ticketkontrolle, Produktinfos im Handel und schnelle Links auf Plakaten."
-                )
+                ),
+                wrongHint = Some("Hinweis: Nenne drei konkrete Einsatzbereiche und begründe jeweils den praktischen Nutzen. Nutze dabei das Wort sinnvoll.")
               ),
               renderExercise(
                 "Plane eine konkrete Anwendung im Schulalltag: Beschreibe Ziel, Inhalt des QR-Codes und Ort der Platzierung.",
@@ -2167,7 +2852,8 @@ object Main:
                 "praxisanwendungen",
                 solutionText = Some(
                   "In der Schule koennte das Ziel sein, Material zu verteilen; der QR-Code enthaelt den Link, die Platzierung ist am Klassenraum."
-                )
+                ),
+                wrongHint = Some("Hinweis: Formuliere Ziel, QR-Inhalt und Platzierung als drei getrennte Punkte.")
               ),
               renderExercise(
                 "Die Schulleitung überlegt, wie man erfassen könnte, welche Schüler das Gelände verlassen. Momentan wird dafür eine Lehrkraft eingesetzt, welche sich die Schülerausweise zeigen lässt. \n"+
@@ -2178,8 +2864,9 @@ object Main:
                 None,
                 "praxisanwendungen",
                 solutionText = Some(
-                  "Ein Vorteil ist die direkte Kontrolle durch eine Lehrkraft. Ein Nachteil ist der hohe Aufwand und moegliche Fehler beim Nachschlagen."
-                )
+                  "Ein Vorteil ist die direkte Kontrolle durch eine Lehrkraft. Dieser kann die Schüler aufhalten und ist flexibel in der Entscheidung. Ein Nachteil ist der hohe Aufwand und moegliche Fehler beim Nachschlagen."
+                ),
+                wrongHint = Some("Hinweis: Nenne je zwei Vor- und Nachteile der aktuellen Kontrolle und trenne sie klar.")
               ),
               renderExercise(
                 "Erläutere, wie du den Sachverhalt aus Aufgabe 3 mit einem QR-Code lösen würdest. Gehe dabei auch darauf ein, welche Daten im QR-Code gespeichert werden müssen und wie die Ausgangskontrolle dadurch automatisiert funktionieren könnte.",
@@ -2236,7 +2923,7 @@ object Main:
                 minWordCount = Some(50)
               ),
               div(
-                h3("Aufgabe 11"),
+                h3(child.text <-- languageVar.signal.map(lang => if lang == "en" then "Task 11" else "Aufgabe 11")),
                 p("Um das Speichern der Daten einmal auszuprobieren, erstelle einen QR-Code mit deinen Daten (Du kannst dir dafür natürlich auch welche ausdenken)."),
                 p(
                   "Gehe dafür auf die Webseite ",
@@ -2250,12 +2937,11 @@ object Main:
                   " und wähle dort den Typ 'VCard' aus. Fülle die Informationen aus."
                 ),
                 p("Überprüfe, ob der QR-Code funktioniert, indem du ihn mit deinem Smartphone scannst. Wenn alles funktioniert hat, kannst du dir den QR-Code als Bild speichern, ausdrucken und in deine Handyhülle legen."),
-                p("Beschreibe, welche Daten du außerdem in einer VCard speichern könntest und welche Vorteile dies hat."),
                 {
                   val checkboxStates = Var(List(false, false, false, false, false))
                   div(
                     styleAttr := "margin-top: 1rem; padding: 1rem; background-color: #f9f9f9; border-radius: 4px;",
-                    h4("Fortschritt", styleAttr := "margin-top: 0;"),
+                    h4("Hake alle Kästchen nach dem Abarbeiten ab.", styleAttr := "margin-top: 0;"),
                     div(
                       styleAttr := "display: flex; flex-direction: column; gap: 0.5rem;",
                       label(
@@ -2297,17 +2983,8 @@ object Main:
                           }
                         ),
                         " QR-Code als Bild gespeichert/ausgedruckt"
-                      ),
-                      label(
-                        input(
-                          typ := "checkbox",
-                          checked <-- checkboxStates.signal.map(_(4)),
-                          onInput.mapToChecked --> { checked =>
-                            checkboxStates.update(states => states.updated(4, checked))
-                          }
-                        ),
-                        " Beschreibung weiterer VCard-Daten und Vorteile verfasst"
                       )
+                      
                     )
                   )
                 },
@@ -2323,7 +3000,7 @@ object Main:
             )
           else if hash == "#zusammenfassung" then
             div(
-              h1("Zusammenfassung"),
+              h1(child.text <-- languageVar.signal.map(lang => chapterTitle("zusammenfassung", lang))),
               TimeBadge(60),
               {
                 val zusammenfassungMessageVar = Var("")
@@ -2359,8 +3036,8 @@ object Main:
                 
                 
                 div(
-                  h3("Aufgabe 1"),
-                  p("Im folgenden QR-Code kannst du eine Nachricht in das Textfeld eingeben. Mit den Checkboxen kannst du Metadaten anzeigen oder die Fehlerkorrektur-Pixel sehen. Teste verschiedene Eingaben und überprüfe das Ergebnis mit einem QR-Code Scanner."),
+                  h3(child.text <-- languageVar.signal.map(lang => if lang == "en" then "Task 1" else "Aufgabe 1")),
+                  p(child.text <-- languageVar.signal.map(lang => translatedNow("Im folgenden QR-Code kannst du eine Nachricht in das Textfeld eingeben. Mit den Checkboxen kannst du Metadaten anzeigen oder die Fehlerkorrektur-Pixel sehen. Teste verschiedene Eingaben und überprüfe das Ergebnis mit einem QR-Code Scanner.", lang))),
                   div(
                     styleAttr := "display: flex; gap: 9rem; align-items: flex-start; margin-bottom: 2rem;",
                   // Linke Spalte: Input und Checkboxen
@@ -2370,7 +3047,7 @@ object Main:
                       cls := "qr-input-container",
                       input(
                         typ := "text",
-                        placeholder := "Deine Nachricht hier...",
+                        placeholder <-- languageVar.signal.map(lang => translatedNow("Deine Nachricht hier...", lang)),
                         cls := "message-input",
                         styleAttr := "min-height: 50px; font-size: 16px; width: 100%;",
                         controlled(
@@ -2384,11 +3061,11 @@ object Main:
                           } --> zusammenfassungMessageVar.writer
                         )
                       ),
-                      child <-- exceedsLimitVar.signal.map { exceeds =>
+                      child <-- Signal.combineWithFn(exceedsLimitVar.signal, languageVar.signal) { (exceeds, lang) =>
                         if exceeds then
                           div(
                             styleAttr := "color: red; font-weight: bold; margin-top: 0.5rem;",
-                            "Maximale Anzahl an Zeichen für den QR Code Typen erreicht"
+                            translatedNow("Maximale Anzahl an Zeichen für den QR Code Typen erreicht", lang)
                           )
                         else
                           emptyNode
@@ -2404,7 +3081,7 @@ object Main:
                           onChange.map(_.target.asInstanceOf[org.scalajs.dom.HTMLInputElement].checked) --> metadataActive.writer,
                           styleAttr := "cursor: pointer;"
                         ),
-                        span("Metadaten", styleAttr := "font-weight: 500; font-size: 0.9rem;")
+                        span(child.text <-- languageVar.signal.map(lang => translatedNow("Metadaten", lang)), styleAttr := "font-weight: 500; font-size: 0.9rem;")
                       ),
                       label(
                         styleAttr := "display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.75rem 0.75rem; background-color: #bbdefb; border-radius: 4px; border: 1px solid #64b5f6; user-select: none; white-space: nowrap;",
@@ -2414,7 +3091,7 @@ object Main:
                           onChange.map(_.target.asInstanceOf[org.scalajs.dom.HTMLInputElement].checked) --> errorCorrectionActive.writer,
                           styleAttr := "cursor: pointer;"
                         ),
-                        span("Fehlerkorrektur", styleAttr := "font-weight: 500; font-size: 0.9rem;")
+                        span(child.text <-- languageVar.signal.map(lang => translatedNow("Fehlerkorrektur", lang)), styleAttr := "font-weight: 500; font-size: 0.9rem;")
                       ),
                       label(
                         styleAttr := "display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.75rem 0.75rem; background-color: #fff3cd; border-radius: 4px; border: 1px solid #ffc107; user-select: none; white-space: nowrap;",
@@ -2424,7 +3101,7 @@ object Main:
                           onChange.map(_.target.asInstanceOf[org.scalajs.dom.HTMLInputElement].checked) --> maskActive.writer,
                           styleAttr := "cursor: pointer;"
                         ),
-                        span("Maske", styleAttr := "font-weight: 500; font-size: 0.9rem;")
+                        span(child.text <-- languageVar.signal.map(lang => translatedNow("Maske", lang)), styleAttr := "font-weight: 500; font-size: 0.9rem;")
                       )
                     )
                   ),
@@ -2461,19 +3138,20 @@ object Main:
                     if allReady then
                       div(
                         styleAttr := "flex: 0 0 auto;",
-                        h4("Scanbarer QR Code", styleAttr := "margin-top: 0; margin-bottom: 0.5rem;"),
+                        h4(child.text <-- languageVar.signal.map(lang => translatedNow("Scanbarer QR Code", lang)), styleAttr := "margin-top: 0; margin-bottom: 0.5rem;"),
                         generateQRCode(text, 220)
                       )
                     else if text.nonEmpty then
+                      val lang = languageVar.now()
                       val missing = List(
-                        if !isMeta then Some("Metadaten") else None,
-                        if !isError then Some("Fehlerkorrektur") else None,
-                        if !isMask then Some("Maske") else None
+                        if !isMeta then Some(translatedNow("Metadaten", lang)) else None,
+                        if !isError then Some(translatedNow("Fehlerkorrektur", lang)) else None,
+                        if !isMask then Some(translatedNow("Maske", lang)) else None
                       ).flatten.mkString(", ")
-                      
+
                       div(
                         styleAttr := "color: #d32f2f; font-weight: bold; padding: 0.75rem; background-color: #ffebee; border-radius: 4px; border: 1px solid #d32f2f; font-size: 0.85rem; max-width: 200px;",
-                        s"Noch erforderlich: $missing"
+                        s"${translatedNow("Noch erforderlich:", lang)} $missing"
                       )
                     else
                       emptyNode
@@ -2497,7 +3175,7 @@ object Main:
         )
           else if hash == "#barcodes" then
             div(
-              h1("Barcode"),
+              h1(child.text <-- languageVar.signal.map(lang => chapterTitle("barcodes", lang))),
               TimeBadge(30),
               renderExercise(
                 "Recherchiere im Internet nach Barcodes. Beschreibe den Aufbau eines typischen Barcodes.",
@@ -2534,31 +3212,52 @@ object Main:
             )
           else
             div(
-              h1("Einleitung"),
-              TimeBadge(15),
-              div(
-                styleAttr := "margin-top: 2rem; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));",
+              h1(child.text <-- languageVar.signal.map(lang => chapterTitle("einfuehrung", lang))),
+              TimeBadge(10),
+              {
+                val showMaterialsVar = Var(false)
                 div(
-                  styleAttr := "padding: 1.25rem; background: #eef5ff; border-radius: 10px; border-left: 4px solid #4a78d3;",
-                  h3(styleAttr := "margin-top: 0; color: #1f3b73;", "Benötigte Arbeitsmaterialien"),
-                  p(styleAttr := "margin: 0.5rem 0; color: #2d4a7a;", "Geräte"),
-                  ul(
-                    styleAttr := "margin: 0.5rem 0; padding-left: 1.25rem; color: #2d4a7a;",
-                    li("Computer mit Internetzugang"),
-                    li("Smartphone mit Kamera")
-                  )
-                ),
-                div(
-                  styleAttr := "padding: 1.25rem; background: #eef8f2; border-radius: 10px; border-left: 4px solid #2f7d4e;",
-                  h3(styleAttr := "margin-top: 0; color: #1d4b2f;", "Scanner-Tools"),
-                  p(styleAttr := "margin: 0.5rem 0; color: #2b5a3d;", "Apps und Kamera"),
-                  ul(
-                    styleAttr := "margin: 0.5rem 0; padding-left: 1.25rem; color: #2b5a3d;",
-                    li("QR-Code-Scanner-App"),
-                    li("Alternativ: Kamera-App mit QR-Scan")
-                  )
-                ),
-              ),
+                  styleAttr := "margin-top: 2rem; padding: 0.75rem 1rem; background: #f7faff; border-radius: 12px; border: 1px solid #cddcf3;",
+                  button(
+                    typ := "button",
+                    cls := "btn-primary",
+                    styleAttr := "padding: 0.45rem 0.8rem;",
+                    child.text <-- Signal.combineWithFn(showMaterialsVar.signal, languageVar.signal) { (show, lang) =>
+                      if show then translatedNow("Benötigte Arbeitsmittel ausblenden", lang)
+                      else translatedNow("Benötigte Arbeitsmittel anzeigen", lang)
+                    },
+                    onClick --> (_ => showMaterialsVar.update(v => !v))
+                  ),
+                  child <-- showMaterialsVar.signal.map { show =>
+                    if show then
+                      div(
+                        styleAttr := "margin-top: 0.9rem; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));",
+                        div(
+                          styleAttr := "padding: 1.25rem; background: #eef5ff; border-radius: 10px; border-left: 4px solid #4a78d3;",
+                          h3(styleAttr := "margin-top: 0; color: #1f3b73;", "Benötigte Arbeitsmaterialien"),
+                          p(styleAttr := "margin: 0.5rem 0; color: #2d4a7a;", "Geräte"),
+                          ul(
+                            styleAttr := "margin: 0.5rem 0; padding-left: 1.25rem; color: #2d4a7a;",
+                            li("Computer mit Internetzugang"),
+                            li("Smartphone mit Kamera")
+                          )
+                        ),
+                        div(
+                          styleAttr := "padding: 1.25rem; background: #eef8f2; border-radius: 10px; border-left: 4px solid #2f7d4e;",
+                          h3(styleAttr := "margin-top: 0; color: #1d4b2f;", "Scanner-Tools"),
+                          p(styleAttr := "margin: 0.5rem 0; color: #2b5a3d;", "Apps und Kamera"),
+                          ul(
+                            styleAttr := "margin: 0.5rem 0; padding-left: 1.25rem; color: #2b5a3d;",
+                            li("QR-Code-Scanner-App"),
+                            li("Alternativ: Kamera-App mit QR-Scan")
+                          )
+                        )
+                      )
+                    else
+                      emptyNode
+                  }
+                )
+              },
               allgemeineInfos(
                 "QR-Code-Scanner installieren und verwenden",
                 "Um QR-Codes mit deinem Smartphone zu scannen, benötigst du eine Scanner-App:\n" +
@@ -2589,16 +3288,19 @@ object Main:
 
               div(
                 styleAttr := "margin: 2rem 0; padding: 1.5rem; background-color: #f5f5f5; border-radius: 8px;",
-                h3("Deine Angaben", styleAttr := "margin-top: 0;"),
+                h3(
+                  child.text <-- languageVar.signal.map(lang => translatedNow("Deine Angaben", lang)),
+                  styleAttr := "margin-top: 0; font-size: 2rem;"
+                ),
                 div(
                   styleAttr := "display: flex; flex-direction: column; gap: 0.5rem; max-width: 400px;",
                   label(
-                    "Name:",
+                    child.text <-- languageVar.signal.map(lang => translatedNow("Name:", lang)),
                     styleAttr := "font-weight: bold; font-size: 1rem;"
                   ),
                   input(
                     typ := "text",
-                    placeholder := "Dein Name",
+                    placeholder <-- languageVar.signal.map(lang => translatedNow("Dein Name", lang)),
                     styleAttr := "padding: 0.75rem; font-size: 1rem; border: 1px solid #ccc; border-radius: 4px;",
                     value <-- studentNameVar.signal,
                     onInput.mapToValue --> { name =>
@@ -2614,23 +3316,79 @@ object Main:
                   val showInfoBoxVar = infoBoxVar("qr-infobox-einfuehrung-1")
                   div(
                     renderExercise(
-                      "Scanne die QR-Codes und beschreibe deren Inhalte. Beschreibe zusätzlich die Gemeinsamkeiten.", 
+                      "Scanne die QR-Codes und beschreibe deren Inhalte in den Textfeldern unter den QR Codes. Beschreibe zusätzlich die Gemeinsamkeiten.", 
                       Set("qr"), 
                       1, 
                       Some(div(
                         cls := "qr-codes-grid",
-                        generateQRCodeWithCaption("https://example.com", "Beispiel QR-Code 1", 150),
-                        imageWithCaption("/qr_example.png", "Beispiel QR-Code 2", 150),
-                        generateQRCodeWithCaption("Benutze das Wort: QRCode in deiner Abgabe", "Beispiel QR-Code 3", 150)
+                        styleAttr := "display: flex; gap: 1rem; justify-content: center; align-items: flex-start; flex-wrap: nowrap; overflow-x: auto;",
+                        div(
+                          styleAttr := "display: flex; flex-direction: column; align-items: center; gap: 0.5rem; width: 190px;",
+                          div(
+                            styleAttr := "min-height: 245px; display: flex; align-items: flex-start;",
+                            generateQRCodeWithCaption("https://example.com", "Beispiel QR-Code 1", 150)
+                          ),
+                          textArea(
+                            rows := 3,
+                            placeholder <-- languageVar.signal.map(lang => translatedNow("Inhalt von QR-Code 1 beschreiben...", lang)),
+                            styleAttr := "width: 150px; padding: 0.5rem; font-size: 0.9rem; border: 1px solid #ccc; border-radius: 4px; resize: vertical;",
+                            onKeyDown --> { e =>
+                              if (e.ctrlKey || e.metaKey) && e.key.equalsIgnoreCase("v") then
+                                e.preventDefault()
+                            },
+                            onPaste --> { e =>
+                              e.preventDefault()
+                            }
+                          )
+                        ),
+                        div(
+                          styleAttr := "display: flex; flex-direction: column; align-items: center; gap: 0.5rem; width: 190px;",
+                          div(
+                            styleAttr := "min-height: 245px; display: flex; align-items: flex-start;",
+                            imageWithCaption("/qr_example.png", "Beispiel QR-Code 2", 150)
+                          ),
+                          textArea(
+                            rows := 3,
+                            placeholder <-- languageVar.signal.map(lang => translatedNow("Inhalt von QR-Code 2 beschreiben...", lang)),
+                            styleAttr := "width: 150px; padding: 0.5rem; font-size: 0.9rem; border: 1px solid #ccc; border-radius: 4px; resize: vertical;",
+                            onKeyDown --> { e =>
+                              if (e.ctrlKey || e.metaKey) && e.key.equalsIgnoreCase("v") then
+                                e.preventDefault()
+                            },
+                            onPaste --> { e =>
+                              e.preventDefault()
+                            }
+                          )
+                        ),
+                        div(
+                          styleAttr := "display: flex; flex-direction: column; align-items: center; gap: 0.5rem; width: 190px;",
+                          div(
+                            styleAttr := "min-height: 245px; display: flex; align-items: flex-start;",
+                            generateQRCodeWithCaption("Benutze das Wort: QRCode in deiner Abgabe", "Beispiel QR-Code 3", 150)
+                          ),
+                          textArea(
+                            rows := 3,
+                            placeholder <-- languageVar.signal.map(lang => translatedNow("Inhalt von QR-Code 3 beschreiben...", lang)),
+                            styleAttr := "width: 150px; padding: 0.5rem; font-size: 0.9rem; border: 1px solid #ccc; border-radius: 4px; resize: vertical;",
+                            onKeyDown --> { e =>
+                              if (e.ctrlKey || e.metaKey) && e.key.equalsIgnoreCase("v") then
+                                e.preventDefault()
+                            },
+                            onPaste --> { e =>
+                              e.preventDefault()
+                            }
+                          )
+                        )
                       )),
                       "einfuehrung",
                       None,
                       Some(() => markInfoBoxShown("qr-infobox-einfuehrung-1", showInfoBoxVar)),
                       solutionText = Some(
                         "Die QR-Codes enthalten unterschiedliche Inhalte wie eine Webseite, Kontaktdaten von Max Mustermann und einen Hinweis für die Abgabe."
-                      )
+                      ),
+                      wrongHint = Some("Hinweis: Der Hinweis für eine korrekte Abgabe befindet sich im dritten QR-Code.")
                     ),
-                    child <-- showInfoBoxVar.signal.map { show =>
+                    child <-- withAdminOverride(showInfoBoxVar.signal).map { show =>
                       if show then
                         Infotext(
                           "Informationen zur Bearbeitung",
@@ -2651,13 +3409,12 @@ object Main:
                   2,
                   "einfuehrung"
                 ),
-                renderExercise("Beschreibe in 50 Worten, welche Vorstellungen du davon hast, wie QR-Codes funktionieren.", Set(), 3, None, "einfuehrung", Some(() => markChapterCompleted("einfuehrung")), minWordCount = Some(50)),
+                renderExercise("Beschreibe in mindestens 30 Worten, welche Vorstellungen du davon hast, wie QR-Codes funktionieren.", Set(), 3, None, "einfuehrung", Some(() => markChapterCompleted("einfuehrung")), minWordCount = Some(30)),
               ),
-              Rating("einfuehrung"),
               {
-                val praxisUnlockedSignal = completedChaptersVar.signal.map(completed => Set("nachricht", "maskierung", "fehlerkorrektur").subsetOf(completed))
-                val zusammenfassungUnlockedSignal = completedChaptersVar.signal.map(_.contains("praxisanwendungen"))
-                val barcodeUnlockedSignal = merkzettelCreatedVar.signal
+                val praxisUnlockedSignal = withAdminOverride(completedChaptersVar.signal.map(completed => Set("nachricht", "maskierung", "fehlerkorrektur").subsetOf(completed)))
+                val zusammenfassungUnlockedSignal = withAdminOverride(completedChaptersVar.signal.map(_.contains("praxisanwendungen")))
+                val barcodeUnlockedSignal = withAdminOverride(merkzettelCreatedVar.signal)
 
                 def lockedNavButton(label: String, hash: String, unlockedSignal: Signal[Boolean]): Element =
                   a(
@@ -2717,6 +3474,7 @@ object Main:
                   )
                 )
               },
+              Rating("einfuehrung"),
             )
         }
       )
@@ -2916,7 +3674,7 @@ object Main:
     val rowStatusVar: Var[Vector[Option[Boolean]]] = Var(Vector.fill(rows)(None))
 
     div(
-      h2(title),
+      h2(child.text <-- languageVar.signal.map(lang => translatedNow(title, lang))),
       div(
         cls := "pixel-grid-labeled",
         children <-- pixelGrid.signal.combineWith(rowStatusVar.signal).map { case (grid, rowStatus) =>
@@ -2947,7 +3705,7 @@ object Main:
       div(
         cls := "pixel-submit-area",
         button(
-          "Abgeben",
+          child.text <-- languageVar.signal.map(lang => translatedNow("Abgeben", lang)),
           onClick.map { _ =>
             val current = pixelGrid.now()
             val expectedRows: List[Vector[Boolean]] = expectedPatterns.take(rows).map { bits =>
@@ -2969,7 +3727,7 @@ object Main:
         child <-- lastCheckVar.signal.map {
           case Some(true) =>
             span(
-              "Richtrig!",
+              child.text <-- languageVar.signal.map(lang => translatedNow("Richtrig!", lang)),
               styleAttr := "color: #4CAF50; font-weight: bold; margin-top: 0.5rem; display: inline-block;"
             )
           case _ => emptyNode
@@ -2980,31 +3738,36 @@ object Main:
 
   def renderMenu(): Element =
     val menuItems = List(
-      ("#einfuehrung", "Einführung", "einfuehrung"),
-      ("#nachricht", "Nachrichten schreiben", "nachricht"),
-      ("#maskierung", "Maskierung", "maskierung"),
-      ("#fehlerkorrektur", "Fehlerkorrektur", "fehlerkorrektur"),
-      ("#praxisanwendungen", "Praxisanwendungen", "praxisanwendungen"),
-      ("#zusammenfassung", "Zusammenfassung", "zusammenfassung"),
-      ("#barcodes", "Barcode", "barcodes")
+      ("#einfuehrung", "einfuehrung"),
+      ("#nachricht", "nachricht"),
+      ("#maskierung", "maskierung"),
+      ("#fehlerkorrektur", "fehlerkorrektur"),
+      ("#praxisanwendungen", "praxisanwendungen"),
+      ("#zusammenfassung", "zusammenfassung"),
+      ("#barcodes", "barcodes")
     )
     val praxisPrereq = Set("nachricht", "maskierung", "fehlerkorrektur")
-    val praxisUnlockedSignal = completedChaptersVar.signal.map(completed => praxisPrereq.subsetOf(completed))
-    val zusammenfassungUnlockedSignal = completedChaptersVar.signal.map(_.contains("praxisanwendungen"))
-    val barcodesUnlockedSignal = merkzettelCreatedVar.signal
+    val praxisUnlockedSignal = withAdminOverride(completedChaptersVar.signal.map(completed => praxisPrereq.subsetOf(completed)))
+    val zusammenfassungUnlockedSignal = withAdminOverride(completedChaptersVar.signal.map(_.contains("praxisanwendungen")))
+    val barcodesUnlockedSignal = withAdminOverride(merkzettelCreatedVar.signal)
 
     div(
       cls := "navbar",
       // Header mit Titel
       div(
         cls := "navbar-header",
-        h2("QR-Code"),
-        p("Wie wird ein QR-Code erstellt?" )
+        img(
+          src := "https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Fevadid.it%2FLucasQR%2F",
+          alt := "QR-Code zur Kursseite",
+          styleAttr := "width: 84px; height: 84px; display: block; margin: 0 auto 0.75rem auto; background: white; padding: 4px; border-radius: 8px;"
+        ),
+        h2(child.text <-- languageVar.signal.map(lang => if lang == "en" then "QR Code" else "QR-Code")),
+        p(child.text <-- languageVar.signal.map(lang => if lang == "en" then "How is a QR code created?" else "Wie wird ein QR-Code erstellt?"))
       ),
       // Navigation Items
       div(
         cls := "navbar-nav",
-        menuItems.map { case (hash, label, chapterKey) =>
+        menuItems.map { case (hash, chapterKey) =>
           val isPraxis = chapterKey == "praxisanwendungen"
           val isZusammenfassung = chapterKey == "zusammenfassung"
           val isBarcodes = chapterKey == "barcodes"
@@ -3019,8 +3782,7 @@ object Main:
                   "menu-item"
               }
             else if isZusammenfassung then
-              completedChaptersVar.signal.combineWith(merkzettelCreatedVar.signal).map { case (completed, merkzettelCreated) =>
-                val unlocked = completed.contains("praxisanwendungen")
+              Signal.combine(completedChaptersVar.signal, zusammenfassungUnlockedSignal, merkzettelCreatedVar.signal).map { case (completed, unlocked, merkzettelCreated) =>
                 if !unlocked then
                   "menu-item locked"
                 else if completed.contains(chapterKey) || merkzettelCreated then
@@ -3048,12 +3810,12 @@ object Main:
             if isPraxis then
               a(
                 href <-- praxisUnlockedSignal.map(unlocked => if unlocked then hash else "#"),
-                span(label),
+                span(child.text <-- languageVar.signal.map(lang => chapterTitle(chapterKey, lang))),
                 child <-- praxisUnlockedSignal.map { unlocked =>
                   if unlocked then
                     emptyNode
                   else
-                    span(styleAttr := "margin-left: 0.5rem; color: rgba(255, 255, 255, 0.7); font-size: 0.85rem;", "locked")
+                    span(child.text <-- languageVar.signal.map(lang => if lang == "en" then "locked" else "gesperrt"), styleAttr := "margin-left: 0.5rem; color: rgba(255, 255, 255, 0.7); font-size: 0.85rem;")
                 },
                 child <-- completedChaptersVar.signal.combineWith(praxisUnlockedSignal).map { case (completed, unlocked) =>
                   if unlocked && completed.contains(chapterKey) then
@@ -3068,12 +3830,12 @@ object Main:
             else if isZusammenfassung then
               a(
                 href <-- zusammenfassungUnlockedSignal.map(unlocked => if unlocked then hash else "#"),
-                span(label),
+                span(child.text <-- languageVar.signal.map(lang => chapterTitle(chapterKey, lang))),
                 child <-- zusammenfassungUnlockedSignal.map { unlocked =>
                   if unlocked then
                     emptyNode
                   else
-                    span(styleAttr := "margin-left: 0.5rem; color: rgba(255, 255, 255, 0.7); font-size: 0.85rem;", "locked")
+                    span(child.text <-- languageVar.signal.map(lang => if lang == "en" then "locked" else "gesperrt"), styleAttr := "margin-left: 0.5rem; color: rgba(255, 255, 255, 0.7); font-size: 0.85rem;")
                 },
                 child <-- completedChaptersVar.signal.combineWith(zusammenfassungUnlockedSignal).map { case (completed, unlocked) =>
                   if unlocked && completed.contains(chapterKey) then
@@ -3088,12 +3850,12 @@ object Main:
             else if isBarcodes then
               a(
                 href <-- barcodesUnlockedSignal.map(unlocked => if unlocked then hash else "#"),
-                span(label),
+                span(child.text <-- languageVar.signal.map(lang => chapterTitle(chapterKey, lang))),
                 child <-- barcodesUnlockedSignal.map { unlocked =>
                   if unlocked then
                     emptyNode
                   else
-                    span(styleAttr := "margin-left: 0.5rem; color: rgba(255, 255, 255, 0.7); font-size: 0.85rem;", "locked")
+                    span(child.text <-- languageVar.signal.map(lang => if lang == "en" then "locked" else "gesperrt"), styleAttr := "margin-left: 0.5rem; color: rgba(255, 255, 255, 0.7); font-size: 0.85rem;")
                 },
                 child <-- completedChaptersVar.signal.combineWith(barcodesUnlockedSignal).map { case (completed, unlocked) =>
                   if unlocked && completed.contains(chapterKey) then
@@ -3108,7 +3870,7 @@ object Main:
             else
               a(
                 href := hash,
-                span(label),
+                span(child.text <-- languageVar.signal.map(lang => chapterTitle(chapterKey, lang))),
                 child <-- completedChaptersVar.signal.map { completed =>
                   if completed.contains(chapterKey) then
                     span(styleAttr := "margin-left: 0.5rem; color: #123a7a; font-weight: 700;", "✓")
@@ -3125,8 +3887,45 @@ object Main:
       // Save Button at the bottom
       div(
         cls := "navbar-footer",
+        div(
+          styleAttr := "display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 0.5rem;",
+          button(
+            typ := "button",
+            title := "Deutsch",
+            onClick --> (_ => setWorkbookLanguage("de")),
+            styleAttr <-- languageVar.signal.map { lang =>
+              val active = lang == "de"
+              s"width: 56px; height: 32px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.8); cursor: pointer; font-size: 0.8rem; color: #123a7a; font-weight: 700; background: ${if active then "rgba(255,255,255,0.45)" else "rgba(255,255,255,0.25)"}; display: inline-flex; align-items: center; justify-content: center; gap: 0.3rem;"
+            },
+            img(
+              src := "https://flagcdn.com/w20/de.png",
+              alt := "DE",
+              width := "20",
+              height := "15",
+              styleAttr := "display: inline-block; border-radius: 2px;"
+            ),
+            span("DE")
+          ),
+          button(
+            typ := "button",
+            title := "English",
+            onClick --> (_ => setWorkbookLanguage("en")),
+            styleAttr <-- languageVar.signal.map { lang =>
+              val active = lang == "en"
+              s"width: 56px; height: 32px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.8); cursor: pointer; font-size: 0.8rem; color: #123a7a; font-weight: 700; background: ${if active then "rgba(255,255,255,0.45)" else "rgba(255,255,255,0.25)"}; display: inline-flex; align-items: center; justify-content: center; gap: 0.3rem;"
+            },
+            img(
+              src := "https://flagcdn.com/w20/gb.png",
+              alt := "EN",
+              width := "20",
+              height := "15",
+              styleAttr := "display: inline-block; border-radius: 2px;"
+            ),
+            span("EN")
+          )
+        ),
         button(
-          "Ergebnisse Abgeben",
+          child.text <-- languageVar.signal.map(lang => if lang == "en" then "Submit Results" else "Ergebnisse Abgeben"),
           cls := "save-button",
           onClick --> { _ =>
             // Use the in-memory allResponsesVar which has all current data
@@ -3158,7 +3957,7 @@ object Main:
         ,
         div(
           styleAttr := "margin-top: 0.75rem; text-align: center; font-size: 0.85rem; color: rgba(255, 255, 255, 0.8);",
-          "Autor: Lucas Reisig"
+          child.text <-- languageVar.signal.map(lang => if lang == "en" then "Author: Lucas Reisig" else "Autor: Lucas Reisig")
         )
       )
     )
@@ -3237,13 +4036,13 @@ object Main:
       }
 
     div(
-      h2("Aufgabe 2"),
-      p("Links sind die ursprünglichen Daten dargestellt. In der Mitte kannst du die Maske definieren. Rechts wird das Ergebnis der Maskierung, welche durch eine XOR-Operation realisiert wird, angezeigt."),
+      h2(child.text <-- languageVar.signal.map(lang => if lang == "en" then "Task 2" else "Aufgabe 2")),
+      p(child.text <-- languageVar.signal.map(lang => translatedNow("Links sind die ursprünglichen Daten dargestellt. In der Mitte kannst du die Maske definieren. Rechts wird das Ergebnis der Maskierung, welche durch eine XOR-Operation realisiert wird, angezeigt.", lang))),
       div(
         styleAttr := "display: flex; gap: 20px; justify-content: center; align-items: center;",
         div(
           styleAttr := "text-align: center;",
-          h3("Ursprüngliche Daten"),
+          h3(child.text <-- languageVar.signal.map(lang => translatedNow("Ursprüngliche Daten", lang))),
           renderSimplePixelGrid(4, 4, originalData, isReadOnly = false)
         ),
         div(
@@ -3255,7 +4054,7 @@ object Main:
         ),
         div(
           styleAttr := "text-align: center;",
-          h3("Maske"),
+          h3(child.text <-- languageVar.signal.map(lang => translatedNow("Maske", lang))),
           renderSimplePixelGrid(4, 4, maskPattern, isReadOnly = false)
         ),
         div(
@@ -3267,7 +4066,7 @@ object Main:
         ),
         div(
           styleAttr := "text-align: center;",
-          h3("Maskierte Daten"),
+          h3(child.text <-- languageVar.signal.map(lang => translatedNow("Maskierte Daten", lang))),
           child <-- originalData.signal.combineWith(maskPattern.signal).map { case (orig, mask) =>
             val maskedData = orig.zip(mask).map { case (o, m) => o ^ m }
             renderSimplePixelGrid(4, 4, Var(maskedData), isReadOnly = true)
@@ -3276,18 +4075,18 @@ object Main:
       ),
       div(
         styleAttr := "margin-top: 2rem; padding: 1rem; background: #f0f0f0; border-radius: 8px;",
-        h3("Maskierung beschreiben"),
-        p("Beschreibe, wie die Maskierung funktioniert. Ergänze die Sätze."),
+        h3(child.text <-- languageVar.signal.map(lang => translatedNow("Maskierung beschreiben", lang))),
+        p(child.text <-- languageVar.signal.map(lang => translatedNow("Beschreibe, wie die Maskierung funktioniert. Ergänze die Sätze.", lang))),
         div(
           styleAttr := "margin: 1rem 0;",
           div(
             styleAttr <-- getLineStyle(check1).map(s => s"margin-bottom: 1rem; padding: 0.5rem; $s"),
-            span("Wenn ursprüngliche Daten schwarz und die Maske schwarz dargestellt sind, dann ist das Ergebnis: "),
+            span(child.text <-- languageVar.signal.map(lang => translatedNow("Wenn ursprüngliche Daten schwarz und die Maske schwarz dargestellt sind, dann ist das Ergebnis: ", lang))),
             select(
               styleAttr := "padding: 0.3rem; border: 1px solid #ccc; border-radius: 4px;",
-              option(value := "", "- Wählen -"),
-              option(value := "schwarz", "schwarz"),
-              option(value := "weiß", "weiß"),
+              option(value := "", child.text <-- languageVar.signal.map(lang => translatedNow("- Wählen -", lang))),
+              option(value := "schwarz", child.text <-- languageVar.signal.map(lang => translatedNow("schwarz", lang))),
+              option(value := "weiß", child.text <-- languageVar.signal.map(lang => translatedNow("weiß", lang))),
               controlled(
                 value <-- answer1.signal,
                 onChange.mapToValue --> answer1.writer
@@ -3296,12 +4095,12 @@ object Main:
           ),
           div(
             styleAttr <-- getLineStyle(check2).map(s => s"margin-bottom: 1rem; padding: 0.5rem; $s"),
-            span("Wenn ursprüngliche Daten schwarz und die Maske weiß dargestellt sind, dann ist das Ergebnis: "),
+            span(child.text <-- languageVar.signal.map(lang => translatedNow("Wenn ursprüngliche Daten schwarz und die Maske weiß dargestellt sind, dann ist das Ergebnis: ", lang))),
             select(
               styleAttr := "padding: 0.3rem; border: 1px solid #ccc; border-radius: 4px;",
-              option(value := "", "- Wählen -"),
-              option(value := "schwarz", "schwarz"),
-              option(value := "weiß", "weiß"),
+              option(value := "", child.text <-- languageVar.signal.map(lang => translatedNow("- Wählen -", lang))),
+              option(value := "schwarz", child.text <-- languageVar.signal.map(lang => translatedNow("schwarz", lang))),
+              option(value := "weiß", child.text <-- languageVar.signal.map(lang => translatedNow("weiß", lang))),
               controlled(
                 value <-- answer2.signal,
                 onChange.mapToValue --> answer2.writer
@@ -3310,12 +4109,12 @@ object Main:
           ),
           div(
             styleAttr <-- getLineStyle(check3).map(s => s"margin-bottom: 1rem; padding: 0.5rem; $s"),
-            span("Wenn ursprüngliche Daten weiß und die Maske schwarz dargestellt sind, dann ist das Ergebnis: "),
+            span(child.text <-- languageVar.signal.map(lang => translatedNow("Wenn ursprüngliche Daten weiß und die Maske schwarz dargestellt sind, dann ist das Ergebnis: ", lang))),
             select(
               styleAttr := "padding: 0.3rem; border: 1px solid #ccc; border-radius: 4px;",
-              option(value := "", "- Wählen -"),
-              option(value := "schwarz", "schwarz"),
-              option(value := "weiß", "weiß"),
+              option(value := "", child.text <-- languageVar.signal.map(lang => translatedNow("- Wählen -", lang))),
+              option(value := "schwarz", child.text <-- languageVar.signal.map(lang => translatedNow("schwarz", lang))),
+              option(value := "weiß", child.text <-- languageVar.signal.map(lang => translatedNow("weiß", lang))),
               controlled(
                 value <-- answer3.signal,
                 onChange.mapToValue --> answer3.writer
@@ -3324,12 +4123,12 @@ object Main:
           ),
           div(
             styleAttr <-- getLineStyle(check4).map(s => s"margin-bottom: 1rem; padding: 0.5rem; $s"),
-            span("Wenn ursprüngliche Daten weiß und die Maske weiß dargestellt sind, dann ist das Ergebnis: "),
+            span(child.text <-- languageVar.signal.map(lang => translatedNow("Wenn ursprüngliche Daten weiß und die Maske weiß dargestellt sind, dann ist das Ergebnis: ", lang))),
             select(
               styleAttr := "padding: 0.3rem; border: 1px solid #ccc; border-radius: 4px;",
-              option(value := "", "- Wählen -"),
-              option(value := "schwarz", "schwarz"),
-              option(value := "weiß", "weiß"),
+              option(value := "", child.text <-- languageVar.signal.map(lang => translatedNow("- Wählen -", lang))),
+              option(value := "schwarz", child.text <-- languageVar.signal.map(lang => translatedNow("schwarz", lang))),
+              option(value := "weiß", child.text <-- languageVar.signal.map(lang => translatedNow("weiß", lang))),
               controlled(
                 value <-- answer4.signal,
                 onChange.mapToValue --> answer4.writer
@@ -3455,7 +4254,7 @@ object Main:
           emptyNode
         },
         button(
-          "Abgeben",
+          child.text <-- languageVar.signal.map(lang => translatedNow("Abgeben", lang)),
           onClick.map(_ => {
             val a1 = answer1.now()
             val a2 = answer2.now()
@@ -3495,7 +4294,7 @@ object Main:
             case None        => "btn-time"
           }
         ),
-        child <-- showXorInfoVar.signal.map { showInfo =>
+        child <-- withAdminOverride(showXorInfoVar.signal).map { showInfo =>
           if showInfo then
             Infotext(
               "XOR-Operator",
@@ -3511,7 +4310,11 @@ object Main:
 
   def renderSimplePixelGrid(cols: Int, rows: Int, gridVar: Var[Vector[Boolean]], isReadOnly: Boolean = false): Element =
     val total = cols * rows
-    val borderStyle = if isReadOnly then "border: 2px solid #999; background: #f5f5f5;" else "border: 2px solid #ccc; background: #ccc;"
+    val borderStyle =
+      if isReadOnly then
+        "border: 2px solid #999; background: #f5f5f5;"
+      else
+        "border: 2px solid #b7d7ff; background: #eaf3ff;"
     div(
       cls := "pixel-grid",
       styleAttr := s"grid-template-columns: repeat($cols, 28px); grid-auto-rows: 28px; display: inline-grid; gap: 1px; padding: 8px; border-radius: 4px; $borderStyle",
@@ -3561,7 +4364,7 @@ object Main:
     val correctMaskedData = originalData.now().zip(maskPattern.now()).map { case (o, m) => o ^ m }
 
     div(
-      h2("Aufgabe 3"),
+      h2(child.text <-- languageVar.signal.map(lang => if lang == "en" then "Task 3" else "Aufgabe 3")),
       p("Links und in der Mitte sind die ursprünglichen Daten und die Maske vorgegeben. Rechts kannst du die maskierten Daten eintragen. Bestimme durch Anwenden der XOR-Operation die korrekten maskierten Daten."),
       div(
         styleAttr := "display: flex; gap: 20px; justify-content: center; align-items: center;",
@@ -3594,7 +4397,7 @@ object Main:
           h3(styleAttr := "margin: 0 0 0.5rem 0;", "maskierte Daten"),
           div(
             cls := "pixel-grid",
-            styleAttr := "grid-template-columns: repeat(4, 28px); grid-auto-rows: 28px; display: inline-grid; gap: 1px; background: #ccc; padding: 8px; border-radius: 4px;",
+            styleAttr := "grid-template-columns: repeat(4, 28px); grid-auto-rows: 28px; display: inline-grid; gap: 1px; background: #eaf3ff; padding: 8px; border-radius: 4px; border: 2px solid #b7d7ff;",
             children <-- userMaskedData.signal.combineWith(rowStatusVar.signal).map { case (grid, rowStatus) =>
               val gridVec = grid.asInstanceOf[Vector[Boolean]]
               (0 until 4).toList.flatMap { r =>
@@ -3699,158 +4502,199 @@ object Main:
     // User inputs - load from localStorage or use empty
     val userMaskedData1: Var[Vector[Boolean]] = Var(loadedData1)
     val userMaskedData2: Var[Vector[Boolean]] = Var(loadedData2)
-    val lastCheckVar: Var[Option[Boolean]] = Var(None)
+    val lastCheckVar1: Var[Option[Boolean]] = Var(None)
+    val lastCheckVar2: Var[Option[Boolean]] = Var(None)
     val rowStatusVar: Var[Vector[Option[Boolean]]] = Var(Vector.fill(8)(None))
 
     div(
-      h2("Aufgabe 7"),
-      p("In dieser Aufgabe wollen wir eine besondere Eigenschaft der XOR Operation untersuchen. Berechne dafür im ersten Schritt die maskierten Daten. Wende die Maske anschließend ein zweites Mal auf die maskierten Daten an. Trage deine Ergebnisse in die beiden rechten Bereiche ein."),
+      h2(child.text <-- languageVar.signal.map(lang => if lang == "en" then "Task 7" else "Aufgabe 7")),
+      p("In dieser Aufgabe wollen wir eine besondere Eigenschaft der XOR Operation untersuchen. Berechne dafür im ersten Schritt die maskierten Daten."),
+      // Row 1: Ursprüngliche Daten ⊕ Maske = 1x Maskiert
       div(
-        styleAttr := "display: flex; gap: 20px; justify-content: center; align-items: center; flex-wrap: wrap;",
+        styleAttr := "display: flex; gap: 20px; justify-content: center; align-items: flex-start; margin-bottom: 3rem; flex-wrap: wrap;",
         div(
-          styleAttr := "text-align: center; display: flex; flex-direction: column; align-items: center;",
-          h3(styleAttr := "margin: 0 0 0.5rem 0;", "Ursprüngliche Daten"),
-          renderSimplePixelGrid(4, 4, originalData, isReadOnly = true)
-        ),
-        div(
-          styleAttr := "display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 140px;",
-          span(
-            "⊕",
-            styleAttr := "font-size: 2rem; font-weight: bold; color: #4a9eff;"
-          )
-        ),
-        div(
-          styleAttr := "text-align: center; display: flex; flex-direction: column; align-items: center;",
-          h3(styleAttr := "margin: 0 0 0.5rem 0;", "Maske"),
-          renderSimplePixelGrid(4, 4, maskPattern, isReadOnly = true)
-        ),
-        div(
-          styleAttr := "display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 140px;",
-          span(
-            "=",
-            styleAttr := "font-size: 2rem; font-weight: bold; color: #4a9eff;"
-          )
-        ),
-        div(
-          styleAttr := "text-align: center; display: flex; flex-direction: column; align-items: center;",
-          h3(styleAttr := "margin: 0 0 0.5rem 0;", "1x maskiert"),
+          styleAttr := "display: flex; gap: 20px; align-items: center;",
           div(
-            cls := "pixel-grid",
-            styleAttr := "grid-template-columns: repeat(4, 28px); grid-auto-rows: 28px; display: inline-grid; gap: 1px; background: #ccc; padding: 8px; border-radius: 4px;",
-            children <-- userMaskedData1.signal.combineWith(rowStatusVar.signal).map { case (grid, rowStatus) =>
-              val gridVec = grid.asInstanceOf[Vector[Boolean]]
-              (0 until 4).toList.flatMap { r =>
-                val rowStatusValue = rowStatus.lift(r).flatten
-                val rowStyle = rowStatusValue match
-                  case Some(true)  => "border: 2px solid #4CAF50;"
-                  case Some(false) => "border: 2px solid #f44336;"
-                  case None        => ""
-                (0 until 4).toList.map { c =>
-                  val idx = r * 4 + c
-                  val isOn = gridVec(idx)
-                  div(
-                    cls := (if isOn then "pixel on" else "pixel"),
-                    styleAttr := s"width: 28px; height: 28px; cursor: pointer; $rowStyle",
-                    onClick --> (_ => userMaskedData1.update(g => g.updated(idx, !g(idx))))
-                  )
+            styleAttr := "text-align: center; display: flex; flex-direction: column; align-items: center;",
+            h4(styleAttr := "margin: 0 0 0.5rem 0;", "Ursprüngliche Daten"),
+            renderSimplePixelGrid(4, 4, originalData, isReadOnly = true)
+          ),
+          div(
+            styleAttr := "display: flex; flex-direction: column; justify-content: center; align-items: center;",
+            span(
+              "⊕",
+              styleAttr := "font-size: 2rem; font-weight: bold; color: #4a9eff;"
+            )
+          ),
+          div(
+            styleAttr := "text-align: center; display: flex; flex-direction: column; align-items: center;",
+            h4(styleAttr := "margin: 0 0 0.5rem 0;", "Maske"),
+            renderSimplePixelGrid(4, 4, maskPattern, isReadOnly = true)
+          ),
+          div(
+            styleAttr := "display: flex; flex-direction: column; justify-content: center; align-items: center;",
+            span(
+              "=",
+              styleAttr := "font-size: 2rem; font-weight: bold; color: #4a9eff;"
+            )
+          ),
+          div(
+            styleAttr := "text-align: center; display: flex; flex-direction: column; align-items: center;",
+            h4(styleAttr := "margin: 0 0 0.5rem 0;", "1x Maskiert"),
+            div(
+              cls := "pixel-grid",
+              styleAttr := "grid-template-columns: repeat(4, 28px); grid-auto-rows: 28px; display: inline-grid; gap: 1px; background: #eaf3ff; padding: 8px; border-radius: 4px; border: 2px solid #b7d7ff;",
+              children <-- userMaskedData1.signal.combineWith(rowStatusVar.signal).map { case (grid, rowStatus) =>
+                val gridVec = grid.asInstanceOf[Vector[Boolean]]
+                (0 until 4).toList.flatMap { r =>
+                  val rowStatusValue = rowStatus.lift(r).flatten
+                  val rowStyle = rowStatusValue match
+                    case Some(true)  => "border: 2px solid #4CAF50;"
+                    case Some(false) => "border: 2px solid #f44336;"
+                    case None        => ""
+                  (0 until 4).toList.map { c =>
+                    val idx = r * 4 + c
+                    val isOn = gridVec(idx)
+                    div(
+                      cls := (if isOn then "pixel on" else "pixel"),
+                      styleAttr := s"width: 28px; height: 28px; cursor: pointer; $rowStyle",
+                      onClick --> (_ => userMaskedData1.update(g => g.updated(idx, !g(idx))))
+                    )
+                  }
                 }
               }
-            }
+            )
           )
         ),
-        div(
-          styleAttr := "display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 140px;",
-          span(
-            "⊕",
-            styleAttr := "font-size: 2rem; font-weight: bold; color: #4a9eff;"
-          )
-        ),
-        div(
-          styleAttr := "text-align: center; display: flex; flex-direction: column; align-items: center;",
-          h3(styleAttr := "margin: 0 0 0.5rem 0;", "Maske"),
-          renderSimplePixelGrid(4, 4, maskPattern, isReadOnly = true)
-        ),
-        div(
-          styleAttr := "display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 140px;",
-          span(
-            "=",
-            styleAttr := "font-size: 2rem; font-weight: bold; color: #4a9eff;"
-          )
-        ),
-        div(
-          styleAttr := "text-align: center; display: flex; flex-direction: column; align-items: center;",
-          h3(styleAttr := "margin: 0 0 0.5rem 0;", "2x maskiert"),
-          div(
-            cls := "pixel-grid",
-            styleAttr := "grid-template-columns: repeat(4, 28px); grid-auto-rows: 28px; display: inline-grid; gap: 1px; background: #ccc; padding: 8px; border-radius: 4px;",
-            children <-- userMaskedData2.signal.combineWith(rowStatusVar.signal).map { case (grid, rowStatus) =>
-              val gridVec = grid.asInstanceOf[Vector[Boolean]]
-              (0 until 4).toList.flatMap { r =>
-                val rowStatusValue = rowStatus.lift(r + 4).flatten
-                val rowStyle = rowStatusValue match
-                  case Some(true)  => "border: 2px solid #4CAF50;"
-                  case Some(false) => "border: 2px solid #f44336;"
-                  case None        => ""
-                (0 until 4).toList.map { c =>
-                  val idx = r * 4 + c
-                  val isOn = gridVec(idx)
-                  div(
-                    cls := (if isOn then "pixel on" else "pixel"),
-                    styleAttr := s"width: 28px; height: 28px; cursor: pointer; $rowStyle",
-                    onClick --> (_ => userMaskedData2.update(g => g.updated(idx, !g(idx))))
-                  )
-                }
-              }
-            }
-          )
-        ),
-        // Auto-save to localStorage on pixel changes
-        child <-- userMaskedData1.signal.combineWith(userMaskedData2.signal).map { case (data1, data2) =>
-          val data1Vec = data1.asInstanceOf[Vector[Boolean]]
-          val data2Vec = data2.asInstanceOf[Vector[Boolean]]
-          val data1Str = data1Vec.map(b => if b then '1' else '0').mkString
-          val data2Str = data2Vec.map(b => if b then '1' else '0').mkString
-          val jsonData = scala.scalajs.js.Dynamic.literal(
-            masked1 = data1Str,
-            masked2 = data2Str
-          )
-          val jsonStr = scala.scalajs.js.JSON.stringify(jsonData)
-          persistExerciseAnswer(chapter, taskText, jsonStr)
-          emptyNode
-        },
         button(
           "Abgeben",
           onClick.map { _ =>
             val current1 = userMaskedData1.now()
-            val current2 = userMaskedData2.now()
-            
-            // Check row by row for both
             val statuses1: Vector[Option[Boolean]] = (0 until 4).toVector.map { r =>
               val rowSlice = current1.slice(r * 4, (r + 1) * 4)
               val expectedRow = correctMaskedData1.slice(r * 4, (r + 1) * 4)
               Some(rowSlice == expectedRow)
             }
-            
-            val statuses2: Vector[Option[Boolean]] = (0 until 4).toVector.map { r =>
-              val rowSlice = current2.slice(r * 4, (r + 1) * 4)
-              val expectedRow = correctMaskedData2.slice(r * 4, (r + 1) * 4)
-              Some(rowSlice == expectedRow)
-            }
-            
-            val allStatuses = statuses1 ++ statuses2
-            rowStatusVar.set(allStatuses)
-            val allCorrect = allStatuses.flatten.forall(identity)
-            Some(allCorrect)
-          } --> lastCheckVar.writer,
-          styleAttr := "padding: 0.5rem 1rem; align-self: flex-start; margin-top: 2rem;",
-          cls <-- lastCheckVar.signal.map {
+            // Update only the first 4 row statuses
+            val currentStatuses = rowStatusVar.now()
+            rowStatusVar.set(statuses1 ++ currentStatuses.drop(4))
+            Some(statuses1.flatten.forall(identity))
+          } --> lastCheckVar1.writer,
+          styleAttr := "padding: 0.5rem 1rem; align-self: flex-start; margin-top: 0.5rem;",
+          cls <-- lastCheckVar1.signal.map {
             case Some(true)  => "btn-time btn-success"
             case Some(false) => "btn-time btn-error"
             case None        => "btn-time"
           }
         )
       ),
-      emptyNode
+      p("Wende die Maske anschließend ein zweites Mal auf die maskierten Daten an. Trage deine Ergebnisse in die Felder mit blauem Rahmen ein."),
+      // Row 2: 1x Maskiert ⊕ Maske = 2x Maskiert
+      div(
+        styleAttr := "display: flex; gap: 20px; justify-content: center; align-items: flex-start; margin-bottom: 2rem; flex-wrap: wrap;",
+        div(
+          styleAttr := "display: flex; gap: 20px; align-items: center;",
+          div(
+            styleAttr := "text-align: center; display: flex; flex-direction: column; align-items: center;",
+            h4(styleAttr := "margin: 0 0 0.5rem 0;", "1x Maskiert"),
+            div(
+              cls := "pixel-grid",
+              styleAttr := "grid-template-columns: repeat(4, 28px); grid-auto-rows: 28px; display: inline-grid; gap: 1px; background: #f5f5f5; padding: 8px; border-radius: 4px; border: 2px solid #999;",
+              children <-- userMaskedData1.signal.map { grid =>
+                val gridVec = grid.asInstanceOf[Vector[Boolean]]
+                (0 until 16).toList.map { idx =>
+                  val isOn = gridVec(idx)
+                  div(
+                    cls := (if isOn then "pixel on" else "pixel"),
+                    styleAttr := s"width: 28px; height: 28px;"
+                  )
+                }
+              }
+            )
+          ),
+          div(
+            styleAttr := "display: flex; flex-direction: column; justify-content: center; align-items: center;",
+            span(
+              "⊕",
+              styleAttr := "font-size: 2rem; font-weight: bold; color: #4a9eff;"
+            )
+          ),
+          div(
+            styleAttr := "text-align: center; display: flex; flex-direction: column; align-items: center;",
+            h4(styleAttr := "margin: 0 0 0.5rem 0;", "Maske"),
+            renderSimplePixelGrid(4, 4, maskPattern, isReadOnly = true)
+          ),
+          div(
+            styleAttr := "display: flex; flex-direction: column; justify-content: center; align-items: center;",
+            span(
+              "=",
+              styleAttr := "font-size: 2rem; font-weight: bold; color: #4a9eff;"
+            )
+          ),
+          div(
+            styleAttr := "text-align: center; display: flex; flex-direction: column; align-items: center;",
+            h4(styleAttr := "margin: 0 0 0.5rem 0;", "2x Maskiert"),
+            div(
+              cls := "pixel-grid",
+              styleAttr := "grid-template-columns: repeat(4, 28px); grid-auto-rows: 28px; display: inline-grid; gap: 1px; background: #eaf3ff; padding: 8px; border-radius: 4px; border: 2px solid #b7d7ff;",
+              children <-- userMaskedData2.signal.combineWith(rowStatusVar.signal).map { case (grid, rowStatus) =>
+                val gridVec = grid.asInstanceOf[Vector[Boolean]]
+                (0 until 4).toList.flatMap { r =>
+                  val rowStatusValue = rowStatus.lift(r + 4).flatten
+                  val rowStyle = rowStatusValue match
+                    case Some(true)  => "border: 2px solid #4CAF50;"
+                    case Some(false) => "border: 2px solid #f44336;"
+                    case None        => ""
+                  (0 until 4).toList.map { c =>
+                    val idx = r * 4 + c
+                    val isOn = gridVec(idx)
+                    div(
+                      cls := (if isOn then "pixel on" else "pixel"),
+                      styleAttr := s"width: 28px; height: 28px; cursor: pointer; $rowStyle",
+                      onClick --> (_ => userMaskedData2.update(g => g.updated(idx, !g(idx))))
+                    )
+                  }
+                }
+              }
+            )
+          )
+        ),
+        button(
+          "Abgeben",
+          onClick.map { _ =>
+            val current2 = userMaskedData2.now()
+            val statuses2: Vector[Option[Boolean]] = (0 until 4).toVector.map { r =>
+              val rowSlice = current2.slice(r * 4, (r + 1) * 4)
+              val expectedRow = correctMaskedData2.slice(r * 4, (r + 1) * 4)
+              Some(rowSlice == expectedRow)
+            }
+            // Update only the last 4 row statuses
+            val currentStatuses = rowStatusVar.now()
+            rowStatusVar.set(currentStatuses.take(4) ++ statuses2)
+            Some(statuses2.flatten.forall(identity))
+          } --> lastCheckVar2.writer,
+          styleAttr := "padding: 0.5rem 1rem; align-self: flex-start; margin-top: 0.5rem;",
+          cls <-- lastCheckVar2.signal.map {
+            case Some(true)  => "btn-time btn-success"
+            case Some(false) => "btn-time btn-error"
+            case None        => "btn-time"
+          }
+        )
+      ),
+      // Auto-save to localStorage on pixel changes
+      child <-- userMaskedData1.signal.combineWith(userMaskedData2.signal).map { case (data1, data2) =>
+        val data1Vec = data1.asInstanceOf[Vector[Boolean]]
+        val data2Vec = data2.asInstanceOf[Vector[Boolean]]
+        val data1Str = data1Vec.map(b => if b then '1' else '0').mkString
+        val data2Str = data2Vec.map(b => if b then '1' else '0').mkString
+        val jsonData = scala.scalajs.js.Dynamic.literal(
+          masked1 = data1Str,
+          masked2 = data2Str
+        )
+        val jsonStr = scala.scalajs.js.JSON.stringify(jsonData)
+        persistExerciseAnswer(chapter, taskText, jsonStr)
+        emptyNode
+      }
     )
   end renderMaskierungAufgabe7
 
@@ -4082,19 +4926,11 @@ object Main:
           }
         )
       ),
-      child <-- showInfotext.signal.map { show =>
+      child <-- withAdminOverride(showInfotext.signal).map { show =>
         if show then
           Infotext(
             "Fehlerkorrektur in QR-Codes",
-            """In QR-Codes werden Reed-Solomon-Codes zur Fehlerkorrektur genutzt. Dies ist ein besonders leistungsfähiges Verfahren, das beide Fehlerarten zum Teil korrigieren kann. Die Fehlerkorrektur wird dabei sowohl auf die Daten, als auch auf die Metadaten (z.B. Formatinformationen, Maske) angewendet. 
-
-Dabei werden QR-Codes nach Fehlertoleranzstufen klassifiziert. Die Fehlertoleranz liegt dabei zwischen 7% und 30% und gibt an wieviel % des QR-Codes beschädigt sein können, ohne dass die Information verloren geht. Die vier Stufen sind:
-• Level L: 7% Fehlertoleranz (Low) 
-• Level M: 15% Fehlertoleranz (Medium) 
-• Level Q: 25% Fehlertoleranz (Quartile)   
-• Level H: 30% Fehlertoleranz (High) 
-
-Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt wurde. Sie nutzen jedoch mehr Mathematik und sind etwas effizienter als Nachrichten doppelt zu schreiben. Die genau Funktionsweise übersteigt den Rahmen dieses Kurses, weshalb diese nicht weiter behandelt wird. Zum Nachlesen: https://de.wikipedia.org/wiki/Reed-Solomon-Code"""
+            "In QR-Codes werden Reed-Solomon-Codes zur Fehlerkorrektur genutzt. Dies ist ein besonders leistungsfähiges Verfahren, das beide Fehlerarten zum Teil korrigieren kann. Die Fehlerkorrektur wird dabei sowohl auf die Daten, als auch auf die Metadaten (z.B. Formatinformationen, Maske) angewendet. \n\nDabei werden QR-Codes nach Fehlertoleranzstufen klassifiziert. Die Fehlertoleranz liegt dabei zwischen 7% und 30% und gibt an wieviel % des QR-Codes beschädigt sein können, ohne dass die Information verloren geht. Die vier Stufen sind:\n• Level L: 7% Fehlertoleranz (Low) \n• Level M: 15% Fehlertoleranz (Medium) \n• Level Q: 25% Fehlertoleranz (Quartile)   \n• Level H: 30% Fehlertoleranz (High) \n\nDie Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt wurde. Sie nutzen jedoch mehr Mathematik und sind etwas effizienter als Nachrichten doppelt zu schreiben. Die genau Funktionsweise übersteigt den Rahmen dieses Kurses, weshalb diese nicht weiter behandelt wird. Zum Nachlesen: https://de.wikipedia.org/wiki/Reed-Solomon-Code"
           )
         else
           emptyNode
@@ -4107,7 +4943,9 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
     val qrUrl = s"https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodedText}"
     img(
       src := qrUrl,
-      alt := s"QR Code für: $text",
+      alt <-- languageVar.signal.map { lang =>
+        if lang == "en" then s"QR code for: $text" else s"QR Code für: $text"
+      },
       width := size.toString,
       height := size.toString,
       cls := "qr-code"
@@ -4121,12 +4959,17 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
       cls := "qr-code-with-caption",
       img(
         src := qrUrl,
-        alt := s"QR Code für: $text",
+        alt <-- languageVar.signal.map { lang =>
+          if lang == "en" then s"QR code for: $text" else s"QR Code für: $text"
+        },
         width := size.toString,
         height := size.toString,
         cls := "qr-code"
       ),
-      p(caption, cls := "qr-caption")
+      p(
+        child.text <-- languageVar.signal.map(lang => translatedNow(caption, lang)),
+        cls := "qr-caption"
+      )
     )
   end generateQRCodeWithCaption
 
@@ -4135,12 +4978,15 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
       cls := "qr-code-with-caption",
       img(
         src := resolveImageUrl(imageSrc),
-        alt := caption,
+        alt <-- languageVar.signal.map(lang => translatedNow(caption, lang)),
         width := size.toString,
         height := size.toString,
         cls := "qr-code"
       ),
-      p(caption, cls := "qr-caption")
+      p(
+        child.text <-- languageVar.signal.map(lang => translatedNow(caption, lang)),
+        cls := "qr-caption"
+      )
     )
   end imageWithCaption
 
@@ -4180,7 +5026,9 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
     val textVar = Var(initialText)
     val lastCheckVar: Var[Option[Boolean]] = Var(storedStatus.lastCheck)
     val showSolutionVar: Var[Boolean] = Var(initialShowSolution)
+    val wrongAttemptsVar: Var[Int] = Var(math.max(0, storedStatus.wrongAttempts))
     val effectiveSolutionWords = if solutionWords.nonEmpty then solutionWords else keywords
+    val effectiveWrongHint = wrongHint
     def countWords(text: String): Int = text.split("\\s+").count(_.nonEmpty)
     val wordCountSignal = textVar.signal.map(countWords)
     val buttonClassSignal = Signal.fromValue("")
@@ -4226,10 +5074,14 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
     // exercise content only (menu is shown at the top now)
     div(
       className := (if isExcursus then "exercise-content excursus" else "exercise-content"),
-      h2(if index == -1 then "Aufgabe" else s"Aufgabe $index"),
+      h2(child.text <-- languageVar.signal.map { lang =>
+        if index == -1 then
+          if lang == "en" then "Task" else "Aufgabe"
+        else if lang == "en" then s"Task $index" else s"Aufgabe $index"
+      }),
       image.map(img => div(cls := "exercise-image", img)),
       p(
-        taskText,
+        child.text <-- languageVar.signal.map(lang => translatedNow(taskText, lang)),
         styleAttr := "white-space: pre-wrap;"
       ),
       (if inlineInputLabels.nonEmpty then
@@ -4247,6 +5099,13 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
                     val base = "padding: 0.3rem; border: 1px solid #ccc; border-radius: 4px; width: 80px; text-align: center;"
                     if feedback.nonEmpty then s"$base; $feedback" else base
                   },
+                  onKeyDown --> { e =>
+                    if (e.ctrlKey || e.metaKey) && e.key.equalsIgnoreCase("v") then
+                      e.preventDefault()
+                  },
+                  onPaste --> { e =>
+                    e.preventDefault()
+                  },
                   controlled(
                     value <-- inlineInputVars(idx).signal,
                     onInput.mapToValue --> { value =>
@@ -4262,7 +5121,10 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
           child <-- inlineChecksVar.signal.map {
             case Some(checks) if checks.forall(_ == false) =>
               inlineAllWrongHint.map { hint =>
-                div(styleAttr := "margin-top: 0.5rem; color: #c62828; font-weight: 600;", hint)
+                div(
+                  styleAttr := "margin-top: 0.5rem; color: #c62828; font-weight: 600;",
+                  child.text <-- languageVar.signal.map(lang => translatedNow(hint, lang))
+                )
               }.getOrElse(emptyNode)
             case _ => emptyNode
           }
@@ -4281,7 +5143,7 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
           else
             Signal.fromValue("margin: 1rem 0; padding: 1rem; background: #f5f5f5; border: 2px solid #ddd; border-radius: 4px;")
           ),
-          p(styleAttr := "font-weight: 600; margin-bottom: 0.75rem; margin-top: 0;", mcLabel),
+          p(styleAttr := "font-weight: 600; margin-bottom: 0.75rem; margin-top: 0;", child.text <-- languageVar.signal.map(lang => translatedNow(mcLabel, lang))),
           div(
             children <-- Signal.fromValue(choices).map(_.zipWithIndex.map { case ((labelText, _), idx) =>
               div(
@@ -4303,7 +5165,7 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
                 label(
                   forId := s"qr-choice-${taskText.hashCode()}-${idx}",
                   styleAttr := "margin-left: 0.5rem; cursor: pointer;",
-                  labelText
+                  child.text <-- languageVar.signal.map(lang => translatedNow(labelText, lang))
                 )
               )
             })
@@ -4318,20 +5180,24 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
         emptyNode
       },
       child <-- lastCheckVar.signal.map { _ =>
-        saveExerciseStatus(chapter, taskText, ExerciseStatus(lastCheckVar.now(), showSolutionVar.now()))
+        saveExerciseStatus(chapter, taskText, ExerciseStatus(lastCheckVar.now(), showSolutionVar.now(), wrongAttemptsVar.now()))
         emptyNode
       },
       child <-- showSolutionVar.signal.map { _ =>
-        saveExerciseStatus(chapter, taskText, ExerciseStatus(lastCheckVar.now(), showSolutionVar.now()))
+        saveExerciseStatus(chapter, taskText, ExerciseStatus(lastCheckVar.now(), showSolutionVar.now(), wrongAttemptsVar.now()))
+        emptyNode
+      },
+      child <-- wrongAttemptsVar.signal.map { _ =>
+        saveExerciseStatus(chapter, taskText, ExerciseStatus(lastCheckVar.now(), showSolutionVar.now(), wrongAttemptsVar.now()))
         emptyNode
       },
       if keywords.nonEmpty || minWordCount.nonEmpty || submitCallback.nonEmpty || multipleChoice.isDefined || inlineNumericExpected.isDefined then
         div(
           styleAttr := "display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center;",
           button(
-            child.text <-- lastCheckVar.signal.map {
-              case Some(false) => "Nochmal versuchen"
-              case _ => "Abgeben"
+            child.text <-- lastCheckVar.signal.combineWith(languageVar.signal).map {
+              case (Some(false), lang) => translatedNow("Nochmal versuchen", lang)
+              case (_, lang) => translatedNow("Abgeben", lang)
             },
             onClick --> { _ =>
               if lastCheckVar.now().contains(false) then
@@ -4357,16 +5223,18 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
                 else
                   // Normal validation for non-MC exercises or MC without feedback
                   val text = textVar.now()
-                  val keywordOk = if keywords.isEmpty then true else keywords.exists(k => text.toLowerCase.contains(k.toLowerCase))
+                  val keywordOk = matchesKeywords(text, keywords)
                   minWordCount match
                     case Some(min) => keywordOk && countWords(text) >= min
                     case None => keywordOk
                 lastCheckVar.set(Some(ok))
                 if ok then
+                  wrongAttemptsVar.set(0)
                   // Call the submit callback if provided
                   submitCallback.foreach(callback => callback())
                   infoCallback.foreach(callback => callback())
                 else
+                  wrongAttemptsVar.update(_ + 1)
                   showSolutionVar.set(false)
             },
             cls := "btn-time",
@@ -4374,24 +5242,27 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
           ),
           child <-- lastCheckVar.signal.map {
             case Some(true) if !suppressPraise =>
-              span(styleAttr := "color: #2e7d32; font-weight: 600;", "Richtig! Sehr gut")
+              span(styleAttr := "color: #2e7d32; font-weight: 600;", child.text <-- languageVar.signal.map(lang => if lang == "en" then "Correct! Very good" else "Richtig! Sehr gut"))
             case _ => emptyNode
           },
-          child <-- lastCheckVar.signal.map {
-            case Some(false) if solutionText.nonEmpty =>
+          child <-- lastCheckVar.signal.combineWith(wrongAttemptsVar.signal).map {
+            case (Some(false), wrongAttempts) if solutionText.nonEmpty =>
               div(
                 styleAttr := "display: flex; align-items: center; gap: 0.75rem;",
-                button(
-                  "Lösung zeigen",
-                  cls := "btn-time",
-                  onClick --> { _ =>
-                    showSolutionVar.set(true)
-                    infoCallback.foreach(callback => callback())
-                  }
-                ),
-                wrongHint.map { hint =>
+                if wrongAttempts >= 2 then
+                  button(
+                    child.text <-- languageVar.signal.map(lang => if lang == "en" then "Show solution" else "Lösung zeigen"),
+                    cls := "btn-time",
+                    onClick --> { _ =>
+                      showSolutionVar.set(true)
+                      infoCallback.foreach(callback => callback())
+                    }
+                  )
+                else
+                  emptyNode,
+                effectiveWrongHint.map { hintText =>
                   span(
-                    hint,
+                    child.text <-- languageVar.signal.map(lang => translatedNow(hintText, lang)),
                     styleAttr := "color: #c62828; font-weight: 600;"
                   )
                 }.getOrElse(emptyNode)
@@ -4400,7 +5271,9 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
           },
           child <-- showSolutionVar.signal.map { show =>
             if show then
-              solutionText.map(text => div(styleAttr := "flex-basis: 100%;", LösungZeigen(text, effectiveSolutionWords))).getOrElse(emptyNode)
+              val lang = languageVar.now()
+              val wordsForLang = translateSolutionWords(effectiveSolutionWords, lang)
+              solutionText.map(text => div(styleAttr := "flex-basis: 100%;", LösungZeigen(text, wordsForLang, lang))).getOrElse(emptyNode)
             else
               emptyNode
           },
@@ -4412,7 +5285,8 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
                     val color = if count < min then "#b71c1c" else "#2e7d32"
                     span(
                       styleAttr := s"color: $color;",
-                      s"Mindestwortzahl sind $min, du hast $count geschrieben."
+                      if languageVar.now() == "en" then s"Minimum word count is $min, you wrote $count."
+                      else s"Mindestwortzahl sind $min, du hast $count geschrieben."
                     )
                   case None => emptyNode
               }
@@ -4439,8 +5313,8 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
 
     div(
       className := "exercise-content",
-      h2(if index == -1 then "Aufgabe" else s"Aufgabe $index"),
-      p(taskText),
+      h2(child.text <-- languageVar.signal.map(lang => if index == -1 then (if lang == "en" then "Task" else "Aufgabe") else (if lang == "en" then s"Task $index" else s"Aufgabe $index"))),
+      p(child.text <-- languageVar.signal.map(lang => translatedNow(taskText, lang))),
       div(
         children <-- Signal.fromValue(choices).map(_.zipWithIndex.map { case ((label, _), idx) =>
           div(
@@ -4465,7 +5339,7 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
               },
               checked <-- selectedVar.signal.map(_.contains(idx))
             ),
-            span(" " + label)
+            span(child.text <-- languageVar.signal.map(lang => " " + translatedNow(label, lang)))
           )
         })
       ),
@@ -4477,7 +5351,7 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
         emptyNode
       },
       button(
-        "Abgeben",
+        child.text <-- languageVar.signal.map(lang => if lang == "en" then "Submit" else "Abgeben"),
         onClick.map(_ => {
           val selected = selectedVar.now()
           // Check if answer is correct
@@ -4491,7 +5365,7 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
         }
       ),
       child <-- lastCheckVar.signal.map {
-        case Some(true) => span(styleAttr := "color: #2e7d32; font-weight: 600;", "Richtig!")
+        case Some(true) => span(styleAttr := "color: #2e7d32; font-weight: 600;", child.text <-- languageVar.signal.map(lang => if lang == "en" then "Correct!" else "Richtig!"))
         case _ => emptyNode
       }
     )
@@ -4594,16 +5468,25 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
     if js.isUndefined(jspdf) then
       ()
     else
+      val lang = languageVar.now()
       val studentName = studentNameVar.now()
       val doc = js.Dynamic.newInstance(jspdf.selectDynamic("jsPDF"))()
       var y = 15
+
+      def tryAddImage(src: String, format: String, x: Double, y: Double, w: Double, h: Double): Boolean =
+        try
+          doc.addImage(src, format, x, y, w, h)
+          true
+        catch
+          case _: Throwable => false
+
       doc.setFontSize(20)
       doc.setFont("helvetica", "bold")
-      doc.text("Mein Merkzettel zu QR Codes", 105, y, js.Dynamic.literal("align" -> "center"))
+      doc.text(translatedNow("Mein Merkzettel zu QR Codes", lang), 105, y, js.Dynamic.literal("align" -> "center"))
       doc.setFont("helvetica", "normal")
       doc.setLineWidth(0.5)
       doc.line(20, y + 2, 190, y + 2)
-      doc.addImage(
+      val headerQrAdded = tryAddImage(
         "https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Fevadid.it%2FLucasQR%2F",
         "PNG",
         178,
@@ -4611,6 +5494,8 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
         15,
         15
       )
+      if !headerQrAdded then
+        dom.console.warn("Could not load header QR image for PDF (likely CORS/network). Continuing without it.")
       y += 27
       
       // Add student name if available
@@ -4630,7 +5515,7 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
         y += 6
         doc.setFontSize(11)
         doc.setFont("helvetica", "normal")
-        val content = if body.trim.nonEmpty then body.trim else "(keine Antwort)"
+        val content = if body.trim.nonEmpty then body.trim else translatedNow("(keine Antwort)", lang)
         val lines = doc.splitTextToSize(content, 176).asInstanceOf[js.Array[String]]
         val boxHeight = (lines.length * 5) + 6
         if y + boxHeight > 280 then
@@ -4661,16 +5546,20 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
       doc.setFontSize(11)
       doc.setFont("helvetica", "normal")
       
-      // Add the image (smaller size)
-      doc.addImage(
-        resolveImageUrl("qr_Bereiche.png"),
+      // Use same-origin path to avoid CORS issues in jsPDF image loading.
+      val qrAreasImageAdded = tryAddImage(
+        "/qr_Bereiche.png",
         "PNG",
         55,
         y,
         100,
         100
       )
-      y += 105
+      if qrAreasImageAdded then
+        y += 105
+      else
+        dom.console.warn("Could not load qr_Bereiche.png for PDF (likely CORS/missing file). Continuing with text only.")
+        y += 6
       
       // Add explanatory text with colored keywords
       def printColoredText(text: String, startY: Double): Int = {
@@ -4776,7 +5665,7 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
 
     val chapterHints = Map(
       "einfuehrung" -> "Wichtige Stichwörter: Was sind QR Codes? Wofür werden sie verwendet? Wie stelle ich mir vor, dass QR Codes funktionieren? Was wusste ich vorher?",
-      "nachricht" -> "Wichtige Stichwörter: Binärdarstellung, ASCII, Kodierung, Dekodierung, Datenbereich im QR Code",
+      "nachricht" -> "Wichtige Stichwörter: Binärdarstellung, ASCII, UTF-8, Kodierung, Dekodierung, Datenbereich im QR Code",
       "maskierung" -> "Wichtige Stichwörter: Maskierungsmuster, Demaskierung, Musterauswahl, Optimierung der Lesbarkeit, XOR-Verknüpfung, visuelle Verbesserung",
       "fehlerkorrektur" -> "Wichtige Stichwörter: Redundanz, Reed-Solomon-Code, Fehlerkorrekturstufe vs benötigter Speicher, Wiederherstellung beschädigter Daten, Löschfehler vs Substitutionsfehler, QR-Versionen",
       "praxisanwendungen" -> "Wichtige Stichwörter: Vorteile (schnelles Scannen, Fehlertoleranz, viele Daten), Nachteile (Sicherheitsrisiken, Platzbedarf), Anwendungsbeispiele"
@@ -4793,8 +5682,8 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
     }.toMap
 
     div(
-      h3("Eigenes Merkblatt"),
-      p("Hier siehst du deine Antworten von der Zusammenfassung der vorherigen Kapitel. Du kannst sie nochmal anpassen. Überpfüfe dafür jeweils ob in deiner Antwort die wichtigen Dinge stehen. Die wichtigsten Themen sind unter dem jeweiligen Eingabefeld nochmal zusammengefasst. Am Ende kannst du dir dann ein PDF mit deinen Antworten erstellen, das du dir abspeichern oder ausdrucken kannst."),
+      h3(child.text <-- languageVar.signal.map(lang => translatedNow("Eigenes Merkblatt", lang))),
+      p(child.text <-- languageVar.signal.map(lang => translatedNow("Hier siehst du deine Antworten von der Zusammenfassung der vorherigen Kapitel. Du kannst sie nochmal anpassen. Überpfüfe dafür jeweils ob in deiner Antwort die wichtigen Dinge stehen. Die wichtigsten Themen sind unter dem jeweiligen Eingabefeld nochmal zusammengefasst. Am Ende kannst du dir dann ein PDF mit deinen Antworten erstellen, das du dir abspeichern oder ausdrucken kannst.", lang))),
       div(
         styleAttr := "display: flex; flex-direction: column; gap: 1rem;",
         chapterLabels.map { case (chapterKey, label) =>
@@ -4803,11 +5692,8 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
 
           div(
             styleAttr := "display: flex; flex-direction: column; gap: 0.4rem;",
-            h4(label),
-            p(
-              lastTask,
-              styleAttr := "margin: 0; color: #555; font-size: 0.9rem;"
-            ),
+            h4(child.text <-- languageVar.signal.map(lang => translatedNow(label, lang))),
+            p(child.text <-- languageVar.signal.map(lang => translatedNow(lastTask, lang)), styleAttr := "margin: 0; color: #555; font-size: 0.9rem;"),
             textArea(
               disabled := lastTask.isEmpty,
               styleAttr := "min-height: 120px; width: 100%; font-size: 15px; padding: 0.5rem; resize: vertical;",
@@ -4820,12 +5706,12 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
             ),
             div(
               styleAttr := "background-color: #f0f8ff; padding: 0.5rem; border-left: 3px solid #4a90e2; font-size: 0.85rem; color: #333;",
-              chapterHints.get(chapterKey).map(hint => p(hint, styleAttr := "margin: 0;")).getOrElse(emptyNode)
+              chapterHints.get(chapterKey).map(hint => p(child.text <-- languageVar.signal.map(lang => translatedNow(hint, lang)), styleAttr := "margin: 0;")).getOrElse(emptyNode)
             )
           )
         },
         button(
-          "Merkzettel erstellen",
+          child.text <-- languageVar.signal.map(lang => translatedNow("Merkzettel erstellen", lang)),
           cls := "btn-primary",
           styleAttr := "align-self: flex-start; margin-top: 0.5rem;",
           onClick --> { _ =>
@@ -4852,7 +5738,7 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
       textArea(
         rows := 6,
         cols := 60,
-        placeholder := "Deine Antwort hier...",
+        placeholder <-- languageVar.signal.map(lang => translatedNow("Deine Antwort hier...", lang)),
         styleAttr := "font-size: 1rem; padding: 0.75rem;",
         controlled(
           value <-- textVar.signal,
@@ -4863,10 +5749,10 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
         )
       ),
       button(
-        "Antwort überprüfen",
+        child.text <-- languageVar.signal.map(lang => translatedNow("Antwort überprüfen", lang)),
         onClick --> { _ =>
           val text = textVar.now()
-          val isCorrect = keywords.nonEmpty && keywords.exists(k => text.toLowerCase.contains(k.toLowerCase))
+          val isCorrect = matchesKeywords(text, keywords)
           feedbackVar.set(Some(isCorrect))
           if isCorrect then
             onCorrect.foreach(callback => callback())
@@ -4878,8 +5764,8 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
         }
       ),
       child <-- feedbackVar.signal.map {
-        case Some(true)  => span(cls := "feedback-correct", " Richtig!")
-        case Some(false) => span(cls := "feedback-incorrect", "Nicht ganz richtig. Versuche es nochmal!")
+        case Some(true)  => span(cls := "feedback-correct", child.text <-- languageVar.signal.map(lang => if lang == "en" then " Correct!" else " Richtig!"))
+        case Some(false) => span(cls := "feedback-incorrect", child.text <-- languageVar.signal.map(lang => translatedNow("Nicht ganz richtig. Versuche es nochmal!", lang)))
         case None        => emptyNode
       }
     )
@@ -4908,14 +5794,14 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
               ),
               label(
                 forId := s"question-$questionIndex-$idx",
-                labelText
+                child.text <-- languageVar.signal.map(lang => translatedNow(labelText, lang))
               )
             )
           }
         }
       ),
       button(
-        "Antwort überprüfen",
+        child.text <-- languageVar.signal.map(lang => translatedNow("Antwort überprüfen", lang)),
         onClick --> { _ =>
           selectedVar.now().foreach { idx =>
             val isCorrect = choices(idx)._2
@@ -4929,8 +5815,8 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
         }
       ),
       child <-- feedbackVar.signal.map {
-        case Some(true)  => span(cls := "feedback-correct", "Richtig!")
-        case Some(false) => span(cls := "feedback-incorrect", "Nicht ganz richtig. Versuche es nochmal!")
+        case Some(true)  => span(cls := "feedback-correct", child.text <-- languageVar.signal.map(lang => if lang == "en" then "Correct!" else "Richtig!"))
+        case Some(false) => span(cls := "feedback-incorrect", child.text <-- languageVar.signal.map(lang => translatedNow("Nicht ganz richtig. Versuche es nochmal!", lang)))
         case None        => emptyNode
       }
     )
@@ -5002,51 +5888,71 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
         nodes.toList
     div(
       cls := "infotext",
-      h3(title),
+      h3(child.text <-- languageVar.signal.map(lang => translatedNow(title, lang))),
       image.map(imageSrc => img(alt := title, src := resolveImageUrl(imageSrc), styleAttr := "max-width: 100%; margin: 1rem 0; border-radius: 4px;")),
-      text.split("\n").map { line =>
-        if line.trim.nonEmpty then
-          p(linkify(line.trim): _*)
-        else
-          emptyNode
+      children <-- languageVar.signal.map { lang =>
+        translatedNow(text, lang).split("\\n").toSeq.map { line =>
+          if line.trim.nonEmpty then
+            p(linkify(line.trim): _*)
+          else
+            emptyNode
+        }
       }
     )
   end Infotext
 
-  def LösungZeigen(text: String, solutionWords: Set[String]): Element =
+  def LösungZeigen(text: String, solutionWords: Set[String], lang: String): Element =
+    val displayText = translatedNow(text, lang)
     if solutionWords.isEmpty || solutionWords == Set(" ") then
-      div(cls := "loesung-text", text)
+      div(cls := "loesung-text", displayText)
     else
       val escaped = solutionWords.toList.map(java.util.regex.Pattern.quote)
       val letterClass = "A-Za-zÄÖÜäöüß"
       val pattern = java.util.regex.Pattern.compile(
         "(?i)(^|[^" + letterClass + "])(" + escaped.mkString("|") + "[" + letterClass + "]*)(?=[^" + letterClass + "]|$)"
       )
-      val matcher = pattern.matcher(text)
+      val matcher = pattern.matcher(displayText)
       val nodes = scala.collection.mutable.ListBuffer.empty[HtmlElement]
       var last = 0
       while matcher.find() do
         val start = matcher.start(2)
         val end = matcher.end(2)
         if start > last then
-          nodes += span(text.substring(last, start))
-        nodes += b(text.substring(start, end))
+          nodes += span(displayText.substring(last, start))
+        nodes += b(displayText.substring(start, end))
         last = end
-      if last < text.length then
-        nodes += span(text.substring(last))
+      if last < displayText.length then
+        nodes += span(displayText.substring(last))
       div(cls := "loesung-text", children <-- Signal.fromValue(nodes.toList))
   end LösungZeigen
 
   def allgemeineInfos(title: String, text: String): Element =
+    val isOpenVar = Var(false)
     div(
-      styleAttr := "margin-top: 1rem; padding: 1.25rem; background: #f2f7ff; border-radius: 12px; border: 1px solid #b8c9e6; box-shadow: 0 6px 16px rgba(30, 60, 120, 0.08);",
-      h3(styleAttr := "margin-top: 0; color: #1f3b73;", title),
-      div(
-        styleAttr := "height: 2px; width: 60px; background: #1f3b73; margin: 0.25rem 0 0.75rem 0;"
+      styleAttr := "margin-top: 1rem; padding: 0.75rem 1rem; background: #f2f7ff; border-radius: 12px; border: 1px solid #b8c9e6; box-shadow: 0 6px 16px rgba(30, 60, 120, 0.08);",
+      button(
+        typ := "button",
+        cls := "btn-primary",
+        styleAttr := "padding: 0.45rem 0.8rem;",
+        child.text <-- Signal.combineWithFn(isOpenVar.signal, languageVar.signal) { (show, lang) =>
+          val translatedTitle = translatedNow(title, lang)
+          if show then
+            if lang == "en" then s"Hide $translatedTitle" else s"$translatedTitle ausblenden"
+          else translatedTitle
+        },
+        onClick --> (_ => isOpenVar.update(v => !v))
       ),
-      text.split("\n").map { line =>
-        if line.trim.nonEmpty then
-          p(styleAttr := "color: #2d4a7a; margin: 0.3rem 0; line-height: 1.35;", line.trim)
+      child <-- Signal.combineWithFn(isOpenVar.signal, languageVar.signal) { (show, lang) =>
+        if show then
+          div(
+            styleAttr := "margin-top: 0.6rem;",
+            translatedNow(text, lang).split("\n").map { line =>
+              if line.trim.nonEmpty then
+                p(styleAttr := "color: #2d4a7a; margin: 0.3rem 0; line-height: 1.35;", line.trim)
+              else
+                emptyNode
+            }
+          )
         else
           emptyNode
       }
@@ -5133,41 +6039,41 @@ Die Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt 
 
     div(
       cls := "rating-component",
-      h3("Bewertung dieses Kapitels"),
+      h3(child.text <-- languageVar.signal.map(lang => translatedNow("Bewertung dieses Kapitels", lang))),
       
       div(
         cls := "rating-category",
-        label("Ich habe den Inhalt verstanden."),
-        p(cls := "rating-hint", "5 Sterne = vollständige Zustimmung, 1 Stern = überhaupt nicht"),
+        label(child.text <-- languageVar.signal.map(lang => translatedNow("Ich habe den Inhalt verstanden.", lang))),
+        p(cls := "rating-hint", child.text <-- languageVar.signal.map(lang => translatedNow("5 Sterne = vollständige Zustimmung, 1 Stern = überhaupt nicht", lang))),
         ratingStars(understandingVar)
       ),
       
       div(
         cls := "rating-category",
-        label("Die Schwierigkeit der Inhalte war:"),
-        p(cls := "rating-hint", "5 Sterne = sehr schwierig, 1 Stern = sehr leicht"),
+        label(child.text <-- languageVar.signal.map(lang => translatedNow("Die Schwierigkeit der Inhalte war:", lang))),
+        p(cls := "rating-hint", child.text <-- languageVar.signal.map(lang => translatedNow("5 Sterne = sehr schwierig, 1 Stern = sehr leicht", lang))),
         ratingStars(difficultyVar)
       ),
       
       div(
         cls := "rating-category",
-        label("Die Aufgaben haben mir Spaß gemacht."),
-        p(cls := "rating-hint", "5 Sterne = viel Spaß, 1 Stern = wenig Spaß"),
+        label(child.text <-- languageVar.signal.map(lang => translatedNow("Die Aufgaben haben mir Spaß gemacht.", lang))),
+        p(cls := "rating-hint", child.text <-- languageVar.signal.map(lang => translatedNow("5 Sterne = viel Spaß, 1 Stern = wenig Spaß", lang))),
         ratingStars(qualityVar)
       ),
        div(
         cls := "rating-category",
-        label("Die Zeitangaben für das Kapitel waren:"),
-        p(cls := "rating-hint", "5 Sterne = viel zu hoch, 1 Stern = viel zu niedrig"),
+        label(child.text <-- languageVar.signal.map(lang => translatedNow("Die Zeitangaben für das Kapitel waren:", lang))),
+        p(cls := "rating-hint", child.text <-- languageVar.signal.map(lang => translatedNow("5 Sterne = viel zu hoch, 1 Stern = viel zu niedrig", lang))),
         ratingStars(scopeVar)
       ),
       
       div(
         cls := "rating-category",
-        label("Zusätzliche Anmerkungen:"),
+        label(child.text <-- languageVar.signal.map(lang => translatedNow("Zusätzliche Anmerkungen:", lang))),
         textArea(
           rows := 4,
-          placeholder := "Deine Anmerkungen hier...",
+          placeholder <-- languageVar.signal.map(lang => translatedNow("Deine Anmerkungen hier...", lang)),
           controlled(
             value <-- feedbackVar.signal,
             onInput.mapToValue --> { text =>
@@ -5194,6 +6100,13 @@ case class SimpleTextEditor(stateToBind: Var[String], statusSignal: Signal[Optio
     rows := 8,
     cols := 80,
     disabled <-- statusSignal.map(_.contains(false)),
+    onKeyDown --> { e =>
+      if (e.ctrlKey || e.metaKey) && e.key.equalsIgnoreCase("v") then
+        e.preventDefault()
+    },
+    onPaste --> { e =>
+      e.preventDefault()
+    },
     styleAttr <-- statusSignal.map {
       case Some(false) => "background-color: #f9d6d6; color: #6b6b6b; border-color: #e78989;"
       case Some(true) => "background-color: #dff3e1; color: #2e7d32; border-color: #8fd09a;"

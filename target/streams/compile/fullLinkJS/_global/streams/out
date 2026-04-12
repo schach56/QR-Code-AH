@@ -1,32 +1,32 @@
-[0m[[0m[0minfo[0m] [0m[0mFull optimizing C:\Users\Hoehlenhund\livechart\target\scala-3.3.3\livechart-opt[0m
-[0m[[0m[0mdebug[0m] [0m[0mLinker: Compute reachability: 671354 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mLinker: Assemble LinkedClasses: 25701 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mLinker: Check IR: 175708 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mLinker: 930941 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mDesugarer: Desugar: 16415 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mDesugarer: Check IR: 143015 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mDesugarer: 160028 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mOptimizer: Batch mode: true[0m
-[0m[[0m[0mdebug[0m] [0m[0mOptimizer: Incremental part: 81269 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mOptimizer: Elidable constructors: 4909 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mOptimizer: Optimizing 7495 methods.[0m
-[0m[[0m[0mdebug[0m] [0m[0mOptimizer: Optimizer part: 687144 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mOptimizer: 781345 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mRefiner: Compute reachability: 117790 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mRefiner: Assemble LinkedClasses: 22030 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mRefiner: 141582 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mModule Splitter: Calculate Dependency Info: 3153 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mModule Splitter: Analyze Modules: 30789 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mModule Splitter: Assemble Modules: 7916 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mModule Splitter: 43297 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mEmitter: Generate Classes: 515915 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mEmitter: Write trees: 27593 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mEmitter: Class tree cache stats: reused: 0 -- invalidated: 613[0m
-[0m[[0m[0mdebug[0m] [0m[0mEmitter: Method tree cache stats: reused: 0 -- invalidated: 3404[0m
-[0m[[0m[0mdebug[0m] [0m[0mEmitter: Pre prints: 4747[0m
-[0m[[0m[0mdebug[0m] [0m[0mName compressor: Collect property names to avoid: 3379 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mName compressor: Allocate property names: 12146 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mName compressor: Allocate ancestor names: 1280 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mEmitter: 592190 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mBasicBackend: Write result: 166865 us[0m
-[0m[[0m[0mdebug[0m] [0m[0mBasicBackend: total modules: 11; re-written: 11[0m
+[info] Full optimizing C:\Users\Hoehlenhund\livechart\target\scala-3.3.3\livechart-opt
+[debug] Linker: Compute reachability: 346710 us
+[debug] Linker: Assemble LinkedClasses: 29065 us
+[debug] Linker: Check IR: 184949 us
+[debug] Linker: 608100 us
+[debug] Desugarer: Desugar: 18052 us
+[debug] Desugarer: Check IR: 177084 us
+[debug] Desugarer: 195683 us
+[debug] Optimizer: Batch mode: true
+[debug] Optimizer: Incremental part: 87551 us
+[debug] Optimizer: Elidable constructors: 3032 us
+[debug] Optimizer: Optimizing 8498 methods.
+[debug] Optimizer: Optimizer part: 886379 us
+[debug] Optimizer: 985779 us
+[debug] Refiner: Compute reachability: 120354 us
+[debug] Refiner: Assemble LinkedClasses: 12087 us
+[debug] Refiner: 133875 us
+[debug] Module Splitter: Calculate Dependency Info: 1451 us
+[debug] Module Splitter: Analyze Modules: 21319 us
+[debug] Module Splitter: Assemble Modules: 6239 us
+[debug] Module Splitter: 29907 us
+[debug] Emitter: Generate Classes: 505677 us
+[debug] Emitter: Write trees: 24716 us
+[debug] Emitter: Class tree cache stats: reused: 0 -- invalidated: 653
+[debug] Emitter: Method tree cache stats: reused: 0 -- invalidated: 3805
+[debug] Emitter: Pre prints: 5236
+[debug] Name compressor: Collect property names to avoid: 1127 us
+[debug] Name compressor: Allocate property names: 6603 us
+[debug] Name compressor: Allocate ancestor names: 1082 us
+[debug] Emitter: 563239 us
+[debug] BasicBackend: Write result: 157639 us
+[debug] BasicBackend: total modules: 13; re-written: 13
