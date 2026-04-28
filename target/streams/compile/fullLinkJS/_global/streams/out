@@ -1,32 +1,32 @@
-[info] Full optimizing C:\Users\Hoehlenhund\livechart\target\scala-3.3.3\livechart-opt
-[debug] Linker: Compute reachability: 346710 us
-[debug] Linker: Assemble LinkedClasses: 29065 us
-[debug] Linker: Check IR: 184949 us
-[debug] Linker: 608100 us
-[debug] Desugarer: Desugar: 18052 us
-[debug] Desugarer: Check IR: 177084 us
-[debug] Desugarer: 195683 us
-[debug] Optimizer: Batch mode: true
-[debug] Optimizer: Incremental part: 87551 us
-[debug] Optimizer: Elidable constructors: 3032 us
-[debug] Optimizer: Optimizing 8498 methods.
-[debug] Optimizer: Optimizer part: 886379 us
-[debug] Optimizer: 985779 us
-[debug] Refiner: Compute reachability: 120354 us
-[debug] Refiner: Assemble LinkedClasses: 12087 us
-[debug] Refiner: 133875 us
-[debug] Module Splitter: Calculate Dependency Info: 1451 us
-[debug] Module Splitter: Analyze Modules: 21319 us
-[debug] Module Splitter: Assemble Modules: 6239 us
-[debug] Module Splitter: 29907 us
-[debug] Emitter: Generate Classes: 505677 us
-[debug] Emitter: Write trees: 24716 us
-[debug] Emitter: Class tree cache stats: reused: 0 -- invalidated: 653
-[debug] Emitter: Method tree cache stats: reused: 0 -- invalidated: 3805
-[debug] Emitter: Pre prints: 5236
-[debug] Name compressor: Collect property names to avoid: 1127 us
-[debug] Name compressor: Allocate property names: 6603 us
-[debug] Name compressor: Allocate ancestor names: 1082 us
-[debug] Emitter: 563239 us
-[debug] BasicBackend: Write result: 157639 us
-[debug] BasicBackend: total modules: 13; re-written: 13
+[0m[[0m[0minfo[0m] [0m[0mFull optimizing C:\Users\Hoehlenhund\livechart\target\scala-3.3.3\livechart-opt[0m
+[0m[[0m[0mdebug[0m] [0m[0mLinker: Compute reachability: 134032 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mLinker: Assemble LinkedClasses: 8559 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mLinker: Check IR: 147138 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mLinker: 313761 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mDesugarer: Desugar: 2584 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mDesugarer: Check IR: 108258 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mDesugarer: 111086 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mOptimizer: Batch mode: true[0m
+[0m[[0m[0mdebug[0m] [0m[0mOptimizer: Incremental part: 6935 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mOptimizer: Elidable constructors: 613 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mOptimizer: Optimizing 8515 methods.[0m
+[0m[[0m[0mdebug[0m] [0m[0mOptimizer: Optimizer part: 378434 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mOptimizer: 389462 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mRefiner: Compute reachability: 154064 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mRefiner: Assemble LinkedClasses: 6310 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mRefiner: 160721 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mModule Splitter: Calculate Dependency Info: 245 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mModule Splitter: Analyze Modules: 1412 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mModule Splitter: Assemble Modules: 382 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mModule Splitter: 2089 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mEmitter: Generate Classes: 251564 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mEmitter: Write trees: 3527 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mEmitter: Class tree cache stats: reused: 0 -- invalidated: 653[0m
+[0m[[0m[0mdebug[0m] [0m[0mEmitter: Method tree cache stats: reused: 0 -- invalidated: 3807[0m
+[0m[[0m[0mdebug[0m] [0m[0mEmitter: Pre prints: 5238[0m
+[0m[[0m[0mdebug[0m] [0m[0mName compressor: Collect property names to avoid: 1263 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mName compressor: Allocate property names: 8651 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mName compressor: Allocate ancestor names: 1258 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mEmitter: 270206 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mBasicBackend: Write result: 237732 us[0m
+[0m[[0m[0mdebug[0m] [0m[0mBasicBackend: total modules: 13; re-written: 13[0m

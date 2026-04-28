@@ -3,12 +3,12 @@ import * as $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6 from "./int
 var $p;
 /** @constructor */
 function $c_Llivechart_Main$ExerciseStatus(lastCheck, showSolution, wrongAttempts) {
-  this.gD = null;
-  this.hE = false;
-  this.hF = 0;
-  this.gD = lastCheck;
-  this.hE = showSolution;
-  this.hF = wrongAttempts;
+  this.gE = null;
+  this.hF = false;
+  this.hG = 0;
+  this.gE = lastCheck;
+  this.hF = showSolution;
+  this.hG = wrongAttempts;
 }
 export { $c_Llivechart_Main$ExerciseStatus as $c_Llivechart_Main$ExerciseStatus };
 $p = $c_Llivechart_Main$ExerciseStatus.prototype = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$h_O();
@@ -23,19 +23,19 @@ $p.c1 = (function() {
 });
 $p.V = (function() {
   var acc = (-889275714);
-  acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().x(acc, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__hashCode__I("ExerciseStatus"));
-  acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().x(acc, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().ae(this.gD));
-  acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().x(acc, (this.hE ? 1231 : 1237));
-  acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().x(acc, this.hF);
+  acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().y(acc, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__hashCode__I("ExerciseStatus"));
+  acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().y(acc, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().af(this.gE));
+  acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().y(acc, (this.hF ? 1231 : 1237));
+  acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().y(acc, this.hG);
   return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().aj(acc, 3);
 });
 $p.C = (function(x$0) {
   if ((this === x$0)) {
     return true;
   } else if ((x$0 instanceof $c_Llivechart_Main$ExerciseStatus)) {
-    if (((this.hE === x$0.hE) && (this.hF === x$0.hF))) {
-      var x = this.gD;
-      var x$2 = x$0.gD;
+    if (((this.hF === x$0.hF) && (this.hG === x$0.hG))) {
+      var x = this.gE;
+      var x$2 = x$0.gE;
       return ((x === null) ? (x$2 === null) : x.C(x$2));
     } else {
       return false;
@@ -45,26 +45,26 @@ $p.C = (function(x$0) {
   }
 });
 $p.R = (function() {
-  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().hd(this);
+  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().he(this);
 });
-$p.bK = (function() {
+$p.bL = (function() {
   return 3;
 });
-$p.bM = (function() {
+$p.bN = (function() {
   return "ExerciseStatus";
 });
-$p.bL = (function(n) {
+$p.bM = (function(n) {
   switch (n) {
     case 0: {
-      return this.gD;
+      return this.gE;
       break;
     }
     case 1: {
-      return this.hE;
+      return this.hF;
       break;
     }
     case 2: {
-      return this.hF;
+      return this.hG;
       break;
     }
     default: {

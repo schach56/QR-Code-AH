@@ -3,11 +3,11 @@ import * as $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6 from "./int
 var $p;
 /** @constructor */
 function $c_Llivechart_Main$ChapterData(chapter, exercises, rating) {
-  this.gC = null;
-  this.c2 = null;
+  this.gD = null;
+  this.c3 = null;
   this.d3 = null;
-  this.gC = chapter;
-  this.c2 = exercises;
+  this.gD = chapter;
+  this.c3 = exercises;
   this.d3 = rating;
 }
 export { $c_Llivechart_Main$ChapterData as $c_Llivechart_Main$ChapterData };
@@ -28,9 +28,9 @@ $p.C = (function(x$0) {
   if ((this === x$0)) {
     return true;
   } else if ((x$0 instanceof $c_Llivechart_Main$ChapterData)) {
-    if ((this.gC === x$0.gC)) {
-      var x = this.c2;
-      var x$2 = x$0.c2;
+    if ((this.gD === x$0.gD)) {
+      var x = this.c3;
+      var x$2 = x$0.c3;
       var $x_1 = ((x === null) ? (x$2 === null) : x.C(x$2));
     } else {
       var $x_1 = false;
@@ -47,22 +47,22 @@ $p.C = (function(x$0) {
   }
 });
 $p.R = (function() {
-  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().hd(this);
+  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().he(this);
 });
-$p.bK = (function() {
+$p.bL = (function() {
   return 3;
 });
-$p.bM = (function() {
+$p.bN = (function() {
   return "ChapterData";
 });
-$p.bL = (function(n) {
+$p.bM = (function(n) {
   switch (n) {
     case 0: {
-      return this.gC;
+      return this.gD;
       break;
     }
     case 1: {
-      return this.c2;
+      return this.c3;
       break;
     }
     case 2: {

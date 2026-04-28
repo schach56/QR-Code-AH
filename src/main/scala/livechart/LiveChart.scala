@@ -175,13 +175,13 @@ object Main:
     "Zeichen" -> "Character",
     "Dezimal" -> "Decimal",
     "Binärdarstellung" -> "Binary representation",
-    "Erläutere einen Vorteil der festen Länge von 8 Pixeln pro Buchstabe." -> "Explain one advantage of the fixed length of 8 pixels per letter.",
+    "Nenne einen Vorteil der festen Länge von 8 Pixeln pro Buchstabe und erkläre, warum es sich um einen Vorteil handelt." -> "Name one advantage of the fixed length of 8 pixels per letter and explain why it is an advantage.",
     "Wie viele verschiedene Zeichen können mit 8 Pixeln dargestellt werden?" -> "How many different characters can be represented with 8 pixels?",
     "Verschlüssele eine Nachricht mit QR-Code." -> "Encrypt a message using a QR code.",
     "Beschreibe, welche Beschränkungen dir beim Bearbeiten von Aufgabe 8 aufgefallen sind." -> "Describe which limitations you noticed while working on task 8.",
-    "Ziehe die Zahlen 1-8 auf die Felder im Grid, um zu zeigen in welcher Reihenfolge die Bits des ersten Buchstabens in Aufgabe 8 kodiert werden." -> "Drag the numbers 1-8 onto the grid fields to show the order in which the bits of the first letter are encoded in task 8.",
+    "Ziehe die Zahlen 1-8 auf die Felder im Grid (ein Raster von 2x4 Pixeln), um zu zeigen, in welcher Reihenfolge die Bits des ersten Buchstabens in Aufgabe 8 kodiert werden." -> "Drag the numbers 1-8 onto the fields in the grid (a 2x4 pixel layout) to show the order in which the bits of the first letter are encoded in task 8.",
     "Als nächstes überführen wir das Gelernte in eine QR-Code Darstellung. Dafür schauen wir uns an, wie Nachrichten in QR-Codes dargestellt werden. Gib eine Nachricht ein und beobachte, wie diese als QR-Code in Pixel umgewandelt wird. Jeder Buchstabe wird dabei in 8 Bits (seine ASCII-Kodierung) übersetzt und färbt entsprechende Pixel schwarz." -> "Next, we apply what we have learned to a QR code representation. We look at how messages are displayed in QR codes. Enter a message and observe how it is converted into pixels. Each letter is translated into 8 bits (its ASCII encoding) and colours the corresponding pixels black.",
-    "Ziehe die Zahlen 1-8 auf die Felder im Grid, um zu zeigen in welcher Reihenfolge die Bits des ersten Buchstabens in Aufgabe 8 kodiert werden. Als Hilfe kannst du dir die UTF8-Kodierung des Buchstabens anschauen, indem du ihn in das Feld rechts neben dem Pfeil eingibst. " -> "Drag the numbers 1–8 onto the grid fields to show the order in which the bits of the first letter from task 8 are encoded. As a help, you can view the UTF-8 encoding of a letter by entering it in the field to the right of the arrow. ",
+    "Ziehe die Zahlen 1-8 auf die Felder im Grid (ein Raster von 2x4 Pixeln), um zu zeigen, in welcher Reihenfolge die Bits des ersten Buchstabens in Aufgabe 8 kodiert werden. Als Hilfe kannst du dir die UTF-8-Kodierung des Buchstabens anschauen, indem du ihn in das Feld rechts neben dem Pfeil eingibst." -> "Drag the numbers 1–8 onto the fields in the grid (a 2x4 pixel layout) to show the order in which the bits of the first letter from task 8 are encoded. As a help, you can view the UTF-8 encoding of the letter by entering it in the field to the right of the arrow.",
     "2x4 Raster" -> "2x4 Grid",
     "Binär (8 Bit)" -> "Binary (8 Bit)",
     "Zurücksetzen" -> "Reset",
@@ -202,11 +202,11 @@ object Main:
     "Versionsnummer" -> "Version number",
     "Beschriebe, wie die Länge der Nachricht im QR-Code gespeichert wird." -> "Describe how the message length is stored in the QR code.",
     "Vermute, warum du nicht alle Pixel zur Verwendung für die Nachricht hast." -> "Assume why you cannot use all pixels for the message.",
-    "Fasse in eigenen Worten zusammen, wie QR Codes aufgebaut sind. Gehe dabei auf die Bestandteile ein und wie Nachrichten kodiert und gespeichert werden und wie die Buchstaben in das Pixelmuster umgewandelt werden. Nutze dafür mindestens 50 Wörter." -> "Summarize in your own words how QR codes are structured. Include the components, how messages are encoded and stored, and how letters are converted into the pixel pattern. Use at least 50 words.",
-    "Beschreibe was beim scannen des QR Codes passiert und stelle begründete Vermutungen dazu an." -> "Describe what happens when scanning the QR code and provide justified assumptions.",
+    "Fasse in eigenen Worten zusammen, wie QR-Codes aufgebaut sind.\n\nGehe dabei auf folgende Punkte ein:\n- die Bestandteile des QR-Codes\n- wie Nachrichten kodiert und gespeichert werden\n- wie Buchstaben in das Pixelmuster umgewandelt werden\n\nNutze dafür mindestens 50 Wörter." -> "Summarize in your own words how QR codes are structured.\n\nAddress the following points:\n- the components of a QR code\n- how messages are encoded and stored\n- how letters are converted into the pixel pattern\n\nUse at least 50 words.",
+    "Beschreibe, was beim Scannen des QR-Codes passiert, und stelle begründete Vermutungen dazu an." -> "Describe what happens when scanning the QR code and make justified assumptions.",
     "Beschreibe, wie die Maskierung funktioniert. Ergänze die Sätze." -> "Describe how masking works. Complete the sentences.",
     "Berechne durch Anwenden der XOR-Operation die korrekten maskierten Daten." -> "Calculate the correct masked data by applying the XOR operation.",
-    "Erkläre die Berechnungsvorschrift einer Maske deiner Wahl." -> "Explain the calculation rule of a mask of your choice.",
+    "Erkläre die Berechnungsvorschrift (also welche Pixel schwarz gefärbt werden) einer Maske deiner Wahl." -> "Explain the calculation rule of a mask of your choice (i.e., which pixels are colored black).",
     "Vermute, woher der Scanner weiß, welche Maske angewandt wurde." -> "Assume how the scanner knows which mask was applied.",
     "Beschreibe, was dir bei der doppelten Maskierung aufgefallen ist. Erkläre, wofür diese Eigenschaft nützlich sein könnte." -> "Describe what you noticed about double masking. Explain why this property could be useful.",
     "Durch verschiedene Umstände kann es dazu kommen, dass bestimmte Teile des QR-Codes beschädigt werden und somit nicht mehr erkennbar sind. Vergleiche die drei QR-Codes. Vermute, welcher der drei QR-Codes durch einen Scanner gelesen werden kann. Begründe deine Vermutung." -> "Due to various circumstances, certain parts of a QR code can be damaged and become unreadable. Compare the three QR codes. Assume which of the three can be read by a scanner and justify your assumption.",
@@ -218,11 +218,11 @@ object Main:
     "Wie dir vielleicht aufgefallen ist, konnte die QR-Code mit den Überdfeckungen trotzdem gescannt werden. Wie genau das möglich ist und welche Grenzen es dabei gibt, schauen wir uns im Folgenden an. Dafür gehen wir erst einmal weg von QR-Codes und betrachten ein einfaches Beispiel einer Textnachricht. " -> "As you may have noticed, the QR code with the covered areas could still be scanned. We will now look at how this is possible and what its limits are. To do that, we first step away from QR codes and look at a simple example of a text message. ",
     "Vergleiche die beiden Situationen. Beurteile, welcher der beiden Fehler schwieriger zu korrigieren und erkennen ist. \nSituation 1: Du teilst deine Adresse deinem Freund mit einer Notiz mit. Leider verschmiert die Tinte an einer Stelle, sodass statt einem Buchstabe ein schwarzer Fleck zu sehen ist. \nSituation 2: Du teilst deine Adresse deinem Freund mit einer Notiz mit. Leider hast du dich bei der Hausnummer verschrieben und statt 13 steht dort 73." -> "Compare the two situations. Assess which of the two errors is harder to detect and correct. \nSituation 1: You share your address with your friend using a note. Unfortunately, the ink is smudged in one place, so instead of one letter there is a black blot. \nSituation 2: You share your address with your friend using a note. Unfortunately, you made a mistake in the house number and wrote 73 instead of 13.",
     "Eine Möglichkeit mit Fehlern umzugehen ist es, eine Prüfsumme zu verwenden. Dabei werden bestimmte Zeichen in der Nachricht gezählt und die Anzahl der Zeichen an das Ende angehangen. Ein Beispiel wäre, dass die Zeichenanzahl gezählt wird. Aus der Nachricht 'Hallo' würde dann die Nachricht 'Hallo5' werden. \nBeschreibe, welche Arten von Fehlern mit dieser Methode erkannt oder korrigiert werden können. Begründe deine Antwort." -> "One way to deal with errors is to use a checksum. Certain characters in the message are counted and the number of characters is appended to the end. One example would be counting the number of characters. The message 'Hallo' would then become the message 'Hallo5'. \nDescribe which types of errors can be detected or corrected with this method. Justify your answer.",
-    "Beschreibe jeweils wie viel % der Nachricht maximal unleserlich sein dürfen, damit die Nachricht trotzdem noch korrekt gelesen werden kann. \na) Ursprüngliche Nachricht: '12' Nachricht mit Fehlerkorrektur: '1212' \nb) Ursprüngliche Nachricht: '123' Nachricht mit Fehlerkorrektur: '123123123' \nc) Ursprüngliche Nachricht: '1' Nachricht mit Fehlerkorrektur: '1111111111'" -> "For each case, describe what maximum percentage of the message may be unreadable so that the message can still be read correctly. \na) Original message: '12' message with error correction: '1212' \nb) Original message: '123' message with error correction: '123123123' \nc) Original message: '1' message with error correction: '1111111111'",
+    "Beschreibe jeweils, wie viel % der Nachricht maximal unleserlich sein dürfen, damit die Nachricht trotzdem noch korrekt gelesen werden kann. \na) Ursprüngliche Nachricht: '12' Nachricht mit Fehlerkorrektur: '1212' \nb) Ursprüngliche Nachricht: '123' Nachricht mit Fehlerkorrektur: '123123123' \nc) Ursprüngliche Nachricht: '1' Nachricht mit Fehlerkorrektur: '1111111111'" -> "For each case, describe what maximum percentage of the message may be unreadable so that the message can still be read correctly. \na) Original message: '12' message with error correction: '1212' \nb) Original message: '123' message with error correction: '123123123' \nc) Original message: '1' message with error correction: '1111111111'",
     "Hinweis: Berechne den Anteil unleserlicher Daten in Prozent aus dem Verhältnis von Originalnachricht zur Fehlerkorrektur-Nachricht." -> "Hint: Calculate the percentage of unreadable data from the ratio of the original message to the error-correction message.",
-    "Überlege dir, wie die Anzahl der zusätzlichen Daten mit der Fehlerkorrektur zusammenhängt. Erkläre warum ein hohes Korrekturlevel (Die Möglichkeit trotz vieler Fehler die Nachricht noch zu lesen) nicht immer die beste Wahl ist." -> "Think about how the amount of additional data is related to error correction. Explain why a high correction level (the ability to still read the message despite many errors) is not always the best choice.",
+    "Überlege dir, wie die Anzahl der zusätzlichen Daten mit der Fehlerkorrektur zusammenhängt. Erkläre, warum ein hohes Korrekturlevel (Die Möglichkeit trotz vieler Fehler die Nachricht noch zu lesen) nicht immer die beste Wahl ist." -> "Think about how the amount of additional data is related to error correction. Explain, why a high correction level (the ability to still read the message despite many errors) is not always the best choice.",
     "Mehr Fehlerkorrektur erhöht die Zuverlaessigkeit, benötigt aber mehr Speicherplatz. Dadurch sinkt der maximale Speicher für die Daten. Ein höheres Korrekturlevel ist nur dann sinnvoll, wenn viele Störungen erwartet werden." -> "More error correction increases reliability, but requires more storage space. This reduces the maximum available storage for data. A higher correction level is only useful when many disturbances are expected.",
-    "Im folgenden QR-Code kannst du eine Nachricht in das Textfeld eingeben. Mit einem Klick auf 'Metadaten anzeigen' kannst du dir zusätzlich die Metadaten(Versionsnummer + Maskennummer) in den QR-Code laden. Durch einen Klick auf 'Fehlerkorrektur anzeigen' kannst du dir die Fehlerkorrektur-Pixel anzeigen lassen. Teste verschiedene Eingaben. \nBeachte, dass der QR Code nicht Scanbar ist, da keine Maske auf den QR Code angewandt wird." -> "In the following QR code, you can enter a message in the text field. By clicking 'Show metadata', you can additionally load the metadata (version number + mask number) into the QR code. By clicking 'Show error correction', you can display the error-correction pixels. Test different inputs. \nNote that the QR code is not scannable because no mask is applied to the QR code.",
+    "Im folgenden QR-Code kannst du eine Nachricht in das Textfeld eingeben. Mit einem Klick auf 'Metadaten anzeigen' kannst du dir zusätzlich die Metadaten(Versionsnummer + Maskennummer) in den QR-Code laden. Durch einen Klick auf 'Fehlerkorrektur anzeigen' kannst du dir die Fehlerkorrektur-Pixel anzeigen lassen. Teste verschiedene Eingaben. \nBeachte, dass der QR Code nicht scannbar ist, da keine Maske auf den QR Code angewandt wird." -> "In the following QR code, you can enter a message in the text field. By clicking 'Show metadata', you can additionally load the metadata (version number + mask number) into the QR code. By clicking 'Show error correction', you can display the error-correction pixels. Test different inputs. \nNote that the QR code is not scannable because no mask is applied to the QR code.",
     "Beschreibe drei Anwendungen, in denen QR-Codes sinnvoll eingesetzt werden. Begründe jeweils kurz." -> "Describe three applications in which QR codes are useful. Briefly justify each one.",
     "Plane eine konkrete Anwendung im Schulalltag: Beschreibe Ziel, Inhalt des QR-Codes und Ort der Platzierung." -> "Plan a concrete application in everyday school life: describe the goal, the QR code content, and where it is placed.",
     "Recherchiere im Internet nach Barcodes. Beschreibe den Aufbau eines typischen Barcodes." -> "Research barcodes on the internet. Describe the structure of a typical barcode.",
@@ -337,12 +337,12 @@ object Main:
     "Beschreibe eine Methode, wie Fehler nicht nur erkannt, sondern auch korrigiert werden können am Beispiel der Nachricht '12345'. (Tipp: Überlege dir, was du machst, wenn deine Information von einer Person im Gespräch nicht verstanden wurde.)" -> "Describe a method for not only detecting errors but also correcting them using the message '12345' as an example. (Tip: Think about what you do when your information is not understood by someone in conversation.)",
     "Vergleiche die beiden Situationen. Beurteile, welcher der beiden Fehler schwieriger zu korrigieren und erkennen ist. \n" -> "Compare the two situations. Assess which of the two errors is more difficult to detect and correct.\n",
     "Was sind die Probleme mit diesem Verfahren? Überlege dir dazu, wie die Nachricht 'Hallo5' mit einer Prüfsumme aussehen müsste." -> "What are the problems with this method? Think about what the message 'Hallo5' with a checksum would have to look like.",
-    "Beschreibe jeweils wie viel % der Nachricht maximal unleserlich sein dürfen, damit die Nachricht trotzdem noch korrekt gelesen werden kann. \n" -> "Describe for each case what maximum percentage of the message may be unreadable so that the message can still be read correctly.\n",
+    "Beschreibe jeweils, wie viel % der Nachricht maximal unleserlich sein dürfen, damit die Nachricht trotzdem noch korrekt gelesen werden kann. \n" -> "Describe for each case what maximum percentage of the message may be unreadable so that the message can still be read correctly.\n",
     "Erkläre, welche Auswirkungen ein hohes Fehlerkorrektur in QR-Codes auf die Menge der Daten hat." -> "Explain how a high error-correction level in QR codes affects the amount of data.",
     "Erkläre in eigenen Worten, wie die Fehlerkorrektur in QR-Codes funktioniert. Gehe dabei auf den Zusammenhang zwischen zusätzlichen Daten und dem Korrekturlevel ein. Erläutere zusätzlich, wie die Fehlerkorrektur im QR-Code dargestellt wird. Nutze dafür mindestens 50 Wörter." -> "Explain in your own words how error correction in QR codes works. Include the connection between additional data and correction level. Also explain how error correction is represented in the QR code. Use at least 50 words.",
     "Erläutere am Beispiel der Daten von Aufgabe 3, was die Probleme sind, wenn man nur eine feste Maske verwendet." -> "Using the data from task 3 as an example, explain the problems that arise when only one fixed mask is used.",
     "Erläutere am Beispiel der Daten von Aufgabe 3, was die Probleme sind, wenn man nur eine feste Maske verwendet. Beschreibe zusätzlich eine mögliche Lösung, um diese Probleme zu umgehen." -> "Using the data from task 3 as an example, explain the problems that arise when only one fixed mask is used. Also describe a possible solution to avoid these problems.",
-    "Erläutere an einem Beispiel, wie die Maskierung und Demaskierung funktioniert. Gehe dabei auf die Probleme einer festen Maske ein und erkläre, wie die Auswahl der besten Maske funktioniert. Nutze dafür mindestens 50 Wörter." -> "Using an example, explain how masking and demasking work. Address the problems of a fixed mask and explain how the best mask is selected. Use at least 50 words.",
+    "Erläutere an einem Beispiel, wie Maskierung und Demaskierung funktionieren.\n\nGehe dabei auf folgende Punkte ein:\n- die Probleme einer festen Maske\n- wie die beste Maske ausgewählt wird\n- wie die XOR-Operation dabei eingesetzt wird\n\nNutze dafür mindestens 50 Wörter." -> "Using an example, explain how masking and demasking work.\n\nAddress the following points:\n- the problems of a fixed mask\n- how the best mask is selected\n- how the XOR operation is used\n\nUse at least 50 words.",
     "Hinweis: Überlege dir welche Fehlerart erkannt wird." -> "Hint: Think about which error type is detected.",
     "Hinweis: Entscheide dich für eine Situation. Überlege dir bei welcher Notiz du mehr Probleme hast den Fehler zu erkennen." -> "Hint: Choose one situation. Think about for which note you have more difficulty detecting the error.",
     "Hinweis: Nutze Redundanz. Überlege dir, wie du die Nachricht so erweitern kannst, dass sie auch bei Fehlern noch lesbar bleibt." -> "Hint: Use redundancy. Think about how you can extend the message so it remains readable even with errors.",
@@ -357,7 +357,7 @@ object Main:
     "Situation 2 ist schwerer zu erkennen und zu korrigieren, da der Fehler nicht sofort auffällt. Die falsche Hausnummer wirkt auf den ersten Blick plausibel, obwohl sie inhaltlich falsch ist." -> "Situation 2 is harder to detect and correct because the error is not immediately obvious. The wrong house number seems plausible at first glance although it is factually wrong.",
     "Eine Pruefsumme kann Ausfallfehler oder fehlende Zeichen erkennen, aber nicht direkt korrigieren." -> "A checksum can detect dropout errors or missing characters, but cannot correct them directly.",
     "Mehr Fehlerkorrektur bedeutet mehr genutzen Speicher. Dadurch steigt die Robustheit, aber es bleibt weniger Platz für Daten. Ein hohes Korrekturlevel ist nur sinnvoll, wenn die Umgebung viele Fehler verursacht." -> "More error correction means more used memory. This increases robustness, but leaves less space for data. A high correction level is only useful if the environment causes many errors.",
-    "Durch die Bildschirmauflösung und Kamerafehler kann es dazu kommen, dass fälschlicherweise nicht alle QR Codes scanbar waren. Das ist jedoch nicht schlimm!" -> "Due to screen resolution and camera errors, it can happen that not all QR codes appeared scannable by mistake. That is not a problem.",
+    "Durch die Bildschirmauflösung und Kamerafehler kann es dazu kommen, dass fälschlicherweise nicht alle QR Codes scannbar waren. Das ist jedoch nicht schlimm!" -> "Due to screen resolution and camera errors, it can happen that not all QR codes appeared scannable by mistake. That is not a problem.",
     "Die 4 verschiedenen Buchstabenmuster" -> "The 4 different letter patterns",
     "Im QR-Code werden die Buchstaben in einem Zickzack-Muster kodiert. Es gibt dabei 4 verschiedene Ausprägungen, welche im Bild dargestellt sind.\n\nDiese wechselnde Richtung ermöglicht eine effiziente Nutzung des verfügbaren Platzes im QR-Code." -> "In the QR code, letters are encoded in a zigzag pattern. There are 4 different variants, which are shown in the image.\n\nThis alternating direction enables efficient use of the available space in the QR code.",
     "Jeder Pixel kann 2 Farben darstellen. Überlege dir als erstes eine Lösung für eine kleine Pixelanzahl." -> "Each pixel can represent 2 colors. First think of a solution for a small number of pixels.",
@@ -573,25 +573,25 @@ object Main:
       "Schreibe das Wort 'MISSISSIPPI' mit deiner eigenen Kodierung aus Aufgabe 2.",
       "Erkläre die Nachteile einer eigenen, nicht standardisierten Kodierung.",
       "Kodiere das Wort 'INFORMATIK' mithilfe der ASCII-Tabelle.",
-      "Erläutere einen Vorteil der festen Länge von 8 Pixeln pro Buchstabe.",
+      "Nenne einen Vorteil der festen Länge von 8 Pixeln pro Buchstabe und erkläre, warum es sich um einen Vorteil handelt.",
       "Wie viele verschiedene Zeichen können mit 8 Pixeln dargestellt werden?",
       "Verschlüssele eine Nachricht mit QR-Code.",
       "Beschreibe, welche Beschränkungen dir beim Bearbeiten von Aufgabe 8 aufgefallen sind.",
-      "Ziehe die Zahlen 1-8 auf die Felder im Grid, um zu zeigen in welcher Reihenfolge die Bits des ersten Buchstabens in Aufgabe 8 kodiert werden.",
+      "Ziehe die Zahlen 1-8 auf die Felder im Grid (ein Raster von 2x4 Pixeln), um zu zeigen, in welcher Reihenfolge die Bits des ersten Buchstabens in Aufgabe 8 kodiert werden.",
       "Beschriebe, wie die Länge der Nachricht im QR-Code gespeichert wird.",
       "Vermute, warum du nicht alle Pixel zur Verwendung für die Nachricht hast.",
-      "Fasse in eigenen Worten zusammen, wie QR Codes aufgebaut sind. Gehe dabei auf die Bestandteile ein und wie Nachrichten kodiert und gespeichert werden und wie die Buchstaben in das Pixelmuster umgewandelt werden. Nutze dafür mindestens 50 Wörter."
+      "Fasse in eigenen Worten zusammen, wie QR-Codes aufgebaut sind.\n\nGehe dabei auf folgende Punkte ein:\n- die Bestandteile des QR-Codes\n- wie Nachrichten kodiert und gespeichert werden\n- wie Buchstaben in das Pixelmuster umgewandelt werden\n\nNutze dafür mindestens 50 Wörter."
     ),
     "maskierung" -> List(
-      "Beschreibe was beim scannen des QR Codes passiert und stelle begründete Vermutungen dazu an.",
+      "Beschreibe, was beim Scannen des QR-Codes passiert, und stelle begründete Vermutungen dazu an.",
       "Beschreibe, wie die Maskierung funktioniert. Ergänze die Sätze.",
       "Berechne durch Anwenden der XOR-Operation die korrekten maskierten Daten.",
       "Erläutere am Beispiel der Daten von Aufgabe 3, was die Probleme sind, wenn man nur eine feste Maske verwendet. Beschreibe zusätzlich eine mögliche Lösung, um diese Probleme zu umgehen.",
-      "Erkläre die Berechnungsvorschrift einer Maske deiner Wahl.",
+      "Erkläre die Berechnungsvorschrift (also welche Pixel schwarz gefärbt werden) einer Maske deiner Wahl.",
       "Vermute, woher der Scanner weiß, welche Maske angewandt wurde.",
       "Berechne im ersten Schritt die maskierten Daten. Wende die Maske anschließend ein zweites Mal auf die maskierten Daten an. Trage deine Ergebnisse in die beiden rechten Bereiche ein.",
       "Beschreibe, was dir bei der doppelten Maskierung aufgefallen ist. Erkläre, wofür diese Eigenschaft nützlich sein könnte.",
-      "Erläutere an einem Beispiel, wie die Maskierung und Demaskierung funktioniert. Gehe dabei auf die Probleme einer festen Maske ein und erkläre, wie die Auswahl der besten Maske funktioniert. Nutze dafür mindestens 50 Wörter."
+      "Erläutere an einem Beispiel, wie Maskierung und Demaskierung funktionieren.\n\nGehe dabei auf folgende Punkte ein:\n- die Probleme einer festen Maske\n- wie die beste Maske ausgewählt wird\n- wie die XOR-Operation dabei eingesetzt wird\n\nNutze dafür mindestens 50 Wörter."
     ),
     "fehlerkorrektur" -> List(
       "Durch verschiedene Umstände kann es dazu kommen, dass bestimmte Teile des QR-Codes beschädigt werden und somit nicht mehr erkennbar sind. Vergleiche die drei QR-Codes. Vermute, welcher der drei QR-Codes durch einen Scanner gelesen werden kann. Begründe deine Vermutung.",
@@ -600,11 +600,11 @@ object Main:
       "Eine Möglichkeit mit Fehlern umzugehen ist es, eine Prüfsumme zu verwenden. Dabei werden bestimmte Zeichen in der Nachricht gezählt und die Anzahl der Zeichen an das Ende angehangen. Ein Beispiel wäre, dass die Zeichenanzahl gezählt wird. Aus der Nachricht 'Hallo' würde dann die Nachricht 'Hallo5' werden. \nBeschreibe, welche Arten von Fehlern mit dieser Methode erkannt oder korrigiert werden können. Begründe deine Antwort.",
       "Was sind die Probleme mit diesem Verfahren? Überlege dir dazu, wie die Nachricht 'Hallo5' mit einer Prüfsumme aussehen müsste.",
       "Beschreibe eine Methode, wie Fehler nicht nur erkannt, sondern auch korrigiert werden können am Beispiel der Nachricht '12345'. (Tipp: Überlege dir, was du machst, wenn eine Information von einer Person im Gespräch nicht verstanden wurde.)",
-      "Beschreibe jeweils wie viel % der Nachricht maximal unleserlich sein dürfen, damit die Nachricht trotzdem noch korrekt gelesen werden kann. \na) Ursprüngliche Nachricht: '12' Nachricht mit Fehlerkorrektur: '1212' \nb) Ursprüngliche Nachricht: '123' Nachricht mit Fehlerkorrektur: '123123123' \nc) Ursprüngliche Nachricht: '1' Nachricht mit Fehlerkorrektur: '1111111111'",
-      "Überlege dir, wie die Anzahl der zusätzlichen Daten mit der Fehlerkorrektur zusammenhängt. Erkläre warum ein hohes Korrekturlevel nicht immer die beste Wahl ist.",
+      "Beschreibe jeweils, wie viel % der Nachricht maximal unleserlich sein dürfen, damit die Nachricht trotzdem noch korrekt gelesen werden kann. \na) Ursprüngliche Nachricht: '12' Nachricht mit Fehlerkorrektur: '1212' \nb) Ursprüngliche Nachricht: '123' Nachricht mit Fehlerkorrektur: '123123123' \nc) Ursprüngliche Nachricht: '1' Nachricht mit Fehlerkorrektur: '1111111111'",
+      "Überlege dir, wie die Anzahl der zusätzlichen Daten mit der Fehlerkorrektur zusammenhängt. Erkläre, warum ein hohes Korrekturlevel nicht immer die beste Wahl ist.",
       "Ergänze die Lücken im folgenden Text:",
       "Erkläre, wie in QR-Codes mehr Daten gespeichert werden können und welche Auswirkungen das auf die Fehlerkorrektur hat.",
-      "Im folgenden QR-Code kannst du eine Nachricht in das Textfeld eingeben. Mit einem Klick auf 'Metadaten anzeigen' kannst du dir zusätzlich die Metadaten(Versionsnummer + Maskennummer) in den QR-Code laden. Durch einen Klick auf 'Fehlerkorrektur anzeigen' kannst du dir die Fehlerkorrektur-Pixel anzeigen lassen. Teste verschiedene Eingaben. \nBeachte, dass der QR Code nicht Scanbar ist, da keine Maske auf den QR Code angewandt wird.",
+      "Im folgenden QR-Code kannst du eine Nachricht in das Textfeld eingeben. Mit einem Klick auf 'Metadaten anzeigen' kannst du dir zusätzlich die Metadaten(Versionsnummer + Maskennummer) in den QR-Code laden. Durch einen Klick auf 'Fehlerkorrektur anzeigen' kannst du dir die Fehlerkorrektur-Pixel anzeigen lassen. Teste verschiedene Eingaben. \nBeachte, dass der QR Code nicht scannbar ist, da keine Maske auf den QR Code angewandt wird.",
       "Erkläre in eigenen Worten, wie die Fehlerkorrektur in QR-Codes funktioniert. Gehe dabei auf den Zusammenhang zwischen zusätzlichen Daten und dem Korrekturlevel ein. Erläutere zusätzlich, wie die Fehlerkorrektur im QR-Code dargestellt wird. Nutze dafür mindestens 50 Wörter."
     ),
     "praxisanwendungen" -> List(
@@ -693,6 +693,181 @@ object Main:
     baseSignal.combineWith(isAdminModeSignal).map { case (baseValue, isAdmin) =>
       baseValue || isAdmin
     }
+
+  val teacherNotes: Map[(String, Int), String] = Map(
+    // Einführung
+    ("einfuehrung", 1) -> "Vorwissen aktivieren: SuS scannen QR-Codes und beschreiben deren Inhalte.\nErwartete Beobachtungen: Links, Texte und Bilder. Gemeinsamkeit: schwarze/weiße Pixelmuster.",
+    ("einfuehrung", 2) -> "Multiple Choice zur Wissensüberprüfung. Korrekte Aussage: QR-Codes speichern Informationen als Pixelmuster.",
+    ("einfuehrung", 3) -> "Offene Reflexion zu Vorannahmen. Antworten im Plenum sammeln. Es gibt hier keine falschen Antworten; die Aufgabe dient der Diagnose des Vorwissens.",
+    // Nachrichten
+    ("nachricht", 1) -> "Erste Annäherung an den QR-Code-Aufbau. SuS formulieren Vermutungen zu Positionsmustern und Datenbereich.\nDidaktischer Hinweis: Vermutungen stichwortartig an der Tafel sammeln (z. B. Farben, Muster, Bedeutung der Pixel) und am Kapitelende erneut aufgreifen.",
+    ("nachricht", 2) -> "Kreative Kodierung entwickeln. Wichtig: Jeder Buchstabe benötigt ein eindeutiges Muster. Die Aufgabe ist offen und fördert Kreativität.",
+    ("nachricht", 3) -> "Anwendung der eigenen Kodierung aus Aufgabe 2. Prüfen, ob SuS ihre Kodierung konsistent anwenden. Rechts neben der Kodierung sollte der passende Buchstabe erscheinen.",
+    ("nachricht", 4) -> "Standardisierung begründen. Erwartet: Ohne gemeinsamen Standard kann der Empfänger die Nachricht nicht dekodieren.",
+    ("nachricht", 5) -> "ASCII-Tabelle verwenden. SuS kodieren 'INFORMATIK' in Binärdarstellung. Hinweis: Die ASCII-Tabelle bei Bedarf kurz wiederholen.",
+    ("nachricht", 6) -> "SuS sollen schlussfolgern, dass eine feste Länge Vorteile hat. Eine Kodierung mit variabler Länge (z. B. Huffman) kann später im Unterricht eingeführt werden. Erwartet: eindeutige Trennung der Zeichen ohne zusätzliche Trennzeichen.",
+    ("nachricht", 7) -> "Das Zählprinzip sollte aus Mathematik bekannt sein: 2^8 = 256. Rechenaufgabe zum Prinzip der Binärkodierung.",
+    ("nachricht", 8) -> "Interaktive QR-Code-Erstellung. SuS geben eine eigene Nachricht ein und beobachten den generierten QR-Code.",
+    ("nachricht", 9) -> "Zeichenbeschränkung erkennen. Erwartet: Maximale Kapazität begrenzt durch Pixel; feste Bereiche für Positionsmuster stehen nicht zur Verfügung.",
+    ("nachricht", 10) -> "Zickzack-Raster: Bits werden in einer bestimmten Reihenfolge von oben rechts nach unten links angeordnet. Drag-and-Drop-Übung.",
+    ("nachricht", 11) -> "Überprüfung, ob wichtige Bestandteile aus Aufgabe 8 erkannt und getestet wurden.\nLängeninformation: 8 Bit am Anfang der Nachricht geben die Zeichenanzahl in Binärdarstellung an.",
+    ("nachricht", 12) -> "SuS stellen Vermutungen auf, warum nicht alle Pixel für Nutzdaten verfügbar sind. Erwartung: Positionsmarker, Timing-Pattern und Formatinformationen belegen feste Bereiche.\nDidaktischer Hinweis: Das passende Bild ist auch auf dem Merkblatt enthalten.",
+    ("nachricht", 13) -> "Zusammenfassung, mindestens 50 Wörter. Bewertungsschwerpunkte: Aufbau des QR-Codes, Kodierung, Binärdarstellung.",
+    // Maskierung
+    ("maskierung", 1) -> "QR-Code ohne Maske ist nicht scannbar. SuS sollen begründete Vermutungen aufstellen, warum das Scannen scheitert (z. B. zu große schwarze Flächen, zu wenig Kontrast).\nDidaktischer Hinweis: Vermutungen zuerst einzeln notieren lassen und anschließend an der Tafel sammeln.",
+    ("maskierung", 2) -> "Die Raster mit blauem Rahmen sind anklickbar. SuS sollen die XOR-Funktion durch Ausprobieren selbstständig verstehen.\nXOR-Lückentext zur Maskierung. Erwartete Antworten: 0 XOR 0 = 0, 0 XOR 1 = 1, 1 XOR 0 = 1, 1 XOR 1 = 0.",
+    ("maskierung", 3) -> "XOR-Berechnung auf Pixel anwenden. Ergebnis ist der maskierte Datenwert. SuS sollen die Pixelfarben Schritt für Schritt bestimmen. Die Bewertung ist nur korrekt, wenn alle Pixel einer Reihe korrekt sind.",
+    ("maskierung", 4) -> "Problem einer festen Maske: Es können ungünstige Muster entstehen (viele schwarze Pixel nebeneinander). Erwartete Idee: Mehrere Masken nacheinander testen und die beste auswählen.\nDidaktischer Hinweis: Ideen im Plenum an der Tafel sammeln.",
+    ("maskierung", 5) -> "Berechnungsvorschrift einer Maske erklären. Zeile und Spalte als Variablen. Schüler sollen ein konkretes Beispiel in eigenen Worten angeben.",
+    ("maskierung", 6) -> "Metadaten im QR-Code: SuS vermuten, woher der Scanner die verwendete Maske kennt. Erwartung: Die Maskennummer wird in Metadaten-Pixeln gespeichert.\nDidaktischer Hinweis: Vermutungen an der Tafel sammeln und danach mit dem Bild der QR-Bereiche abgleichen.",
+    ("maskierung", 7) -> "Doppelte Maskierung berechnen. SuS tragen Ergebnisse in beide rechten Felder ein. Erwartung: Nach zwei XOR-Operationen erscheinen die Originaldaten.\nDie Korrektur funktioniert zeilenweise.",
+    ("maskierung", 8) -> "Eigenschaft der doppelten Maskierung: Zweimaliges XOR ergibt die Originaldaten zurück. Nützlich: Gleiche Operation zum Maskieren und Demaskieren.",
+    ("maskierung", 9) -> "Zusammenfassung, mindestens 50 Wörter. Bewertungsschwerpunkte: Probleme fester Maske, Auswahlprozess, XOR-Operation.",
+    // Fehlerkorrektur
+    ("fehlerkorrektur", 1) -> "Drei QR-Codes vergleichen: mit Stickern, ohne Schäden, mit Logo. SuS stellen Vermutungen auf, welche Codes scannbar sind, und begründen diese.\nDidaktischer Hinweis: Vor dem Test eine gemeinsame Tafelabfrage (Code A/B/C) durchführen und erst dann scannen lassen.",
+    ("fehlerkorrektur", 2) -> "Scan-Test. Durch Bildschirmauflösung kann es zu Abweichungen kommen; das ist fachlich nutzbar. SuS formulieren Vermutungen, wie Fehlerkorrektur technisch umgesetzt sein könnte.\nDidaktischer Hinweis: Vermutungen an der Tafel als Hypothesen sammeln und später mit den folgenden Aufgaben prüfen.",
+    ("fehlerkorrektur", 3) -> "Fehlertypen unterscheiden: Ausfallfehler (Fleck sichtbar) vs. Inhaltsfehler (falsche Zahl, nicht sofort auffällig). Situation 2 ist schwerer zu detektieren.",
+    ("fehlerkorrektur", 4) -> "Prüfsumme als Konzept einführen. Erkennt nur Ausfallfehler, kann aber nicht korrigieren. Mehrdeutigkeit als Problem herausarbeiten.",
+    ("fehlerkorrektur", 5) -> "Mehrdeutigkeit der Prüfsumme: 'Hallo5' — ist die Nachricht 'Hallo' mit Prüfsumme '5', oder 'Hallo5' mit Prüfsumme '6'?",
+    ("fehlerkorrektur", 6) -> "Redundanz als Lösung: Nachricht doppelt senden. SuS sollen selbst auf das Prinzip der Wiederholung kommen.",
+    ("fehlerkorrektur", 7) -> "Prozentrechnung: Anteil unleserlicher Daten. Erwartete Ergebnisse: a) 1/2 = 50 %, b) 2/3 = 66 %, c) 9/10 = 90 %.",
+    ("fehlerkorrektur", 8) -> "Trade-off: Mehr Fehlerkorrektur = weniger Platz für Daten. Hohes Korrekturlevel nur sinnvoll, wenn viele Fehler erwartet werden.",
+    ("fehlerkorrektur", 9) -> "Lückentext zur Fehlerkorrektur und Fehlererkennung. Dient dazu, das Wissen der SuS abzufragen und zu festigen.",
+    ("fehlerkorrektur", 10) -> "Versionen erklären: Mehr Daten → höhere Version → größerer QR-Code. Balance zwischen Datenmenge, Fehlerkorrektur und Lesbarkeit.\nDidaktischer Hinweis: Die Aufgabe eignet sich, um das Erklären zu üben. Partnerarbeit: Eine Person erklärt, die andere stellt Rückfragen; danach Rollenwechsel und Überarbeitung der Antwort.",
+    ("fehlerkorrektur", 11) -> "Interaktiver QR-Code mit Metadaten. Fehlerkorrektur-Pixel werden farbig angezeigt. SuS sollen verschiedene Eingaben testen.",
+    ("fehlerkorrektur", 12) -> "Zusammenfassung, mindestens 50 Wörter. Bewertungsschwerpunkte: Reed-Solomon-Prinzip, Fehlertoleranzlevel, Auswirkung auf Datenkapazität.",
+    // Praxisanwendungen
+    ("praxisanwendungen", 1) -> "Drei Anwendungsfälle nennen und begründen. Offene Aufgabe. Mögliche Beispiele: Werbung, Schulalltag, Tickets, Produktinformationen.",
+    ("praxisanwendungen", 2) -> "Konkrete Schulanwendung planen. SuS beschreiben Ziel, Inhalt und Ort des QR-Codes. Ergebnisse können im Plenum verglichen werden.",
+    ("praxisanwendungen", 3) -> "Ausgangskontrolle analysieren. Je 2 Vor- und Nachteile der manuellen Methode. Erwartet: Datenschutz, Aufwand, Fehleranfälligkeit als Themen.",
+    ("praxisanwendungen", 4) -> "QR-Code-Lösung für die Ausgangskontrolle entwerfen. Mögliche Leitfragen: Welche Daten werden benötigt? Wie funktioniert die Automatisierung?",
+    ("praxisanwendungen", 5) -> "Kritische Stellungnahme zum Einsatz von QR-Codes. Datenschutz und Nutzen abwägen. Diskussion in der Klasse empfohlen.",
+    ("praxisanwendungen", 6) -> "Sicherheitsbedenken zur Manipulation aufgreifen. Erwartet: Integritätsprüfung, Plausibilitätskontrollen und organisatorische Maßnahmen (z. B. Abgleich mit Listen). Eignet sich gut für eine Klassendiskussion.",
+    ("praxisanwendungen", 7) -> "Bedenken zu Beschädigungen einordnen. Erwartet: Fehlerkorrektur kann teilweise beschädigte Codes weiterhin lesbar machen; Grenzen der Robustheit benennen.",
+    ("praxisanwendungen", 8) -> "Banking-Beispiel kritisch prüfen. Erwartet: Sensible Daten gehören nicht ungeschützt in QR-Codes (Datenschutz, Missbrauchsrisiko, PIN/Passwort niemals codieren).",
+    ("praxisanwendungen", 9) -> "Weiteres Negativbeispiel begründet nennen. Ziel: Transfer auf neue Kontexte, nicht nur Wiederholung bekannter Fälle.",
+    ("praxisanwendungen", 10) -> "Vergleich sensible Daten vs. öffentliche Informationen in 50 Wörtern. Bewertungsschwerpunkt: differenzierte Risiko-Nutzen-Abwägung.",
+    ("praxisanwendungen", 11) -> "VCard-Praxisaufgabe: SuS erstellen und testen einen QR-Code mit Kontaktdaten. Hinweis: Keine echten Daten verwenden; Testdaten genügen. Die QR-Codes können gesammelt und später ausgedruckt werden.",
+    // Zusammenfassung
+    ("zusammenfassung", 1) -> "Gesamtmodell am interaktiven QR-Code wiederholen: Nutzdaten, Metadaten, Maske und Fehlerkorrektur zusammenführen.",
+    ("zusammenfassung", 2) -> "Freitext mit mindestens 50 Wörtern. Bewertungsschwerpunkte: Fachbegriffe korrekt nutzen und Funktionen der Bereiche klar zuordnen.",
+    // Barcodes
+    ("barcodes", 1) -> "Rechercheaufgabe: Aufbau eines Barcodes strukturiert beschreiben (Start/Stop, Balkenbreiten, Codierlogik).",
+    ("barcodes", 2) -> "Fehlererkennung bei Barcodes erklären (Prüfziffer) und Grenzen gegenüber QR-Codes herausarbeiten.",
+    ("barcodes", 3) -> "Vergleich Barcode vs. QR-Code mit je zwei Gemeinsamkeiten/Unterschieden. Auf klare Kriterien achten.",
+    ("barcodes", 4) -> "Begründete Entscheidung für Einsatzszenarien. Erwartet: kontextabhängige Auswahl statt pauschaler Aussage.",
+  )
+
+  val teacherNotesEn: Map[(String, Int), String] = Map(
+    ("einfuehrung", 1) -> "Activate prior knowledge: students scan QR codes and describe their contents.\nExpected observations: links, text, and images. Common feature: black-and-white pixel patterns.",
+    ("einfuehrung", 2) -> "Multiple-choice knowledge check. Correct statement: QR codes store information as pixel patterns.",
+    ("einfuehrung", 3) -> "Open reflection on prior assumptions. Collect answers in plenary. There are no wrong answers here; this task diagnoses prior knowledge.",
+    ("nachricht", 1) -> "First approach to QR code structure. Students formulate hypotheses about position patterns and data areas.\nDidactic note: collect hypotheses on the board (e.g., colors, patterns, meaning of pixels) and revisit them at the end of the chapter.",
+    ("nachricht", 2) -> "Develop a creative encoding. Important: each letter needs a unique pattern. The task is open and supports creativity.",
+    ("nachricht", 3) -> "Apply the custom encoding from task 2. Check whether students use their encoding consistently. The matching letter should appear to the right of the encoding.",
+    ("nachricht", 4) -> "Explain standardization. Expected: without a shared standard, the receiver cannot decode the message.",
+    ("nachricht", 5) -> "Use the ASCII table. Students encode 'INFORMATIK' in binary form. Note: briefly review the ASCII table if needed.",
+    ("nachricht", 6) -> "Students should conclude that fixed length has advantages. Variable-length encoding (e.g., Huffman) can be introduced later. Expected: clear character separation without additional separators.",
+    ("nachricht", 7) -> "Counting principle from mathematics: 2^8 = 256. Calculation task on binary encoding.",
+    ("nachricht", 8) -> "Interactive QR creation. Students enter their own message and observe the generated QR code.",
+    ("nachricht", 9) -> "Identify character length limits. Expected: capacity is limited by pixels; fixed QR areas are unavailable for payload data.",
+    ("nachricht", 10) -> "Zigzag grid: bits are arranged in a specific order from top right to bottom left. Drag-and-drop exercise.",
+    ("nachricht", 11) -> "Check whether key aspects from task 8 were recognized and tested.\nLength info: 8 bits at the beginning store the character count in binary.",
+    ("nachricht", 12) -> "Students formulate hypotheses about why not all pixels are available for payload data. Expected: position markers, timing patterns, and format information occupy fixed areas.\nDidactic note: the corresponding image is also included on the worksheet.",
+    ("nachricht", 13) -> "Summary, at least 50 words. Assessment focus: QR structure, encoding, and binary representation.",
+    ("maskierung", 1) -> "A QR code without a mask is not scannable. Students should form reasoned hypotheses about why scanning fails (e.g., too many large black areas, low contrast).\nDidactic note: let students write hypotheses individually first, then collect them on the board.",
+    ("maskierung", 2) -> "The blue-framed grids are clickable. Students should understand XOR through experimentation.\nXOR gap text on masking. Expected answers: 0 XOR 0 = 0, 0 XOR 1 = 1, 1 XOR 0 = 1, 1 XOR 1 = 0.",
+    ("maskierung", 3) -> "Apply XOR to pixels. Result is the masked data value. Students determine pixel colors step by step. Assessment is only correct if all pixels in a row are correct.",
+    ("maskierung", 4) -> "Problem of a fixed mask: unfavorable patterns can occur (many adjacent black pixels). Expected idea: test several masks and choose the best one.\nDidactic note: collect ideas in plenary on the board.",
+    ("maskierung", 5) -> "Explain a mask calculation rule. Use row and column as variables. Students should provide one concrete example in their own words.",
+    ("maskierung", 6) -> "Metadata in QR codes: students hypothesize how the scanner knows which mask was used. Expected: mask number is stored in metadata pixels.\nDidactic note: collect hypotheses on the board, then compare with the QR area image.",
+    ("maskierung", 7) -> "Calculate double masking. Students enter results in both right-hand fields. Expected: after two XOR operations, original data reappears.\nCorrection works row by row.",
+    ("maskierung", 8) -> "Property of double masking: applying XOR twice restores original data. Useful: same operation for masking and demasking.",
+    ("maskierung", 9) -> "Summary, at least 50 words. Assessment focus: problems of fixed masks, selection process, and XOR operation.",
+    ("fehlerkorrektur", 1) -> "Compare three QR codes: with stickers, without damage, with logo. Students hypothesize which codes are scannable and justify their choice.\nDidactic note: conduct a board poll (Code A/B/C) before scanning.",
+    ("fehlerkorrektur", 2) -> "Scan test. Screen resolution can cause deviations; this can be used productively. Students formulate hypotheses on how error correction might work technically.\nDidactic note: collect hypotheses on the board and test them in subsequent tasks.",
+    ("fehlerkorrektur", 3) -> "Differentiate error types: erasure error (visible blot) vs substitution error (wrong number, not obvious at first). Situation 2 is harder to detect.",
+    ("fehlerkorrektur", 4) -> "Introduce checksums. They detect some errors but do not correct them. Highlight ambiguity as the core issue.",
+    ("fehlerkorrektur", 5) -> "Checksum ambiguity: is 'Hallo5' the message 'Hallo' with checksum '5', or 'Hallo5' with checksum '6'?",
+    ("fehlerkorrektur", 6) -> "Redundancy as a solution: send the message twice. Students should discover repetition as a strategy.",
+    ("fehlerkorrektur", 7) -> "Percent calculation of unreadable data. Expected results: a) 1/2 = 50%, b) 2/3 = 66%, c) 9/10 = 90%.",
+    ("fehlerkorrektur", 8) -> "Trade-off: more error correction means less space for data. High correction levels are only useful when many errors are expected.",
+    ("fehlerkorrektur", 9) -> "Gap text on error correction and error detection. Used to check and consolidate students' knowledge.",
+    ("fehlerkorrektur", 10) -> "Explain versions: more data -> higher version -> larger QR code. Balance among data amount, error correction, and readability.\nDidactic note: suitable for explanation practice in pairs with role switching and revision.",
+    ("fehlerkorrektur", 11) -> "Interactive QR with metadata. Error-correction pixels are highlighted. Students should test different inputs.",
+    ("fehlerkorrektur", 12) -> "Summary, at least 50 words. Assessment focus: Reed-Solomon principle, tolerance levels, and data capacity impact.",
+    ("praxisanwendungen", 1) -> "Name and justify three application cases. Open task. Possible examples: advertising, school routines, tickets, product information.",
+    ("praxisanwendungen", 2) -> "Plan a concrete school application. Students describe goal, QR content, and placement. Compare results in plenary.",
+    ("praxisanwendungen", 3) -> "Analyze school-exit control. Give two pros and two cons of the manual method. Expected themes: privacy, effort, error-proneness.",
+    ("praxisanwendungen", 4) -> "Design a QR-based solution for exit control. Guiding questions: which data is needed and how can automation work?",
+    ("praxisanwendungen", 5) -> "Take a critical position on using QR codes. Weigh privacy and usefulness. Class discussion recommended.",
+    ("praxisanwendungen", 6) -> "Address manipulation concerns. Expected: integrity checks, plausibility checks, and organizational measures (e.g., list matching). Good for class discussion.",
+    ("praxisanwendungen", 7) -> "Assess concerns about physical damage. Expected: error correction can still decode partly damaged codes; students should name robustness limits.",
+    ("praxisanwendungen", 8) -> "Critically assess the banking example. Expected: sensitive data must not be stored unprotected in QR codes (privacy, misuse risk, never encode PIN/password).",
+    ("praxisanwendungen", 9) -> "Provide another justified negative example. Goal: transfer to new contexts, not only repetition.",
+    ("praxisanwendungen", 10) -> "Compare sensitive data vs public information in 50 words. Assessment focus: differentiated risk-benefit evaluation.",
+    ("praxisanwendungen", 11) -> "VCard practice task: students create and test a QR code with contact data. Note: use test data, not real personal data. Codes can be collected and printed later.",
+    ("zusammenfassung", 1) -> "Review the complete model with the interactive QR code: combine payload data, metadata, masking, and error correction.",
+    ("zusammenfassung", 2) -> "Free text with at least 50 words. Assessment focus: correct terminology and clear assignment of component functions.",
+    ("barcodes", 1) -> "Research task: describe barcode structure systematically (start/stop, bar widths, coding logic).",
+    ("barcodes", 2) -> "Explain barcode error detection (check digit) and compare limits to QR codes.",
+    ("barcodes", 3) -> "Compare barcode and QR code with two similarities and two differences. Use clear criteria.",
+    ("barcodes", 4) -> "Make a justified decision for usage scenarios. Expected: context-dependent choice instead of blanket statements.",
+  )
+
+  val chapterTeacherGoals: Map[String, String] = Map(
+    "einfuehrung" -> "Lernziele Kapitel Einführung:\n- QR-Codes im Alltag erkennen und erste Merkmale benennen\n- Scanner-Nutzung sicher anwenden\n- Vorwissen und Vermutungen als Ausgangspunkt für das Lernen festhalten\nDidaktischer Hinweis: Erste Vermutungen sichtbar an der Tafel sammeln und im Verlauf erneut aufgreifen.",
+    "nachricht" -> "Lernziele Kapitel Nachricht:\n- Aufbau eines QR-Codes beschreiben\n- Eigene Kodierung entwickeln und Grenzen reflektieren\n- ASCII/UTF-8 als Standard einordnen\n- Bit-Reihenfolge und Längeninformation verstehen\nDidaktischer Hinweis: Bei Vermutungsaufgaben zentrale Ideen an der Tafel sammeln und später fachlich präzisieren.",
+    "maskierung" -> "Lernziele Kapitel Maskierung:\n- Problem ungünstiger Pixelmuster erkennen\n- Funktionsweise der Maskierung mit XOR verstehen\n- Auswahl der besten Maske begründen\n- Metadaten zur Maskennummer einordnen\nDidaktischer Hinweis: Vermutungen zuerst sammeln, dann mit Rechenbeispielen und Infotexten absichern.",
+    "fehlerkorrektur" -> "Lernziele Kapitel Fehlerkorrektur:\n- Fehlertypen unterscheiden\n- Redundanz als Prinzip der Fehlerkorrektur erklären\n- Trade-off zwischen Korrekturlevel und Datenkapazität beschreiben\n- Reed-Solomon-Level (L/M/Q/H) einordnen\nDidaktischer Hinweis: Hypothesen der SuS an der Tafel sammeln und schrittweise mit Ergebnissen prüfen.",
+    "praxisanwendungen" -> "Lernziele Kapitel Praxisanwendungen:\n- Sinnvolle und kritische QR-Code-Anwendungen bewerten\n- Datenschutz, Aufwand und Automatisierung gegeneinander abwägen\n- Eigene Lösungsvorschläge für Schulkontexte entwickeln\nDidaktischer Hinweis: Argumente pro/contra an der Tafel strukturieren (z. B. Nutzen, Risiko, Aufwand).",
+    "zusammenfassung" -> "Lernziele Kapitel Zusammenfassung:\n- Kernkonzepte (Aufbau, Kodierung, Maskierung, Fehlerkorrektur) vernetzen\n- Funktionen der QR-Code-Bestandteile sicher erklären\n- Inhalte in eigenen Worten zusammenfassen\n- Ein Merkblatt erstellen, das mit eigenen Antworten gefüllt ist\nDidaktischer Hinweis: Offene Fragen und Fehlvorstellungen aus früheren Tafelnotizen gezielt auflösen.",
+    "barcodes" -> "Lernziele Kapitel Barcodes:\n- Aufbau und Eigenschaften von Barcodes recherchieren\n- Barcode und QR-Code fachlich vergleichen\n- Eignung je nach Anwendung begründet bewerten\nDidaktischer Hinweis: Als Zusatzaufgaben nutzbar; zum Abschluss der Einheit gut mit QR-Codes vergleichbar."
+  )
+
+  val chapterTeacherGoalsEn: Map[String, String] = Map(
+    "einfuehrung" -> "Chapter goals: Introduction\n- Recognize QR codes in everyday life and describe key features\n- Use scanner tools reliably\n- Use prior knowledge and hypotheses as a learning starting point\nDidactic note: Collect initial hypotheses visibly on the board and revisit them later.",
+    "nachricht" -> "Chapter goals: Message\n- Describe the structure of a QR code\n- Develop own encodings and reflect on limits\n- Classify ASCII/UTF-8 as standards\n- Understand bit order and length information\nDidactic note: For hypothesis tasks, collect central ideas on the board and refine them with formal explanations.",
+    "maskierung" -> "Chapter goals: Masking\n- Recognize problems caused by unfavorable pixel patterns\n- Understand masking with XOR\n- Justify how the best mask is selected\n- Classify metadata for mask identification\nDidactic note: Collect hypotheses first, then secure understanding with calculations and info texts.",
+    "fehlerkorrektur" -> "Chapter goals: Error correction\n- Distinguish error types\n- Explain redundancy as an error-correction principle\n- Describe the trade-off between correction level and data capacity\n- Classify Reed-Solomon levels (L/M/Q/H)\nDidactic note: Collect student hypotheses on the board and test them step by step with results.",
+    "praxisanwendungen" -> "Chapter goals: Practical applications\n- Evaluate useful and critical QR applications\n- Weigh privacy, effort, and automation\n- Develop own solution ideas for school contexts\nDidactic note: Structure pro/contra arguments on the board (e.g., benefit, risk, effort).",
+    "zusammenfassung" -> "Chapter goals: Summary\n- Connect core concepts (structure, encoding, masking, error correction)\n- Explain QR components confidently\n- Summarize content in own words\n- Create a worksheet summary with own answers\nDidactic note: Resolve open questions and misconceptions from earlier board notes.",
+    "barcodes" -> "Chapter goals: Barcodes\n- Research barcode structure and properties\n- Compare barcode and QR code conceptually\n- Evaluate suitability by scenario\nDidactic note: Useful as extension tasks and for final comparison with QR codes."
+  )
+
+  def teacherNoteBlock(chapter: String, index: Int): Element =
+    div(
+      child <-- isAdminModeSignal.combineWith(languageVar.signal).map { case (isAdmin, lang) =>
+        if isAdmin then
+          val note = if lang == "en" then teacherNotesEn.get((chapter, index)).orElse(teacherNotes.get((chapter, index))) else teacherNotes.get((chapter, index))
+          note.map { content =>
+            div(
+              styleAttr := "margin-top: 1rem; padding: 0.75rem 1rem; background: #fff8e1; border-left: 4px solid #f9a825; border-radius: 0 4px 4px 0; font-size: 0.88rem;",
+              p(styleAttr := "font-weight: 700; margin: 0 0 0.3rem 0; color: #e65100;", if lang == "en" then "Teacher note" else "Lehrerhinweis"),
+              p(styleAttr := "margin: 0; white-space: pre-wrap; color: #4e342e;", content)
+            )
+          }.getOrElse(emptyNode)
+        else
+          emptyNode
+      }
+    )
+
+  def chapterTeacherGoalsBlock(chapter: String): Element =
+    div(
+      child <-- isAdminModeSignal.combineWith(languageVar.signal).map { case (isAdmin, lang) =>
+        if isAdmin then
+          val goals = if lang == "en" then chapterTeacherGoalsEn.get(chapter).orElse(chapterTeacherGoals.get(chapter)) else chapterTeacherGoals.get(chapter)
+          goals.map { text =>
+            div(
+              styleAttr := "margin: 0.8rem 0 1.2rem 0; padding: 0.85rem 1rem; background: #eef7ff; border-left: 4px solid #2f6fb6; border-radius: 0 4px 4px 0;",
+              h3(styleAttr := "margin: 0 0 0.4rem 0; color: #1f4f86; font-size: 1rem;", if lang == "en" then "Teacher note: Learning goals" else "Lehrerhinweis: Lernziele"),
+              p(styleAttr := "margin: 0; white-space: pre-wrap; color: #1f2f3f;", text)
+            )
+          }.getOrElse(emptyNode)
+        else
+          emptyNode
+      }
+    )
 
   def loadMerkzettelCreated(): Boolean =
     try
@@ -787,7 +962,8 @@ object Main:
             renderQRCodeSimulation(text, showLength = showLength)
           }
         )
-      )
+      ),
+      teacherNoteBlock(chapter, exerciseNumber)
     )
   end renderQRCodeExercise
 
@@ -925,7 +1101,8 @@ object Main:
             renderQRCodeSimulationWithBothMetadata(text, darkRedPixels, lightRedPixels, isMetadataActive, getErrorCorrectionPixels(text), isErrorActive, allErrorCorrectionZones)
           }
         )
-      )
+      ),
+      teacherNoteBlock(chapter, exerciseNumber)
     )
   end renderQRCodeExerciseWithMetadata
 
@@ -1625,7 +1802,7 @@ object Main:
     val chapter = "nachricht"
     val taskKey = "aufgabe10_completed"  // Simple key for persistence
     val patternInfoKey = "qr-infobox-nachricht-10-patterns"
-    val taskText = "Ziehe die Zahlen 1-8 auf die Felder im Grid, um zu zeigen in welcher Reihenfolge die Bits des ersten Buchstabens in Aufgabe 8 kodiert werden."
+    val taskText = "Ziehe die Zahlen 1-8 auf die Felder im Grid (ein Raster von 2x4 Pixeln), um zu zeigen, in welcher Reihenfolge die Bits des ersten Buchstabens in Aufgabe 8 kodiert werden."
     val previewCharVar: Var[String] = Var("")
 
     def parseSavedGrid(answer: String): Map[(Int, Int), Int] =
@@ -1709,7 +1886,7 @@ object Main:
     
     div(
       h2(child.text <-- languageVar.signal.map(lang => if lang == "en" then "Task 10" else "Aufgabe 10")),
-      p(child.text <-- languageVar.signal.map(lang => translatedNow("Ziehe die Zahlen 1-8 auf die Felder im Grid, um zu zeigen in welcher Reihenfolge die Bits des ersten Buchstabens in Aufgabe 8 kodiert werden. Als Hilfe kannst du dir die UTF8-Kodierung des Buchstabens anschauen, indem du ihn in das Feld rechts neben dem Pfeil eingibst. ", lang))),
+      p(child.text <-- languageVar.signal.map(lang => translatedNow("Ziehe die Zahlen 1-8 auf die Felder im Grid (ein Raster von 2x4 Pixeln), um zu zeigen, in welcher Reihenfolge die Bits des ersten Buchstabens in Aufgabe 8 kodiert werden. Als Hilfe kannst du dir die UTF-8-Kodierung des Buchstabens anschauen, indem du ihn in das Feld rechts neben dem Pfeil eingibst.", lang))),
       child <-- Signal.combine(gridNumbers.signal, allCorrect.signal).map { case (gridMap, isCompleted) =>
         persistExerciseAnswer(chapter, taskText, serializeGridState(gridMap, isCompleted))
         emptyNode
@@ -1920,6 +2097,7 @@ object Main:
         else
           emptyNode
       },
+      teacherNoteBlock("nachricht", 10)
     )
 
   def AufgabeKodierung(): Element =
@@ -2043,12 +2221,11 @@ object Main:
             }
           )
         )
-      )
       ),
       div(
         h2(child.text <-- languageVar.signal.map(lang => if lang == "en" then "Task 3" else "Aufgabe 3")),
         p(child.text <-- languageVar.signal.map(lang => translatedNow("Schreibe das Wort 'MISSISSIPPI' mit deiner eigenen Kodierung aus Aufgabe 2.", lang))),
-        {
+        locally {
           val taskText3 = "Schreibe das Wort 'MISSISSIPPI' mit deiner eigenen Kodierung aus Aufgabe 2."
           val rows3 = 11
           val cols3 = 10
@@ -2187,7 +2364,7 @@ object Main:
         }
       )
     )
-  end AufgabeKodierung
+  )
 
   def appElement(): Element =
     div(
@@ -2211,6 +2388,7 @@ object Main:
               div(
                 h1(child.text <-- languageVar.signal.map(lang => chapterTitle("nachricht", lang))),
                 TimeBadge(60),
+                chapterTeacherGoalsBlock("nachricht"),
                 cls := "nachricht-section",
                 renderExercise(
                   "Beschreibe, wie ein QR-Code aufgebaut ist. Vermute, wie die Daten im QR-Code dargestellt werden.",
@@ -2239,6 +2417,8 @@ object Main:
                     emptyNode
                 },
                 AufgabeKodierung(),
+                teacherNoteBlock("nachricht", 2),
+                teacherNoteBlock("nachricht", 3),
               renderExercise(
                 "Erkläre die Nachteile einer eigenen, nicht standardisierten Kodierung.",
                 Set("zusätzlich", "Kodierungsvorschrift"),
@@ -2285,6 +2465,13 @@ object Main:
                 div(
                   h2(child.text <-- languageVar.signal.map(lang => if lang == "en" then "Task 5" else "Aufgabe 5")),
                   p(child.text <-- languageVar.signal.map(lang => translatedNow("Kodiere das Wort 'INFORMATIK' mithilfe der ASCII-Tabelle. Rechts siehst du die ASCII-Tabelle, links kodierst du jeden Buchstaben (0 = weiß, 1 = schwarz).", lang))),
+                  p(
+                    child.text <-- languageVar.signal.map { lang =>
+                      if lang == "en" then "Hint: Use the ASCII table on the right and encode each letter with 8 bits (0 = white, 1 = black)."
+                      else "Hinweis: Nutze die ASCII-Tabelle rechts und kodiere jeden Buchstaben mit 8 Bit (0 = weiß, 1 = schwarz)."
+                    },
+                    styleAttr := "color: #c62828; font-weight: 600; margin-top: 0.25rem;"
+                  ),
                   div(
                     cls := "aufgabe5-container",
                     renderPixelAreaWithLabels(
@@ -2330,7 +2517,7 @@ object Main:
                 )
               },
               renderExercise(
-                "Erläutere einen Vorteil der festen Länge von 8 Pixeln pro Buchstabe.",
+                "Nenne einen Vorteil der festen Länge von 8 Pixeln pro Buchstabe und erkläre, warum es sich um einen Vorteil handelt.",
                 Set("Trennung", "eindeutig"),
                 6,
                 None,
@@ -2435,7 +2622,7 @@ object Main:
                 )
               },
               renderExercise(
-                "Fasse in eigenen Worten zusammen, wie QR Codes aufgebaut sind. Gehe dabei auf die Bestandteile ein und wie Nachrichten kodiert und gespeichert werden und wie die Buchstaben in das Pixelmuster umgewandelt werden. Nutze dafür mindestens 50 Wörter.",
+                "Fasse in eigenen Worten zusammen, wie QR-Codes aufgebaut sind.\n\nGehe dabei auf folgende Punkte ein:\n- die Bestandteile des QR-Codes\n- wie Nachrichten kodiert und gespeichert werden\n- wie Buchstaben in das Pixelmuster umgewandelt werden\n\nNutze dafür mindestens 50 Wörter.",
                 Set(),
                 13,
                 None,
@@ -2456,8 +2643,9 @@ object Main:
               div(
                 h1(child.text <-- languageVar.signal.map(lang => chapterTitle("maskierung", lang))),
                 TimeBadge(40),
+                chapterTeacherGoalsBlock("maskierung"),
                 renderExercise(
-                   "Beschreibe was beim scannen des QR Codes passiert und stelle begründete Vermutungen dazu an.",
+                   "Beschreibe, was beim Scannen des QR-Codes passiert, und stelle begründete Vermutungen dazu an.",
                   Set("unlesbar", "schwarze"),
                   1,
                   Some(img(src := resolveImageUrl("qr_unlesbar.png"), alt := "Unlesbar QR-Code", width := "300", height := "300")),
@@ -2510,7 +2698,7 @@ object Main:
                     emptyNode
                 },
                 renderExercise(
-                  "Erkläre die Berechnungsvorschrift einer Maske deiner Wahl.",
+                  "Erkläre die Berechnungsvorschrift (also welche Pixel schwarz gefärbt werden) einer Maske deiner Wahl.",
                   Set("Zeile", "Spalte"),
                   5,
                   None,
@@ -2577,7 +2765,7 @@ object Main:
                     emptyNode
                 },
                 renderExercise(
-                  "Erläutere an einem Beispiel, wie die Maskierung und Demaskierung funktioniert. Gehe dabei auf die Probleme einer festen Maske ein und erkläre, wie die Auswahl der besten Maske funktioniert. Nutze dafür mindestens 50 Wörter.",
+                  "Erläutere an einem Beispiel, wie Maskierung und Demaskierung funktionieren.\n\nGehe dabei auf folgende Punkte ein:\n- die Probleme einer festen Maske\n- wie die beste Maske ausgewählt wird\n- wie die XOR-Operation dabei eingesetzt wird\n\nNutze dafür mindestens 50 Wörter.",
                   Set(),
                   9,
                   None,
@@ -2593,6 +2781,7 @@ object Main:
             div(
               h1(child.text <-- languageVar.signal.map(lang => chapterTitle("fehlerkorrektur", lang))),
               TimeBadge(40),
+              chapterTeacherGoalsBlock("fehlerkorrektur"),
               {
                 val showFehlerkorrekturAufgabe2InfoVar = infoBoxVar("qr-infobox-fehlerkorrektur-2")
                 val showFehlerkorrekturAufgabe3InfoVar = infoBoxVar("qr-infobox-fehlerkorrektur-3")
@@ -2642,7 +2831,7 @@ object Main:
                     None,
                     Some(() => markInfoBoxShown("qr-infobox-fehlerkorrektur-2", showFehlerkorrekturAufgabe2InfoVar)),
                     solutionText = Some(
-                      "Durch die Bildschirmauflösung und Kamerafehler kann es dazu kommen, dass fälschlicherweise nicht alle QR Codes scanbar waren. Das ist jedoch nicht schlimm!"
+                      "Durch die Bildschirmauflösung und Kamerafehler kann es dazu kommen, dass fälschlicherweise nicht alle QR Codes scannbar waren. Das ist jedoch nicht schlimm!"
                     ),
                     wrongHint = Some("Hinweis: Versuche mit dem Scanner so nah an die QR Codes zu gehen, sodass nur ein QR-Code gleichzeitig im Fokus ist."),
                     multipleChoice = Some(List(
@@ -2741,7 +2930,7 @@ object Main:
                       emptyNode
                   },
                   renderExercise(
-                    "Beschreibe jeweils wie viel % der Nachricht maximal unleserlich sein dürfen, damit die Nachricht trotzdem noch korrekt gelesen werden kann. \n" +
+                    "Beschreibe jeweils, wie viel % der Nachricht maximal unleserlich sein dürfen, damit die Nachricht trotzdem noch korrekt gelesen werden kann. \n" +
                     "a) Ursprüngliche Nachricht: '12' Nachricht mit Fehlerkorrektur: '1212' \n" +
                     "b) Ursprüngliche Nachricht: '123' Nachricht mit Fehlerkorrektur: '123123123' \n" +
                     "c) Ursprüngliche Nachricht: '1' Nachricht mit Fehlerkorrektur: '1111111111'",
@@ -2759,7 +2948,7 @@ object Main:
                     showEditor = false
                   ),
                   renderExercise(
-                    "Überlege dir, wie die Anzahl der zusätzlichen Daten mit der Fehlerkorrektur zusammenhängt. Erkläre warum ein hohes Korrekturlevel (Die Möglichkeit trotz vieler Fehler die Nachricht noch zu lesen) nicht immer die beste Wahl ist.",
+                    "Überlege dir, wie die Anzahl der zusätzlichen Daten mit der Fehlerkorrektur zusammenhängt. Erkläre, warum ein hohes Korrekturlevel (Die Möglichkeit trotz vieler Fehler die Nachricht noch zu lesen) nicht immer die beste Wahl ist.",
                     Set("Daten", "zusätzlich"),
                     8,
                     None,
@@ -2811,9 +3000,9 @@ object Main:
                   renderQRCodeExerciseWithMetadata(
                     11,
                     "fehlerkorrektur",
-                    "Im folgenden QR-Code kannst du eine Nachricht in das Textfeld eingeben. Mit einem Klick auf 'Metadaten anzeigen' kannst du dir zusätzlich die Metadaten(Versionsnummer + Maskennummer) in den QR-Code laden. Durch einen Klick auf 'Fehlerkorrektur anzeigen' kannst du dir die Fehlerkorrektur-Pixel anzeigen lassen. Teste verschiedene Eingaben. \nBeachte, dass der QR Code nicht Scanbar ist, da keine Maske auf den QR Code angewandt wird.",
+                    "Im folgenden QR-Code kannst du eine Nachricht in das Textfeld eingeben. Mit einem Klick auf 'Metadaten anzeigen' kannst du dir zusätzlich die Metadaten(Versionsnummer + Maskennummer) in den QR-Code laden. Durch einen Klick auf 'Fehlerkorrektur anzeigen' kannst du dir die Fehlerkorrektur-Pixel anzeigen lassen. Teste verschiedene Eingaben. \nBeachte, dass der QR Code nicht scannbar ist, da keine Maske auf den QR Code angewandt wird.",
                     "Im folgenden QR-Code kannst du eine Nachricht in das Textfeld eingeben. Mit einem Klick auf 'Metadaten anzeigen' kannst du dir zusätzlich die Metadaten(Versionsnummer + Maskennummer) in den QR-Code laden. Durch einen Klick auf 'Fehlerkorrektur anzeigen' kannst du dir die Fehlerkorrektur-Pixel anzeigen lassen. Teste verschiedene Eingaben. \n" +
-                    "Beachte, dass der QR Code nicht Scanbar ist, da keine Maske auf den QR Code angewandt wird."
+                    "Beachte, dass der QR Code nicht scannbar ist, da keine Maske auf den QR Code angewandt wird."
                     
                   ),
                   renderExercise(
@@ -2833,6 +3022,7 @@ object Main:
             div(
               h1(child.text <-- languageVar.signal.map(lang => chapterTitle("praxisanwendungen", lang))),
               TimeBadge(50),
+              chapterTeacherGoalsBlock("praxisanwendungen"),
               renderExercise(
                 "Beschreibe drei Anwendungen, in denen QR-Codes sinnvoll eingesetzt werden. Begründe jeweils kurz.",
                 Set("sinnvoll"),
@@ -2994,7 +3184,8 @@ object Main:
                   11,
                   None,
                   "praxisanwendungen"
-                )
+                ),
+                teacherNoteBlock("praxisanwendungen", 11)
               ),
               Rating("praxisanwendungen")
             )
@@ -3002,6 +3193,7 @@ object Main:
             div(
               h1(child.text <-- languageVar.signal.map(lang => chapterTitle("zusammenfassung", lang))),
               TimeBadge(60),
+              chapterTeacherGoalsBlock("zusammenfassung"),
               {
                 val zusammenfassungMessageVar = Var("")
                 val metadataActive = Var(false)
@@ -3138,7 +3330,7 @@ object Main:
                     if allReady then
                       div(
                         styleAttr := "flex: 0 0 auto;",
-                        h4(child.text <-- languageVar.signal.map(lang => translatedNow("Scanbarer QR Code", lang)), styleAttr := "margin-top: 0; margin-bottom: 0.5rem;"),
+                        h4(child.text <-- languageVar.signal.map(lang => translatedNow("Scannbarer QR Code", lang)), styleAttr := "margin-top: 0; margin-bottom: 0.5rem;"),
                         generateQRCode(text, 220)
                       )
                     else if text.nonEmpty then
@@ -3156,7 +3348,8 @@ object Main:
                     else
                       emptyNode
                   }
-              )
+              ),
+              teacherNoteBlock("zusammenfassung", 1)
             )
           },
           renderExercise(
@@ -3177,6 +3370,7 @@ object Main:
             div(
               h1(child.text <-- languageVar.signal.map(lang => chapterTitle("barcodes", lang))),
               TimeBadge(30),
+              chapterTeacherGoalsBlock("barcodes"),
               renderExercise(
                 "Recherchiere im Internet nach Barcodes. Beschreibe den Aufbau eines typischen Barcodes.",
                 Set(" "),
@@ -3214,6 +3408,7 @@ object Main:
             div(
               h1(child.text <-- languageVar.signal.map(lang => chapterTitle("einfuehrung", lang))),
               TimeBadge(10),
+              chapterTeacherGoalsBlock("einfuehrung"),
               {
                 val showMaterialsVar = Var(false)
                 div(
@@ -3231,7 +3426,7 @@ object Main:
                   child <-- showMaterialsVar.signal.map { show =>
                     if show then
                       div(
-                        styleAttr := "margin-top: 0.9rem; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));",
+                        styleAttr := "margin-top: 0.9rem; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));",
                         div(
                           styleAttr := "padding: 1.25rem; background: #eef5ff; border-radius: 10px; border-left: 4px solid #4a78d3;",
                           h3(styleAttr := "margin-top: 0; color: #1f3b73;", "Benötigte Arbeitsmaterialien"),
@@ -3239,7 +3434,8 @@ object Main:
                           ul(
                             styleAttr := "margin: 0.5rem 0; padding-left: 1.25rem; color: #2d4a7a;",
                             li("Computer mit Internetzugang"),
-                            li("Smartphone mit Kamera")
+                            li("Smartphone mit Kamera"),
+                            li("Das Schulnetz muss erlauben, dass SuS Daten im lokalen Browser-Cache speichern können")
                           )
                         ),
                         div(
@@ -3250,6 +3446,18 @@ object Main:
                             styleAttr := "margin: 0.5rem 0; padding-left: 1.25rem; color: #2b5a3d;",
                             li("QR-Code-Scanner-App"),
                             li("Alternativ: Kamera-App mit QR-Scan")
+                          )
+                        ),
+                        div(
+                          styleAttr := "grid-column: 1 / -1; padding: 0.9rem 1rem; background: #fff8e1; border-radius: 10px; border-left: 4px solid #f9a825;",
+                          p(
+                            styleAttr := "margin: 0; color: #5d4037; font-weight: 600;",
+                            child.text <-- languageVar.signal.map { lang =>
+                              if lang == "en" then
+                                "Note for teachers: Enter the name 'Admin' to view the full workbook including all teacher notes."
+                              else
+                                "Hinweis für Lehrkräfte: Gib den Namen 'Admin' ein, um das gesamte Arbeitsheft inklusive aller Lehrerhinweise zu sehen."
+                            }
                           )
                         )
                       )
@@ -4303,7 +4511,8 @@ object Main:
             )
           else
             emptyNode
-        }
+        },
+        teacherNoteBlock("maskierung", 2)
       )
     )
   end renderMaskierungAufgabe
@@ -4452,7 +4661,7 @@ object Main:
           }
         )
       ),
-      emptyNode
+      teacherNoteBlock("maskierung", 3)
     )
   end renderMaskierungAufgabe3
 
@@ -4694,7 +4903,8 @@ object Main:
         val jsonStr = scala.scalajs.js.JSON.stringify(jsonData)
         persistExerciseAnswer(chapter, taskText, jsonStr)
         emptyNode
-      }
+      },
+      teacherNoteBlock("maskierung", 7)
     )
   end renderMaskierungAufgabe7
 
@@ -4926,6 +5136,7 @@ object Main:
           }
         )
       ),
+      teacherNoteBlock("fehlerkorrektur", 9),
       child <-- withAdminOverride(showInfotext.signal).map { show =>
         if show then
           Infotext(
@@ -5293,7 +5504,8 @@ object Main:
             case None => emptyNode
         )
       else
-        emptyNode
+        emptyNode,
+      teacherNoteBlock(chapter, index)
     )
   end renderExercise
   def renderExerciseMC(taskText: String, choices: List[(String, Boolean)], index: Int = -1, chapter: String = ""): Element =
@@ -5367,7 +5579,8 @@ object Main:
       child <-- lastCheckVar.signal.map {
         case Some(true) => span(styleAttr := "color: #2e7d32; font-weight: 600;", child.text <-- languageVar.signal.map(lang => if lang == "en" then "Correct!" else "Richtig!"))
         case _ => emptyNode
-      }
+      },
+      teacherNoteBlock(chapter, index)
     )
   end renderExerciseMC
 

@@ -3,10 +3,10 @@ import * as $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6 from "./int
 var $p;
 /** @constructor */
 function $c_Llivechart_Main$ExerciseResponse(task, answer) {
-  this.cf = null;
-  this.cH = null;
-  this.cf = task;
-  this.cH = answer;
+  this.ch = null;
+  this.cJ = null;
+  this.ch = task;
+  this.cJ = answer;
 }
 export { $c_Llivechart_Main$ExerciseResponse as $c_Llivechart_Main$ExerciseResponse };
 $p = $c_Llivechart_Main$ExerciseResponse.prototype = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$h_O();
@@ -26,9 +26,9 @@ $p.C = (function(x$0) {
   if ((this === x$0)) {
     return true;
   } else if ((x$0 instanceof $c_Llivechart_Main$ExerciseResponse)) {
-    if ((this.cf === x$0.cf)) {
-      var x = this.cH;
-      var x$2 = x$0.cH;
+    if ((this.ch === x$0.ch)) {
+      var x = this.cJ;
+      var x$2 = x$0.cJ;
       return ((x === null) ? (x$2 === null) : x.C(x$2));
     } else {
       return false;
@@ -38,20 +38,20 @@ $p.C = (function(x$0) {
   }
 });
 $p.R = (function() {
-  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().hd(this);
+  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().he(this);
 });
-$p.bK = (function() {
+$p.bL = (function() {
   return 2;
 });
-$p.bM = (function() {
+$p.bN = (function() {
   return "ExerciseResponse";
 });
-$p.bL = (function(n) {
+$p.bM = (function(n) {
   if ((n === 0)) {
-    return this.cf;
+    return this.ch;
   }
   if ((n === 1)) {
-    return this.cH;
+    return this.cJ;
   }
   throw $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$ct_jl_IndexOutOfBoundsException__T__(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_jl_IndexOutOfBoundsException(), ("" + n));
 });
