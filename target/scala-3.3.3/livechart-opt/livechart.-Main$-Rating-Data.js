@@ -3,16 +3,16 @@ import * as $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6 from "./int
 var $p;
 /** @constructor */
 function $c_Llivechart_Main$RatingData(understanding, difficulty, quality, scope, feedback) {
-  this.gJ = 0;
-  this.gF = 0;
+  this.g7 = 0;
   this.gH = 0;
-  this.gI = 0;
-  this.gG = null;
-  this.gJ = understanding;
-  this.gF = difficulty;
-  this.gH = quality;
-  this.gI = scope;
-  this.gG = feedback;
+  this.gJ = 0;
+  this.gK = 0;
+  this.gI = null;
+  this.g7 = understanding;
+  this.gH = difficulty;
+  this.gJ = quality;
+  this.gK = scope;
+  this.gI = feedback;
 }
 export { $c_Llivechart_Main$RatingData as $c_Llivechart_Main$RatingData };
 $p = $c_Llivechart_Main$RatingData.prototype = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$h_O();
@@ -28,18 +28,18 @@ $p.c1 = (function() {
 $p.V = (function() {
   var acc = (-889275714);
   acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().y(acc, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__hashCode__I("RatingData"));
-  acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().y(acc, this.gJ);
-  acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().y(acc, this.gF);
+  acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().y(acc, this.g7);
   acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().y(acc, this.gH);
-  acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().y(acc, this.gI);
-  acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().y(acc, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().af(this.gG));
+  acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().y(acc, this.gJ);
+  acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().y(acc, this.gK);
+  acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().y(acc, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().af(this.gI));
   return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().aj(acc, 5);
 });
-$p.C = (function(x$0) {
-  return ((this === x$0) || ((x$0 instanceof $c_Llivechart_Main$RatingData) && (((((this.gJ === x$0.gJ) && (this.gF === x$0.gF)) && (this.gH === x$0.gH)) && (this.gI === x$0.gI)) && (this.gG === x$0.gG))));
+$p.E = (function(x$0) {
+  return ((this === x$0) || ((x$0 instanceof $c_Llivechart_Main$RatingData) && (((((this.g7 === x$0.g7) && (this.gH === x$0.gH)) && (this.gJ === x$0.gJ)) && (this.gK === x$0.gK)) && (this.gI === x$0.gI))));
 });
 $p.R = (function() {
-  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().he(this);
+  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().hj(this);
 });
 $p.bL = (function() {
   return 5;
@@ -50,23 +50,23 @@ $p.bN = (function() {
 $p.bM = (function(n) {
   switch (n) {
     case 0: {
-      return this.gJ;
+      return this.g7;
       break;
     }
     case 1: {
-      return this.gF;
-      break;
-    }
-    case 2: {
       return this.gH;
       break;
     }
+    case 2: {
+      return this.gJ;
+      break;
+    }
     case 3: {
-      return this.gI;
+      return this.gK;
       break;
     }
     case 4: {
-      return this.gG;
+      return this.gI;
       break;
     }
     default: {

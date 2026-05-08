@@ -44,7 +44,7 @@
 [debug]   "wantedLibs" : {
 [debug]     "chart.js" : "^2.9.4"
 [debug]   }
-[debug] } [project => livechart, ms => 183]
-[debug] ScalablyTypedConverterExternalNpmPlugin.scala:46 input.packageJsonHash 810a3fee8fc25fb51c1eba42050e83d9 [project => livechart, ms => 215]
-[debug] ScalablyTypedConverterExternalNpmPlugin.scala:47 runCacheKey e59bf6affca398c73df945fe9f984633 [project => livechart, ms => 218]
-[debug] RunCache.scala:224  Using cached result : [project => livechart, localRunFile.toString => C:\Users\Hoehlenhund\AppData\Local\ScalablyTyped\runs\e59bf6affca398c73df945fe9f984633.json, ms => 260]
+[debug] } [project => livechart, ms => 199]
+[debug] ScalablyTypedConverterExternalNpmPlugin.scala:46 input.packageJsonHash 810a3fee8fc25fb51c1eba42050e83d9 [project => livechart, ms => 232]
+[debug] ScalablyTypedConverterExternalNpmPlugin.scala:47 runCacheKey e59bf6affca398c73df945fe9f984633 [project => livechart, ms => 237]
+[debug] RunCache.scala:224  Using cached result : [project => livechart, localRunFile.toString => C:\Users\Hoehlenhund\AppData\Local\ScalablyTyped\runs\e59bf6affca398c73df945fe9f984633.json, ms => 283]

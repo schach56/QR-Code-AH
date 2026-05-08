@@ -129,6 +129,21 @@ p {
   padding-left: 1.5rem;
 }
 
+.menu-item.active a {
+  background: rgba(255, 255, 255, 0.22);
+  border-left-color: #fff;
+  color: #fff;
+  font-weight: 700;
+  padding-left: 1.5rem;
+}
+
+.menu-item.active.completed a {
+  background: rgba(76, 175, 80, 0.45);
+  border-left-color: #fff;
+  color: #fff;
+  font-weight: 700;
+}
+
 .navbar-nav a {
   display: block;
   padding: 0.75rem 1.5rem;
@@ -667,4 +682,37 @@ button.btn-time:hover {
 .exercise-content.excursus h2 {
   color: #f57f17;
   font-style: italic;
+}
+
+/* Solution box */
+.loesung-container {
+  margin-top: 0.75rem;
+  border: 2px solid #78909c;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.loesung-header {
+  background: #546e7a;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.35rem 0.75rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.loesung-text {
+  background: #f5f7f8;
+  padding: 0.75rem 1rem;
+  color: #212121;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.loesung-text b {
+  color: #1a237e;
+  background: #e8eaf6;
+  padding: 0 2px;
+  border-radius: 2px;
 }

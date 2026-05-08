@@ -3,12 +3,12 @@ import * as $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6 from "./int
 var $p;
 /** @constructor */
 function $c_Llivechart_Main$ExerciseStatus(lastCheck, showSolution, wrongAttempts) {
-  this.gE = null;
-  this.hF = false;
-  this.hG = 0;
-  this.gE = lastCheck;
-  this.hF = showSolution;
-  this.hG = wrongAttempts;
+  this.gG = null;
+  this.hM = false;
+  this.hN = 0;
+  this.gG = lastCheck;
+  this.hM = showSolution;
+  this.hN = wrongAttempts;
 }
 export { $c_Llivechart_Main$ExerciseStatus as $c_Llivechart_Main$ExerciseStatus };
 $p = $c_Llivechart_Main$ExerciseStatus.prototype = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$h_O();
@@ -24,19 +24,19 @@ $p.c1 = (function() {
 $p.V = (function() {
   var acc = (-889275714);
   acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().y(acc, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__hashCode__I("ExerciseStatus"));
-  acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().y(acc, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().af(this.gE));
-  acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().y(acc, (this.hF ? 1231 : 1237));
-  acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().y(acc, this.hG);
+  acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().y(acc, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().af(this.gG));
+  acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().y(acc, (this.hM ? 1231 : 1237));
+  acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().y(acc, this.hN);
   return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().aj(acc, 3);
 });
-$p.C = (function(x$0) {
+$p.E = (function(x$0) {
   if ((this === x$0)) {
     return true;
   } else if ((x$0 instanceof $c_Llivechart_Main$ExerciseStatus)) {
-    if (((this.hF === x$0.hF) && (this.hG === x$0.hG))) {
-      var x = this.gE;
-      var x$2 = x$0.gE;
-      return ((x === null) ? (x$2 === null) : x.C(x$2));
+    if (((this.hM === x$0.hM) && (this.hN === x$0.hN))) {
+      var x = this.gG;
+      var x$2 = x$0.gG;
+      return ((x === null) ? (x$2 === null) : x.E(x$2));
     } else {
       return false;
     }
@@ -45,7 +45,7 @@ $p.C = (function(x$0) {
   }
 });
 $p.R = (function() {
-  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().he(this);
+  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().hj(this);
 });
 $p.bL = (function() {
   return 3;
@@ -56,15 +56,15 @@ $p.bN = (function() {
 $p.bM = (function(n) {
   switch (n) {
     case 0: {
-      return this.gE;
+      return this.gG;
       break;
     }
     case 1: {
-      return this.hF;
+      return this.hM;
       break;
     }
     case 2: {
-      return this.hG;
+      return this.hN;
       break;
     }
     default: {

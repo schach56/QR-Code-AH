@@ -22,14 +22,14 @@ $p.c1 = (function() {
 $p.V = (function() {
   return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_util_hashing_MurmurHash3$().dm(this, (-889275714), false);
 });
-$p.C = (function(x$0) {
+$p.E = (function(x$0) {
   if ((this === x$0)) {
     return true;
   } else if ((x$0 instanceof $c_Llivechart_Main$ExerciseResponse)) {
     if ((this.ch === x$0.ch)) {
       var x = this.cJ;
       var x$2 = x$0.cJ;
-      return ((x === null) ? (x$2 === null) : x.C(x$2));
+      return ((x === null) ? (x$2 === null) : x.E(x$2));
     } else {
       return false;
     }
@@ -38,7 +38,7 @@ $p.C = (function(x$0) {
   }
 });
 $p.R = (function() {
-  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().he(this);
+  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().hj(this);
 });
 $p.bL = (function() {
   return 2;

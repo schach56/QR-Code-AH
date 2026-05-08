@@ -3,12 +3,12 @@ import * as $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6 from "./int
 var $p;
 /** @constructor */
 function $c_Llivechart_Main$ChapterData(chapter, exercises, rating) {
-  this.gD = null;
+  this.gF = null;
   this.c3 = null;
-  this.d3 = null;
-  this.gD = chapter;
+  this.cT = null;
+  this.gF = chapter;
   this.c3 = exercises;
-  this.d3 = rating;
+  this.cT = rating;
 }
 export { $c_Llivechart_Main$ChapterData as $c_Llivechart_Main$ChapterData };
 $p = $c_Llivechart_Main$ChapterData.prototype = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$h_O();
@@ -24,21 +24,21 @@ $p.c1 = (function() {
 $p.V = (function() {
   return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_util_hashing_MurmurHash3$().dm(this, (-889275714), false);
 });
-$p.C = (function(x$0) {
+$p.E = (function(x$0) {
   if ((this === x$0)) {
     return true;
   } else if ((x$0 instanceof $c_Llivechart_Main$ChapterData)) {
-    if ((this.gD === x$0.gD)) {
+    if ((this.gF === x$0.gF)) {
       var x = this.c3;
       var x$2 = x$0.c3;
-      var $x_1 = ((x === null) ? (x$2 === null) : x.C(x$2));
+      var $x_1 = ((x === null) ? (x$2 === null) : x.E(x$2));
     } else {
       var $x_1 = false;
     }
     if ($x_1) {
-      var x$3 = this.d3;
-      var x$4 = x$0.d3;
-      return ((x$3 === null) ? (x$4 === null) : x$3.C(x$4));
+      var x$3 = this.cT;
+      var x$4 = x$0.cT;
+      return ((x$3 === null) ? (x$4 === null) : x$3.E(x$4));
     } else {
       return false;
     }
@@ -47,7 +47,7 @@ $p.C = (function(x$0) {
   }
 });
 $p.R = (function() {
-  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().he(this);
+  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().hj(this);
 });
 $p.bL = (function() {
   return 3;
@@ -58,7 +58,7 @@ $p.bN = (function() {
 $p.bM = (function(n) {
   switch (n) {
     case 0: {
-      return this.gD;
+      return this.gF;
       break;
     }
     case 1: {
@@ -66,7 +66,7 @@ $p.bM = (function(n) {
       break;
     }
     case 2: {
-      return this.d3;
+      return this.cT;
       break;
     }
     default: {
