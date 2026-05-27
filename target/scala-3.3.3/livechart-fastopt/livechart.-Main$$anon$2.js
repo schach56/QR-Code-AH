@@ -1,11 +1,11 @@
 'use strict';
 import * as $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6 from "./internal-3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.js";
 /** @constructor */
-function $c_Llivechart_Main$$anon$2(idx$28, pattern$2) {
-  this.Llivechart_Main$$anon$2__f_idx$1 = 0;
-  this.Llivechart_Main$$anon$2__f_pattern$1 = null;
-  this.Llivechart_Main$$anon$2__f_idx$1 = idx$28;
-  this.Llivechart_Main$$anon$2__f_pattern$1 = pattern$2;
+function $c_Llivechart_Main$$anon$2(zigzagMapping$4, allPixels$4) {
+  this.Llivechart_Main$$anon$2__f_zigzagMapping$3 = null;
+  this.Llivechart_Main$$anon$2__f_allPixels$2 = null;
+  this.Llivechart_Main$$anon$2__f_zigzagMapping$3 = zigzagMapping$4;
+  this.Llivechart_Main$$anon$2__f_allPixels$2 = allPixels$4;
 }
 export { $c_Llivechart_Main$$anon$2 as $c_Llivechart_Main$$anon$2 };
 $c_Llivechart_Main$$anon$2.prototype = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$h_sr_AbstractPartialFunction();
@@ -17,15 +17,9 @@ export { $h_Llivechart_Main$$anon$2 as $h_Llivechart_Main$$anon$2 };
 $h_Llivechart_Main$$anon$2.prototype = $c_Llivechart_Main$$anon$2.prototype;
 $c_Llivechart_Main$$anon$2.prototype.isDefinedAt__T2__Z = (function(x) {
   if ((x !== null)) {
-    var p = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x)._1__O());
-    var i = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x)._2__O());
-    if ((i !== this.Llivechart_Main$$anon$2__f_idx$1)) {
-      var x$3 = this.Llivechart_Main$$anon$2__f_pattern$1;
-      var $x_1 = ((p === null) ? (x$3 === null) : $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(p).equals__O__Z(x$3));
-    } else {
-      var $x_1 = false;
-    }
-    if ($x_1) {
+    var bit = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x)._1__O());
+    $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x)._2__O());
+    if ((bit === 1)) {
       return true;
     }
   }
@@ -33,16 +27,13 @@ $c_Llivechart_Main$$anon$2.prototype.isDefinedAt__T2__Z = (function(x) {
 });
 $c_Llivechart_Main$$anon$2.prototype.applyOrElse__T2__F1__O = (function(x, default$1) {
   if ((x !== null)) {
-    var p = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x)._1__O());
-    var i = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x)._2__O());
-    if ((i !== this.Llivechart_Main$$anon$2__f_idx$1)) {
-      var x$3 = this.Llivechart_Main$$anon$2__f_pattern$1;
-      var $x_1 = ((p === null) ? (x$3 === null) : $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(p).equals__O__Z(x$3));
-    } else {
-      var $x_1 = false;
-    }
-    if ($x_1) {
-      return i;
+    var bit = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x)._1__O());
+    var bitIndex = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x)._2__O());
+    if ((bit === 1)) {
+      var this$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$$anon$2__f_zigzagMapping$3);
+      var pixelPos = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_LinearSeqOps__apply__I__O(this$1, bitIndex));
+      var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$$anon$2__f_allPixels$2);
+      return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_LinearSeqOps__apply__I__O(this$2, pixelPos);
     }
   }
   return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(default$1).apply__O__O(x);

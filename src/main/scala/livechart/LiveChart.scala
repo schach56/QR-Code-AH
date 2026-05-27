@@ -6,6 +6,10 @@ import org.scalajs.dom.document
 import org.scalajs.dom.html.Div
 import com.raquo.laminar.api.L.{*, given}
 import scala.collection.mutable
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.scalajs.js.Thenable.Implicits.*
+import scala.scalajs.js.JSConverters.*
+import scala.util.Try
 
 // import javascriptLogo from "/javascript.svg"
 @js.native @JSImport("/javascript.svg", JSImport.Default)
@@ -290,7 +294,7 @@ object Main:
     "Scanne die QR-Codes und beschreibe deren Inhalte in den Textfeldern unter den QR Codes. Beschreibe die Gemeinsamkeiten im großen Eingabefeld." -> "Scan the QR codes and describe their contents in the text fields below the QR codes. Describe the similarities in the large input field.",
     "Die QR-Codes enthalten unterschiedliche Inhalte wie eine Webseite, Kontaktdaten von Max Mustermann und einen Hinweis für die Abgabe." -> "The QR codes contain different content such as a website, contact details of Max Mustermann, and a submission hint.",
     "Hinweis: Der Hinweis für eine korrekte Abgabe des großen Eingabefeldes befindet sich im dritten QR-Code." -> "Hint: The hint for correct submission in the large input field is located in the third QR code.",
-    "Durch das Klicken auf den \"Abgeben\" Button bei den Aufgaben werden deine Antworten lokal in deinem Browser gespeichert. Das Textfeld färbt sich grün, wenn alle Schlüsselwörter, welche gefordert waren, im Text vorhanden sind. Ansonsten färbt es sich rot. Zusätzlich gibt es im Arbeitsheft immer wieder Informationsboxen, welche nach dem Bearbeiten der Aufgabe angezeigt werden. Falls du mal bei einer Aufgabe nicht weiter kommen solltest, kannst du dir durch einen Klick auf 'Lösung zeigen' die Lösung anzeigen lassen. Alle Benötigen Keywörter sind in der Lösung fett markiert. Probiere es an der Aufgabe 1 einemal selbst aus, indem du deine Eingabe änderst, falls du sie beim ersten mal richtig gelöst hast." -> "By clicking the \"Submit\" button in tasks, your answers are saved locally in your browser. The text field turns green when all required keywords are present in the text. Otherwise, it turns red. In addition, the workbook contains information boxes that are shown after completing tasks. If you get stuck, you can click 'Show solution' to display the solution. All required keywords are marked in bold in the solution. Try it yourself in task 1 by changing your input if you solved it correctly on your first try.",
+    "Durch das Klicken auf den \"Abgeben\" Button bei den Aufgaben werden deine Antworten lokal in deinem Browser gespeichert. Textaufgaben werden mit einer LLM-Prüfung bewertet, damit auch Synonyme und sinnvolle Umschreibungen als richtig erkannt werden. Falls die LLM-Prüfung nicht verfügbar ist, wird automatisch die klassische Schlüsselwortprüfung genutzt. Das Textfeld färbt sich grün, wenn die Antwort als richtig bewertet wird, ansonsten rot. Zusätzlich gibt es im Arbeitsheft immer wieder Informationsboxen, welche nach dem Bearbeiten der Aufgabe angezeigt werden. Falls du mal bei einer Aufgabe nicht weiter kommen solltest, kannst du dir durch einen Klick auf 'Lösung zeigen' die Lösung anzeigen lassen. Alle benötigten Schlüsselwörter sind in der Lösung fett markiert. Probiere es an Aufgabe 1 einmal selbst aus, indem du deine Eingabe änderst, falls du sie beim ersten Mal richtig gelöst hast." -> "By clicking the \"Submit\" button in tasks, your answers are saved locally in your browser. Text tasks are checked with an LLM so synonyms and meaningful paraphrases can also be accepted as correct. If the LLM check is unavailable, the classic keyword check is used automatically. The text field turns green when your answer is evaluated as correct, otherwise red. In addition, the workbook contains information boxes that are shown after completing tasks. If you get stuck, you can click 'Show solution' to display the solution. All required keywords are marked in bold in the solution. Try it yourself in task 1 by changing your input if you solved it correctly on your first try.",
     "Was kommt als Nächstes?" -> "What comes next?",
     "Nun kannst du frei wählen, in welcher Reihenfolge du die Kapitel Nachrichten schreiben, Maskierung und Fehlerkorrektur bearbeitest." -> "Now you can freely choose the order in which you complete the chapters Writing Messages, Masking, and Error Correction.",
     "Wenn du alle drei Kapitel bearbeitet hast, kannst du zum Kapitel Praxisanwendungen übergehen, in welchem du dein Wissen auf konkrete Anwendungsfälle übertragen kannst." -> "After completing all three chapters, you can move on to the Practical Applications chapter, where you can transfer your knowledge to concrete use cases.",
@@ -467,6 +471,505 @@ object Main:
       keywords.exists { keyword =>
         keywordVariants(keyword).exists(variant => haystack.contains(variant.toLowerCase))
       }
+
+  case class LlmCheckResult(isCorrect: Boolean, score: Option[Int], feedback: Option[String], usedFallback: Boolean)
+
+  private def parseBooleanValue(value: js.Any): Option[Boolean] =
+    if value == null || js.isUndefined(value) then None
+    else
+      js.typeOf(value) match
+        case "boolean" => Some(value.asInstanceOf[Boolean])
+        case "string" =>
+          value.asInstanceOf[String].trim.toLowerCase match
+            case "true" | "1" => Some(true)
+            case "false" | "0" => Some(false)
+            case _ => None
+        case "number" => Some(value.asInstanceOf[Double] != 0)
+        case _ => None
+
+  private def parseStringValue(value: js.Any): Option[String] =
+    if value == null || js.isUndefined(value) then None
+    else
+      val parsed = value.toString.trim
+      if parsed.isEmpty then None else Some(parsed)
+
+  private def parseScoreValue(value: js.Any): Option[Int] =
+    if value == null || js.isUndefined(value) then None
+    else
+      js.typeOf(value) match
+        case "number" =>
+          val n = value.asInstanceOf[Double]
+          Some(math.max(0, math.min(100, n.round.toInt)))
+        case "string" =>
+          Try(value.asInstanceOf[String].trim.toDouble).toOption.map(n => math.max(0, math.min(100, n.round.toInt)))
+        case _ => None
+
+  case class LlmEndpointConfig(endpoint: String, apiKey: Option[String], provider: String, model: String)
+
+  private def logLlmIssue(kind: String, message: String): Unit =
+    try
+      dom.console.error(s"[LLM][$kind] $message")
+    catch
+      case _: Throwable => ()
+
+  private def readLocalStorageItem(key: String): Option[String] =
+    try Option(dom.window.localStorage.getItem(key))
+    catch
+      case _: Throwable => None
+
+  private def readMetaTagContent(name: String): Option[String] =
+    try
+      Option(dom.document.querySelector(s"meta[name='$name']"))
+        .flatMap(node => Option(node.asInstanceOf[dom.html.Meta].content))
+        .map(_.trim)
+        .filter(_.nonEmpty)
+    catch
+      case _: Throwable => None
+
+  private def readWindowString(name: String): Option[String] =
+    try
+      val value = dom.window.asInstanceOf[js.Dynamic].selectDynamic(name)
+      if value == null || js.isUndefined(value) then None
+      else
+        val asText = value.toString.trim
+        if asText.nonEmpty then Some(asText) else None
+    catch
+      case _: Throwable => None
+
+  private def llmEndpointConfig(): Option[LlmEndpointConfig] =
+    // LLM check is enabled by default and can be disabled explicitly via localStorage.
+    val enabled = readLocalStorageItem("qr-llm-enabled") match
+      case Some(v) => !v.trim.equalsIgnoreCase("false")
+      case None => true
+
+    // Default to a free hosted API so students do not need local installs or browser setup.
+    val configuredEndpoint = readLocalStorageItem("qr-llm-endpoint")
+      .map(_.trim)
+      .filter(_.nonEmpty)
+
+    // School mode: force free-only usage by defaulting to the anonymous text endpoint.
+    // If a paid endpoint is configured (gen.pollinations.ai), we still route to free endpoint.
+    val endpoint = configuredEndpoint match
+      case Some(ep) if ep.toLowerCase.contains("gen.pollinations.ai") => "https://text.pollinations.ai"
+      case Some(ep) => ep
+      case None => "https://text.pollinations.ai"
+
+    val provider = readLocalStorageItem("qr-llm-provider")
+      .map(_.trim.toLowerCase)
+      .filter(_.nonEmpty)
+      .getOrElse(
+        if endpoint.contains("11434") then "ollama"
+        else if endpoint.contains("openrouter.ai") then "openrouter"
+        else if endpoint.contains("text.pollinations.ai") && !endpoint.contains("/openai") then "pollinations-text"
+        else if endpoint.contains("pollinations.ai") then "openai"
+        else "openai"
+      )
+
+    val model = readLocalStorageItem("qr-llm-model")
+      .map(_.trim)
+      .filter(_.nonEmpty)
+      .getOrElse("openai-fast")
+
+    val apiKey =
+      readLocalStorageItem("qr-llm-api-key")
+        .orElse(readMetaTagContent("qr-llm-api-key"))
+        .orElse(readWindowString("__QR_LLM_API_KEY__"))
+        .map(_.trim)
+        .filter(_.nonEmpty)
+    if enabled && endpoint.nonEmpty then Some(LlmEndpointConfig(endpoint, apiKey, provider, model)) else None
+
+  private def readNestedDynamic(root: js.Dynamic, path: List[String]): Option[js.Any] =
+    path.foldLeft(Option(root.asInstanceOf[js.Any])) { (current, key) =>
+      current.flatMap { value =>
+        if value == null || js.isUndefined(value) then None
+        else
+          val dyn = value.asInstanceOf[js.Dynamic]
+          val next = dyn.selectDynamic(key)
+          if next == null || js.isUndefined(next) then None else Some(next.asInstanceOf[js.Any])
+      }
+    }
+
+  private def readArrayIndex(value: js.Any, index: Int): Option[js.Any] =
+    if value == null || js.isUndefined(value) then None
+    else
+      val arr = value.asInstanceOf[js.Array[js.Any]]
+      if arr.length > index then Some(arr(index)) else None
+
+  private def parseLlmDecisionFromText(responseText: String): (Option[Boolean], Option[Int], Option[String]) =
+    val parsedOpt = Try(scala.scalajs.js.JSON.parse(responseText).asInstanceOf[js.Dynamic]).toOption
+
+    val fromJson = parsedOpt.flatMap { parsed =>
+      val directIsCorrect = readNestedDynamic(parsed, List("isCorrect")).flatMap(parseBooleanValue)
+      val nestedIsCorrect = readNestedDynamic(parsed, List("result", "isCorrect")).flatMap(parseBooleanValue)
+      val directScore = readNestedDynamic(parsed, List("score")).flatMap(parseScoreValue)
+      val nestedScore = readNestedDynamic(parsed, List("result", "score")).flatMap(parseScoreValue)
+        .orElse(readNestedDynamic(parsed, List("points")).flatMap(parseScoreValue))
+        .orElse(readNestedDynamic(parsed, List("result", "points")).flatMap(parseScoreValue))
+      val directFeedback = readNestedDynamic(parsed, List("feedback")).flatMap(parseStringValue)
+      val nestedFeedback = readNestedDynamic(parsed, List("result", "feedback")).flatMap(parseStringValue)
+
+      val embeddedContent =
+        readNestedDynamic(parsed, List("message", "content")).flatMap(parseStringValue)
+          .orElse(
+            readNestedDynamic(parsed, List("choices"))
+              .flatMap(readArrayIndex(_, 0))
+              .flatMap(v => readNestedDynamic(v.asInstanceOf[js.Dynamic], List("message", "content")))
+              .flatMap(parseStringValue)
+          )
+          .orElse(readNestedDynamic(parsed, List("response")).flatMap(parseStringValue))
+          .orElse(
+            readNestedDynamic(parsed, List("content"))
+              .flatMap(readArrayIndex(_, 0))
+              .flatMap(v => readNestedDynamic(v.asInstanceOf[js.Dynamic], List("text")))
+              .flatMap(parseStringValue)
+          )
+
+      val embeddedDecision = embeddedContent.flatMap { content =>
+        val embeddedParsed = Try(scala.scalajs.js.JSON.parse(content).asInstanceOf[js.Dynamic]).toOption
+        embeddedParsed.map { ep =>
+          (
+            readNestedDynamic(ep, List("isCorrect")).flatMap(parseBooleanValue)
+              .orElse(readNestedDynamic(ep, List("result", "isCorrect")).flatMap(parseBooleanValue)),
+            readNestedDynamic(ep, List("score")).flatMap(parseScoreValue)
+              .orElse(readNestedDynamic(ep, List("result", "score")).flatMap(parseScoreValue))
+              .orElse(readNestedDynamic(ep, List("points")).flatMap(parseScoreValue))
+              .orElse(readNestedDynamic(ep, List("result", "points")).flatMap(parseScoreValue)),
+            readNestedDynamic(ep, List("feedback")).flatMap(parseStringValue)
+              .orElse(readNestedDynamic(ep, List("result", "feedback")).flatMap(parseStringValue))
+          )
+        }
+      }
+
+      val boolValue = directIsCorrect.orElse(nestedIsCorrect).orElse(embeddedDecision.flatMap(_._1))
+      val scoreValue = directScore.orElse(nestedScore).orElse(embeddedDecision.flatMap(_._2))
+      val feedbackValue = directFeedback.orElse(nestedFeedback).orElse(embeddedDecision.flatMap(_._3)).orElse(embeddedContent)
+      Some((boolValue, scoreValue, feedbackValue))
+    }
+
+    fromJson.getOrElse {
+      val boolRegex = """(?i)\"isCorrect\"\s*:\s*(true|false)""".r
+      val boolValue = boolRegex.findFirstMatchIn(responseText).flatMap(m => parseBooleanValue(m.group(1).asInstanceOf[js.Any]))
+      val scoreRegex = """(?i)\"(score|points)\"\s*:\s*(\d{1,3}(?:\.\d+)?)""".r
+      val scoreValue = scoreRegex.findFirstMatchIn(responseText).flatMap(m => parseScoreValue(m.group(2).asInstanceOf[js.Any]))
+      (boolValue, scoreValue, None)
+    }
+
+  private def buildStudentAnswerFeedback(inputText: String, keywords: Set[String], minWordCount: Option[Int], lang: String): String =
+    val lower = inputText.toLowerCase
+    val expected = keywords.toList.filter(_.trim.nonEmpty)
+    val present = expected.filter(k => keywordVariants(k).exists(v => lower.contains(v.toLowerCase)))
+    val missing = expected.filterNot(present.contains)
+    val wordCount = inputText.split("\\s+").count(_.nonEmpty)
+    val minWordsText = minWordCount match
+      case Some(min) if wordCount < min =>
+        if lang == "en" then s"Word count is currently $wordCount, minimum is $min. "
+        else s"Wortanzahl ist aktuell $wordCount, mindestens erforderlich sind $min. "
+      case Some(min) =>
+        if lang == "en" then s"Word count target met ($wordCount/$min). "
+        else s"Wortanzahl erreicht ($wordCount/$min). "
+      case None => ""
+
+    if expected.isEmpty then
+      if lang == "en" then s"${minWordsText}Your answer has been considered for this task."
+      else s"${minWordsText}Deine Antwort wurde fuer diese Aufgabe beruecksichtigt."
+    else
+      val presentText = if present.nonEmpty then present.take(4).mkString(", ") else "-"
+      val missingText = if missing.nonEmpty then missing.take(4).mkString(", ") else "-"
+      if lang == "en" then
+        s"$minWordsText Covered aspects: $presentText. Still missing or unclear: $missingText."
+      else
+        s"${minWordsText}In deiner Antwort erkennbar: $presentText. Noch unklar oder fehlend: $missingText."
+
+  private def evaluateTextWithLlmOrFallback(
+    taskText: String,
+    inputText: String,
+    referenceSolutionText: Option[String],
+    keywords: Set[String],
+    minWordCount: Option[Int],
+    fallbackOk: Boolean,
+    lang: String
+  )(onResult: LlmCheckResult => Unit): Unit =
+    val preparedSolution = referenceSolutionText.map(_.trim).filter(_.nonEmpty)
+
+    llmEndpointConfig() match
+      case None =>
+        logLlmIssue("disabled-or-invalid-config", "LLM config unavailable (disabled or endpoint missing).")
+        onResult(LlmCheckResult(fallbackOk, None, Some(buildStudentAnswerFeedback(inputText, keywords, minWordCount, lang)), usedFallback = true))
+      case Some(cfg) =>
+        val prompt =
+          if preparedSolution.nonEmpty then
+            "Du bist ein fairer Korrekturassistent fuer Schuelerantworten. " +
+              "Bewerte die Schuelerantwort anhand der Frage und des bereitgestellten Loesungstexts. " +
+              "Anerkenne Synonyme und sinnvolle Umschreibungen als korrekt. " +
+              "Antworte nur als JSON mit den Feldern score (0-100 als Zahl) und feedback (string)."
+          else
+            "Du bist ein fairer Korrekturassistent fuer Schuelerantworten. " +
+              "Bewerte die Schuelerantwort anhand der Frage. Es gibt keinen Loesungstext. " +
+              "Bewerte in diesem Fall bewusst weniger streng: inhaltlich passende Teilantworten klar positiv werten, " +
+              "keine Punktabzuege fuer kleine Sprachfehler oder fehlende Fachbegriffe, wenn der Sinn stimmt. " +
+              "Gib bei nachvollziehbarer, teilweise korrekter Antwort eher mittlere bis gute Punktzahlen. " +
+              "Anerkenne Synonyme und sinnvolle Umschreibungen als korrekt. " +
+              "Antworte nur als JSON mit den Feldern score (0-100 als Zahl) und feedback (string)."
+
+        val solutionPart = preparedSolution.map(text => s"\n\nLoesungstext: $text").getOrElse("")
+        val userPrompt =
+          s"Frage: $taskText$solutionPart\n\nSchuelerantwort: $inputText\n\n" +
+            (if preparedSolution.nonEmpty then
+              "Bewerte die Schuelerantwort. JSON-Ausgabe mit {\"score\": number, \"feedback\": string}."
+            else
+              "Bewerte die Schuelerantwort eher grosszuegig, wenn der Kern inhaltlich passt. JSON-Ausgabe mit {\"score\": number, \"feedback\": string}.")
+
+        def callPollinationsFree(): scala.concurrent.Future[String] =
+          val freeHeaders = scala.scalajs.js.Dynamic.literal(
+            "Content-Type" -> "application/json"
+          )
+          val freeBody = scala.scalajs.js.Dynamic.literal(
+            model = "openai-fast",
+            temperature = 0.2,
+            response_format = scala.scalajs.js.Dynamic.literal(`type` = "json_object"),
+            messages = js.Array(
+              scala.scalajs.js.Dynamic.literal(role = "system", content = prompt),
+              scala.scalajs.js.Dynamic.literal(role = "user", content = userPrompt)
+            )
+          )
+          val freeInit = scala.scalajs.js.Dynamic
+            .literal(
+              method = dom.HttpMethod.POST,
+              headers = freeHeaders.asInstanceOf[dom.HeadersInit],
+              body = scala.scalajs.js.JSON.stringify(freeBody),
+              referrerPolicy = "no-referrer"
+            )
+            .asInstanceOf[dom.RequestInit]
+
+          dom
+            .fetch("https://text.pollinations.ai/openai?referrer=qr-workbook", freeInit)
+            .toFuture
+            .flatMap { response =>
+              response.text().toFuture.flatMap { responseBody =>
+                if response.ok then
+                  val isNotice = responseBody.contains("IMPORTANT NOTICE") && responseBody.toLowerCase.contains("pollinations")
+                  if isNotice then
+                    logLlmIssue(
+                      "provider-notice",
+                      "Free /openai endpoint returned provider notice, retrying automatically via text GET endpoint."
+                    )
+                    val pollinationsPrompt =
+                      s"$prompt\n\n$userPrompt\n\nWichtig: Nur JSON ausgeben, ohne Zusatztext."
+                    val encodedPrompt = js.URIUtils.encodeURIComponent(pollinationsPrompt)
+                    val retryUrl = s"https://text.pollinations.ai/$encodedPrompt?model=openai&json=true&referrer=qr-workbook"
+                    val retryGetInit = scala.scalajs.js.Dynamic
+                      .literal(
+                        method = dom.HttpMethod.GET,
+                        referrerPolicy = "no-referrer"
+                      )
+                      .asInstanceOf[dom.RequestInit]
+                    dom
+                      .fetch(retryUrl, retryGetInit)
+                      .toFuture
+                      .flatMap { retryResponse =>
+                        retryResponse.text().toFuture.flatMap { retryBodyText =>
+                          if retryResponse.ok then scala.concurrent.Future.successful(retryBodyText)
+                          else scala.concurrent.Future.failed(new RuntimeException(s"Retry text endpoint failed with status ${retryResponse.status}. Body: ${retryBodyText.take(800)}"))
+                        }
+                      }
+                  else
+                    scala.concurrent.Future.successful(responseBody)
+                else
+                  scala.concurrent.Future.failed(
+                    new RuntimeException(
+                      s"Free /openai endpoint failed with status ${response.status}. Body: ${responseBody.take(800)}"
+                    )
+                  )
+              }
+            }
+
+        def toLlmResult(responseText: String): LlmCheckResult =
+          val (llmIsCorrect, llmScore, llmFeedback) = parseLlmDecisionFromText(responseText)
+          val effectiveScore = llmScore.orElse(llmIsCorrect.map(v => if v then 100 else 0))
+
+          effectiveScore match
+            case Some(score) =>
+              val finalScore = if preparedSolution.isEmpty then math.min(100, score + 10) else score
+              val finalResult = finalScore >= 50
+              val fallbackFeedback = buildStudentAnswerFeedback(inputText, keywords, minWordCount, lang)
+              LlmCheckResult(finalResult, Some(finalScore), llmFeedback.orElse(Some(fallbackFeedback)), usedFallback = false)
+            case None =>
+              if responseText.contains("IMPORTANT NOTICE") && responseText.toLowerCase.contains("pollinations") then
+                logLlmIssue(
+                  "provider-notice",
+                  "Provider returned a notice page/message instead of evaluation JSON. Request was treated as fallback."
+                )
+              logLlmIssue(
+                "parse-failed",
+                s"Could not extract isCorrect from LLM response. Endpoint=${cfg.endpoint}, provider=${cfg.provider}, model=${cfg.model}, response=${responseText.take(800)}"
+              )
+              LlmCheckResult(fallbackOk, None, Some(buildStudentAnswerFeedback(inputText, keywords, minWordCount, lang)), usedFallback = true)
+
+        val llmResponseFuture: scala.concurrent.Future[String] =
+          if cfg.provider == "pollinations-text" then
+            val pollinationsPrompt =
+              s"$prompt\n\n$userPrompt\n\nWichtig: Nur JSON ausgeben, ohne Zusatztext."
+            val encodedPrompt = js.URIUtils.encodeURIComponent(pollinationsPrompt)
+            val pollinationsUrl = s"${cfg.endpoint.stripSuffix("/")}/$encodedPrompt?model=openai&json=true&referrer=qr-workbook"
+            val pollinationsGetInit = scala.scalajs.js.Dynamic
+              .literal(
+                method = dom.HttpMethod.GET,
+                referrerPolicy = "no-referrer"
+              )
+              .asInstanceOf[dom.RequestInit]
+            dom
+              .fetch(pollinationsUrl, pollinationsGetInit)
+              .toFuture
+              .flatMap { response =>
+                if response.ok then response.text().toFuture
+                else scala.concurrent.Future.failed(new RuntimeException(s"Pollinations text endpoint returned status ${response.status}"))
+              }
+              .flatMap { responseText =>
+                val isNotice = responseText.contains("IMPORTANT NOTICE") && responseText.toLowerCase.contains("pollinations")
+                if isNotice then
+                  logLlmIssue(
+                    "provider-notice",
+                    "Pollinations text endpoint returned provider notice, retrying automatically via /openai endpoint."
+                  )
+                  val retryHeaders = scala.scalajs.js.Dynamic.literal(
+                    "Content-Type" -> "application/json"
+                  )
+                  val retryBody = scala.scalajs.js.Dynamic.literal(
+                    model = cfg.model,
+                    temperature = 0.2,
+                    response_format = scala.scalajs.js.Dynamic.literal(`type` = "json_object"),
+                    messages = js.Array(
+                      scala.scalajs.js.Dynamic.literal(role = "system", content = prompt),
+                      scala.scalajs.js.Dynamic.literal(role = "user", content = userPrompt)
+                    )
+                  )
+                  val retryInit = scala.scalajs.js.Dynamic
+                    .literal(
+                      method = dom.HttpMethod.POST,
+                      headers = retryHeaders.asInstanceOf[dom.HeadersInit],
+                      body = scala.scalajs.js.JSON.stringify(retryBody),
+                      referrerPolicy = "no-referrer"
+                    )
+                    .asInstanceOf[dom.RequestInit]
+                  dom
+                    .fetch("https://text.pollinations.ai/openai?referrer=qr-workbook", retryInit)
+                    .toFuture
+                    .flatMap { retryResponse =>
+                      retryResponse.text().toFuture.flatMap { retryBodyText =>
+                        if retryResponse.ok then scala.concurrent.Future.successful(retryBodyText)
+                        else scala.concurrent.Future.failed(new RuntimeException(s"Retry /openai failed with status ${retryResponse.status}. Body: ${retryBodyText.take(800)}"))
+                      }
+                    }
+                else
+                  scala.concurrent.Future.successful(responseText)
+              }
+          else
+            val headers = scala.scalajs.js.Dynamic.literal(
+              "Content-Type" -> "application/json"
+            )
+            val endpointLower = cfg.endpoint.toLowerCase
+            val isLegacyPollinationsText = endpointLower.contains("text.pollinations.ai")
+            // Do not send Authorization to legacy text.pollinations.ai endpoints.
+            // For gen.pollinations.ai, auth is required and therefore allowed.
+            if !isLegacyPollinationsText then
+              cfg.apiKey.foreach(key => headers.updateDynamic("Authorization")(s"Bearer $key"))
+
+            val body =
+              if cfg.provider == "ollama" then
+                scala.scalajs.js.Dynamic.literal(
+                  model = cfg.model,
+                  stream = false,
+                  format = "json",
+                  messages = js.Array(
+                    scala.scalajs.js.Dynamic.literal(role = "system", content = prompt),
+                    scala.scalajs.js.Dynamic.literal(role = "user", content = userPrompt)
+                  )
+                )
+              else if cfg.provider == "openrouter" || cfg.provider == "openai" then
+                scala.scalajs.js.Dynamic.literal(
+                  model = cfg.model,
+                  temperature = 0.2,
+                  response_format = scala.scalajs.js.Dynamic.literal(`type` = "json_object"),
+                  messages = js.Array(
+                    scala.scalajs.js.Dynamic.literal(role = "system", content = prompt),
+                    scala.scalajs.js.Dynamic.literal(role = "user", content = userPrompt)
+                  )
+                )
+              else
+                scala.scalajs.js.Dynamic.literal(
+                  question = taskText,
+                  studentAnswer = inputText,
+                  solutionText = preparedSolution.getOrElse(""),
+                  minWordCount = minWordCount.map(_.asInstanceOf[js.Any]).orNull,
+                  language = lang,
+                  instruction = prompt
+                )
+
+            val requestInit = scala.scalajs.js.Dynamic
+              .literal(
+                method = dom.HttpMethod.POST,
+                headers = headers.asInstanceOf[dom.HeadersInit],
+                body = scala.scalajs.js.JSON.stringify(body)
+              )
+              .asInstanceOf[dom.RequestInit]
+
+            dom
+              .fetch(cfg.endpoint, requestInit)
+              .toFuture
+              .flatMap { response =>
+                response.text().toFuture.flatMap { responseBody =>
+                  if response.ok then
+                    val isNotice = responseBody.contains("IMPORTANT NOTICE") && responseBody.toLowerCase.contains("pollinations")
+                    val isPollinationsOpenAi = cfg.endpoint.toLowerCase.contains("text.pollinations.ai/openai")
+                    if isNotice && isPollinationsOpenAi then
+                      logLlmIssue(
+                        "provider-notice",
+                        "Pollinations /openai returned a provider notice, retrying automatically via text GET endpoint."
+                      )
+                      val pollinationsPrompt =
+                        s"$prompt\n\n$userPrompt\n\nWichtig: Nur JSON ausgeben, ohne Zusatztext."
+                      val encodedPrompt = js.URIUtils.encodeURIComponent(pollinationsPrompt)
+                      val retryUrl = s"https://text.pollinations.ai/$encodedPrompt"
+                      dom
+                        .fetch(retryUrl)
+                        .toFuture
+                        .flatMap { retryResponse =>
+                          retryResponse.text().toFuture.flatMap { retryBodyText =>
+                            if retryResponse.ok then scala.concurrent.Future.successful(retryBodyText)
+                            else scala.concurrent.Future.failed(new RuntimeException(s"Retry text endpoint failed with status ${retryResponse.status}. Body: ${retryBodyText.take(800)}"))
+                          }
+                        }
+                    else
+                      scala.concurrent.Future.successful(responseBody)
+                  else
+                    val shortened = responseBody.take(800)
+                    val isPaidGenEndpoint = cfg.endpoint.toLowerCase.contains("gen.pollinations.ai")
+                    if (response.status == 401 || response.status == 402) && isPaidGenEndpoint then
+                      logLlmIssue(
+                        "paid-endpoint-fallback",
+                        s"Paid endpoint returned ${response.status}, switching automatically to free anonymous endpoint. Body: $shortened"
+                      )
+                      callPollinationsFree()
+                    else
+                      scala.concurrent.Future.failed(
+                        new RuntimeException(
+                          s"LLM endpoint returned status ${response.status}. Body: $shortened"
+                        )
+                      )
+                }
+              }
+
+        llmResponseFuture
+          .map(toLlmResult)
+          .recover {
+            case ex: Throwable =>
+              logLlmIssue(
+                "request-failed",
+                s"Endpoint=${cfg.endpoint}, provider=${cfg.provider}, model=${cfg.model}, error=${Option(ex.getMessage).getOrElse(ex.toString)}"
+              )
+              LlmCheckResult(fallbackOk, None, Some(buildStudentAnswerFeedback(inputText, keywords, minWordCount, lang)), usedFallback = true)
+          }
+          .foreach(onResult)
 
   private def translateSolutionWords(words: Set[String], lang: String): Set[String] =
     if lang != "en" then words
@@ -3569,7 +4072,9 @@ object Main:
                     Infotext(
                       "Informationen zur Bearbeitung",
                       "Durch das Klicken auf den \"Abgeben\" Button bei den Aufgaben werden deine Antworten lokal in deinem Browser gespeichert.\n" +
-                      "Das Textfeld färbt sich grün, wenn alle Schlüsselwörter, welche gefordert waren, im Text vorhanden sind. Ansonsten färbt es sich rot.\n" +
+                      "Textaufgaben werden mit einer LLM-Pruefung bewertet, damit auch Synonyme und sinnvolle Umschreibungen als richtig erkannt werden.\n" +
+                      "Falls die LLM-Pruefung nicht verfuegbar ist, wird automatisch die klassische Schluesselwortpruefung genutzt.\n" +
+                      "Das Textfeld faerbt sich gruen, wenn die Antwort als richtig bewertet wird. Ansonsten faerbt es sich rot.\n" +
                       "Zusätzlich gibt es im Arbeitsheft immer wieder Informationsboxen, welche nach dem Bearbeiten der Aufgabe angezeigt werden.\n" +
                       "Falls du mal bei einer Aufgabe nicht weiter kommen solltest, kannst du dir durch einen Klick auf 'Lösung zeigen' die Lösung anzeigen lassen. Alle benötigten Schlüsselwörter sind in der Lösung fett markiert.\n" +
                       "Probiere es an Aufgabe 1 einmal selbst aus, indem du deine Eingabe änderst, falls du sie beim ersten Mal richtig gelöst hast."
@@ -5297,6 +5802,11 @@ object Main:
     val lastCheckVar: Var[Option[Boolean]] = Var(storedStatus.lastCheck)
     val showSolutionVar: Var[Boolean] = Var(initialShowSolution)
     val wrongAttemptsVar: Var[Int] = Var(math.max(0, storedStatus.wrongAttempts))
+    val llmPendingVar: Var[Boolean] = Var(false)
+    val llmFallbackVar: Var[Boolean] = Var(false)
+    val llmDecisionVar: Var[Boolean] = Var(false)
+    val answerScoreVar: Var[Option[Int]] = Var(None)
+    val answerFeedbackVar: Var[Option[String]] = Var(None)
     val effectiveSolutionWords = if solutionWords.nonEmpty then solutionWords else keywords
     val effectiveWrongHint = wrongHint
     def countWords(text: String): Int = text.split("\\s+").count(_.nonEmpty)
@@ -5461,19 +5971,50 @@ object Main:
         saveExerciseStatus(chapter, taskText, ExerciseStatus(lastCheckVar.now(), showSolutionVar.now(), wrongAttemptsVar.now()))
         emptyNode
       },
-      if keywords.nonEmpty || minWordCount.nonEmpty || submitCallback.nonEmpty || multipleChoice.isDefined || inlineNumericExpected.isDefined then
+      if keywords.nonEmpty || minWordCount.nonEmpty || solutionText.nonEmpty || submitCallback.nonEmpty || multipleChoice.isDefined || inlineNumericExpected.isDefined || (showEditor && keywords.isEmpty && multipleChoice.isEmpty && inlineNumericExpected.isEmpty && !numericOnly) then
         div(
           styleAttr := "display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center;",
           button(
-            child.text <-- lastCheckVar.signal.combineWith(languageVar.signal).map {
-              case (Some(false), lang) => translatedNow("Nochmal versuchen", lang)
-              case (_, lang) => translatedNow("Abgeben", lang)
+            child.text <-- Signal.combine(lastCheckVar.signal, languageVar.signal, llmPendingVar.signal).map {
+              case (_, lang, true) => if lang == "en" then "Checking..." else "Pruefe..."
+              case (Some(false), lang, false) => translatedNow("Nochmal versuchen", lang)
+              case (_, lang, false) => translatedNow("Abgeben", lang)
             },
+            disabled <-- llmPendingVar.signal,
             onClick --> { _ =>
+              def applyCheckResult(ok: Boolean, score: Option[Int], feedback: Option[String], usedFallback: Boolean, usedLlmDecision: Boolean): Unit =
+                llmPendingVar.set(false)
+                llmFallbackVar.set(usedFallback)
+                llmDecisionVar.set(usedLlmDecision)
+                answerScoreVar.set(score)
+                answerFeedbackVar.set(feedback)
+                lastCheckVar.set(Some(ok))
+                if usedLlmDecision then
+                  showSolutionVar.set(true)
+                  if ok then
+                    wrongAttemptsVar.set(0)
+                    submitCallback.foreach(callback => callback())
+                    infoCallback.foreach(callback => callback())
+                  else
+                    wrongAttemptsVar.update(_ + 1)
+                else if ok then
+                  wrongAttemptsVar.set(0)
+                  if solutionText.nonEmpty then
+                    showSolutionVar.set(true)
+                  submitCallback.foreach(callback => callback())
+                  infoCallback.foreach(callback => callback())
+                else
+                  wrongAttemptsVar.update(_ + 1)
+                  showSolutionVar.set(false)
+
               if lastCheckVar.now().contains(false) then
                 lastCheckVar.set(None)
                 showSolutionVar.set(false)
                 inlineChecksVar.set(None)
+                llmFallbackVar.set(false)
+                llmDecisionVar.set(false)
+                answerScoreVar.set(None)
+                answerFeedbackVar.set(None)
               else
                 val ok = if inlineNumericExpected.isDefined then
                   val expected = inlineNumericExpected.get
@@ -5497,17 +6038,20 @@ object Main:
                   minWordCount match
                     case Some(min) => keywordOk && countWords(text) >= min
                     case None => keywordOk
-                lastCheckVar.set(Some(ok))
-                if ok then
-                  wrongAttemptsVar.set(0)
-                  if solutionText.nonEmpty then
-                    showSolutionVar.set(true)
-                  // Call the submit callback if provided
-                  submitCallback.foreach(callback => callback())
-                  infoCallback.foreach(callback => callback())
+
+                val canUseLlm =
+                  inlineNumericExpected.isEmpty &&
+                    !(multipleChoice.isDefined && showMCFeedback) &&
+                    !numericOnly
+
+                if canUseLlm then
+                  llmPendingVar.set(true)
+                  val text = textVar.now()
+                  evaluateTextWithLlmOrFallback(taskText, text, solutionText, keywords, minWordCount, ok, languageVar.now()) { llmResult =>
+                    applyCheckResult(llmResult.isCorrect, llmResult.score, llmResult.feedback, llmResult.usedFallback, usedLlmDecision = !llmResult.usedFallback)
+                  }
                 else
-                  wrongAttemptsVar.update(_ + 1)
-                  showSolutionVar.set(false)
+                  applyCheckResult(ok, None, Some(buildStudentAnswerFeedback(textVar.now(), keywords, minWordCount, languageVar.now())), usedFallback = false, usedLlmDecision = false)
             },
             cls := "btn-time",
             cls <-- buttonClassSignal
@@ -5517,8 +6061,8 @@ object Main:
               span(styleAttr := "color: #2e7d32; font-weight: 600;", child.text <-- languageVar.signal.map(lang => if lang == "en" then "Correct! Very good" else "Richtig! Sehr gut"))
             case _ => emptyNode
           },
-          child <-- lastCheckVar.signal.combineWith(wrongAttemptsVar.signal).map {
-            case (Some(false), wrongAttempts) if solutionText.nonEmpty =>
+          child <-- Signal.combine(lastCheckVar.signal, wrongAttemptsVar.signal, llmDecisionVar.signal).map {
+            case (Some(false), wrongAttempts, false) if solutionText.nonEmpty =>
               div(
                 styleAttr := "display: flex; align-items: center; gap: 0.75rem;",
                 if wrongAttempts >= 2 then
@@ -5541,18 +6085,42 @@ object Main:
               )
             case _ => emptyNode
           },
-          child <-- showSolutionVar.signal.map { show =>
+          child <-- Signal.combine(lastCheckVar.signal, llmFallbackVar.signal, languageVar.signal).map {
+            case (Some(_), true, lang) =>
+              span(
+                styleAttr := "color: #6d4c41; font-size: 0.92rem;",
+                if lang == "en" then "LLM check unavailable, classic keyword check was used."
+                else "LLM-Pruefung nicht verfuegbar, klassische Stichwortpruefung wurde genutzt."
+              )
+            case _ => emptyNode
+          },
+          child <-- Signal.combine(showSolutionVar.signal, llmDecisionVar.signal).map { case (show, llmDecision) =>
             if show then
               val lang = languageVar.now()
               val wordsForLang = translateSolutionWords(effectiveSolutionWords, lang)
-              solutionText.map(text =>
-                div(
-                  cls := "loesung-container",
-                  styleAttr := "flex-basis: 100%;",
-                  div(cls := "loesung-header", if lang == "en" then "Solution" else "Lösung"),
-                  LösungZeigen(text, wordsForLang, lang)
-                )
-              ).getOrElse(emptyNode)
+              div(
+                cls := "loesung-container",
+                styleAttr := "flex-basis: 100%;",
+                div(cls := "loesung-header", if llmDecision then (if lang == "en" then "Evaluation" else "Bewertung") else (if lang == "en" then "Solution" else "Lösung")),
+                if llmDecision then emptyNode else solutionText.map(text => LösungZeigen(text, wordsForLang, lang)).getOrElse(emptyNode),
+                child <-- answerScoreVar.signal.map {
+                  case Some(score) =>
+                    div(
+                      styleAttr := "margin-top: 0.6rem; font-weight: 700; color: #0d47a1;",
+                      if lang == "en" then s"LLM score: $score/100"
+                      else s"LLM-Punktzahl: $score/100"
+                    )
+                  case None => emptyNode
+                },
+                child <-- answerFeedbackVar.signal.map {
+                  case Some(feedbackText) if feedbackText.trim.nonEmpty =>
+                    div(
+                      styleAttr := "margin-top: 0.75rem; padding: 0.65rem; border-left: 4px solid #1976d2; background: rgba(25, 118, 210, 0.08);",
+                      p(styleAttr := "margin: 0;", feedbackText)
+                    )
+                  case _ => emptyNode
+                }
+              )
             else
               emptyNode
           },
@@ -5693,7 +6261,7 @@ object Main:
     div(
       cls := "quiz-container",
       h2("QR Code Quiz"),
-      p("Beantworte die folgenden 20 Fragen. Textfragen erfordern bestimmte Schlüsselwörter, Multiple-Choice-Fragen haben nur eine richtige Antwort."),
+      p("Beantworte die folgenden 20 Fragen. Textfragen werden ueber Schluesselwoerter und eine zusaetzliche LLM-Pruefung bewertet (mit Fallback auf Schluesselwoerter), Multiple-Choice-Fragen haben nur eine richtige Antwort."),
       
       children <-- questionsVar.signal.map { questions =>
         questions.zipWithIndex.map { case ((question, qType, choices, keywords), idx) =>
@@ -6080,6 +6648,9 @@ object Main:
   def renderQuizTextQuestion(question: String, questionIndex: Int, answersVar: Var[Map[Int, String]], keywords: Set[String], onCorrect: Option[() => Unit] = None): Element =
     val textVar = Var("")
     val feedbackVar: Var[Option[Boolean]] = Var(None)
+    val feedbackScoreVar: Var[Option[Int]] = Var(None)
+    val feedbackTextVar: Var[Option[String]] = Var(None)
+    val llmPendingVar: Var[Boolean] = Var(false)
 
     div(
       cls := "quiz-text-answer",
@@ -6097,13 +6668,25 @@ object Main:
         )
       ),
       button(
-        child.text <-- languageVar.signal.map(lang => translatedNow("Antwort überprüfen", lang)),
+        child.text <-- llmPendingVar.signal.combineWith(languageVar.signal).map { case (pending, lang) =>
+          if pending then
+            if lang == "en" then "Checking..." else "Pruefe..."
+          else
+            translatedNow("Antwort überprüfen", lang)
+        },
+        disabled <-- llmPendingVar.signal,
         onClick --> { _ =>
           val text = textVar.now()
-          val isCorrect = matchesKeywords(text, keywords)
-          feedbackVar.set(Some(isCorrect))
-          if isCorrect then
-            onCorrect.foreach(callback => callback())
+          val fallbackOk = matchesKeywords(text, keywords)
+          llmPendingVar.set(true)
+          evaluateTextWithLlmOrFallback(question, text, None, keywords, None, fallbackOk, languageVar.now()) { result =>
+            llmPendingVar.set(false)
+            feedbackVar.set(Some(result.isCorrect))
+            feedbackScoreVar.set(result.score)
+            feedbackTextVar.set(result.feedback)
+            if result.isCorrect then
+              onCorrect.foreach(callback => callback())
+          }
         },
         cls <-- feedbackVar.signal.map {
           case Some(true)  => "btn-success"
@@ -6115,6 +6698,22 @@ object Main:
         case Some(true)  => span(cls := "feedback-correct", child.text <-- languageVar.signal.map(lang => if lang == "en" then " Correct!" else " Richtig!"))
         case Some(false) => span(cls := "feedback-incorrect", child.text <-- languageVar.signal.map(lang => translatedNow("Nicht ganz richtig. Versuche es nochmal!", lang)))
         case None        => emptyNode
+      },
+      child <-- feedbackTextVar.signal.map {
+        case Some(text) if text.trim.nonEmpty =>
+          p(
+            styleAttr := "margin-top: 0.5rem; color: #37474f;",
+            text
+          )
+        case _ => emptyNode
+      },
+      child <-- feedbackScoreVar.signal.map {
+        case Some(score) =>
+          p(
+            styleAttr := "margin-top: 0.35rem; font-weight: 700; color: #0d47a1;",
+            child.text <-- languageVar.signal.map(lang => if lang == "en" then s"LLM score: $score/100" else s"LLM-Punktzahl: $score/100")
+          )
+        case None => emptyNode
       }
     )
   end renderQuizTextQuestion

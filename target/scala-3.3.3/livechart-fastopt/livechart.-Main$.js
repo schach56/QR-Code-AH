@@ -1,11 +1,13 @@
 'use strict';
 import * as $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6 from "./internal-3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.js";
-import * as $j_livechart$002e$002dMain$0024$0024anon$00241 from "./livechart.-Main$$anon$1.js";
 import * as $j_livechart$002e$002dMain$0024$0024anon$00242 from "./livechart.-Main$$anon$2.js";
-import * as $j_livechart$002e$002dMain$0024$0024anon$00244 from "./livechart.-Main$$anon$4.js";
+import * as $j_livechart$002e$002dMain$0024$0024anon$00243 from "./livechart.-Main$$anon$3.js";
+import * as $j_livechart$002e$002dMain$0024$0024anon$00245 from "./livechart.-Main$$anon$5.js";
 import * as $j_livechart$002e$002dMain$0024$002dChapter$002dData from "./livechart.-Main$-Chapter-Data.js";
 import * as $j_livechart$002e$002dMain$0024$002dExercise$002dResponse from "./livechart.-Main$-Exercise-Response.js";
 import * as $j_livechart$002e$002dMain$0024$002dExercise$002dStatus from "./livechart.-Main$-Exercise-Status.js";
+import * as $j_livechart$002e$002dMain$0024$002dLlm$002dCheck$002dResult from "./livechart.-Main$-Llm-Check-Result.js";
+import * as $j_livechart$002e$002dMain$0024$002dLlm$002dEndpoint$002dConfig from "./livechart.-Main$-Llm-Endpoint-Config.js";
 import * as $j_livechart$002e$002dMain$0024$002dRating$002dData from "./livechart.-Main$-Rating-Data.js";
 import * as $j_livechart$002e$002dSimple$002dText$002dEditor from "./livechart.-Simple-Text-Editor.js";
 function $p_Llivechart_Main$__hasLetters__T__Z($thiz, text) {
@@ -130,6 +132,993 @@ function $p_Llivechart_Main$__matchesKeywords__T__sci_Set__Z($thiz, inputText, k
   }
 }
 export { $p_Llivechart_Main$__matchesKeywords__T__sci_Set__Z as $p_Llivechart_Main$__matchesKeywords__T__sci_Set__Z };
+function $p_Llivechart_Main$__parseBooleanValue__sjs_js_Any__s_Option($thiz, value) {
+  if (((value === null) || (value === (void 0)))) {
+    return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+  } else {
+    var x35 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T((typeof value));
+    switch (x35) {
+      case "boolean": {
+        var value$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(value);
+        return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(value$1);
+        break;
+      }
+      case "string": {
+        var this$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__trim__T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(value))));
+        var x34 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(this$3.toLowerCase());
+        switch (x34) {
+          case "true":
+          case "1": {
+            return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(true);
+            break;
+          }
+          case "false":
+          case "0": {
+            return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(false);
+            break;
+          }
+          default: {
+            return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+          }
+        }
+        break;
+      }
+      case "number": {
+        var value$2 = ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uD(value) !== 0.0);
+        return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(value$2);
+        break;
+      }
+      default: {
+        return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+      }
+    }
+  }
+}
+export { $p_Llivechart_Main$__parseBooleanValue__sjs_js_Any__s_Option as $p_Llivechart_Main$__parseBooleanValue__sjs_js_Any__s_Option };
+function $p_Llivechart_Main$__parseStringValue__sjs_js_Any__s_Option($thiz, value) {
+  if (((value === null) || (value === (void 0)))) {
+    return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+  } else {
+    var parsed = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__trim__T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$dp_toString__T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(value))));
+    var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(parsed);
+    if ((this$2 === "")) {
+      return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+    } else {
+      return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(parsed);
+    }
+  }
+}
+export { $p_Llivechart_Main$__parseStringValue__sjs_js_Any__s_Option as $p_Llivechart_Main$__parseStringValue__sjs_js_Any__s_Option };
+function $p_Llivechart_Main$__parseScoreValue__sjs_js_Any__s_Option($thiz, value) {
+  if (((value === null) || (value === (void 0)))) {
+    return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+  } else {
+    var x36 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T((typeof value));
+    if ((x36 === "number")) {
+      var n = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uD(value);
+      var value$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uD(Math.round(n));
+      var this$6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_RTLong$();
+      var lo = this$6.org$scalajs$linker$runtime$RuntimeLong$$fromDoubleImpl__D__I(value$1);
+      var y = ((lo > 100) ? 100 : lo);
+      var value$2 = ((y < 0) ? 0 : y);
+      return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(value$2);
+    }
+    if ((x36 === "string")) {
+      try {
+        var x = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__trim__T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(value)));
+        var r1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_jl_Double$().parseDouble__T__D(x);
+        var $x_1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_util_Success(r1);
+      } catch (e) {
+        var e$2 = ((e instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_jl_Throwable) ? e : new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjs_js_JavaScriptException(e));
+        matchEnd8: {
+          var $x_1;
+          if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_util_control_NonFatal$().apply__jl_Throwable__Z(e$2)) {
+            var $x_1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_util_Failure(e$2);
+            break matchEnd8;
+          }
+          throw ((e$2 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjs_js_JavaScriptException) ? e$2.sjs_js_JavaScriptException__f_exception : e$2);
+        }
+      }
+      var this$16 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_1.toOption__s_Option());
+      if (this$16.isEmpty__Z()) {
+        return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+      } else {
+        var x0 = this$16.get__O();
+        var n$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uD(x0);
+        var value$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uD(Math.round(n$1));
+        var this$21 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_RTLong$();
+        var lo$1 = this$21.org$scalajs$linker$runtime$RuntimeLong$$fromDoubleImpl__D__I(value$3);
+        var y$1 = ((lo$1 > 100) ? 100 : lo$1);
+        return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(((y$1 < 0) ? 0 : y$1));
+      }
+    }
+    return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+  }
+}
+export { $p_Llivechart_Main$__parseScoreValue__sjs_js_Any__s_Option as $p_Llivechart_Main$__parseScoreValue__sjs_js_Any__s_Option };
+function $p_Llivechart_Main$__readLocalStorageItem__T__s_Option($thiz, key) {
+  try {
+    return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_Option$().apply__O__s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(window.localStorage.getItem(key)));
+  } catch (e) {
+    return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+  }
+}
+export { $p_Llivechart_Main$__readLocalStorageItem__T__s_Option as $p_Llivechart_Main$__readLocalStorageItem__T__s_Option };
+function $p_Llivechart_Main$__readMetaTagContent__T__s_Option($thiz, name) {
+  try {
+    var this$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_Option$().apply__O__s_Option(document.querySelector((("meta[name='" + name) + "']"))));
+    if (this$1.isEmpty__Z()) {
+      var $x_1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+    } else {
+      var x0 = this$1.get__O();
+      var $x_1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_Option$().apply__O__s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x0.content));
+    }
+    var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_1);
+    if (this$2.isEmpty__Z()) {
+      var this$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+    } else {
+      var x0$1 = this$2.get__O();
+      var _$7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x0$1);
+      var this$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__trim__T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$7)));
+    }
+    if (this$3.isEmpty__Z()) {
+      var $x_2 = true;
+    } else {
+      var x0$2 = this$3.get__O();
+      var _$8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x0$2);
+      var this$6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$8);
+      var $x_2 = (!(this$6 === ""));
+    }
+    if ($x_2) {
+      return this$3;
+    } else {
+      return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+    }
+  } catch (e) {
+    return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+  }
+}
+export { $p_Llivechart_Main$__readMetaTagContent__T__s_Option as $p_Llivechart_Main$__readMetaTagContent__T__s_Option };
+function $p_Llivechart_Main$__readWindowString__T__s_Option($thiz, name) {
+  try {
+    var value = window[name];
+    if (((value === null) || (value === (void 0)))) {
+      return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+    } else {
+      var asText = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__trim__T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$dp_toString__T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(value))));
+      var this$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(asText);
+      if ((!(this$4 === ""))) {
+        return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(asText);
+      } else {
+        return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+      }
+    }
+  } catch (e) {
+    return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+  }
+}
+export { $p_Llivechart_Main$__readWindowString__T__s_Option as $p_Llivechart_Main$__readWindowString__T__s_Option };
+function $p_Llivechart_Main$__llmEndpointConfig__s_Option($thiz) {
+  matchResult11: {
+    var enabled;
+    var x41 = $p_Llivechart_Main$__readLocalStorageItem__T__s_Option($thiz, "qr-llm-enabled");
+    if ((x41 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
+      var v = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x41)).s_Some__f_value);
+      var this$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__trim__T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(v)));
+      _return: {
+        var len = this$1.length;
+        if ((len === 5)) {
+          var i = 0;
+          while ((i !== len)) {
+            var index = i;
+            var c = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$charAt(this$1, index);
+            var $x_2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_jl_Character$().toLowerCase__C__C($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_jl_Character$().toUpperCase__C__C(c));
+            var index$1 = i;
+            var c$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$charAt("false", index$1);
+            if (($x_2 !== $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_jl_Character$().toLowerCase__C__C($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_jl_Character$().toUpperCase__C__C(c$1)))) {
+              var $x_1 = false;
+              break _return;
+            }
+            i = ((1 + i) | 0);
+          }
+          var $x_1 = true;
+        } else {
+          var $x_1 = false;
+        }
+      }
+      var enabled = (!$x_1);
+      break matchResult11;
+    }
+    var x = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+    if ((x === x41)) {
+      var enabled = true;
+      break matchResult11;
+    }
+    throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x41);
+  }
+  var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__readLocalStorageItem__T__s_Option($thiz, "qr-llm-endpoint"));
+  if (this$2.isEmpty__Z()) {
+    var this$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+  } else {
+    var x0 = this$2.get__O();
+    var _$9 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x0);
+    var this$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__trim__T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$9)));
+  }
+  if (this$3.isEmpty__Z()) {
+    var $x_3 = true;
+  } else {
+    var x0$1 = this$3.get__O();
+    var _$10 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x0$1);
+    var this$6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$10);
+    var $x_3 = (!(this$6 === ""));
+  }
+  if ($x_3) {
+    var configuredEndpoint = this$3;
+  } else {
+    var configuredEndpoint = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+  }
+  matchResult12: {
+    var endpoint;
+    if ((configuredEndpoint instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
+      var x48 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(configuredEndpoint)).s_Some__f_value);
+      var this$7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x48);
+      var this$8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(this$7.toLowerCase()));
+      if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(this$8.indexOf("gen.pollinations.ai")) !== (-1))) {
+        var endpoint = "https://text.pollinations.ai";
+        break matchResult12;
+      }
+      var endpoint = x48;
+      break matchResult12;
+    }
+    var x$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+    if ((x$3 === configuredEndpoint)) {
+      var endpoint = "https://text.pollinations.ai";
+      break matchResult12;
+    }
+    throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(configuredEndpoint);
+  }
+  var this$9 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__readLocalStorageItem__T__s_Option($thiz, "qr-llm-provider"));
+  if (this$9.isEmpty__Z()) {
+    var this$11 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+  } else {
+    var x0$2 = this$9.get__O();
+    var _$11 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x0$2);
+    var this$10 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__trim__T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$11)));
+    var this$11 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(this$10.toLowerCase()));
+  }
+  if (this$11.isEmpty__Z()) {
+    var $x_4 = true;
+  } else {
+    var x0$3 = this$11.get__O();
+    var _$12 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x0$3);
+    var this$14 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$12);
+    var $x_4 = (!(this$14 === ""));
+  }
+  if ($x_4) {
+    var this$15 = this$11;
+  } else {
+    var this$15 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+  }
+  if (this$15.isEmpty__Z()) {
+    var this$16 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(endpoint);
+    if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(this$16.indexOf("11434")) !== (-1))) {
+      var $x_5 = "ollama";
+    } else {
+      var this$17 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(endpoint);
+      if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(this$17.indexOf("openrouter.ai")) !== (-1))) {
+        var $x_5 = "openrouter";
+      } else {
+        var this$18 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(endpoint);
+        if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(this$18.indexOf("text.pollinations.ai")) !== (-1))) {
+          var this$19 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(endpoint);
+          var $x_6 = (!($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(this$19.indexOf("/openai")) !== (-1)));
+        } else {
+          var $x_6 = false;
+        }
+        if ($x_6) {
+          var $x_5 = "pollinations-text";
+        } else {
+          var this$20 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(endpoint);
+          if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(this$20.indexOf("pollinations.ai")) !== (-1))) {
+            var $x_5 = "openai";
+          } else {
+            var $x_5 = "openai";
+          }
+        }
+      }
+    }
+  } else {
+    var $x_5 = this$15.get__O();
+  }
+  var provider = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($x_5);
+  var this$21 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__readLocalStorageItem__T__s_Option($thiz, "qr-llm-model"));
+  if (this$21.isEmpty__Z()) {
+    var this$22 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+  } else {
+    var x0$4 = this$21.get__O();
+    var _$13 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x0$4);
+    var this$22 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__trim__T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$13)));
+  }
+  if (this$22.isEmpty__Z()) {
+    var $x_7 = true;
+  } else {
+    var x0$5 = this$22.get__O();
+    var _$14 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x0$5);
+    var this$25 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$14);
+    var $x_7 = (!(this$25 === ""));
+  }
+  if ($x_7) {
+    var this$26 = this$22;
+  } else {
+    var this$26 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+  }
+  var model = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T((this$26.isEmpty__Z() ? "openai-fast" : this$26.get__O()));
+  var this$27 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__readLocalStorageItem__T__s_Option($thiz, "qr-llm-api-key"));
+  var this$28 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n((this$27.isEmpty__Z() ? $p_Llivechart_Main$__readMetaTagContent__T__s_Option($thiz, "qr-llm-api-key") : this$27));
+  var this$29 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n((this$28.isEmpty__Z() ? $p_Llivechart_Main$__readWindowString__T__s_Option($thiz, "__QR_LLM_API_KEY__") : this$28));
+  if (this$29.isEmpty__Z()) {
+    var this$30 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+  } else {
+    var x0$6 = this$29.get__O();
+    var _$15 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x0$6);
+    var this$30 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__trim__T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$15)));
+  }
+  if (this$30.isEmpty__Z()) {
+    var $x_8 = true;
+  } else {
+    var x0$7 = this$30.get__O();
+    var _$16 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x0$7);
+    var this$33 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$16);
+    var $x_8 = (!(this$33 === ""));
+  }
+  if ($x_8) {
+    var apiKey = this$30;
+  } else {
+    var apiKey = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+  }
+  if (enabled) {
+    var this$36 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(endpoint);
+    var $x_9 = (!(this$36 === ""));
+  } else {
+    var $x_9 = false;
+  }
+  if ($x_9) {
+    var value = new $j_livechart$002e$002dMain$0024$002dLlm$002dEndpoint$002dConfig.$c_Llivechart_Main$LlmEndpointConfig(endpoint, apiKey, provider, model);
+    return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(value);
+  } else {
+    return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+  }
+}
+export { $p_Llivechart_Main$__llmEndpointConfig__s_Option as $p_Llivechart_Main$__llmEndpointConfig__s_Option };
+function $p_Llivechart_Main$__readNestedDynamic__sjs_js_Dynamic__sci_List__s_Option($thiz, root, path) {
+  var this$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(path);
+  var z = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_Option$().apply__O__s_Option(root);
+  var acc = z;
+  var these = this$1;
+  while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).isEmpty__Z())) {
+    var x0 = acc;
+    var x1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).head__O();
+    var current = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(x0);
+    var key = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x1);
+    var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(current);
+    if (this$2.isEmpty__Z()) {
+      acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+    } else {
+      var x0$1 = this$2.get__O();
+      if (((x0$1 === null) || (x0$1 === (void 0)))) {
+        acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+      } else {
+        var next = x0$1[key];
+        acc = (((next === null) || (next === (void 0))) ? $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$() : new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(next));
+      }
+    }
+    these = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sc_LinearSeq($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).tail__O());
+  }
+  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(acc);
+}
+export { $p_Llivechart_Main$__readNestedDynamic__sjs_js_Dynamic__sci_List__s_Option as $p_Llivechart_Main$__readNestedDynamic__sjs_js_Dynamic__sci_List__s_Option };
+function $p_Llivechart_Main$__readArrayIndex__sjs_js_Any__I__s_Option($thiz, value, index) {
+  if (((value === null) || (value === (void 0)))) {
+    return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+  } else if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(value.length) > index)) {
+    var value$1 = value[index];
+    return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(value$1);
+  } else {
+    return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+  }
+}
+export { $p_Llivechart_Main$__readArrayIndex__sjs_js_Any__I__s_Option as $p_Llivechart_Main$__readArrayIndex__sjs_js_Any__I__s_Option };
+function $p_Llivechart_Main$__parseLlmDecisionFromText__T__T3($thiz, responseText) {
+  try {
+    var r1 = JSON.parse(responseText);
+    var $x_1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_util_Success(r1);
+  } catch (e) {
+    var e$2 = ((e instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_jl_Throwable) ? e : new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjs_js_JavaScriptException(e));
+    matchEnd8: {
+      var $x_1;
+      if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_util_control_NonFatal$().apply__jl_Throwable__Z(e$2)) {
+        var $x_1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_util_Failure(e$2);
+        break matchEnd8;
+      }
+      throw ((e$2 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjs_js_JavaScriptException) ? e$2.sjs_js_JavaScriptException__f_exception : e$2);
+    }
+  }
+  var parsedOpt = $x_1.toOption__s_Option();
+  var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(parsedOpt);
+  if (this$2.isEmpty__Z()) {
+    var fromJson = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+  } else {
+    var x0 = this$2.get__O();
+    var elems = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T.getArrayOf().constr)(["isCorrect"]));
+    var this$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__readNestedDynamic__sjs_js_Dynamic__sci_List__s_Option($thiz, x0, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems)));
+    if (this$4.isEmpty__Z()) {
+      var directIsCorrect = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+    } else {
+      var x0$1 = this$4.get__O();
+      var directIsCorrect = $p_Llivechart_Main$__parseBooleanValue__sjs_js_Any__s_Option($thiz, x0$1);
+    }
+    var elems$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T.getArrayOf().constr)(["result", "isCorrect"]));
+    var this$6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__readNestedDynamic__sjs_js_Dynamic__sci_List__s_Option($thiz, x0, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$1)));
+    if (this$6.isEmpty__Z()) {
+      var nestedIsCorrect = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+    } else {
+      var x0$2 = this$6.get__O();
+      var nestedIsCorrect = $p_Llivechart_Main$__parseBooleanValue__sjs_js_Any__s_Option($thiz, x0$2);
+    }
+    var elems$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T.getArrayOf().constr)(["score"]));
+    var this$8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__readNestedDynamic__sjs_js_Dynamic__sci_List__s_Option($thiz, x0, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$2)));
+    if (this$8.isEmpty__Z()) {
+      var directScore = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+    } else {
+      var x0$3 = this$8.get__O();
+      var directScore = $p_Llivechart_Main$__parseScoreValue__sjs_js_Any__s_Option($thiz, x0$3);
+    }
+    var elems$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T.getArrayOf().constr)(["result", "score"]));
+    var this$10 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__readNestedDynamic__sjs_js_Dynamic__sci_List__s_Option($thiz, x0, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$3)));
+    if (this$10.isEmpty__Z()) {
+      var $x_2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+    } else {
+      var x0$4 = this$10.get__O();
+      var $x_2 = $p_Llivechart_Main$__parseScoreValue__sjs_js_Any__s_Option($thiz, x0$4);
+    }
+    var this$11 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_2);
+    if (this$11.isEmpty__Z()) {
+      var elems$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T.getArrayOf().constr)(["points"]));
+      var this$13 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__readNestedDynamic__sjs_js_Dynamic__sci_List__s_Option($thiz, x0, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$4)));
+      if (this$13.isEmpty__Z()) {
+        var $x_3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+      } else {
+        var x0$5 = this$13.get__O();
+        var $x_3 = $p_Llivechart_Main$__parseScoreValue__sjs_js_Any__s_Option($thiz, x0$5);
+      }
+    } else {
+      var $x_3 = this$11;
+    }
+    var this$14 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_3);
+    if (this$14.isEmpty__Z()) {
+      var elems$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T.getArrayOf().constr)(["result", "points"]));
+      var this$16 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__readNestedDynamic__sjs_js_Dynamic__sci_List__s_Option($thiz, x0, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$5)));
+      if (this$16.isEmpty__Z()) {
+        var nestedScore = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+      } else {
+        var x0$6 = this$16.get__O();
+        var nestedScore = $p_Llivechart_Main$__parseScoreValue__sjs_js_Any__s_Option($thiz, x0$6);
+      }
+    } else {
+      var nestedScore = this$14;
+    }
+    var elems$6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T.getArrayOf().constr)(["feedback"]));
+    var this$18 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__readNestedDynamic__sjs_js_Dynamic__sci_List__s_Option($thiz, x0, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$6)));
+    if (this$18.isEmpty__Z()) {
+      var directFeedback = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+    } else {
+      var x0$7 = this$18.get__O();
+      var directFeedback = $p_Llivechart_Main$__parseStringValue__sjs_js_Any__s_Option($thiz, x0$7);
+    }
+    var elems$7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T.getArrayOf().constr)(["result", "feedback"]));
+    var this$20 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__readNestedDynamic__sjs_js_Dynamic__sci_List__s_Option($thiz, x0, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$7)));
+    if (this$20.isEmpty__Z()) {
+      var nestedFeedback = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+    } else {
+      var x0$8 = this$20.get__O();
+      var nestedFeedback = $p_Llivechart_Main$__parseStringValue__sjs_js_Any__s_Option($thiz, x0$8);
+    }
+    var elems$8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T.getArrayOf().constr)(["message", "content"]));
+    var this$22 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__readNestedDynamic__sjs_js_Dynamic__sci_List__s_Option($thiz, x0, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$8)));
+    if (this$22.isEmpty__Z()) {
+      var $x_4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+    } else {
+      var x0$9 = this$22.get__O();
+      var $x_4 = $p_Llivechart_Main$__parseStringValue__sjs_js_Any__s_Option($thiz, x0$9);
+    }
+    var this$23 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_4);
+    if (this$23.isEmpty__Z()) {
+      var elems$9 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T.getArrayOf().constr)(["choices"]));
+      var this$25 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__readNestedDynamic__sjs_js_Dynamic__sci_List__s_Option($thiz, x0, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$9)));
+      if (this$25.isEmpty__Z()) {
+        var $x_6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+      } else {
+        var x0$10 = this$25.get__O();
+        var $x_6 = $p_Llivechart_Main$__readArrayIndex__sjs_js_Any__I__s_Option($thiz, x0$10, 0);
+      }
+      var this$26 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_6);
+      if (this$26.isEmpty__Z()) {
+        var $x_7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+      } else {
+        var x0$11 = this$26.get__O();
+        var elems$10 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T.getArrayOf().constr)(["message", "content"]));
+        var $x_7 = $p_Llivechart_Main$__readNestedDynamic__sjs_js_Dynamic__sci_List__s_Option($thiz, x0$11, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$10));
+      }
+      var this$28 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_7);
+      if (this$28.isEmpty__Z()) {
+        var $x_5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+      } else {
+        var x0$12 = this$28.get__O();
+        var $x_5 = $p_Llivechart_Main$__parseStringValue__sjs_js_Any__s_Option($thiz, x0$12);
+      }
+    } else {
+      var $x_5 = this$23;
+    }
+    var this$29 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_5);
+    if (this$29.isEmpty__Z()) {
+      var elems$11 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T.getArrayOf().constr)(["response"]));
+      var this$31 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__readNestedDynamic__sjs_js_Dynamic__sci_List__s_Option($thiz, x0, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$11)));
+      if (this$31.isEmpty__Z()) {
+        var $x_8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+      } else {
+        var x0$13 = this$31.get__O();
+        var $x_8 = $p_Llivechart_Main$__parseStringValue__sjs_js_Any__s_Option($thiz, x0$13);
+      }
+    } else {
+      var $x_8 = this$29;
+    }
+    var this$32 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_8);
+    if (this$32.isEmpty__Z()) {
+      var elems$12 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T.getArrayOf().constr)(["content"]));
+      var this$34 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__readNestedDynamic__sjs_js_Dynamic__sci_List__s_Option($thiz, x0, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$12)));
+      if (this$34.isEmpty__Z()) {
+        var $x_9 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+      } else {
+        var x0$14 = this$34.get__O();
+        var $x_9 = $p_Llivechart_Main$__readArrayIndex__sjs_js_Any__I__s_Option($thiz, x0$14, 0);
+      }
+      var this$35 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_9);
+      if (this$35.isEmpty__Z()) {
+        var $x_10 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+      } else {
+        var x0$15 = this$35.get__O();
+        var elems$13 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T.getArrayOf().constr)(["text"]));
+        var $x_10 = $p_Llivechart_Main$__readNestedDynamic__sjs_js_Dynamic__sci_List__s_Option($thiz, x0$15, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$13));
+      }
+      var this$37 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_10);
+      if (this$37.isEmpty__Z()) {
+        var embeddedContent = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+      } else {
+        var x0$16 = this$37.get__O();
+        var embeddedContent = $p_Llivechart_Main$__parseStringValue__sjs_js_Any__s_Option($thiz, x0$16);
+      }
+    } else {
+      var embeddedContent = this$32;
+    }
+    var this$38 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(embeddedContent);
+    if (this$38.isEmpty__Z()) {
+      var embeddedDecision = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+    } else {
+      var x0$17 = this$38.get__O();
+      var content = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x0$17);
+      try {
+        var r1$1 = JSON.parse(content);
+        var $x_11 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_util_Success(r1$1);
+      } catch (e$1) {
+        var e$2$1 = ((e$1 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_jl_Throwable) ? e$1 : new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjs_js_JavaScriptException(e$1));
+        matchEnd8$1: {
+          var $x_11;
+          if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_util_control_NonFatal$().apply__jl_Throwable__Z(e$2$1)) {
+            var $x_11 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_util_Failure(e$2$1);
+            break matchEnd8$1;
+          }
+          throw ((e$2$1 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjs_js_JavaScriptException) ? e$2$1.sjs_js_JavaScriptException__f_exception : e$2$1);
+        }
+      }
+      var embeddedParsed = $x_11.toOption__s_Option();
+      var this$40 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(embeddedParsed);
+      if (this$40.isEmpty__Z()) {
+        var embeddedDecision = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+      } else {
+        var x0$18 = this$40.get__O();
+        var elems$14 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T.getArrayOf().constr)(["isCorrect"]));
+        var this$42 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__readNestedDynamic__sjs_js_Dynamic__sci_List__s_Option($thiz, x0$18, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$14)));
+        if (this$42.isEmpty__Z()) {
+          var $x_12 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+        } else {
+          var x0$19 = this$42.get__O();
+          var $x_12 = $p_Llivechart_Main$__parseBooleanValue__sjs_js_Any__s_Option($thiz, x0$19);
+        }
+        var this$43 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_12);
+        if (this$43.isEmpty__Z()) {
+          var elems$15 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T.getArrayOf().constr)(["result", "isCorrect"]));
+          var this$45 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__readNestedDynamic__sjs_js_Dynamic__sci_List__s_Option($thiz, x0$18, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$15)));
+          if (this$45.isEmpty__Z()) {
+            var _1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+          } else {
+            var x0$20 = this$45.get__O();
+            var _1 = $p_Llivechart_Main$__parseBooleanValue__sjs_js_Any__s_Option($thiz, x0$20);
+          }
+        } else {
+          var _1 = this$43;
+        }
+        var elems$16 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T.getArrayOf().constr)(["score"]));
+        var this$47 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__readNestedDynamic__sjs_js_Dynamic__sci_List__s_Option($thiz, x0$18, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$16)));
+        if (this$47.isEmpty__Z()) {
+          var $x_13 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+        } else {
+          var x0$21 = this$47.get__O();
+          var $x_13 = $p_Llivechart_Main$__parseScoreValue__sjs_js_Any__s_Option($thiz, x0$21);
+        }
+        var this$48 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_13);
+        if (this$48.isEmpty__Z()) {
+          var elems$17 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T.getArrayOf().constr)(["result", "score"]));
+          var this$50 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__readNestedDynamic__sjs_js_Dynamic__sci_List__s_Option($thiz, x0$18, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$17)));
+          if (this$50.isEmpty__Z()) {
+            var $x_14 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+          } else {
+            var x0$22 = this$50.get__O();
+            var $x_14 = $p_Llivechart_Main$__parseScoreValue__sjs_js_Any__s_Option($thiz, x0$22);
+          }
+        } else {
+          var $x_14 = this$48;
+        }
+        var this$51 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_14);
+        if (this$51.isEmpty__Z()) {
+          var elems$18 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T.getArrayOf().constr)(["points"]));
+          var this$53 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__readNestedDynamic__sjs_js_Dynamic__sci_List__s_Option($thiz, x0$18, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$18)));
+          if (this$53.isEmpty__Z()) {
+            var $x_15 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+          } else {
+            var x0$23 = this$53.get__O();
+            var $x_15 = $p_Llivechart_Main$__parseScoreValue__sjs_js_Any__s_Option($thiz, x0$23);
+          }
+        } else {
+          var $x_15 = this$51;
+        }
+        var this$54 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_15);
+        if (this$54.isEmpty__Z()) {
+          var elems$19 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T.getArrayOf().constr)(["result", "points"]));
+          var this$56 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__readNestedDynamic__sjs_js_Dynamic__sci_List__s_Option($thiz, x0$18, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$19)));
+          if (this$56.isEmpty__Z()) {
+            var _2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+          } else {
+            var x0$24 = this$56.get__O();
+            var _2 = $p_Llivechart_Main$__parseScoreValue__sjs_js_Any__s_Option($thiz, x0$24);
+          }
+        } else {
+          var _2 = this$54;
+        }
+        var elems$20 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T.getArrayOf().constr)(["feedback"]));
+        var this$58 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__readNestedDynamic__sjs_js_Dynamic__sci_List__s_Option($thiz, x0$18, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$20)));
+        if (this$58.isEmpty__Z()) {
+          var $x_16 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+        } else {
+          var x0$25 = this$58.get__O();
+          var $x_16 = $p_Llivechart_Main$__parseStringValue__sjs_js_Any__s_Option($thiz, x0$25);
+        }
+        var this$59 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_16);
+        if (this$59.isEmpty__Z()) {
+          var elems$21 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T.getArrayOf().constr)(["result", "feedback"]));
+          var this$61 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__readNestedDynamic__sjs_js_Dynamic__sci_List__s_Option($thiz, x0$18, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$21)));
+          if (this$61.isEmpty__Z()) {
+            var _3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+          } else {
+            var x0$26 = this$61.get__O();
+            var _3 = $p_Llivechart_Main$__parseStringValue__sjs_js_Any__s_Option($thiz, x0$26);
+          }
+        } else {
+          var _3 = this$59;
+        }
+        var embeddedDecision = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T3(_1, _2, _3));
+      }
+    }
+    var this$63 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(directIsCorrect);
+    var this$64 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n((this$63.isEmpty__Z() ? nestedIsCorrect : this$63));
+    if (this$64.isEmpty__Z()) {
+      if (embeddedDecision.isEmpty__Z()) {
+        var boolValue = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+      } else {
+        var x0$27 = embeddedDecision.get__O();
+        var _$19 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T3(x0$27);
+        var boolValue = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$19).T3__f__1);
+      }
+    } else {
+      var boolValue = this$64;
+    }
+    var this$65 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(directScore);
+    var this$66 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n((this$65.isEmpty__Z() ? nestedScore : this$65));
+    if (this$66.isEmpty__Z()) {
+      if (embeddedDecision.isEmpty__Z()) {
+        var scoreValue = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+      } else {
+        var x0$28 = embeddedDecision.get__O();
+        var _$20 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T3(x0$28);
+        var scoreValue = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$20).T3__f__2);
+      }
+    } else {
+      var scoreValue = this$66;
+    }
+    var this$67 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(directFeedback);
+    var this$68 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n((this$67.isEmpty__Z() ? nestedFeedback : this$67));
+    if (this$68.isEmpty__Z()) {
+      if (embeddedDecision.isEmpty__Z()) {
+        var $x_17 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+      } else {
+        var x0$29 = embeddedDecision.get__O();
+        var _$21 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T3(x0$29);
+        var $x_17 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$21).T3__f__3);
+      }
+    } else {
+      var $x_17 = this$68;
+    }
+    var this$69 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_17);
+    var feedbackValue = (this$69.isEmpty__Z() ? embeddedContent : this$69);
+    var value = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T3(boolValue, scoreValue, feedbackValue);
+    var fromJson = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(value);
+  }
+  if (fromJson.isEmpty__Z()) {
+    var boolRegex = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$ct_s_util_matching_Regex__T__sci_Seq__(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_util_matching_Regex(), "(?i)\\\"isCorrect\\\"\\s*:\\s*(true|false)", $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$());
+    var this$74 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(boolRegex.findFirstMatchIn__jl_CharSequence__s_Option(responseText));
+    if (this$74.isEmpty__Z()) {
+      var boolValue$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+    } else {
+      var x0$30 = this$74.get__O();
+      var m = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_util_matching_Regex$Match(x0$30);
+      var this$75 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(m);
+      var boolValue$1 = $p_Llivechart_Main$__parseBooleanValue__sjs_js_Any__s_Option($thiz, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_s_util_matching_Regex$MatchData__group__I__T(this$75, 1));
+    }
+    var scoreRegex = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$ct_s_util_matching_Regex__T__sci_Seq__(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_util_matching_Regex(), "(?i)\\\"(score|points)\\\"\\s*:\\s*(\\d{1,3}(?:\\.\\d+)?)", $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$());
+    var this$78 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(scoreRegex.findFirstMatchIn__jl_CharSequence__s_Option(responseText));
+    if (this$78.isEmpty__Z()) {
+      var scoreValue$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+    } else {
+      var x0$31 = this$78.get__O();
+      var m$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_util_matching_Regex$Match(x0$31);
+      var this$79 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(m$1);
+      var scoreValue$1 = $p_Llivechart_Main$__parseScoreValue__sjs_js_Any__s_Option($thiz, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_s_util_matching_Regex$MatchData__group__I__T(this$79, 2));
+    }
+    var _3$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+    var $x_18 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T3(boolValue$1, scoreValue$1, _3$1);
+  } else {
+    var $x_18 = fromJson.get__O();
+  }
+  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T3($x_18);
+}
+export { $p_Llivechart_Main$__parseLlmDecisionFromText__T__T3 as $p_Llivechart_Main$__parseLlmDecisionFromText__T__T3 };
+function $p_Llivechart_Main$__evaluateTextWithLlmOrFallback__T__T__s_Option__sci_Set__s_Option__Z__T__F1__V($thiz, taskText, inputText, referenceSolutionText, keywords, minWordCount, fallbackOk, lang, onResult) {
+  var this$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(referenceSolutionText);
+  if (this$1.isEmpty__Z()) {
+    var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+  } else {
+    var x0 = this$1.get__O();
+    var _$24 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x0);
+    var this$2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__trim__T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$24)));
+  }
+  if (this$2.isEmpty__Z()) {
+    var $x_1 = true;
+  } else {
+    var x0$1 = this$2.get__O();
+    var _$25 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x0$1);
+    var this$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$25);
+    var $x_1 = (!(this$5 === ""));
+  }
+  if ($x_1) {
+    var preparedSolution = this$2;
+  } else {
+    var preparedSolution = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+  }
+  matchResult18: {
+    var x65 = $p_Llivechart_Main$__llmEndpointConfig__s_Option($thiz);
+    var x = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+    if ((x === x65)) {
+      $thiz.livechart$Main$$$logLlmIssue__T__T__V("disabled-or-invalid-config", "LLM config unavailable (disabled or endpoint missing).");
+      var $x_2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(onResult);
+      var score = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+      var value = $thiz.livechart$Main$$$buildStudentAnswerFeedback__T__sci_Set__s_Option__T__T(inputText, keywords, minWordCount, lang);
+      var feedback = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(value);
+      $x_2.apply__O__O(new $j_livechart$002e$002dMain$0024$002dLlm$002dCheck$002dResult.$c_Llivechart_Main$LlmCheckResult(fallbackOk, score, feedback, true));
+      break matchResult18;
+    }
+    if ((x65 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
+      var cfg = $j_livechart$002e$002dMain$0024$002dLlm$002dEndpoint$002dConfig.$as_Llivechart_Main$LlmEndpointConfig($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x65)).s_Some__f_value);
+      var prompt = ((!preparedSolution.isEmpty__Z()) ? "Du bist ein fairer Korrekturassistent fuer Schuelerantworten. Bewerte die Schuelerantwort anhand der Frage und des bereitgestellten Loesungstexts. Anerkenne Synonyme und sinnvolle Umschreibungen als korrekt. Antworte nur als JSON mit den Feldern score (0-100 als Zahl) und feedback (string)." : "Du bist ein fairer Korrekturassistent fuer Schuelerantworten. Bewerte die Schuelerantwort anhand der Frage. Es gibt keinen Loesungstext. Bewerte in diesem Fall bewusst weniger streng: inhaltlich passende Teilantworten klar positiv werten, keine Punktabzuege fuer kleine Sprachfehler oder fehlende Fachbegriffe, wenn der Sinn stimmt. Gib bei nachvollziehbarer, teilweise korrekter Antwort eher mittlere bis gute Punktzahlen. Anerkenne Synonyme und sinnvolle Umschreibungen als korrekt. Antworte nur als JSON mit den Feldern score (0-100 als Zahl) und feedback (string).");
+      if (preparedSolution.isEmpty__Z()) {
+        var this$8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+      } else {
+        var x0$2 = preparedSolution.get__O();
+        var text = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x0$2);
+        var this$8 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(("\n\nLoesungstext: " + text));
+      }
+      var solutionPart = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T((this$8.isEmpty__Z() ? "" : this$8.get__O()));
+      var userPrompt = (((((("Frage: " + taskText) + solutionPart) + "\n\nSchuelerantwort: ") + inputText) + "\n\n") + ((!preparedSolution.isEmpty__Z()) ? "Bewerte die Schuelerantwort. JSON-Ausgabe mit {\"score\": number, \"feedback\": string}." : "Bewerte die Schuelerantwort eher grosszuegig, wenn der Kern inhaltlich passt. JSON-Ausgabe mit {\"score\": number, \"feedback\": string}."));
+      if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(cfg).Llivechart_Main$LlmEndpointConfig__f_provider === "pollinations-text")) {
+        var pollinationsPrompt = (((prompt + "\n\n") + userPrompt) + "\n\nWichtig: Nur JSON ausgeben, ohne Zusatztext.");
+        var encodedPrompt = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(encodeURIComponent(pollinationsPrompt));
+        var $x_3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sc_StringOps$();
+        var x$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(cfg).Llivechart_Main$LlmEndpointConfig__f_endpoint;
+        var pollinationsUrl = ((($x_3.stripSuffix$extension__T__T__T(x$1, "/") + "/") + encodedPrompt) + "?model=openai&json=true&referrer=qr-workbook");
+        var fields = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("method", "GET"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("referrerPolicy", "no-referrer")]));
+        var pollinationsGetInit = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields);
+        var p = fetch(pollinationsUrl, pollinationsGetInit);
+        var llmResponseFuture = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_Thenable$ThenableOps$().toFuture$extension__sjs_js_Thenable__s_concurrent_Future(p)).flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((response) => {
+          if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(response.ok)) {
+            var p$1 = response.text();
+            return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_Thenable$ThenableOps$().toFuture$extension__sjs_js_Thenable__s_concurrent_Future(p$1);
+          } else {
+            return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_Future$().failed__jl_Throwable__s_concurrent_Future($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$ct_jl_RuntimeException__T__(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_jl_RuntimeException(), ("Pollinations text endpoint returned status " + $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(response.status))));
+          }
+        })), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_ExecutionContext$().global__s_concurrent_ExecutionContextExecutor())).flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((responseText) => {
+          var responseText$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(responseText);
+          var this$17 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(responseText$1);
+          if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(this$17.indexOf("IMPORTANT NOTICE")) !== (-1))) {
+            var this$18 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(responseText$1);
+            var this$19 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(this$18.toLowerCase()));
+            var isNotice = ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(this$19.indexOf("pollinations")) !== (-1));
+          } else {
+            var isNotice = false;
+          }
+          if (isNotice) {
+            $thiz.livechart$Main$$$logLlmIssue__T__T__V("provider-notice", "Pollinations text endpoint returned provider notice, retrying automatically via /openai endpoint.");
+            var fields$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Content-Type", "application/json")]));
+            var retryHeaders = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields$1);
+            var $x_8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+            var s = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(cfg).Llivechart_Main$LlmEndpointConfig__f_model;
+            var $x_7 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("model", s);
+            var $x_6 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("temperature", 0.2);
+            var fields$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("type", "json_object")]));
+            var _2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields$2);
+            var $x_5 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("response_format", _2);
+            var fields$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("role", "system"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("content", prompt)]));
+            var $x_4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields$3);
+            var fields$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("role", "user"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("content", userPrompt)]));
+            var _2$1 = [$x_4, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields$4)];
+            var fields$5 = $x_8.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([$x_7, $x_6, $x_5, new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("messages", _2$1)]));
+            var retryBody = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields$5);
+            var $x_11 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+            var $x_10 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("method", "POST");
+            var $x_9 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("headers", retryHeaders);
+            var s$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(JSON.stringify(retryBody));
+            var fields$6 = $x_11.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([$x_10, $x_9, new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("body", s$1), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("referrerPolicy", "no-referrer")]));
+            var retryInit = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields$6);
+            var p$2 = fetch("https://text.pollinations.ai/openai?referrer=qr-workbook", retryInit);
+            return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_Thenable$ThenableOps$().toFuture$extension__sjs_js_Thenable__s_concurrent_Future(p$2)).flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((retryResponse) => {
+              var p$3 = retryResponse.text();
+              return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_Thenable$ThenableOps$().toFuture$extension__sjs_js_Thenable__s_concurrent_Future(p$3)).flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((retryBodyText) => {
+                var retryBodyText$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(retryBodyText);
+                return ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(retryResponse.ok) ? $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_Future$().successful__O__s_concurrent_Future(retryBodyText$1) : $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_Future$().failed__jl_Throwable__s_concurrent_Future($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$ct_jl_RuntimeException__T__(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_jl_RuntimeException(), ((("Retry /openai failed with status " + $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(retryResponse.status)) + ". Body: ") + $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sc_StringOps$().take$extension__T__I__T(retryBodyText$1, 800)))));
+              })), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_ExecutionContext$().global__s_concurrent_ExecutionContextExecutor());
+            })), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_ExecutionContext$().global__s_concurrent_ExecutionContextExecutor());
+          } else {
+            return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_Future$().successful__O__s_concurrent_Future(responseText$1);
+          }
+        })), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_ExecutionContext$().global__s_concurrent_ExecutionContextExecutor());
+      } else {
+        var fields$7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Content-Type", "application/json")]));
+        var headers = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields$7);
+        var this$61 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(cfg).Llivechart_Main$LlmEndpointConfig__f_endpoint);
+        var endpointLower = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(this$61.toLowerCase());
+        var this$62 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(endpointLower);
+        var isLegacyPollinationsText = ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(this$62.indexOf("text.pollinations.ai")) !== (-1));
+        if ((!isLegacyPollinationsText)) {
+          var this$63 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(cfg).Llivechart_Main$LlmEndpointConfig__f_apiKey);
+          if ((!this$63.isEmpty__Z())) {
+            var x0$3 = this$63.get__O();
+            var key = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x0$3);
+            var s$2 = ("Bearer " + key);
+            headers.Authorization = s$2;
+          }
+        }
+        if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(cfg).Llivechart_Main$LlmEndpointConfig__f_provider === "ollama")) {
+          var $x_16 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+          var s$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(cfg).Llivechart_Main$LlmEndpointConfig__f_model;
+          var $x_15 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("model", s$3);
+          var $x_14 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("stream", false);
+          var $x_13 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("format", "json");
+          var fields$8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("role", "system"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("content", prompt)]));
+          var $x_12 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields$8);
+          var fields$9 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("role", "user"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("content", userPrompt)]));
+          var _2$2 = [$x_12, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields$9)];
+          var fields$10 = $x_16.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([$x_15, $x_14, $x_13, new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("messages", _2$2)]));
+          var body = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields$10);
+        } else if ((($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(cfg).Llivechart_Main$LlmEndpointConfig__f_provider === "openrouter") || ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(cfg).Llivechart_Main$LlmEndpointConfig__f_provider === "openai"))) {
+          var $x_21 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+          var s$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(cfg).Llivechart_Main$LlmEndpointConfig__f_model;
+          var $x_20 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("model", s$4);
+          var $x_19 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("temperature", 0.2);
+          var fields$11 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("type", "json_object")]));
+          var _2$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields$11);
+          var $x_18 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("response_format", _2$3);
+          var fields$12 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("role", "system"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("content", prompt)]));
+          var $x_17 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields$12);
+          var fields$13 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("role", "user"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("content", userPrompt)]));
+          var _2$4 = [$x_17, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields$13)];
+          var fields$14 = $x_21.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([$x_20, $x_19, $x_18, new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("messages", _2$4)]));
+          var body = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields$14);
+        } else {
+          var $x_25 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+          var $x_24 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("question", taskText);
+          var $x_23 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("studentAnswer", inputText);
+          var s$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T((preparedSolution.isEmpty__Z() ? "" : preparedSolution.get__O()));
+          var $x_22 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("solutionText", s$5);
+          var this$109 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(minWordCount);
+          if (this$109.isEmpty__Z()) {
+            var this$111 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+          } else {
+            var x0$4 = this$109.get__O();
+            var _$26 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(x0$4);
+            var this$111 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(_$26);
+          }
+          var this$110 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_$less$colon$less$();
+          var ev = this$110.s_$less$colon$less$__f_singleton;
+          var _2$5 = (this$111.isEmpty__Z() ? ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(ev), null) : this$111.get__O());
+          var fields$15 = $x_25.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([$x_24, $x_23, $x_22, new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("minWordCount", _2$5), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("language", lang), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("instruction", prompt)]));
+          var body = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields$15);
+        }
+        var $x_28 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+        var $x_27 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("method", "POST");
+        var $x_26 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("headers", headers);
+        var s$6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(JSON.stringify(body));
+        var fields$16 = $x_28.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([$x_27, $x_26, new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("body", s$6)]));
+        var requestInit = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields$16);
+        var p$4 = fetch($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(cfg).Llivechart_Main$LlmEndpointConfig__f_endpoint, requestInit);
+        var llmResponseFuture = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_Thenable$ThenableOps$().toFuture$extension__sjs_js_Thenable__s_concurrent_Future(p$4)).flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((response$2) => {
+          var p$5 = response$2.text();
+          return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_Thenable$ThenableOps$().toFuture$extension__sjs_js_Thenable__s_concurrent_Future(p$5)).flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((responseBody) => {
+            var responseBody$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(responseBody);
+            if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(response$2.ok)) {
+              var this$126 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(responseBody$1);
+              if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(this$126.indexOf("IMPORTANT NOTICE")) !== (-1))) {
+                var this$127 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(responseBody$1);
+                var this$128 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(this$127.toLowerCase()));
+                var isNotice$1 = ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(this$128.indexOf("pollinations")) !== (-1));
+              } else {
+                var isNotice$1 = false;
+              }
+              var this$129 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(cfg).Llivechart_Main$LlmEndpointConfig__f_endpoint);
+              var this$130 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(this$129.toLowerCase()));
+              var isPollinationsOpenAi = ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(this$130.indexOf("text.pollinations.ai/openai")) !== (-1));
+              if ((isNotice$1 && isPollinationsOpenAi)) {
+                $thiz.livechart$Main$$$logLlmIssue__T__T__V("provider-notice", "Pollinations /openai returned a provider notice, retrying automatically via text GET endpoint.");
+                var pollinationsPrompt$1 = (((prompt + "\n\n") + userPrompt) + "\n\nWichtig: Nur JSON ausgeben, ohne Zusatztext.");
+                var encodedPrompt$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(encodeURIComponent(pollinationsPrompt$1));
+                var retryUrl = ("https://text.pollinations.ai/" + encodedPrompt$1);
+                var p$6 = fetch(retryUrl);
+                return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_Thenable$ThenableOps$().toFuture$extension__sjs_js_Thenable__s_concurrent_Future(p$6)).flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((retryResponse$1) => {
+                  var p$7 = retryResponse$1.text();
+                  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_Thenable$ThenableOps$().toFuture$extension__sjs_js_Thenable__s_concurrent_Future(p$7)).flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((retryBodyText$2) => {
+                    var retryBodyText$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(retryBodyText$2);
+                    return ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(retryResponse$1.ok) ? $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_Future$().successful__O__s_concurrent_Future(retryBodyText$3) : $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_Future$().failed__jl_Throwable__s_concurrent_Future($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$ct_jl_RuntimeException__T__(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_jl_RuntimeException(), ((("Retry text endpoint failed with status " + $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(retryResponse$1.status)) + ". Body: ") + $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sc_StringOps$().take$extension__T__I__T(retryBodyText$3, 800)))));
+                  })), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_ExecutionContext$().global__s_concurrent_ExecutionContextExecutor());
+                })), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_ExecutionContext$().global__s_concurrent_ExecutionContextExecutor());
+              } else {
+                return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_Future$().successful__O__s_concurrent_Future(responseBody$1);
+              }
+            } else {
+              var shortened = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sc_StringOps$().take$extension__T__I__T(responseBody$1, 800);
+              var this$137 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(cfg).Llivechart_Main$LlmEndpointConfig__f_endpoint);
+              var this$138 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(this$137.toLowerCase()));
+              var isPaidGenEndpoint = ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(this$138.indexOf("gen.pollinations.ai")) !== (-1));
+              return (((($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(response$2.status) === 401) || ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(response$2.status) === 402)) && isPaidGenEndpoint) ? ($thiz.livechart$Main$$$logLlmIssue__T__T__V("paid-endpoint-fallback", ((("Paid endpoint returned " + $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(response$2.status)) + ", switching automatically to free anonymous endpoint. Body: ") + shortened)), $p_Llivechart_Main$__callPollinationsFree$1__T__T__s_concurrent_Future($thiz, prompt, userPrompt)) : $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_Future$().failed__jl_Throwable__s_concurrent_Future($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$ct_jl_RuntimeException__T__(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_jl_RuntimeException(), ((("LLM endpoint returned status " + $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(response$2.status)) + ". Body: ") + shortened))));
+            }
+          })), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_ExecutionContext$().global__s_concurrent_ExecutionContextExecutor());
+        })), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_ExecutionContext$().global__s_concurrent_ExecutionContextExecutor());
+      }
+      $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(llmResponseFuture).map__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((responseText$2) => {
+        var responseText$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(responseText$2);
+        return $p_Llivechart_Main$__toLlmResult$1__s_Option__T__sci_Set__s_Option__T__Llivechart_Main$LlmEndpointConfig__Z__T__Llivechart_Main$LlmCheckResult($thiz, preparedSolution, inputText, keywords, minWordCount, lang, cfg, fallbackOk, responseText$3);
+      })), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_ExecutionContext$().global__s_concurrent_ExecutionContextExecutor())).recover__s_PartialFunction__s_concurrent_ExecutionContext__s_concurrent_Future(new $c_Llivechart_Main$$anon$1(cfg, fallbackOk, inputText, keywords, minWordCount, lang, $thiz), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_ExecutionContext$().global__s_concurrent_ExecutionContextExecutor())).foreach__F1__s_concurrent_ExecutionContext__V(onResult, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_ExecutionContext$().global__s_concurrent_ExecutionContextExecutor());
+      break matchResult18;
+    }
+    throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x65);
+  }
+}
+export { $p_Llivechart_Main$__evaluateTextWithLlmOrFallback__T__T__s_Option__sci_Set__s_Option__Z__T__F1__V as $p_Llivechart_Main$__evaluateTextWithLlmOrFallback__T__T__s_Option__sci_Set__s_Option__Z__T__F1__V };
 function $p_Llivechart_Main$__translateSolutionWords__sci_Set__T__sci_Set($thiz, words, lang) {
   return ((lang !== "en") ? words : $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(words).flatMap__F1__O(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((keyword) => {
     var keyword$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(keyword);
@@ -182,6 +1171,136 @@ function $p_Llivechart_Main$__walkAndTranslate__Lorg_scalajs_dom_Node__T__V($thi
   }
 }
 export { $p_Llivechart_Main$__walkAndTranslate__Lorg_scalajs_dom_Node__T__V as $p_Llivechart_Main$__walkAndTranslate__Lorg_scalajs_dom_Node__T__V };
+function $p_Llivechart_Main$__callPollinationsFree$1__T__T__s_concurrent_Future($thiz, prompt$1, userPrompt$1) {
+  var fields = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Content-Type", "application/json")]));
+  var freeHeaders = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields);
+  var $x_5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+  var $x_4 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("model", "openai-fast");
+  var $x_3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("temperature", 0.2);
+  var fields$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("type", "json_object")]));
+  var _2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields$1);
+  var $x_2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("response_format", _2);
+  var fields$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("role", "system"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("content", prompt$1)]));
+  var $x_1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields$2);
+  var fields$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("role", "user"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("content", userPrompt$1)]));
+  var _2$1 = [$x_1, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields$3)];
+  var fields$4 = $x_5.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([$x_4, $x_3, $x_2, new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("messages", _2$1)]));
+  var freeBody = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields$4);
+  var $x_8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+  var $x_7 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("method", "POST");
+  var $x_6 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("headers", freeHeaders);
+  var s = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(JSON.stringify(freeBody));
+  var fields$5 = $x_8.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([$x_7, $x_6, new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("body", s), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("referrerPolicy", "no-referrer")]));
+  var freeInit = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields$5);
+  var p = fetch("https://text.pollinations.ai/openai?referrer=qr-workbook", freeInit);
+  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_Thenable$ThenableOps$().toFuture$extension__sjs_js_Thenable__s_concurrent_Future(p)).flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((response) => {
+    var p$1 = response.text();
+    return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_Thenable$ThenableOps$().toFuture$extension__sjs_js_Thenable__s_concurrent_Future(p$1)).flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((responseBody) => {
+      var responseBody$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(responseBody);
+      if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(response.ok)) {
+        var this$35 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(responseBody$1);
+        if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(this$35.indexOf("IMPORTANT NOTICE")) !== (-1))) {
+          var this$36 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(responseBody$1);
+          var this$37 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(this$36.toLowerCase()));
+          var isNotice = ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(this$37.indexOf("pollinations")) !== (-1));
+        } else {
+          var isNotice = false;
+        }
+        if (isNotice) {
+          $thiz.livechart$Main$$$logLlmIssue__T__T__V("provider-notice", "Free /openai endpoint returned provider notice, retrying automatically via text GET endpoint.");
+          var pollinationsPrompt = (((prompt$1 + "\n\n") + userPrompt$1) + "\n\nWichtig: Nur JSON ausgeben, ohne Zusatztext.");
+          var encodedPrompt = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(encodeURIComponent(pollinationsPrompt));
+          var retryUrl = (("https://text.pollinations.ai/" + encodedPrompt) + "?model=openai&json=true&referrer=qr-workbook");
+          var fields$6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("method", "GET"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("referrerPolicy", "no-referrer")]));
+          var retryGetInit = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields$6);
+          var p$2 = fetch(retryUrl, retryGetInit);
+          return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_Thenable$ThenableOps$().toFuture$extension__sjs_js_Thenable__s_concurrent_Future(p$2)).flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((retryResponse) => {
+            var p$3 = retryResponse.text();
+            return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_Thenable$ThenableOps$().toFuture$extension__sjs_js_Thenable__s_concurrent_Future(p$3)).flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((retryBodyText) => {
+              var retryBodyText$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(retryBodyText);
+              return ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(retryResponse.ok) ? $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_Future$().successful__O__s_concurrent_Future(retryBodyText$1) : $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_Future$().failed__jl_Throwable__s_concurrent_Future($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$ct_jl_RuntimeException__T__(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_jl_RuntimeException(), ((("Retry text endpoint failed with status " + $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(retryResponse.status)) + ". Body: ") + $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sc_StringOps$().take$extension__T__I__T(retryBodyText$1, 800)))));
+            })), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_ExecutionContext$().global__s_concurrent_ExecutionContextExecutor());
+          })), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_ExecutionContext$().global__s_concurrent_ExecutionContextExecutor());
+        } else {
+          return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_Future$().successful__O__s_concurrent_Future(responseBody$1);
+        }
+      } else {
+        return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_Future$().failed__jl_Throwable__s_concurrent_Future($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$ct_jl_RuntimeException__T__(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_jl_RuntimeException(), ((("Free /openai endpoint failed with status " + $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(response.status)) + ". Body: ") + $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sc_StringOps$().take$extension__T__I__T(responseBody$1, 800))));
+      }
+    })), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_ExecutionContext$().global__s_concurrent_ExecutionContextExecutor());
+  })), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_concurrent_ExecutionContext$().global__s_concurrent_ExecutionContextExecutor());
+}
+export { $p_Llivechart_Main$__callPollinationsFree$1__T__T__s_concurrent_Future as $p_Llivechart_Main$__callPollinationsFree$1__T__T__s_concurrent_Future };
+function $p_Llivechart_Main$__toLlmResult$1__s_Option__T__sci_Set__s_Option__T__Llivechart_Main$LlmEndpointConfig__Z__T__Llivechart_Main$LlmCheckResult($thiz, preparedSolution$1, inputText$1, keywords$28, minWordCount$28, lang$1, cfg$1, fallbackOk$1, responseText) {
+  matchResult14: {
+    var \u03b41$___1;
+    var \u03b41$___2;
+    var \u03b41$___3;
+    var x54 = $p_Llivechart_Main$__parseLlmDecisionFromText__T__T3($thiz, responseText);
+    if ((x54 !== null)) {
+      var llmIsCorrect = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x54).T3__f__1);
+      var llmScore = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x54).T3__f__2);
+      var llmFeedback = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x54).T3__f__3);
+      var \u03b41$___1 = llmIsCorrect;
+      var \u03b41$___2 = llmScore;
+      var \u03b41$___3 = llmFeedback;
+      break matchResult14;
+    }
+    throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x54);
+  }
+  var llmIsCorrect$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(\u03b41$___1);
+  var llmScore$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(\u03b41$___2);
+  var llmFeedback$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(\u03b41$___3);
+  var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(llmScore$2);
+  if (this$2.isEmpty__Z()) {
+    var this$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(llmIsCorrect$2);
+    if (this$3.isEmpty__Z()) {
+      var effectiveScore = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+    } else {
+      var x0 = this$3.get__O();
+      var v = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(x0);
+      var effectiveScore = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some((v ? 100 : 0));
+    }
+  } else {
+    var effectiveScore = this$2;
+  }
+  if ((effectiveScore instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
+    var score = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(effectiveScore)).s_Some__f_value);
+    if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(preparedSolution$1).isEmpty__Z()) {
+      var y = ((10 + score) | 0);
+      var finalScore = ((y > 100) ? 100 : y);
+    } else {
+      var finalScore = score;
+    }
+    var finalResult = (finalScore >= 50);
+    var fallbackFeedback = $thiz.livechart$Main$$$buildStudentAnswerFeedback__T__sci_Set__s_Option__T__T(inputText$1, keywords$28, minWordCount$28, lang$1);
+    var score$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(finalScore);
+    var this$7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(llmFeedback$2);
+    var feedback = (this$7.isEmpty__Z() ? new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(fallbackFeedback) : this$7);
+    return new $j_livechart$002e$002dMain$0024$002dLlm$002dCheck$002dResult.$c_Llivechart_Main$LlmCheckResult(finalResult, score$1, feedback, false);
+  }
+  var x = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+  if ((x === effectiveScore)) {
+    var this$10 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(responseText);
+    if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(this$10.indexOf("IMPORTANT NOTICE")) !== (-1))) {
+      var this$11 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(responseText);
+      var this$12 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(this$11.toLowerCase()));
+      var $x_1 = ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(this$12.indexOf("pollinations")) !== (-1));
+    } else {
+      var $x_1 = false;
+    }
+    if ($x_1) {
+      $thiz.livechart$Main$$$logLlmIssue__T__T__V("provider-notice", "Provider returned a notice page/message instead of evaluation JSON. Request was treated as fallback.");
+    }
+    $thiz.livechart$Main$$$logLlmIssue__T__T__V("parse-failed", ((((((("Could not extract isCorrect from LLM response. Endpoint=" + $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(cfg$1).Llivechart_Main$LlmEndpointConfig__f_endpoint) + ", provider=") + $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(cfg$1).Llivechart_Main$LlmEndpointConfig__f_provider) + ", model=") + $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(cfg$1).Llivechart_Main$LlmEndpointConfig__f_model) + ", response=") + $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sc_StringOps$().take$extension__T__I__T(responseText, 800)));
+    var score$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+    var value = $thiz.livechart$Main$$$buildStudentAnswerFeedback__T__sci_Set__s_Option__T__T(inputText$1, keywords$28, minWordCount$28, lang$1);
+    var feedback$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(value);
+    return new $j_livechart$002e$002dMain$0024$002dLlm$002dCheck$002dResult.$c_Llivechart_Main$LlmCheckResult(fallbackOk$1, score$2, feedback$1, true);
+  }
+  throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(effectiveScore);
+}
+export { $p_Llivechart_Main$__toLlmResult$1__s_Option__T__sci_Set__s_Option__T__Llivechart_Main$LlmEndpointConfig__Z__T__Llivechart_Main$LlmCheckResult as $p_Llivechart_Main$__toLlmResult$1__s_Option__T__sci_Set__s_Option__T__Llivechart_Main$LlmEndpointConfig__Z__T__Llivechart_Main$LlmCheckResult };
 function $p_Llivechart_Main$__getErrorCorrectionPixels$1__sci_Map__T__sci_Set($thiz, allErrorCorrectionZones$1, text) {
   var this$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(text);
   var len = this$3.length;
@@ -295,9 +1414,9 @@ function $p_Llivechart_Main$__getErrorCorrectionPixels$1__sci_Map__T__sci_Set($t
       }
     }
     var this$18 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(result);
-    var f$1 = ((_$19) => {
-      var _$19$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(_$19);
-      return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$19$1)._1__O());
+    var f$1 = ((_$39) => {
+      var _$39$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(_$39);
+      return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$39$1)._1__O());
     });
     if ((this$18 === $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$())) {
       var this$19 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$();
@@ -381,21 +1500,21 @@ function $p_Llivechart_Main$__parseSavedGrid$1__I__I__T__sci_Map($thiz, rows$1, 
     while ((rest !== $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$())) {
       var x0 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(rest).head__O();
       var entry = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x0);
-      matchResult55: {
+      matchResult72: {
         var $x_2;
-        var x178 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__split__T__I__AT($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(entry), ":", 2);
-        if ((x178 !== null)) {
-          if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_Array$UnapplySeqWrapper$().lengthCompare$extension__O__I__I(x178, 2) === 0)) {
-            var x180 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x178).get(0);
-            var x181 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x178).get(1);
-            var x174 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__split__T__I__AT($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x180), ",", 2);
-            if ((x174 !== null)) {
-              if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_Array$UnapplySeqWrapper$().lengthCompare$extension__O__I__I(x174, 2) === 0)) {
-                var x176 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x174).get(0);
-                var x177 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x174).get(1);
-                var _1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sc_StringParsers$().parseInt__T__s_Option(x176);
-                var _2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sc_StringParsers$().parseInt__T__s_Option(x177);
-                var _3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sc_StringParsers$().parseInt__T__s_Option(x181);
+        var x216 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__split__T__I__AT($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(entry), ":", 2);
+        if ((x216 !== null)) {
+          if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_Array$UnapplySeqWrapper$().lengthCompare$extension__O__I__I(x216, 2) === 0)) {
+            var x218 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x216).get(0);
+            var x219 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x216).get(1);
+            var x212 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__split__T__I__AT($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x218), ",", 2);
+            if ((x212 !== null)) {
+              if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_Array$UnapplySeqWrapper$().lengthCompare$extension__O__I__I(x212, 2) === 0)) {
+                var x214 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x212).get(0);
+                var x215 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x212).get(1);
+                var _1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sc_StringParsers$().parseInt__T__s_Option(x214);
+                var _2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sc_StringParsers$().parseInt__T__s_Option(x215);
+                var _3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sc_StringParsers$().parseInt__T__s_Option(x219);
                 if ((_1 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
                   var r = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(_1)).s_Some__f_value);
                   if ((_2 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
@@ -406,17 +1525,17 @@ function $p_Llivechart_Main$__parseSavedGrid$1__I__I__T__sci_Map($thiz, rows$1, 
                         var self = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(r, c);
                         var value = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(self, v);
                         var $x_2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(value);
-                        break matchResult55;
+                        break matchResult72;
                       }
                     }
                   }
                 }
                 var $x_2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
-                break matchResult55;
+                break matchResult72;
               }
             }
             var $x_2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
-            break matchResult55;
+            break matchResult72;
           }
         }
         var $x_2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
@@ -601,9 +1720,9 @@ function $p_Llivechart_Main$__getErrorCorrectionPixels$2__sci_Map__T__sci_Set($t
       }
     }
     var this$18 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(result);
-    var f$1 = ((_$52) => {
-      var _$52$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(_$52);
-      return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$52$1)._1__O());
+    var f$1 = ((_$72) => {
+      var _$72$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(_$72);
+      return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$72$1)._1__O());
     });
     if ((this$18 === $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$())) {
       var this$19 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$();
@@ -807,11 +1926,11 @@ function $p_Llivechart_Main$__getLineStyle$1__Lcom_raquo_airstream_state_Var__Lc
   var project = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1) => {
     var x$1$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(x$1);
     if ((x$1$1 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
-      var x412 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$1)).s_Some__f_value);
-      if ((x412 === true)) {
+      var x450 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$1)).s_Some__f_value);
+      if ((x450 === true)) {
         return "background-color: rgba(76, 175, 80, 0.2); border-left: 4px solid #4CAF50;";
       }
-      if ((x412 === false)) {
+      if ((x450 === false)) {
         return "background-color: rgba(244, 67, 54, 0.2); border-left: 4px solid #f44336;";
       }
     }
@@ -1010,11 +2129,11 @@ function $p_Llivechart_Main$__getLineStyle$2__Lcom_raquo_airstream_state_Var__Lc
   var project = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1) => {
     var x$1$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(x$1);
     if ((x$1$1 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
-      var x496 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$1)).s_Some__f_value);
-      if ((x496 === true)) {
+      var x534 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$1)).s_Some__f_value);
+      if ((x534 === true)) {
         return "background-color: rgba(76, 175, 80, 0.2); border-left: 4px solid #4CAF50;";
       }
-      if ((x496 === false)) {
+      if ((x534 === false)) {
         return "background-color: rgba(244, 67, 54, 0.2); border-left: 4px solid #f44336;";
       }
     }
@@ -1047,9 +2166,9 @@ function $p_Llivechart_Main$__countWords$1__T__I($thiz, text) {
 export { $p_Llivechart_Main$__countWords$1__T__I as $p_Llivechart_Main$__countWords$1__T__I };
 function $p_Llivechart_Main$__updateInlineTextVar$1__sci_List__Lcom_raquo_airstream_state_Var__V($thiz, inlineInputVars$1, textVar$1) {
   var this$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineInputVars$1);
-  var f = ((_$130) => {
-    var _$130$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_Lcom_raquo_airstream_state_Var(_$130);
-    var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$130$1);
+  var f = ((_$150) => {
+    var _$150$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_Lcom_raquo_airstream_state_Var(_$150);
+    var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$150$1);
     var this$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$2.Lcom_raquo_airstream_state_SourceVar__f_signal);
     return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$3.tryNow__s_util_Try()).get__O());
   });
@@ -1069,9 +2188,9 @@ function $p_Llivechart_Main$__updateInlineTextVar$1__sci_List__Lcom_raquo_airstr
     }
     var this$8 = h;
   }
-  var f$1 = ((_$131) => {
-    var _$131$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(_$131);
-    var this$7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$131$1);
+  var f$1 = ((_$151) => {
+    var _$151$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(_$151);
+    var this$7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$151$1);
     return (!(this$7 === ""));
   });
   var l = this$8;
@@ -1148,8 +2267,8 @@ function $p_Llivechart_Main$__inlineInputStyleSignal$1__Lcom_raquo_airstream_sta
   var project = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1) => {
     var x$1$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(x$1);
     if ((x$1$1 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
-      var x509 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$1)).s_Some__f_value);
-      var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x509);
+      var x547 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$1)).s_Some__f_value);
+      var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x547);
       _return: {
         var these = this$2;
         while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).isEmpty__Z())) {
@@ -1166,7 +2285,7 @@ function $p_Llivechart_Main$__inlineInputStyleSignal$1__Lcom_raquo_airstream_sta
       if ($x_1) {
         return "border: 2px solid #4caf50; background: rgba(76, 175, 80, 0.1);";
       }
-      var this$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x509);
+      var this$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x547);
       var this$5 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_PartialFunction$Lifted(this$4);
       if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$5.apply__O__s_Option(idx)).contains__O__Z(false)) {
         return "border: 2px solid #f44336; background: rgba(244, 67, 54, 0.1);";
@@ -1177,6 +2296,78 @@ function $p_Llivechart_Main$__inlineInputStyleSignal$1__Lcom_raquo_airstream_sta
   return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$6, project, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
 }
 export { $p_Llivechart_Main$__inlineInputStyleSignal$1__Lcom_raquo_airstream_state_Var__I__Lcom_raquo_airstream_core_Signal as $p_Llivechart_Main$__inlineInputStyleSignal$1__Lcom_raquo_airstream_state_Var__I__Lcom_raquo_airstream_core_Signal };
+function $p_Llivechart_Main$__applyCheckResult$1__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__s_Option__s_Option__s_Option__Z__s_Option__s_Option__Z__Z__V($thiz, llmPendingVar$2, llmFallbackVar$2, llmDecisionVar$2, answerScoreVar$2, answerFeedbackVar$2, lastCheckVar$8, showSolutionVar$5, wrongAttemptsVar$5, submitCallback$29, infoCallback$29, solutionText$29, ok, score, feedback, usedFallback, usedLlmDecision) {
+  var this$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(llmPendingVar$2);
+  $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$1, false);
+  var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(llmFallbackVar$2);
+  $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$2, usedFallback);
+  var this$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(llmDecisionVar$2);
+  $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$3, usedLlmDecision);
+  var this$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(answerScoreVar$2);
+  $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$4, score);
+  var this$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(answerFeedbackVar$2);
+  $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$5, feedback);
+  var this$7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar$8);
+  var value = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(ok);
+  $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$7, value);
+  if (usedLlmDecision) {
+    var this$8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(showSolutionVar$5);
+    $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$8, true);
+    if (ok) {
+      var this$9 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(wrongAttemptsVar$5);
+      $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$9, 0);
+      var this$10 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(submitCallback$29);
+      if ((!this$10.isEmpty__Z())) {
+        var x0 = this$10.get__O();
+        var callback = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_F0(x0);
+        $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(callback).apply__O();
+      }
+      var this$11 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(infoCallback$29);
+      if ((!this$11.isEmpty__Z())) {
+        var x0$1 = this$11.get__O();
+        var callback$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_F0(x0$1);
+        $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(callback$1).apply__O();
+      }
+    } else {
+      var this$12 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(wrongAttemptsVar$5);
+      var mod = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$162) => {
+        var _$162$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(_$162);
+        return ((1 + _$162$1) | 0);
+      }));
+      $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__update__F1__V(this$12, mod);
+    }
+  } else if (ok) {
+    var this$13 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(wrongAttemptsVar$5);
+    $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$13, 0);
+    var this$14 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(solutionText$29);
+    if ((!this$14.isEmpty__Z())) {
+      var this$15 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(showSolutionVar$5);
+      $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$15, true);
+    }
+    var this$16 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(submitCallback$29);
+    if ((!this$16.isEmpty__Z())) {
+      var x0$2 = this$16.get__O();
+      var callback$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_F0(x0$2);
+      $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(callback$2).apply__O();
+    }
+    var this$17 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(infoCallback$29);
+    if ((!this$17.isEmpty__Z())) {
+      var x0$3 = this$17.get__O();
+      var callback$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_F0(x0$3);
+      $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(callback$3).apply__O();
+    }
+  } else {
+    var this$18 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(wrongAttemptsVar$5);
+    var mod$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$163) => {
+      var _$163$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(_$163);
+      return ((1 + _$163$1) | 0);
+    }));
+    $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__update__F1__V(this$18, mod$1);
+    var this$19 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(showSolutionVar$5);
+    $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$19, false);
+  }
+}
+export { $p_Llivechart_Main$__applyCheckResult$1__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__s_Option__s_Option__s_Option__Z__s_Option__s_Option__Z__Z__V as $p_Llivechart_Main$__applyCheckResult$1__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__s_Option__s_Option__s_Option__Z__s_Option__s_Option__Z__Z__V };
 function $p_Llivechart_Main$__tryAddImage$1__sjs_js_Object__T__T__D__D__D__D__Z($thiz, doc$1, src, format, x, y, w, h) {
   try {
     doc$1.addImage(src, format, x, y, w, h);
@@ -1216,8 +2407,8 @@ function $p_Llivechart_Main$__printColoredText$1__sjs_js_Object__T__D__I($thiz, 
     var line = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x0);
     if ((elem > 275.0)) {
       doc$4.addPage();
-      var ev$632 = 15.0;
-      elem = ev$632;
+      var ev$647 = 15.0;
+      elem = ev$647;
     }
     var xPos = 10.0;
     var this$31 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(line);
@@ -1227,8 +2418,8 @@ function $p_Llivechart_Main$__printColoredText$1__sjs_js_Object__T__D__I($thiz, 
       var x = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(remainingLine.sr_ObjectRef__f_elem);
       var this$36 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x);
       if (((!(this$36 === "")) && foundColor.sr_BooleanRef__f_elem)) {
-        var ev$633 = false;
-        foundColor.sr_BooleanRef__f_elem = ev$633;
+        var ev$648 = false;
+        foundColor.sr_BooleanRef__f_elem = ev$648;
         var this$37 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(remainingLine.sr_ObjectRef__f_elem));
         var elem$1 = this$37.length;
         var earliestPos = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sr_IntRef(elem$1);
@@ -1237,26 +2428,26 @@ function $p_Llivechart_Main$__printColoredText$1__sjs_js_Object__T__D__I($thiz, 
         var earliestColor = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sr_ObjectRef(elem$2);
         $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(colorMap).foreach__F1__V(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((remainingLine, earliestPos, earliestWord, earliestColor, foundColor) => ((x$1) => {
           var x$1$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x$1);
-          matchResult156: {
+          matchResult177: {
             if ((x$1$1 !== null)) {
               var word = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$1)._1__O());
               var color = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T3($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$1)._2__O());
               var this$43 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(remainingLine.sr_ObjectRef__f_elem));
               var pos = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(this$43.indexOf(word));
               if (((pos >= 0) && (pos < earliestPos.sr_IntRef__f_elem))) {
-                var ev$634 = pos;
-                earliestPos.sr_IntRef__f_elem = ev$634;
-                var ev$635 = word;
-                earliestWord.sr_ObjectRef__f_elem = ev$635;
-                ev$635 = null;
-                var ev$636 = color;
-                earliestColor.sr_ObjectRef__f_elem = ev$636;
-                ev$636 = null;
-                var ev$637 = true;
-                foundColor.sr_BooleanRef__f_elem = ev$637;
-                break matchResult156;
+                var ev$649 = pos;
+                earliestPos.sr_IntRef__f_elem = ev$649;
+                var ev$650 = word;
+                earliestWord.sr_ObjectRef__f_elem = ev$650;
+                ev$650 = null;
+                var ev$651 = color;
+                earliestColor.sr_ObjectRef__f_elem = ev$651;
+                ev$651 = null;
+                var ev$652 = true;
+                foundColor.sr_BooleanRef__f_elem = ev$652;
+                break matchResult177;
               } else {
-                break matchResult156;
+                break matchResult177;
               }
             }
             throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$1);
@@ -1298,26 +2489,26 @@ function $p_Llivechart_Main$__printColoredText$1__sjs_js_Object__T__D__I($thiz, 
           if (((beginIndex < 0) || (beginIndex > this$60.length))) {
             $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$charAt(this$60, beginIndex);
           }
-          var ev$638 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(this$60.substring(beginIndex));
-          remainingLine.sr_ObjectRef__f_elem = ev$638;
-          ev$638 = null;
+          var ev$653 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(this$60.substring(beginIndex));
+          remainingLine.sr_ObjectRef__f_elem = ev$653;
+          ev$653 = null;
         } else {
           doc$4.setTextColor(0, 0, 0);
           var s$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(remainingLine.sr_ObjectRef__f_elem);
           var value$7 = xPos;
           var value$8 = elem;
           doc$4.text(s$2, value$7, value$8);
-          var ev$639 = "";
-          remainingLine.sr_ObjectRef__f_elem = ev$639;
-          ev$639 = null;
+          var ev$654 = "";
+          remainingLine.sr_ObjectRef__f_elem = ev$654;
+          ev$654 = null;
         }
       } else {
         break;
       }
     }
     doc$4.setTextColor(0, 0, 0);
-    var ev$640 = (elem + 5.0);
-    elem = ev$640;
+    var ev$655 = (elem + 5.0);
+    elem = ev$655;
     i = ((1 + i) | 0);
   }
   return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$doubleToInt((elem + 2.0));
@@ -1382,8 +2573,8 @@ function $p_Llivechart_Main$__linkify$1__T__sci_Seq($thiz, line) {
       var r$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable;
       var elem$2 = $x_11.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_10.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_9, $x_8, $x_7, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_nodes_TextNode(this$12, url, r$2)])));
       nodes.addOne__O__scm_ListBuffer(elem$2);
-      var ev$650 = end;
-      elem = ev$650;
+      var ev$665 = end;
+      elem = ev$665;
       these = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).tail__O());
     }
     var $x_12 = elem;
@@ -1406,7 +2597,7 @@ function $p_Llivechart_Main$__linkify$1__T__sci_Seq($thiz, line) {
   }
 }
 export { $p_Llivechart_Main$__linkify$1__T__sci_Seq as $p_Llivechart_Main$__linkify$1__T__sci_Seq };
-function $p_Llivechart_Main$__ratingStars$1__T__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__I__Lcom_raquo_laminar_nodes_ReactiveElement($thiz, chapter$44, understandingVar$3, difficultyVar$3, qualityVar$3, scopeVar$3, feedbackVar$6, currentVar, maxRating) {
+function $p_Llivechart_Main$__ratingStars$1__T__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__I__Lcom_raquo_laminar_nodes_ReactiveElement($thiz, chapter$44, understandingVar$3, difficultyVar$3, qualityVar$3, scopeVar$3, feedbackVar$7, currentVar, maxRating) {
   var $x_8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag());
   var $x_7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
   var $x_6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_cls).$colon$eq__T__Lcom_raquo_laminar_modifiers_CompositeKeySetter("rating-stars");
@@ -1437,7 +2628,7 @@ function $p_Llivechart_Main$__ratingStars$1__T__Lcom_raquo_airstream_state_Var__
     $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
     var eventProp = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
     var this$34 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp, false, false));
-    var onNext = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((currentVar, x0, chapter$44, understandingVar$3, difficultyVar$3, qualityVar$3, scopeVar$3, feedbackVar$6) => ((_$171) => {
+    var onNext = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((currentVar, x0, chapter$44, understandingVar$3, difficultyVar$3, qualityVar$3, scopeVar$3, feedbackVar$7) => ((_$192) => {
       var this$9 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(currentVar);
       $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$9, x0);
       var this$12 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(chapter$44);
@@ -1463,7 +2654,7 @@ function $p_Llivechart_Main$__ratingStars$1__T__Lcom_raquo_airstream_state_Var__
           var this$22 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(scopeVar$3);
           var this$23 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$22.Lcom_raquo_airstream_state_SourceVar__f_signal);
           var scope = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$23.tryNow__s_util_Try()).get__O());
-          var this$24 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(feedbackVar$6);
+          var this$24 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(feedbackVar$7);
           var this$25 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$24.Lcom_raquo_airstream_state_SourceVar__f_signal);
           var feedback = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$25.tryNow__s_util_Try()).get__O());
           var updatedRating = new $j_livechart$002e$002dMain$0024$002dRating$002dData.$c_Llivechart_Main$RatingData(understanding, difficulty, quality, scope, feedback);
@@ -1479,7 +2670,7 @@ function $p_Llivechart_Main$__ratingStars$1__T__Lcom_raquo_airstream_state_Var__
         }));
         $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__update__F1__V(this$33, mod);
       }
-    }))(currentVar, x0, chapter$44, understandingVar$3, difficultyVar$3, qualityVar$3, scopeVar$3, feedbackVar$6));
+    }))(currentVar, x0, chapter$44, understandingVar$3, difficultyVar$3, qualityVar$3, scopeVar$3, feedbackVar$7));
     var elem = $x_5.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_4.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_2, $x_1, new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_modifiers_EventListener(this$34, onNext)])));
     this$35.addOne__O__scm_Growable(elem);
   }
@@ -1527,13 +2718,13 @@ function $c_Llivechart_Main$() {
   this.Llivechart_Main$__f_originalTextByNode = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$ct_scm_HashMap__(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_scm_HashMap());
   this.Llivechart_Main$__f_translationObserver = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
   var this$624 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Map$();
-  var elems$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Scanne die QR-Codes und beschreibe deren Inhalte in den Textfeldern unter den QR Codes. Beschreibe die Gemeinsamkeiten im gro\u00dfen Eingabefeld.", "Scan the QR codes and describe their contents in the text fields below the QR codes. Describe the similarities in the large input field."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Eigenes Merkblatt", "Your own cheat sheet"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hier siehst du deine Antworten von der Zusammenfassung der vorherigen Kapitel. Du kannst sie nochmal anpassen. \u00dcberpf\u00fcfe daf\u00fcr jeweils ob in deiner Antwort die wichtigen Dinge stehen. Die wichtigsten Themen sind unter dem jeweiligen Eingabefeld nochmal zusammengefasst. Am Ende kannst du dir dann ein PDF mit deinen Antworten erstellen, das du dir abspeichern oder ausdrucken kannst.", "Here you can see your answers from the summaries of the previous chapters. You can adjust them again. Check whether your answer includes the important points. The most important topics are summarised again below each input field. At the end, you can create a PDF with your answers that you can save or print."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Einfuhrung", "Introduction"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wichtige Stichw\u00f6rter: Was sind QR Codes? Wof\u00fcr werden sie verwendet? Wie stelle ich mir vor, dass QR Codes funktionieren? Was wusste ich vorher?", "Important keywords: What are QR codes? What are they used for? How do I imagine QR codes work? What did I know beforehand?"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wichtige Stichw\u00f6rter: Bin\u00e4rdarstellung, ASCII, UTF-8, Kodierung, Dekodierung, Datenbereich im QR Code", "Important keywords: binary representation, ASCII, UTF-8, encoding, decoding, data area in the QR code"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wichtige Stichw\u00f6rter: Maskierungsmuster, Demaskierung, Musterauswahl, Optimierung der Lesbarkeit, XOR-Verkn\u00fcpfung, visuelle Verbesserung", "Important keywords: masking patterns, demasking, pattern selection, readability optimization, XOR operation, visual improvement"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wichtige Stichw\u00f6rter: Redundanz, Reed-Solomon-Code, Fehlerkorrekturstufe vs ben\u00f6tigter Speicher, Wiederherstellung besch\u00e4digter Daten, L\u00f6schfehler vs Substitutionsfehler, QR-Versionen", "Important keywords: redundancy, Reed-Solomon code, error-correction level vs required storage, recovery of damaged data, deletion errors vs substitution errors, QR versions"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wichtige Stichw\u00f6rter: Vorteile (schnelles Scannen, Fehlertoleranz, viele Daten), Nachteile (Sicherheitsrisiken, Platzbedarf), Anwendungsbeispiele", "Important keywords: advantages (fast scanning, fault tolerance, lots of data), disadvantages (security risks, space requirements), application examples"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Merkzettel erstellen", "Create cheat sheet"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Mein Merkzettel zu QR Codes", "My cheat sheet on QR codes"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("(keine Antwort)", "(no answer)"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Diese Vorstellung hatte ich am Anfang von QR Codes", "These were my initial ideas about QR codes"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("So werden aus Nachrichten Pixelmuster in den QR Code geschrieben", "How messages are turned into pixel patterns in the QR code"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("So funktioniert die Maskierung und Demaskierung und dafuer ist sie gut", "How masking and demasking work and why they are useful"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Das bedeutet Fehlerkorrektur und so wird sie im QR Code umgesetzt", "What error correction means and how it is implemented in the QR code"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Das sind die Vor- und Nachteile bei der Verwendung von QR Codes", "These are the advantages and disadvantages of using QR codes"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Welche Aussage trifft auf QR-Codes zu?", "Which statement about QR codes is correct?"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe in mindestens 10 Worten, welche Vorstellungen du davon hast, wie QR-Codes funktionieren.", "Describe in at least 10 words what you think about how QR codes work."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe, wie ein QR-Code aufgebaut ist. Vermute, wie die Daten im QR-Code dargestellt werden.", "Describe how a QR code is structured. Assume how the data is represented in the QR code."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("\u00dcberlege dir eine eigene Kodierung f\u00fcr die Buchstaben 'M', 'I', 'S', 'P'. Nutze die Pixel, um deine Kodierung darzustellen.", "Create your own encoding for the letters 'M', 'I', 'S', 'P'. Use the pixels to represent your encoding."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Schreibe das Wort 'MISSISSIPPI' mit deiner eigenen Kodierung aus Aufgabe 2.", "Write the word 'MISSISSIPPI' using your own encoding from task 2."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Erkl\u00e4re die Nachteile einer eigenen, nicht standardisierten Kodierung.", "Explain the disadvantages of a custom, non-standardized encoding."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Kodiere das Wort 'INFO' mithilfe der ASCII-Tabelle.", "Encode the word 'INFO' using the ASCII table."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Kodiere das Wort 'INFO' mithilfe der ASCII-Tabelle. Rechts siehst du die ASCII-Tabelle, links kodierst du jeden Buchstaben (0 = wei\u00df, 1 = schwarz).", "Encode the word 'INFO' using the ASCII table. On the right you see the ASCII table; on the left you encode each letter (0 = white, 1 = black)."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Buchstaben zum kodieren", "Letters to encode"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Zeichen", "Character"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Dezimal", "Decimal"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Bin\u00e4rdarstellung", "Binary representation"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Nenne einen Vorteil der festen L\u00e4nge von 8 Pixeln pro Buchstabe und erkl\u00e4re, warum es sich um einen Vorteil handelt.", "Name one advantage of the fixed length of 8 pixels per letter and explain why it is an advantage."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wie viele verschiedene Zeichen k\u00f6nnen mit 8 Pixeln dargestellt werden?", "How many different characters can be represented with 8 pixels?"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Verschl\u00fcssele eine Nachricht mit QR-Code.", "Encrypt a message using a QR code."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe, welche Beschr\u00e4nkungen dir beim Bearbeiten von Aufgabe 8 aufgefallen sind.", "Describe which limitations you noticed while working on task 8."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Ziehe die Zahlen 1-8 auf die Felder im Grid (ein Raster von 2x4 Pixeln), um zu zeigen, in welcher Reihenfolge die Bits des ersten Buchstabens in Aufgabe 8 kodiert werden.", "Drag the numbers 1-8 onto the fields in the grid (a 2x4 pixel layout) to show the order in which the bits of the first letter are encoded in task 8."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Als n\u00e4chstes \u00fcberf\u00fchren wir das Gelernte in eine QR-Code Darstellung. Daf\u00fcr schauen wir uns an, wie Nachrichten in QR-Codes dargestellt werden. Gib eine Nachricht ein und beobachte, wie diese als QR-Code in Pixel umgewandelt wird. Jeder Buchstabe wird dabei in 8 Bits (seine ASCII-Kodierung) \u00fcbersetzt und f\u00e4rbt entsprechende Pixel schwarz.", "Next, we apply what we have learned to a QR code representation. We look at how messages are displayed in QR codes. Enter a message and observe how it is converted into pixels. Each letter is translated into 8 bits (its ASCII encoding) and colours the corresponding pixels black."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Ziehe die Zahlen 1-8 auf die Felder im Grid (ein Raster von 2x4 Pixeln), um zu zeigen, in welcher Reihenfolge die Bits des ersten Buchstabens in Aufgabe 8 kodiert werden. Als Hilfe kannst du dir die UTF-8-Kodierung des Buchstabens anschauen, indem du ihn in das Feld rechts neben dem Pfeil eingibst.", "Drag the numbers 1\u20138 onto the fields in the grid (a 2x4 pixel layout) to show the order in which the bits of the first letter from task 8 are encoded. As a help, you can view the UTF-8 encoding of the letter by entering it in the field to the right of the arrow."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("2x4 Raster", "2x4 Grid"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Bin\u00e4r (8 Bit)", "Binary (8 Bit)"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Zur\u00fccksetzen", "Reset"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("\u2713 Sehr gut! Alle Felder sind richtig.", "\u2713 Great! All fields are correct."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Bereiche eines QR-Codes", "QR Code Areas"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Trotz verschiedenen Einsatzm\u00f6glichkeiten haben QR Codes einen \u00e4hnlichem Aussehen.", "Despite their different use cases, QR codes look similar."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" Die roten Bereiche in den Ecken hei\u00dfen ", " The red areas in the corners are called "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(". Diese dienen dazu, dass die Handykamera den Anfang und das Ende des QR Codes erfassen kann.", ". They allow the camera to detect the start and end of the QR code."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Positionsmarker", "Position markers"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" Die Blaue Stelle ist ein ", " The blue element is an "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(". Dieser Hilft den QR Code auf unebenen Fl\u00e4chen (z.B Verpackungen) zu lesen.", ". It helps read the QR code on uneven surfaces (e.g. packaging)."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Ausrichtungsmarker", "Alignment marker"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" Der Gr\u00fcne Bereich sind die ", " The green areas are the "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("(Synchronisationslinien). Hier wechseln sich schwarze und wei\u00dfe Pixel ab. Mithilfe dieser Anordnung wird die Gr\u00f6\u00dfe des QR Codes bestimmt.", "(synchronization lines). Black and white pixels alternate here. This arrangement determines the size of the QR code."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" Da viele verschiedene QR Code Versionen existieren, wird eine ", " Since many different QR code versions exist, a "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" festgehalten. Die ", " is stored. The "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" sind Informationen \u00fcber den Aufbau des QR Codes (z.B die Verwendete Maske).", " contains information about the QR code structure (e.g. the mask used)."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Versionsnummer", "Version number"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe, wie die L\u00e4nge der Nachricht im QR-Code gespeichert wird.", "Describe how the message length is stored in the QR code."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Vermute, warum du nicht alle Pixel zur Verwendung f\u00fcr die Nachricht hast.", "Assume why you cannot use all pixels for the message."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Fasse in eigenen Worten zusammen, wie QR-Codes aufgebaut sind.\n\nGehe dabei auf folgende Punkte ein:\n- die Bestandteile des QR-Codes\n- wie Nachrichten kodiert und gespeichert werden\n- wie Buchstaben in das Pixelmuster umgewandelt werden\n\nNutze daf\u00fcr mindestens 30 W\u00f6rter.\n\nHinweis: Deine Zusammenfassung erscheint auf deinem Merkblatt.", "Summarize in your own words how QR codes are structured.\n\nAddress the following points:\n- the components of a QR code\n- how messages are encoded and stored\n- how letters are converted into the pixel pattern\n\nUse at least 30 words.\n\nNote: Your summary will appear on your reference sheet."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe, was beim Scannen des QR-Codes passiert, und stelle begr\u00fcndete Vermutungen dazu an.", "Describe what happens when scanning the QR code and make justified assumptions."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe, wie die Maskierung funktioniert. Erg\u00e4nze die S\u00e4tze.", "Describe how masking works. Complete the sentences."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Berechne durch Anwenden der XOR-Operation die korrekten maskierten Daten.", "Calculate the correct masked data by applying the XOR operation."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Erkl\u00e4re die Berechnungsvorschrift (also welche Pixel schwarz gef\u00e4rbt werden) einer Maske deiner Wahl.", "Explain the calculation rule of a mask of your choice (i.e., which pixels are colored black)."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Vermute, woher der Scanner wei\u00df, welche Maske angewandt wurde.", "Assume how the scanner knows which mask was applied."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe, was dir bei der doppelten Maskierung aufgefallen ist. Erkl\u00e4re, wof\u00fcr diese Eigenschaft n\u00fctzlich sein k\u00f6nnte.", "Describe what you noticed about double masking. Explain why this property could be useful."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Durch verschiedene Umst\u00e4nde kann es dazu kommen, dass bestimmte Teile des QR-Codes besch\u00e4digt werden und somit nicht mehr erkennbar sind. Vergleiche die drei QR-Codes. Vermute, welcher der drei QR-Codes durch einen Scanner gelesen werden kann. Begr\u00fcnde deine Vermutung.", "Due to various circumstances, certain parts of a QR code can be damaged and become unreadable. Compare the three QR codes. Assume which of the three can be read by a scanner and justify your assumption."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("\u00dcberpr\u00fcfe nun deine Vermutung, indem du die QR-Codes scannst. Stelle Vermutungen an, wie das umgesetzt wird.", "Now verify your assumption by scanning the QR codes. Make assumptions about how this is implemented."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("QR-Code mit Stickern", "QR code with stickers"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("QR-Code ohne Sticker", "QR code without stickers"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("QR-Code mit Logo", "QR code with logo"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Vermute welcher QR Code sich scannen l\u00e4sst.", "Assume which QR code can be scanned."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wie dir vielleicht aufgefallen ist, konnte die QR-Code mit den \u00dcberdfeckungen trotzdem gescannt werden. Wie genau das m\u00f6glich ist und welche Grenzen es dabei gibt, schauen wir uns im Folgenden an. Daf\u00fcr gehen wir erst einmal weg von QR-Codes und betrachten ein einfaches Beispiel einer Textnachricht. ", "As you may have noticed, the QR code with the covered areas could still be scanned. We will now look at how this is possible and what its limits are. To do that, we first step away from QR codes and look at a simple example of a text message. "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Vergleiche die beiden Situationen. Beurteile, welcher der beiden Fehler schwieriger zu korrigieren und erkennen ist. \nSituation 1: Du teilst deine Adresse deinem Freund mit einer Notiz mit. Leider verschmiert die Tinte an einer Stelle, sodass statt einem Buchstabe ein schwarzer Fleck zu sehen ist. \nSituation 2: Du teilst deine Adresse deinem Freund mit einer Notiz mit. Leider hast du dich bei der Hausnummer verschrieben und statt 13 steht dort 73.", "Compare the two situations. Assess which of the two errors is harder to detect and correct. \nSituation 1: You share your address with your friend using a note. Unfortunately, the ink is smudged in one place, so instead of one letter there is a black blot. \nSituation 2: You share your address with your friend using a note. Unfortunately, you made a mistake in the house number and wrote 73 instead of 13."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Eine M\u00f6glichkeit mit Fehlern umzugehen ist es, eine Pr\u00fcfsumme zu verwenden. Dabei werden bestimmte Zeichen in der Nachricht gez\u00e4hlt und die Anzahl der Zeichen an das Ende angehangen. Ein Beispiel w\u00e4re, dass die Zeichenanzahl gez\u00e4hlt wird. Aus der Nachricht 'Hallo' w\u00fcrde dann die Nachricht 'Hallo5' werden. \nBeschreibe, welche Arten von Fehlern mit dieser Methode erkannt werden k\u00f6nnen. Begr\u00fcnde deine Antwort.", "One way to deal with errors is to use a checksum. Certain characters in the message are counted and the number of characters is appended to the end. One example would be counting the number of characters. The message 'Hallo' would then become the message 'Hallo5'. \nDescribe which types of errors can be detected with this method. Justify your answer."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe jeweils, wie viel % der Nachricht maximal unleserlich sein d\u00fcrfen, damit die Nachricht trotzdem noch korrekt gelesen werden kann. \na) Urspr\u00fcngliche Nachricht: '12' Nachricht mit Fehlerkorrektur: '1212' \nb) Urspr\u00fcngliche Nachricht: '123' Nachricht mit Fehlerkorrektur: '123123123' \nc) Urspr\u00fcngliche Nachricht: '1' Nachricht mit Fehlerkorrektur: '1111111111'", "For each case, describe what maximum percentage of the message may be unreadable so that the message can still be read correctly. \na) Original message: '12' message with error correction: '1212' \nb) Original message: '123' message with error correction: '123123123' \nc) Original message: '1' message with error correction: '1111111111'"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Berechne den Anteil unleserlicher Daten in Prozent aus dem Verh\u00e4ltnis von Originalnachricht zur Fehlerkorrektur-Nachricht.", "Hint: Calculate the percentage of unreadable data from the ratio of the original message to the error-correction message."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe, wie die Daten, welche f\u00fcr eine Nachricht verwendet werden k\u00f6nnen und das Fehlerkorrekturlevel zusammenh\u00e4ngen.", "Describe how the data that can be used for a message and the error correction level are related."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Mehr Fehlerkorrektur erh\u00f6ht die Zuverlaessigkeit, ben\u00f6tigt aber mehr Speicherplatz. Dadurch sinkt der maximale Speicher f\u00fcr die Daten. Ein h\u00f6heres Korrekturlevel ist nur dann sinnvoll, wenn viele St\u00f6rungen erwartet werden.", "More error correction increases reliability, but requires more storage space. This reduces the maximum available storage for data. A higher correction level is only useful when many disturbances are expected."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Im folgenden QR-Code kannst du eine Nachricht in das Textfeld eingeben. Mit einem Klick auf 'Metadaten anzeigen' kannst du dir zus\u00e4tzlich die Metadaten(Versionsnummer + Maskennummer) in den QR-Code laden. Durch einen Klick auf 'Fehlerkorrektur anzeigen' kannst du dir die Fehlerkorrektur-Pixel anzeigen lassen. Teste verschiedene Eingaben. \nBeachte, dass der QR Code nicht scannbar ist, da keine Maske auf den QR Code angewandt wird.", "In the following QR code, you can enter a message in the text field. By clicking 'Show metadata', you can additionally load the metadata (version number + mask number) into the QR code. By clicking 'Show error correction', you can display the error-correction pixels. Test different inputs. \nNote that the QR code is not scannable because no mask is applied to the QR code."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe drei Anwendungen, in denen QR-Codes sinnvoll eingesetzt werden. Begr\u00fcnde jeweils kurz.", "Describe three applications in which QR codes are useful. Briefly justify each one."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Plane eine konkrete Anwendung im Schulalltag: Beschreibe Ziel, Inhalt des QR-Codes und Ort der Platzierung.", "Plan a concrete application in everyday school life: describe the goal, the QR code content, and where it is placed."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Recherchiere im Internet nach Barcodes. Beschreibe den Aufbau eines typischen Barcodes.", "Research barcodes on the internet. Describe the structure of a typical barcode."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Erkl\u00e4re, wie die Fehlerkorrektur bei Barcodes funktioniert und welche Probleme es dabei gibt.", "Explain how error correction works in barcodes and what problems there are."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Vergleiche Barcodes mit QR-Codes. Nenne jeweils 2 Gemeinsamkeiten und 2 Unterschiede.", "Compare barcodes with QR codes. Name 2 similarities and 2 differences."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Stell dir vor, du sollst f\u00fcr ein Projekt entscheiden, ob Barcodes oder QR-Codes verwendet werden. Nimm begr\u00fcndet Stellung, wof\u00fcr du dich entscheiden w\u00fcrdest und in welchen Situationen welche Technologie sinnvoller ist.", "Imagine you have to decide for a project whether to use barcodes or QR codes. Give a reasoned opinion on what you would choose and in which situations each technology is more suitable."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Betrachte den QR-Code genau. Welche Farben haben die einzelnen Pixel und wof\u00fcr k\u00f6nnten sie stehen?", "Hint: Look closely at the QR code. What colors do the individual pixels have and what could they represent?"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: \u00dcberlege, welche Zusatzinformation ohne gemeinsamen Standard mitgeschickt werden muss. Verwende dabei den Fachbegriff aus der Infobox Kodierung.", "Hint: Think about which additional information must be sent without a shared standard. Use the technical term from the Encoding info box."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Woher w\u00fcrdest du wissen, wo der n\u00e4chste Buchstabe anf\u00e4ngt, wenn ein Buchstabe 4 Pixel lang ist und ein anderer 10 Pixel?", "Hint: How would you know where the next letter starts if one letter is 4 pixels long and another is 10?"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Beziehe dich auf begrenzten Speicherplatz und reservierte QR-Code-Bereiche.", "Hint: Refer to limited storage space and reserved QR code areas."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Suche den festen Bereich vor den Nutzdaten, in dem die Zeichenanzahl codiert wird.", "Hint: Look for the fixed area before the payload where the character count is encoded."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Achte auf gro\u00dfe gleichfarbige Fl\u00e4chen und erkl\u00e4re, warum Scanner damit Probleme haben k\u00f6nnen.", "Hint: Look for large areas of the same color and explain why scanners may have problems with them."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Gehe darauf ein, wie ung\u00fcnstige Muster entstehen k\u00f6nnen und wie diese aussehen.", "Hint: Explain how unfavorable patterns can occur and what they look like."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Erkl\u00e4re eine konkrete Maskenregel mit Zeile, Spalte und Modulo.", "Hint: Explain a concrete mask rule using row, column, and modulo."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Vergleiche die Ursprungsdaten mit einmaligem und zweimaligem Maskierten Daten. ", "Hint: Compare the original data with once-masked and twice-masked data."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Nenne drei konkrete Einsatzbereiche und begr\u00fcnde jeweils den praktischen Nutzen. Nutze dabei das Wort sinnvoll.", "Hint: Name three concrete use cases and justify the practical benefit of each. Use the word useful."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Formuliere Ziel, QR-Inhalt und Platzierung als drei getrennte Punkte.", "Hint: Formulate goal, QR content, and placement as three separate points."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Nenne je zwei Vor- und Nachteile der aktuellen Kontrolle und trenne sie klar.", "Hint: Name two advantages and two disadvantages of the current control and separate them clearly."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Nenne drei konkrete Einsatzbereiche und begr\u00fcnde jeweils den praktischen Nutzen. Nutze dabei das Wort sinnvoll.", "Name three specific use cases and justify the practical benefit of each. Use the word useful."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Sinnvoll sind z.B. Ticketkontrolle, Produktinfos im Handel und schnelle Links auf Plakaten.", "Useful examples are ticket checks, product information in retail, and quick links on posters."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Maximale Anzahl an Zeichen f\u00fcr den QR Code Typen erreicht", "Maximum number of characters for this QR code type reached"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Sehr gut, jetzt hast du deine erste Nachricht mit deiner selbstgew\u00e4hlten Kodierung kodiert!", "Great, you have now encoded your first message using your own encoding scheme!"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("\u00dcberpr\u00fcfe deine Eingabe nochmal!", "Check your input again!"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Lege zuerst eine g\u00fcltige Kodierung in Aufgabe 2 fest.", "First define a valid encoding in task 2."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Kodierung", "Encoding"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("ASCII als Standard", "ASCII as a standard"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Maskierung im QR-Code", "Masking in QR codes"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Mehrere Masken in QR-Codes", "Multiple masks in QR codes"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Metadaten in QR-Codes", "Metadata in QR codes"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Vorteile der XOR-Operation", "Advantages of the XOR operation"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis zur Fehlerkorrektur", "Note on error correction"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Fehlertypen erkennen", "Recognizing error types"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Redundanz statt Wiederholung", "Redundancy instead of repetition"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Speicheraustausch in QR-Codes", "Storage trade-off in QR codes"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Informationen zur Bearbeitung", "Information for working on tasks"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Fehlerkorrektur in QR-Codes", "Error correction in QR codes"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Erl\u00e4utere, wie du den Sachverhalt aus Aufgabe 3 mit einem QR-Code l\u00f6sen w\u00fcrdest. Gehe dabei auch darauf ein, welche Daten im QR-Code gespeichert werden m\u00fcssen und wie die Ausgangskontrolle dadurch automatisiert funktionieren k\u00f6nnte.", "Explain how you would solve the situation from task 3 using a QR code. Also address which data must be stored in the QR code and how exit control could be automated."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Nimm begr\u00fcndet Stellung zum Nutzen von QR-Codes im Anwendungsfall von Aufgabe 3.", "Take a reasoned position on the usefulness of QR codes in the application case from task 3."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Eine Lehrkraft \u00e4u\u00dfert Bedenken dar\u00fcber, dass Sch\u00fcler zum einen die QR-Codes manipulieren k\u00f6nnten, um falsche Daten zu speichern. \nErl\u00e4utere, wie du auf diese Bedenken reagierst. Begr\u00fcnde deine Antwort.", "A teacher expresses concerns that students could manipulate QR codes to store false data. Explain how you would respond to these concerns. Justify your answer."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Eine andere Lehrkraft bef\u00fcrchtet, dass die QR-Codes nach einem Jahr verschmutzen oder besch\u00e4digt sind, da das Lesen eines QR-Codes nicht mehr m\u00f6glich ist, wenn schon ein Pixel umgef\u00e4rbt ist. \nGehe auf die Bedenken ein und erl\u00e4utere, ob du diese teilst oder nicht. Begr\u00fcnde deine Antwort.", "Another teacher fears that QR codes will become dirty or damaged after one year because a QR code can no longer be read once even one pixel changes. Address these concerns and explain whether you agree or disagree. Justify your answer."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Eine Bank \u00fcberlegt, QR-Codes f\u00fcr das Speichern von Banking-Daten (wie Kontonummer, PIN und Passw\u00f6rter) auf Kundenkarten zu nutzen. \nErl\u00e4utere, warum dies keine sinnvolle Anwendung f\u00fcr QR-Codes ist. Nenne mindestens zwei Gr\u00fcnde.", "A bank is considering using QR codes on customer cards to store banking data (such as account number, PIN, and passwords). Explain why this is not a sensible use of QR codes. Give at least two reasons."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Nenne ein weiteres Beispiel, bei dem der Einsatz von QR-Codes problematisch oder nicht sinnvoll w\u00e4re. Begr\u00fcnde deine Antwort.", "Name another example where using QR codes would be problematic or not sensible. Justify your answer."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Vergleiche die Vor- und Nachteile von QR-Codes bei sensiblen Daten (wie Bankdaten) mit denen bei \u00f6ffentlichen Informationen (wie Website-Links). Nutze daf\u00fcr 30 W\u00f6rter.\n\nHinweis: Deine Zusammenfassung erscheint auf deinem Merkblatt.", "Compare the advantages and disadvantages of QR codes for sensitive data (such as bank data) with those for public information (such as website links). Use 30 words.\n\nNote: Your summary will appear on your reference sheet."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe, welche Daten du au\u00dferdem in einer VCard speichern k\u00f6nntest und welche Vorteile dies hat.", "Describe which additional data you could store in a VCard and what advantages this has."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Im folgenden QR-Code kannst du eine Nachricht in das Textfeld eingeben. Mit den Checkboxen kannst du Metadaten anzeigen oder die Fehlerkorrektur-Pixel sehen. Teste verschiedene Eingaben und \u00fcberpr\u00fcfe das Ergebnis mit einem QR-Code Scanner.", "In the following QR code, you can enter a message in the text field. Use the checkboxes to display metadata or error-correction pixels. Test different inputs and verify the result with a QR code scanner."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe in eigenen Worten die Bestandteile eines QR-Codes und deren Funktion mit mindestens 20 W\u00f6rtern.", "Describe in your own words the components of a QR code and their function using at least 20 words."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Scannbarer QR Code", "Scannable QR code"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Noch erforderlich:", "Still required:"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Ben\u00f6tigte Arbeitsmaterialien", "Required materials"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Ger\u00e4te", "Devices"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Computer mit Internetzugang", "Computer with internet access"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Smartphone mit Kamera", "Smartphone with camera"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Scanner-Tools", "Scanner tools"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Apps und Kamera", "Apps and camera"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("QR-Code-Scanner-App", "QR code scanner app"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Alternativ: Kamera-App mit QR-Scan", "Alternative: camera app with QR scan"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Um QR-Codes mit deinem Smartphone zu scannen, ben\u00f6tigst du eine Scanner-App:\nDas Arbeitsheft wurde mit der App 'QR- & Barcode- Scanner'aus dem Appstore von TeaCapps getestet. F\u00fcr eine reibungslose Bearbeitung wird empfohlen, diese App zu verwenden.\nDie meisten Handys haben heute auch in der Kamera einen eingebauten QR-Code Scanner. Dieser kann auch benutzt werden.\nUm einen QR-Code zu scannen, \u00f6ffne die Scanner-App oder die Kamera deines Smartphones und richte sie auf den QR-Code. Die App oder Kamera erkennt den Code automatisch und zeigt dir den Inhalt an.\nTipp: Achte darauf, dass der QR-Code gut beleuchtet und nicht zu verdeckt ist, damit der Scanner ihn schnell erkennen kann.", "To scan QR codes with your smartphone, you need a scanner app:\nThis workbook was tested with the app 'QR- & Barcode-Scanner' from TeaCapps in the app store. For smooth processing, it is recommended to use this app.\nMost phones today also have a built-in QR code scanner in the camera. This can be used as well.\nTo scan a QR code, open the scanner app or your smartphone camera and point it at the QR code. The app or camera recognizes the code automatically and shows its content.\nTip: Make sure the QR code is well lit and not too covered so the scanner can detect it quickly."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Am Ende des Arbeitsheftes gibst du deine Ergebnisse als JSON-Datei ab.\nKlicke dazu auf den Button \"Ergebnisse Abgeben\" in der Navigation. Dadurch wird eine Datei mit deinen Antworten heruntergeladen.\nLade diese Datei nach der Bearbeitung des Arbeitsheftes in den Abgabeordner hoch.", "At the end of the workbook, submit your results as a JSON file.\nClick the \"Submit Results\" button in the navigation. This downloads a file with your answers.\nAfter finishing the workbook, upload this file to the submission folder."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Du kennst das bestimmt, dass du mit deinem Smartphone kurz einen QR-Code scannst und  anschlie\u00dfend zu einer Webseite weitergeleitet wirst. Doch was genau passiert dabei? F\u00fcr welche Anwendungen ist es sinnvoll einen QR-Code zu nutzen und f\u00fcr welche nicht? Die Antworten auf diese Fragen findest du in den folgenden Kapiteln, welche du auf der linken Seite ausw\u00e4hlen kannst. In der rechten oberen Ecke findest du jeweils eine Zeitabsch\u00e4tzung, wie lange das Kapitel dauert.\nViel Spa\u00df!", "You probably know this: you quickly scan a QR code with your smartphone and are then redirected to a website. But what exactly happens? For which applications is it useful to use a QR code and for which not? You will find answers to these questions in the following chapters, which you can select on the left side. In the upper right corner, you will find an estimated time for each chapter.\nHave fun!"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Scanne die QR-Codes und beschreibe deren Inhalte in den Textfeldern unter den QR Codes. Beschreibe die Gemeinsamkeiten im gro\u00dfen Eingabefeld.", "Scan the QR codes and describe their contents in the text fields below the QR codes. Describe the similarities in the large input field."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Die QR-Codes enthalten unterschiedliche Inhalte wie eine Webseite, Kontaktdaten von Max Mustermann und einen Hinweis f\u00fcr die Abgabe.", "The QR codes contain different content such as a website, contact details of Max Mustermann, and a submission hint."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Der Hinweis f\u00fcr eine korrekte Abgabe des gro\u00dfen Eingabefeldes befindet sich im dritten QR-Code.", "Hint: The hint for correct submission in the large input field is located in the third QR code."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Durch das Klicken auf den \"Abgeben\" Button bei den Aufgaben werden deine Antworten lokal in deinem Browser gespeichert. Das Textfeld f\u00e4rbt sich gr\u00fcn, wenn alle Schl\u00fcsselw\u00f6rter, welche gefordert waren, im Text vorhanden sind. Ansonsten f\u00e4rbt es sich rot. Zus\u00e4tzlich gibt es im Arbeitsheft immer wieder Informationsboxen, welche nach dem Bearbeiten der Aufgabe angezeigt werden. Falls du mal bei einer Aufgabe nicht weiter kommen solltest, kannst du dir durch einen Klick auf 'L\u00f6sung zeigen' die L\u00f6sung anzeigen lassen. Alle Ben\u00f6tigen Keyw\u00f6rter sind in der L\u00f6sung fett markiert. Probiere es an der Aufgabe 1 einemal selbst aus, indem du deine Eingabe \u00e4nderst, falls du sie beim ersten mal richtig gel\u00f6st hast.", "By clicking the \"Submit\" button in tasks, your answers are saved locally in your browser. The text field turns green when all required keywords are present in the text. Otherwise, it turns red. In addition, the workbook contains information boxes that are shown after completing tasks. If you get stuck, you can click 'Show solution' to display the solution. All required keywords are marked in bold in the solution. Try it yourself in task 1 by changing your input if you solved it correctly on your first try."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Was kommt als N\u00e4chstes?", "What comes next?"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Nun kannst du frei w\u00e4hlen, in welcher Reihenfolge du die Kapitel Nachrichten schreiben, Maskierung und Fehlerkorrektur bearbeitest.", "Now you can freely choose the order in which you complete the chapters Writing Messages, Masking, and Error Correction."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wenn du alle drei Kapitel bearbeitet hast, kannst du zum Kapitel Praxisanwendungen \u00fcbergehen, in welchem du dein Wissen auf konkrete Anwendungsf\u00e4lle \u00fcbertragen kannst.", "After completing all three chapters, you can move on to the Practical Applications chapter, where you can transfer your knowledge to concrete use cases."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Im Kapitel Zusammenfassung erstellst du dir zum Schluss dann deinen eigenen Spickzettel, auf dem die wichtigsten Informationen zu QR-Codes \u00fcbersichtlich dargestellt sind. Daf\u00fcr werden jeweils deine Antworten aus den Kapiteln mit verwendet. Diese kannst du zum Schluss nochmal anpassen.", "In the Summary chapter, you create your own cheat sheet at the end, where the most important information about QR codes is presented clearly. Your answers from the chapters are used for this. You can adjust them again at the end."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wenn du damit auch Fertig bist, kannst du dir im Zusatzkapitel Barcode noch einen kurzen \u00dcberblick \u00fcber eindimensionale Barcodes verschaffen und diese mit QR-Codes vergleichen.", "When you are done with that as well, you can get a short overview of one-dimensional barcodes in the additional Barcode chapter and compare them with QR codes."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Aufgabe 11", "Task 11"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Um das Speichern der Daten einmal auszuprobieren, erstelle einen QR-Code mit deinen Daten (Du kannst dir daf\u00fcr nat\u00fcrlich auch welche ausdenken).", "To try data storage yourself, create a QR code with your data (you can of course make up data)."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Gehe daf\u00fcr auf die Webseite ", "Go to the website "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" und w\u00e4hle dort den Typ 'VCard' aus. F\u00fclle die Informationen aus.", " and select the type 'VCard' there. Fill in the information."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("\u00dcberpr\u00fcfe, ob der QR-Code funktioniert, indem du ihn mit deinem Smartphone scannst. Wenn alles funktioniert hat, kannst du dir den QR-Code als Bild speichern, ausdrucken und in deine Handyh\u00fclle legen.", "Check whether the QR code works by scanning it with your smartphone. If everything works, you can save the QR code as an image, print it, and put it in your phone case."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hake alle K\u00e4stchen nach dem Abarbeiten ab.", "Tick all boxes after completing the steps."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Die Webseite ge\u00f6ffnet", "Opened the website"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" Typ 'VCard' ausgew\u00e4hlt und Informationen ausgef\u00fcllt", " Selected type 'VCard' and filled in information"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" QR-Code mit Smartphone gescannt und getestet", " Scanned and tested QR code with smartphone"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" QR-Code als Bild gespeichert/ausgedruckt", " Saved/printed QR code as image"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Richtrig!", "Correct!"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("XOR-Operator", "XOR operator"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Der XOR-Operator (exklusives Oder) liefert genau dann 1, wenn die beiden Eingaben unterschiedlich sind. Bei der Maskierung bedeutet das, dass alle Pixel die bei der Maske schwarz gef\u00e4rbt sind, umgekehrt werden. ", "The XOR operator (exclusive OR) returns 1 exactly when the two inputs are different. In masking, this means that all pixels that are black in the mask are inverted."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Links und in der Mitte sind die urspr\u00fcnglichen Daten und die Maske vorgegeben. Rechts kannst du die maskierten Daten eintragen. Bestimme durch Anwenden der XOR-Operation die korrekten maskierten Daten.", "On the left and in the middle, the original data and the mask are given. On the right, you can enter the masked data. Determine the correct masked data by applying the XOR operation."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Links sind die urspr\u00fcnglichen Daten dargestellt. In der Mitte kannst du die Maske definieren. Rechts wird das Ergebnis der Maskierung, welche durch eine XOR-Operation realisiert wird, angezeigt.", "The original data is shown on the left. In the middle, you can define the mask. On the right, the result of the masking, implemented via an XOR operation, is displayed."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("In dieser Aufgabe wollen wir eine besondere Eigenschaft der XOR Operation untersuchen. Berechne daf\u00fcr im ersten Schritt die maskierten Daten.", "In this task, we examine a special property of the XOR operation. First, calculate the masked data."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wende die Maske anschlie\u00dfend ein zweites Mal auf die maskierten Daten an. Trage deine Ergebnisse in die Felder mit blauem Rahmen ein.", "Then apply the mask a second time to the masked data. Enter your results in the blue-framed fields."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Urspr\u00fcngliche Daten", "Original data"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Maskierte Daten", "Masked data"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("maskierte Daten", "masked data"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("1x Maskiert", "Masked once"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("2x Maskiert", "Masked twice"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Maskierung beschreiben", "Describe masking"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wenn urspr\u00fcngliche Daten schwarz und die Maske schwarz dargestellt sind, dann ist das Ergebnis: ", "If original data is black and the mask is black, then the result is: "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wenn urspr\u00fcngliche Daten schwarz und die Maske wei\u00df dargestellt sind, dann ist das Ergebnis: ", "If original data is black and the mask is white, then the result is: "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wenn urspr\u00fcngliche Daten wei\u00df und die Maske schwarz dargestellt sind, dann ist das Ergebnis: ", "If original data is white and the mask is black, then the result is: "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wenn urspr\u00fcngliche Daten wei\u00df und die Maske wei\u00df dargestellt sind, dann ist das Ergebnis: ", "If original data is white and the mask is white, then the result is: "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("- W\u00e4hlen -", "- Select -"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("schwarz", "black"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("wei\u00df", "white"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Aufgabe 9", "Task 9"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Erg\u00e4nze die L\u00fccken im folgenden Text:", "Complete the gaps in the following text:"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Je mehr Daten zur Fehlererkennung und -korrektur genutzt werden, desto ", "The more data is used for error detection and correction, the "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" ist die Wahrscheinlichkeit, Fehler zu erkennen und zu korrigieren.", " the probability of detecting and correcting errors."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Substutionsfehler lassen sich  ", "Substitution errors can be "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("verbessern, als L\u00f6schfehler.", " improved than deletion errors."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Pr\u00fcfsummen dienen vor allem zur ", "Checksums are primarily used for "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("und nicht zur", "and not for"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("-- ausw\u00e4hlen --", "-- select --"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("niedriger", "lower"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("gr\u00f6\u00dfer", "higher"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("leichter", "easier"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("schwerer", "harder"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Stell dir vor, du sollst f\u00fcr ein Projekt entscheiden, ob Barcodes oder QR-Codes verwendet werden. Nimm begr\u00fcndet Stellung, wof\u00fcr du dich entscheiden w\u00fcrdest und in welchen Situationen welche Codes sinnvoller sind.", "Imagine you have to decide for a project whether barcodes or QR codes should be used. Give a reasoned opinion on what you would choose and in which situations which codes are more suitable."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe eine Methode, wie Fehler nicht nur erkannt, sondern auch korrigiert werden k\u00f6nnen am Beispiel der Nachricht '12345'. Gib die Nachricht an. (Tipp: \u00dcberlege dir, was du machst, wenn deine Information von einer Person im Gespr\u00e4ch nicht verstanden wurde.)", "Describe a method for not only detecting errors but also correcting them using the message '12345'. State the message. (Tip: Think about what you do when your information is not understood by someone in conversation.)"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Vergleiche die beiden Situationen. Beurteile, welcher der beiden Fehler schwieriger zu korrigieren und erkennen ist. \n", "Compare the two situations. Assess which of the two errors is more difficult to detect and correct.\n"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Nenne ein Problem, das dieses Verfahren mit sich bringt. \u00dcberlege dir dazu, wie die Nachricht 'Hallo5' mit einer Pr\u00fcfsumme aussehen m\u00fcsste.", "Name one problem that this method brings with it. Think about what the message 'Hallo5' with a checksum would have to look like."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe jeweils, wie viel % der Nachricht maximal unleserlich sein d\u00fcrfen, damit die Nachricht trotzdem noch korrekt gelesen werden kann. \n", "Describe for each case what maximum percentage of the message may be unreadable so that the message can still be read correctly.\n"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Erkl\u00e4re, welche Auswirkungen ein hohes Fehlerkorrektur in QR-Codes auf die Menge der Daten hat.", "Explain how a high error-correction level in QR codes affects the amount of data."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Erkl\u00e4re in eigenen Worten, wie die Fehlerkorrektur in QR-Codes funktioniert. Gehe dabei auf den Zusammenhang zwischen zus\u00e4tzlichen Daten und dem Korrekturlevel ein. Erl\u00e4utere zus\u00e4tzlich, wie die Fehlerkorrektur im QR-Code dargestellt wird. Nutze daf\u00fcr mindestens 30 W\u00f6rter.\n\nHinweis: Deine Zusammenfassung erscheint auf deinem Merkblatt.", "Explain in your own words how error correction in QR codes works. Include the connection between additional data and correction level. Also explain how error correction is represented in the QR code. Use at least 30 words.\n\nNote: Your summary will appear on your reference sheet."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Erl\u00e4utere am Beispiel der Daten von Aufgabe 3, was die Probleme sind, wenn man nur eine feste Maske verwendet.", "Using the data from task 3 as an example, explain the problems that arise when only one fixed mask is used."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Erl\u00e4utere am Beispiel der Daten von Aufgabe 3, was die Probleme sind, wenn man nur eine feste Maske verwendet. Beschreibe zus\u00e4tzlich eine m\u00f6gliche L\u00f6sung, um diese Probleme zu umgehen.", "Using the data from task 3 as an example, explain the problems that arise when only one fixed mask is used. Also describe a possible solution to avoid these problems."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Erl\u00e4utere an einem Beispiel, wie Maskierung und Demaskierung funktionieren.\n\nGehe dabei auf folgende Punkte ein:\n- die Probleme einer festen Maske\n- wie die beste Maske ausgew\u00e4hlt wird\n- wie die XOR-Operation dabei eingesetzt wird\n\nNutze daf\u00fcr mindestens 30 W\u00f6rter.\n\nHinweis: Deine Zusammenfassung erscheint auf deinem Merkblatt.", "Using an example, explain how masking and demasking work.\n\nAddress the following points:\n- the problems of a fixed mask\n- how the best mask is selected\n- how the XOR operation is used\n\nUse at least 30 words.\n\nNote: Your summary will appear on your reference sheet."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: \u00dcberlege dir welche Fehlerart erkannt wird.", "Hint: Think about which error type is detected."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Entscheide dich f\u00fcr eine Situation. \u00dcberlege dir bei welcher Notiz du mehr Probleme hast den Fehler zu erkennen.", "Hint: Choose one situation. Think about for which note you have more difficulty detecting the error."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Nutze Redundanz. \u00dcberlege dir, wie du die Nachricht so erweitern kannst, dass sie auch bei Fehlern noch lesbar bleibt. Gib die Nachricht an.", "Hint: Use redundancy. Think about how you can extend the message so it remains readable even with errors. State the message."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Pr\u00fcfe die Mehrdeutigkeit am Beispiel 'Hallo5' und warum die Zuordnung nicht eindeutig ist.", "Hint: Check the ambiguity using the example 'Hallo5' and why the assignment is not unique."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Versuche mit dem Scanner so nah an die QR Codes zu gehen, sodass nur ein QR-Code gleichzeitig im Fokus ist.", "Hint: Try moving the scanner close enough to the QR codes so only one QR code is in focus at a time."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Beschreibe, wie die Menge der \u00fcbertragenen Daten mit dem Korrekturlevel zusammenh\u00e4ngt.", "Hint: Describe how the amount of transmitted data relates to the correction level."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Erkl\u00e4re, wie sich Korrekturlevel und Datenkapazit\u00e4t gegenseitig beeinflussen.", "Hint: Explain how correction level and data capacity influence each other."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("a) 50 %, b) 66 %, c) 90 % k\u00f6nnen unleserlich sein und die Nachricht ist noch rekonstruierbar.", "a) 50%, b) 66%, c) 90% may be unreadable and the message is still reconstructable."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Eine M\u00f6glichkeit mit Fehlern umzugehen ist es, eine Pr\u00fcfsumme zu verwenden. Dabei werden bestimmte Zeichen in der Nachricht gez\u00e4hlt und die Anzahl der Zeichen an das Ende angehangen.", "One way to deal with errors is to use a checksum. Certain characters in the message are counted and the number is appended at the end."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Das Problem ist, dass durch das erhalten einer Nachricht nicht klar ist, ob die Nachricht 'Hallo' mit der Pr\u00fcfsumme '5' oder die Nachricht 'Hallo5' mit der Pr\u00fcfsumme '6' gemeint ist. Es gibt also keine eindeutige Zuordnung zwischen Nachricht und Pr\u00fcfsumme.", "The problem is that when receiving a message, it is unclear whether 'Hallo' with checksum '5' or 'Hallo5' with checksum '6' is meant. So there is no unique mapping between message and checksum."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Man kann die Nachricht 2 mal senden, z.B. 1234512345. Wenn der erste Teil der Nachricht unleserlich ist, kann die Nachricht durch den 2. Teil dann immernoch gelesen werden.", "You can send the message twice, e.g. 1234512345. If the first part is unreadable, the message can still be read from the second part."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Situation 2 ist schwerer zu erkennen und zu korrigieren, da der Fehler nicht sofort auff\u00e4llt. Die falsche Hausnummer wirkt auf den ersten Blick plausibel, obwohl sie inhaltlich falsch ist.", "Situation 2 is harder to detect and correct because the error is not immediately obvious. The wrong house number seems plausible at first glance although it is factually wrong."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Eine Pruefsumme kann Ausfallfehler erkennen, aber nicht direkt korrigieren. Da nur die L\u00e4nge der Nachricht gespeichert wird, f\u00e4llt nur auf, wenn Zeichen fehlen \u2013 nicht aber, wenn Zeichen durch andere ausgetauscht wurden.", "A checksum can detect dropout errors, but cannot correct them directly. Since only the length of the message is stored, it only detects missing characters \u2013 not substituted ones."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Mehr Fehlerkorrektur bedeutet mehr genutzen Speicher. Dadurch steigt die Robustheit, aber es bleibt weniger Platz f\u00fcr Daten. Ein hohes Korrekturlevel ist nur sinnvoll, wenn die Umgebung viele Fehler verursacht.", "More error correction means more used memory. This increases robustness, but leaves less space for data. A high correction level is only useful if the environment causes many errors."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Durch die Bildschirmaufl\u00f6sung und Kamerafehler kann es dazu kommen, dass f\u00e4lschlicherweise nicht alle QR Codes scannbar waren. Das ist jedoch nicht schlimm!", "Due to screen resolution and camera errors, it can happen that not all QR codes appeared scannable by mistake. That is not a problem."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Die 4 verschiedenen Buchstabenmuster", "The 4 different letter patterns"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Im QR-Code werden die Buchstaben in einem Zickzack-Muster kodiert. Es gibt dabei 4 verschiedene Auspr\u00e4gungen, welche im Bild dargestellt sind.\n\nDiese wechselnde Richtung erm\u00f6glicht eine effiziente Nutzung des verf\u00fcgbaren Platzes im QR-Code.", "In the QR code, letters are encoded in a zigzag pattern. There are 4 different variants, which are shown in the image.\n\nThis alternating direction enables efficient use of the available space in the QR code."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Jeder Pixel kann 2 Farben darstellen. \u00dcberlege dir als erstes eine L\u00f6sung f\u00fcr eine kleine Pixelanzahl.", "Each pixel can represent 2 colors. First think of a solution for a small number of pixels."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Die L\u00e4nge der Nachricht wird in einem festen Bereich am Anfang der Nachricht gespeichert. Dieser Bereich ist 8 Bits lang und gibt die Anzahl der Zeichen in Bin\u00e4rdarstellung an.", "The message length is stored in a fixed area at the beginning of the message. This area is 8 bits long and specifies the number of characters in binary form."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Die L\u00e4nge der Nachricht ist beschr\u00e4nkt, da die Anzahl der Pixel im QR-Code begrenzt ist. Je l\u00e4nger die Nachricht, desto mehr Pixel werden ben\u00f6tigt. Irgendwann gibt es nicht genug Pixel, um die gesamte Nachricht darzustellen. Zus\u00e4tzlich gibt es bestimmte Bereiche, welche nicht genutzt werden.", "The message length is limited because the number of pixels in the QR code is limited. The longer the message, the more pixels are needed. At some point there are not enough pixels to represent the full message. In addition, certain areas cannot be used."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Eine feste Maske kann je nach Daten ung\u00fcnstige Muster erzeugen, z. B. dass viele benachbarte Pixel schwarz sind. Dadurch wird der QR-Code f\u00fcr einen Scanner schlechter lesbar. Eine m\u00f6gliche L\u00f6sung ist, mehrere verschiedene Masken auszuprobieren und die Maske auszuw\u00e4hlen, die den besten Kontrast erzeugt.", "A fixed mask can create unfavourable patterns depending on the data, for example when many neighbouring pixels are black. This makes the QR code harder for a scanner to read. One possible solution is to try several different masks and choose the one that produces the best contrast."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Es k\u00f6nnen insgesamt 2^8 = 256 verschiedene Zeichen dargestellt werden.", "A total of 2^8 = 256 different characters can be represented."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Ein Vorteil der festen L\u00e4nge ist die eindeutige Trennung der Buchstaben ohne zus\u00e4tzliche Trennzeichen. Da jeder Buchstabe immer genau 8 Pixel lang ist, ist eine klare Dekodierung m\u00f6glich.", "One advantage of fixed length is the clear separation of letters without additional delimiters. Since every letter is always exactly 8 pixels long, unambiguous decoding is possible."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Ohne Standard muss bei einer Kodierung zus\u00e4tzlich auch die Kodierungsvorschrift (also wie Buchstaben in Pixel umgewandelt werden) mit \u00fcbergeben werden. Sonst kennen andere die Kodierungsvorschrift nicht, und die Nachrichten kann nicht wieder dekodiert(Zur\u00fcck in Buchstaben) umgewandelt werden.", "Without a standard, an encoding rule (how letters are converted to pixels) must also be transmitted. Otherwise, others do not know the rule and cannot decode the messages back into letters."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Der QR-Code wirkt unlesbar, weil viele schwarze Bereiche zusammenhaengen. Eine Maskierung sorgt spaeter fuer bessere Lesbarkeit.", "The QR code appears unreadable because many black areas are connected. Masking later improves readability."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wird die Maske zweimal angewandt, entstehen wieder die Ursprungsdaten. Das vereinfacht das Maskieren und Demaskieren, da f\u00fcr beides die gleiche Maske genutzt werden kann.", "If the mask is applied twice, the original data appears again. This simplifies masking and demasking because the same mask can be used for both."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("In der Schule koennte das Ziel sein, Material zu verteilen; der QR-Code enthaelt den Link, die Platzierung ist am Klassenraum.", "At school, the goal could be to distribute material; the QR code contains the link, and it is placed at the classroom."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Ein Vorteil ist die direkte Kontrolle durch eine Lehrkraft. Dieser kann die Sch\u00fcler aufhalten und ist flexibel in der Entscheidung. Ein Nachteil ist der hohe Aufwand und moegliche Fehler beim Nachschlagen.", "One advantage is direct control by a teacher. They can stop students and decide flexibly. One disadvantage is the high effort and possible lookup errors."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Trade-off Fehlerkorrektur", "Error correction trade-off"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Abgabe der JSON-Datei am Ende", "Submit the JSON file at the end"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Eine Kodierungsvorschrift beschreibt, wie Informationen (z.B. Buchstaben) in eine andere Form (z.B. Pixel) umgewandelt(kodiert) werden. Bei QR-Codes werden Buchstaben in schwarze und wei\u00dfe Pixel kodiert. Jeder Buchstabe bekommt dabei ein bestimmtes Muster. \nJeder Buchstabe muss ein eindeutiges Muster haben, damit man die Nachricht sp\u00e4ter wieder zur\u00fcck in die urspr\u00fcngliche Form umgewandelt (dekodieren) werden kann. \nIn der Praxis wird hierf\u00fcr kein Zuf\u00e4lliges Muster verwendet. Hier werden Buchstaben in Zahlen kodiert, welche anschlie\u00dfend in Bits (0 und 1) dargestellt werden. Dies geschieht \u00fcber die Bin\u00e4rdarstellung der Zahl. Zum Schluss werden die Bits als schwarze (1) und wei\u00dfe (0) Pixel dargestellt.", "An encoding rule describes how information (e.g. letters) is converted (encoded) into another form (e.g. pixels). In QR codes, letters are encoded as black and white pixels. Each letter gets a specific pattern.\nEach letter must have a unique pattern so that the message can later be converted back (decoded) into its original form.\nIn practice, no random pattern is used. Letters are encoded into numbers, which are then represented in bits (0 and 1). This happens through the binary representation of the number. Finally, the bits are shown as black (1) and white (0) pixels."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("ASCII steht f\u00fcr \"American Standard Code for Information Interchange\", auf Deutsch: \"Amerikanischer Standard-Code f\u00fcr den Informationsaustausch\". Es ist eine Kodierungsvorschrift, bei der jeder Buchstabe und jedes Sonderzeichen einer festen Zahl zugeordnet ist. Die Zahl wird als 8-Bit-Kombination (also 8 Nullen und Einsen) gespeichert.\nDa ASCII ein gemeinsamer Standard ist, muss die Kodierungsvorschrift nicht mit\u00fcbertragen werden. Beide Seiten kennen sie bereits.\nQR-Codes nutzen UTF-8, eine Erweiterung von ASCII. UTF-8 kann auch Umlaute und viele weitere Zeichen darstellen.", "ASCII stands for \"American Standard Code for Information Interchange\". It is an encoding rule that assigns a fixed number to every letter and special character. The number is stored as an 8-bit combination (8 zeros and ones).\nBecause ASCII is a shared standard, the encoding rule does not need to be transmitted. Both sides already know it.\nQR codes use UTF-8, an extension of ASCII. UTF-8 can also represent umlauts and many other characters."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Trotz verschiedenen Einsatzm\u00f6glichkeiten haben QR Codes einen \u00e4hnlichem Aussehen.", "Despite different use cases, QR codes have a similar appearance."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" Die roten Bereiche in den Ecken hei\u00dfen ", " The red areas in the corners are called "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(". Diese dienen dazu, dass die Handykamera den Anfang und das Ende des QR Codes erfassen kann.", ". They allow the phone camera to detect the beginning and end of the QR code."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" Die Blaue Stelle ist ein ", " The blue area is an "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(". Dieser Hilft den QR Code auf unebenen Fl\u00e4chen (z.B Verpackungen) zu lesen.", ". It helps read the QR code on uneven surfaces (e.g. packaging)."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" Der Gr\u00fcne Bereich sind die ", " The green area contains the "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("(Synchronisationslinien). Hier wechseln sich schwarze und wei\u00dfe Pixel ab. Mithilfe dieser Anordnung wird die Gr\u00f6\u00dfe des QR Codes bestimmt.", "(synchronization lines). Black and white pixels alternate here. This arrangement is used to determine the size of the QR code."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" Da viele verschiedene QR Code Versionen existieren, wird eine ", " Because many different QR code versions exist, a "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" festgehalten. Die ", " is recorded. The "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" sind Informationen \u00fcber den Aufbau des QR Codes (z.B die Verwendete Maske).", " are information about the structure of the QR code (e.g. the mask used)."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" Weiterhin haben alle QR Codes einen wei\u00dfen Rand um den Code, damit dieser gelesen werden kann. Diesen Rand nennt man die Randzone. \nDie genauen bereiche k\u00f6nnen je nach QR Code Version variieren, aber es gibt immer bestimmte Bereiche, die nicht f\u00fcr die Nachricht verwendet werden k\u00f6nnen.", " Furthermore, all QR codes have a white border around the code so it can be read. This border is called the quiet zone.\nThe exact areas may vary depending on the QR code version, but there are always certain areas that cannot be used for the message."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wie du vielleicht bemerkt hast, war der QR-Code von einem Scanner nicht lesbar. Um einen Besseren Kontrast zwischen wei\u00dfen und schwarzen Pixeln herzustellen, werden Pixel nach einem bestimmten Muster(Maske) umgef\u00e4rbt. Diesen Prozess nennt man Maskierung. Die Maskierung sorgt daf\u00fcr, dass der QR-Code besser lesbar ist und von Scannern zuverl\u00e4ssiger erkannt werden kann.\nAls n\u00e4chstes schauen wir uns einmal an, wie genau die Maskierung funktioniert, welche Probleme es dabei gibt und wie diese gel\u00f6st werden k\u00f6nnen.", "As you may have noticed, the QR code was not readable by a scanner. To create better contrast between white and black pixels, pixels are recolored according to a certain pattern (mask). This process is called masking. Masking makes the QR code more readable and allows scanners to recognize it more reliably.\nNext, we will look at how masking works in detail, what problems occur, and how they can be solved."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Um das Problem einer festen Maske zu l\u00f6sen, werden in QR-Codes 8 verschiedene Masken nacheinander angewandt. Daraufhin wird jeweils bewertet, welche Maske den gr\u00f6\u00dften Kontrast zwischen schwarzen und wei\u00dfen Pixeln generiert. Zus\u00e4tzlich werden andere Kriterien, wie das Vermeiden des Timingpatterns(abwechselnde schwarze und wei\u00dfe Pixel), ber\u00fccksichtigt. Die Maske, die  alle Kriterien am Besten erf\u00fcllt, wird ausgew\u00e4hlt. Diese Maske wird anschlie\u00dfend auf den QR-Code angewandt. Dadurch wird sichergestellt, dass der QR-Code optimal lesbar ist. Die verschiedenen Masken sind im Bild dargestellt. Unter jeder Maske steht hierbei die Berechnungsvorschrift, die angibt, welche Pixel umgef\u00e4rbt werden. Das \"%\" Zeichen steht hierbei f\u00fcr den Modulo-Operator - also den Rest einer Division.", "To solve the problem of a fixed mask, 8 different masks are applied one after another in QR codes. Then each mask is evaluated to determine which one generates the highest contrast between black and white pixels. Additional criteria are considered as well, such as avoiding timing patterns (alternating black and white pixels). The mask that best fulfills all criteria is selected. This mask is then applied to the QR code. This ensures the QR code is optimally readable. The different masks are shown in the image. Below each mask is the calculation rule indicating which pixels are recolored. The \"%\" sign stands for the modulo operator, i.e. the remainder of a division."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Der Scanner wei\u00df deshalb, welche Maske angewandt wurde, weil Metadaten (Daten \u00fcber die Daten) auch in Form von Pixeln an bestimmten Stellen im QR-Code festgehalten werden. ", "The scanner knows which mask was applied because metadata (data about data) is also stored as pixels at specific positions in the QR code. "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Die Metadaten werden im Bild gelb und orange dargestellt.", "The metadata is shown in yellow and orange in the image."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Zu diesen Metadaten z\u00e4hlt unter anderem die Nummer der verwendeten Maske. Diese Information wird an spezifischen Positionen im QR-Code kodiert.", "This metadata includes, among other things, the number of the mask used. This information is encoded at specific positions in the QR code."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Damit der Scanner diese auslesen und die entsprechende Maske r\u00fcckg\u00e4ngig machen kann, um die urspr\u00fcnglichen Daten zu rekonstruieren.", "This allows the scanner to read it and reverse the corresponding mask to reconstruct the original data."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Weitere Metadaten sind beispielsweise die verwendete Fehlerkorrektur-Stufe und die Versionsnummer des QR-Codes.", "Other metadata includes, for example, the error-correction level used and the QR code version number."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Die Tatsache, dass die XOR-Operation ihre eigene Umkehrfunktion ist, ist sehr praktisch. Dies f\u00fchrt dazu, dass durch 2-maliges Anwenden der gleichen Maske die urspr\u00fcnglichen Daten wiederhergestellt werden. Der Scanner muss dadurch keine zwei verschiedenen Funktionen implementieren - eine zum Maskieren und eine zum Demaskieren. Stattdessen kann er einfach die gleiche XOR-Funktion ein zweites Mal anwenden. Dies spart Speicherplatz und reduziert Komplexit\u00e4t. ", "The fact that XOR is its own inverse is very practical. This means that applying the same mask twice restores the original data. Therefore, the scanner does not need to implement two different functions, one for masking and one for demasking. Instead, it can simply apply the same XOR function a second time. This saves memory and reduces complexity. "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Es gibt zwei Haupttypen von Fehlern: \nAusfallfehler (auch L\u00f6schfehler genannt): Ein Zeichen wird vollst\u00e4ndig entfernt oder ist unlesbar. \nSubstitutionsfehler: Ein Zeichen wird durch ein anderes ersetzt. \nSubstitutionsfehler sind oft schwieriger zu erkennen, da der Text syntaktisch(richtige Zeichen werden verwendet) korrekt bleibt, aber semantisch (Bedeutung der Zeichen) falsch ist. \nDurch Redundanz (doppelte Informationen) k\u00f6nnen beide Fehlertypen erkannt und teilweise korrigiert werden.", "There are two main types of errors:\nDropout errors (also called deletion errors): a character is completely removed or unreadable.\nSubstitution errors: one character is replaced by another.\nSubstitution errors are often harder to detect because the text remains syntactically correct (valid characters are used) but semantically wrong (meaning is wrong).\nThrough redundancy (duplicate information), both error types can be detected and partially corrected."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Nochmal senden (oder nochmal scannen) sollte m\u00f6glichst vermieden werden. Besser ist es, in einer einzigen Nachricht Informationen mehrfach zu \u00fcbertragen, z.B. indem die Nachricht doppelt enthalten ist. So entsteht nur ein Kommunikationsprozess statt zwei getrennten \u00dcbertragungen. Kommunikationsprozesse sollten minimiert werden, um Zeitaufwand und Fehlerquellen zu reduzieren.", "Resending (or rescanning) should be avoided if possible. It is better to transmit information multiple times within a single message, for example by including the message twice. This creates only one communication process instead of two separate transmissions. Communication processes should be minimized to reduce time effort and error sources."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("QR-Codes haben eine maximale Gr\u00f6\u00dfe und damit einen begrenzten Gesamtspeicher. Ein Teil des Speichers wird immer f\u00fcr die Positionsmuster, Trennzeichen und Formatinformationen ben\u00f6tigt. Der restliche Speicher wird aufgeteilt zwischen Datenspeicher (f\u00fcr die eigentliche Information) und Fehlerkorrektur (f\u00fcr die Redundanz). Je h\u00f6her das Korrekturlevel, desto mehr Speicher ist f\u00fcr Redundanz reserviert und desto weniger Speicher steht f\u00fcr die Daten zur Verf\u00fcgung. Dies ist ein klassischer Trade-off: Mehr Fehlertoleranz bedeutet weniger Kapazit\u00e4t f\u00fcr Daten. \nUm das Problem der festen gr\u00f6\u00dfe zu umgehen, gibt es verschiedene QR-Code Versionen mit unterschiedlicher Anzahl an Pixeln. Je mehr Daten gespeichert werden sollen, desto h\u00f6her muss die Version gew\u00e4hlt werden, um genug Speicherplatz zu haben. Allerdings steigt mit der Version auch die Gr\u00f6\u00dfe des QR-Codes, was wiederum die Lesbarkeit beeintr\u00e4chtigen kann. Daher ist es wichtig, die richtige Balance zwischen Datenmenge, Fehlerkorrektur und QR-Code Gr\u00f6\u00dfe zu finden. Die Gr\u00f6\u00dfte Version 40 hat 177 x 177 Pixel.", "QR codes have a maximum size and therefore limited total storage. Part of the storage is always needed for position patterns, separators, and format information. The remaining storage is split between data storage (actual information) and error correction (redundancy). The higher the correction level, the more storage is reserved for redundancy and the less remains for data. This is a classic trade-off: more error tolerance means less capacity for data.\nTo overcome the problem of fixed size, there are different QR code versions with different numbers of pixels. The more data that should be stored, the higher the version must be to provide enough storage space. However, with higher versions, the QR code also becomes larger, which can reduce readability. Therefore, it is important to find the right balance between data amount, error correction, and QR code size. The largest version, 40, has 177 x 177 pixels."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("In QR-Codes werden Reed-Solomon-Codes zur Fehlerkorrektur genutzt. Dies ist ein besonders leistungsf\u00e4higes Verfahren, das beide Fehlerarten zum Teil korrigieren kann. Die Fehlerkorrektur wird dabei sowohl auf die Daten, als auch auf die Metadaten (z.B. Formatinformationen, Maske) angewendet. \n\nDabei werden QR-Codes nach Fehlertoleranzstufen klassifiziert. Die Fehlertoleranz liegt dabei zwischen 7% und 30% und gibt an wieviel % des QR-Codes besch\u00e4digt sein k\u00f6nnen, ohne dass die Information verloren geht. Die vier Stufen sind:\n\u2022 Level L: 7% Fehlertoleranz (Low) \n\u2022 Level M: 15% Fehlertoleranz (Medium) \n\u2022 Level Q: 25% Fehlertoleranz (Quartile)   \n\u2022 Level H: 30% Fehlertoleranz (High) \n\nDie Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt wurde. Sie nutzen jedoch mehr Mathematik und sind etwas effizienter als Nachrichten doppelt zu schreiben. Die genau Funktionsweise \u00fcbersteigt den Rahmen dieses Kurses, weshalb diese nicht weiter behandelt wird. Zum Nachlesen: https://de.wikipedia.org/wiki/Reed-Solomon-Code", "In QR codes, Reed-Solomon codes are used for error correction. This is a very powerful method that can partially correct both error types. Error correction is applied both to data and metadata (e.g. format information, mask).\n\nQR codes are classified by error-tolerance levels. Error tolerance ranges between 7% and 30% and indicates how much of the QR code can be damaged without losing information. The four levels are:\n\u2022 Level L: 7% error tolerance (Low)\n\u2022 Level M: 15% error tolerance (Medium)\n\u2022 Level Q: 25% error tolerance (Quartile)\n\u2022 Level H: 30% error tolerance (High)\n\nIn principle, Reed-Solomon codes work exactly as discussed in the excursus. However, they use more mathematics and are somewhat more efficient than writing messages twice. The exact mechanism is beyond the scope of this course and is therefore not covered further. For further reading: https://de.wikipedia.org/wiki/Reed-Solomon-Code")]));
+  var elems$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Scanne die QR-Codes und beschreibe deren Inhalte in den Textfeldern unter den QR Codes. Beschreibe die Gemeinsamkeiten im gro\u00dfen Eingabefeld.", "Scan the QR codes and describe their contents in the text fields below the QR codes. Describe the similarities in the large input field."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Eigenes Merkblatt", "Your own cheat sheet"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hier siehst du deine Antworten von der Zusammenfassung der vorherigen Kapitel. Du kannst sie nochmal anpassen. \u00dcberpf\u00fcfe daf\u00fcr jeweils ob in deiner Antwort die wichtigen Dinge stehen. Die wichtigsten Themen sind unter dem jeweiligen Eingabefeld nochmal zusammengefasst. Am Ende kannst du dir dann ein PDF mit deinen Antworten erstellen, das du dir abspeichern oder ausdrucken kannst.", "Here you can see your answers from the summaries of the previous chapters. You can adjust them again. Check whether your answer includes the important points. The most important topics are summarised again below each input field. At the end, you can create a PDF with your answers that you can save or print."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Einfuhrung", "Introduction"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wichtige Stichw\u00f6rter: Was sind QR Codes? Wof\u00fcr werden sie verwendet? Wie stelle ich mir vor, dass QR Codes funktionieren? Was wusste ich vorher?", "Important keywords: What are QR codes? What are they used for? How do I imagine QR codes work? What did I know beforehand?"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wichtige Stichw\u00f6rter: Bin\u00e4rdarstellung, ASCII, UTF-8, Kodierung, Dekodierung, Datenbereich im QR Code", "Important keywords: binary representation, ASCII, UTF-8, encoding, decoding, data area in the QR code"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wichtige Stichw\u00f6rter: Maskierungsmuster, Demaskierung, Musterauswahl, Optimierung der Lesbarkeit, XOR-Verkn\u00fcpfung, visuelle Verbesserung", "Important keywords: masking patterns, demasking, pattern selection, readability optimization, XOR operation, visual improvement"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wichtige Stichw\u00f6rter: Redundanz, Reed-Solomon-Code, Fehlerkorrekturstufe vs ben\u00f6tigter Speicher, Wiederherstellung besch\u00e4digter Daten, L\u00f6schfehler vs Substitutionsfehler, QR-Versionen", "Important keywords: redundancy, Reed-Solomon code, error-correction level vs required storage, recovery of damaged data, deletion errors vs substitution errors, QR versions"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wichtige Stichw\u00f6rter: Vorteile (schnelles Scannen, Fehlertoleranz, viele Daten), Nachteile (Sicherheitsrisiken, Platzbedarf), Anwendungsbeispiele", "Important keywords: advantages (fast scanning, fault tolerance, lots of data), disadvantages (security risks, space requirements), application examples"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Merkzettel erstellen", "Create cheat sheet"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Mein Merkzettel zu QR Codes", "My cheat sheet on QR codes"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("(keine Antwort)", "(no answer)"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Diese Vorstellung hatte ich am Anfang von QR Codes", "These were my initial ideas about QR codes"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("So werden aus Nachrichten Pixelmuster in den QR Code geschrieben", "How messages are turned into pixel patterns in the QR code"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("So funktioniert die Maskierung und Demaskierung und dafuer ist sie gut", "How masking and demasking work and why they are useful"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Das bedeutet Fehlerkorrektur und so wird sie im QR Code umgesetzt", "What error correction means and how it is implemented in the QR code"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Das sind die Vor- und Nachteile bei der Verwendung von QR Codes", "These are the advantages and disadvantages of using QR codes"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Welche Aussage trifft auf QR-Codes zu?", "Which statement about QR codes is correct?"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe in mindestens 10 Worten, welche Vorstellungen du davon hast, wie QR-Codes funktionieren.", "Describe in at least 10 words what you think about how QR codes work."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe, wie ein QR-Code aufgebaut ist. Vermute, wie die Daten im QR-Code dargestellt werden.", "Describe how a QR code is structured. Assume how the data is represented in the QR code."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("\u00dcberlege dir eine eigene Kodierung f\u00fcr die Buchstaben 'M', 'I', 'S', 'P'. Nutze die Pixel, um deine Kodierung darzustellen.", "Create your own encoding for the letters 'M', 'I', 'S', 'P'. Use the pixels to represent your encoding."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Schreibe das Wort 'MISSISSIPPI' mit deiner eigenen Kodierung aus Aufgabe 2.", "Write the word 'MISSISSIPPI' using your own encoding from task 2."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Erkl\u00e4re die Nachteile einer eigenen, nicht standardisierten Kodierung.", "Explain the disadvantages of a custom, non-standardized encoding."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Kodiere das Wort 'INFO' mithilfe der ASCII-Tabelle.", "Encode the word 'INFO' using the ASCII table."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Kodiere das Wort 'INFO' mithilfe der ASCII-Tabelle. Rechts siehst du die ASCII-Tabelle, links kodierst du jeden Buchstaben (0 = wei\u00df, 1 = schwarz).", "Encode the word 'INFO' using the ASCII table. On the right you see the ASCII table; on the left you encode each letter (0 = white, 1 = black)."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Buchstaben zum kodieren", "Letters to encode"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Zeichen", "Character"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Dezimal", "Decimal"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Bin\u00e4rdarstellung", "Binary representation"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Nenne einen Vorteil der festen L\u00e4nge von 8 Pixeln pro Buchstabe und erkl\u00e4re, warum es sich um einen Vorteil handelt.", "Name one advantage of the fixed length of 8 pixels per letter and explain why it is an advantage."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wie viele verschiedene Zeichen k\u00f6nnen mit 8 Pixeln dargestellt werden?", "How many different characters can be represented with 8 pixels?"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Verschl\u00fcssele eine Nachricht mit QR-Code.", "Encrypt a message using a QR code."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe, welche Beschr\u00e4nkungen dir beim Bearbeiten von Aufgabe 8 aufgefallen sind.", "Describe which limitations you noticed while working on task 8."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Ziehe die Zahlen 1-8 auf die Felder im Grid (ein Raster von 2x4 Pixeln), um zu zeigen, in welcher Reihenfolge die Bits des ersten Buchstabens in Aufgabe 8 kodiert werden.", "Drag the numbers 1-8 onto the fields in the grid (a 2x4 pixel layout) to show the order in which the bits of the first letter are encoded in task 8."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Als n\u00e4chstes \u00fcberf\u00fchren wir das Gelernte in eine QR-Code Darstellung. Daf\u00fcr schauen wir uns an, wie Nachrichten in QR-Codes dargestellt werden. Gib eine Nachricht ein und beobachte, wie diese als QR-Code in Pixel umgewandelt wird. Jeder Buchstabe wird dabei in 8 Bits (seine ASCII-Kodierung) \u00fcbersetzt und f\u00e4rbt entsprechende Pixel schwarz.", "Next, we apply what we have learned to a QR code representation. We look at how messages are displayed in QR codes. Enter a message and observe how it is converted into pixels. Each letter is translated into 8 bits (its ASCII encoding) and colours the corresponding pixels black."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Ziehe die Zahlen 1-8 auf die Felder im Grid (ein Raster von 2x4 Pixeln), um zu zeigen, in welcher Reihenfolge die Bits des ersten Buchstabens in Aufgabe 8 kodiert werden. Als Hilfe kannst du dir die UTF-8-Kodierung des Buchstabens anschauen, indem du ihn in das Feld rechts neben dem Pfeil eingibst.", "Drag the numbers 1\u20138 onto the fields in the grid (a 2x4 pixel layout) to show the order in which the bits of the first letter from task 8 are encoded. As a help, you can view the UTF-8 encoding of the letter by entering it in the field to the right of the arrow."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("2x4 Raster", "2x4 Grid"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Bin\u00e4r (8 Bit)", "Binary (8 Bit)"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Zur\u00fccksetzen", "Reset"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("\u2713 Sehr gut! Alle Felder sind richtig.", "\u2713 Great! All fields are correct."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Bereiche eines QR-Codes", "QR Code Areas"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Trotz verschiedenen Einsatzm\u00f6glichkeiten haben QR Codes einen \u00e4hnlichem Aussehen.", "Despite their different use cases, QR codes look similar."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" Die roten Bereiche in den Ecken hei\u00dfen ", " The red areas in the corners are called "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(". Diese dienen dazu, dass die Handykamera den Anfang und das Ende des QR Codes erfassen kann.", ". They allow the camera to detect the start and end of the QR code."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Positionsmarker", "Position markers"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" Die Blaue Stelle ist ein ", " The blue element is an "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(". Dieser Hilft den QR Code auf unebenen Fl\u00e4chen (z.B Verpackungen) zu lesen.", ". It helps read the QR code on uneven surfaces (e.g. packaging)."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Ausrichtungsmarker", "Alignment marker"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" Der Gr\u00fcne Bereich sind die ", " The green areas are the "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("(Synchronisationslinien). Hier wechseln sich schwarze und wei\u00dfe Pixel ab. Mithilfe dieser Anordnung wird die Gr\u00f6\u00dfe des QR Codes bestimmt.", "(synchronization lines). Black and white pixels alternate here. This arrangement determines the size of the QR code."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" Da viele verschiedene QR Code Versionen existieren, wird eine ", " Since many different QR code versions exist, a "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" festgehalten. Die ", " is stored. The "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" sind Informationen \u00fcber den Aufbau des QR Codes (z.B die Verwendete Maske).", " contains information about the QR code structure (e.g. the mask used)."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Versionsnummer", "Version number"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe, wie die L\u00e4nge der Nachricht im QR-Code gespeichert wird.", "Describe how the message length is stored in the QR code."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Vermute, warum du nicht alle Pixel zur Verwendung f\u00fcr die Nachricht hast.", "Assume why you cannot use all pixels for the message."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Fasse in eigenen Worten zusammen, wie QR-Codes aufgebaut sind.\n\nGehe dabei auf folgende Punkte ein:\n- die Bestandteile des QR-Codes\n- wie Nachrichten kodiert und gespeichert werden\n- wie Buchstaben in das Pixelmuster umgewandelt werden\n\nNutze daf\u00fcr mindestens 30 W\u00f6rter.\n\nHinweis: Deine Zusammenfassung erscheint auf deinem Merkblatt.", "Summarize in your own words how QR codes are structured.\n\nAddress the following points:\n- the components of a QR code\n- how messages are encoded and stored\n- how letters are converted into the pixel pattern\n\nUse at least 30 words.\n\nNote: Your summary will appear on your reference sheet."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe, was beim Scannen des QR-Codes passiert, und stelle begr\u00fcndete Vermutungen dazu an.", "Describe what happens when scanning the QR code and make justified assumptions."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe, wie die Maskierung funktioniert. Erg\u00e4nze die S\u00e4tze.", "Describe how masking works. Complete the sentences."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Berechne durch Anwenden der XOR-Operation die korrekten maskierten Daten.", "Calculate the correct masked data by applying the XOR operation."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Erkl\u00e4re die Berechnungsvorschrift (also welche Pixel schwarz gef\u00e4rbt werden) einer Maske deiner Wahl.", "Explain the calculation rule of a mask of your choice (i.e., which pixels are colored black)."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Vermute, woher der Scanner wei\u00df, welche Maske angewandt wurde.", "Assume how the scanner knows which mask was applied."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe, was dir bei der doppelten Maskierung aufgefallen ist. Erkl\u00e4re, wof\u00fcr diese Eigenschaft n\u00fctzlich sein k\u00f6nnte.", "Describe what you noticed about double masking. Explain why this property could be useful."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Durch verschiedene Umst\u00e4nde kann es dazu kommen, dass bestimmte Teile des QR-Codes besch\u00e4digt werden und somit nicht mehr erkennbar sind. Vergleiche die drei QR-Codes. Vermute, welcher der drei QR-Codes durch einen Scanner gelesen werden kann. Begr\u00fcnde deine Vermutung.", "Due to various circumstances, certain parts of a QR code can be damaged and become unreadable. Compare the three QR codes. Assume which of the three can be read by a scanner and justify your assumption."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("\u00dcberpr\u00fcfe nun deine Vermutung, indem du die QR-Codes scannst. Stelle Vermutungen an, wie das umgesetzt wird.", "Now verify your assumption by scanning the QR codes. Make assumptions about how this is implemented."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("QR-Code mit Stickern", "QR code with stickers"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("QR-Code ohne Sticker", "QR code without stickers"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("QR-Code mit Logo", "QR code with logo"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Vermute welcher QR Code sich scannen l\u00e4sst.", "Assume which QR code can be scanned."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wie dir vielleicht aufgefallen ist, konnte die QR-Code mit den \u00dcberdfeckungen trotzdem gescannt werden. Wie genau das m\u00f6glich ist und welche Grenzen es dabei gibt, schauen wir uns im Folgenden an. Daf\u00fcr gehen wir erst einmal weg von QR-Codes und betrachten ein einfaches Beispiel einer Textnachricht. ", "As you may have noticed, the QR code with the covered areas could still be scanned. We will now look at how this is possible and what its limits are. To do that, we first step away from QR codes and look at a simple example of a text message. "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Vergleiche die beiden Situationen. Beurteile, welcher der beiden Fehler schwieriger zu korrigieren und erkennen ist. \nSituation 1: Du teilst deine Adresse deinem Freund mit einer Notiz mit. Leider verschmiert die Tinte an einer Stelle, sodass statt einem Buchstabe ein schwarzer Fleck zu sehen ist. \nSituation 2: Du teilst deine Adresse deinem Freund mit einer Notiz mit. Leider hast du dich bei der Hausnummer verschrieben und statt 13 steht dort 73.", "Compare the two situations. Assess which of the two errors is harder to detect and correct. \nSituation 1: You share your address with your friend using a note. Unfortunately, the ink is smudged in one place, so instead of one letter there is a black blot. \nSituation 2: You share your address with your friend using a note. Unfortunately, you made a mistake in the house number and wrote 73 instead of 13."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Eine M\u00f6glichkeit mit Fehlern umzugehen ist es, eine Pr\u00fcfsumme zu verwenden. Dabei werden bestimmte Zeichen in der Nachricht gez\u00e4hlt und die Anzahl der Zeichen an das Ende angehangen. Ein Beispiel w\u00e4re, dass die Zeichenanzahl gez\u00e4hlt wird. Aus der Nachricht 'Hallo' w\u00fcrde dann die Nachricht 'Hallo5' werden. \nBeschreibe, welche Arten von Fehlern mit dieser Methode erkannt werden k\u00f6nnen. Begr\u00fcnde deine Antwort.", "One way to deal with errors is to use a checksum. Certain characters in the message are counted and the number of characters is appended to the end. One example would be counting the number of characters. The message 'Hallo' would then become the message 'Hallo5'. \nDescribe which types of errors can be detected with this method. Justify your answer."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe jeweils, wie viel % der Nachricht maximal unleserlich sein d\u00fcrfen, damit die Nachricht trotzdem noch korrekt gelesen werden kann. \na) Urspr\u00fcngliche Nachricht: '12' Nachricht mit Fehlerkorrektur: '1212' \nb) Urspr\u00fcngliche Nachricht: '123' Nachricht mit Fehlerkorrektur: '123123123' \nc) Urspr\u00fcngliche Nachricht: '1' Nachricht mit Fehlerkorrektur: '1111111111'", "For each case, describe what maximum percentage of the message may be unreadable so that the message can still be read correctly. \na) Original message: '12' message with error correction: '1212' \nb) Original message: '123' message with error correction: '123123123' \nc) Original message: '1' message with error correction: '1111111111'"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Berechne den Anteil unleserlicher Daten in Prozent aus dem Verh\u00e4ltnis von Originalnachricht zur Fehlerkorrektur-Nachricht.", "Hint: Calculate the percentage of unreadable data from the ratio of the original message to the error-correction message."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe, wie die Daten, welche f\u00fcr eine Nachricht verwendet werden k\u00f6nnen und das Fehlerkorrekturlevel zusammenh\u00e4ngen.", "Describe how the data that can be used for a message and the error correction level are related."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Mehr Fehlerkorrektur erh\u00f6ht die Zuverlaessigkeit, ben\u00f6tigt aber mehr Speicherplatz. Dadurch sinkt der maximale Speicher f\u00fcr die Daten. Ein h\u00f6heres Korrekturlevel ist nur dann sinnvoll, wenn viele St\u00f6rungen erwartet werden.", "More error correction increases reliability, but requires more storage space. This reduces the maximum available storage for data. A higher correction level is only useful when many disturbances are expected."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Im folgenden QR-Code kannst du eine Nachricht in das Textfeld eingeben. Mit einem Klick auf 'Metadaten anzeigen' kannst du dir zus\u00e4tzlich die Metadaten(Versionsnummer + Maskennummer) in den QR-Code laden. Durch einen Klick auf 'Fehlerkorrektur anzeigen' kannst du dir die Fehlerkorrektur-Pixel anzeigen lassen. Teste verschiedene Eingaben. \nBeachte, dass der QR Code nicht scannbar ist, da keine Maske auf den QR Code angewandt wird.", "In the following QR code, you can enter a message in the text field. By clicking 'Show metadata', you can additionally load the metadata (version number + mask number) into the QR code. By clicking 'Show error correction', you can display the error-correction pixels. Test different inputs. \nNote that the QR code is not scannable because no mask is applied to the QR code."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe drei Anwendungen, in denen QR-Codes sinnvoll eingesetzt werden. Begr\u00fcnde jeweils kurz.", "Describe three applications in which QR codes are useful. Briefly justify each one."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Plane eine konkrete Anwendung im Schulalltag: Beschreibe Ziel, Inhalt des QR-Codes und Ort der Platzierung.", "Plan a concrete application in everyday school life: describe the goal, the QR code content, and where it is placed."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Recherchiere im Internet nach Barcodes. Beschreibe den Aufbau eines typischen Barcodes.", "Research barcodes on the internet. Describe the structure of a typical barcode."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Erkl\u00e4re, wie die Fehlerkorrektur bei Barcodes funktioniert und welche Probleme es dabei gibt.", "Explain how error correction works in barcodes and what problems there are."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Vergleiche Barcodes mit QR-Codes. Nenne jeweils 2 Gemeinsamkeiten und 2 Unterschiede.", "Compare barcodes with QR codes. Name 2 similarities and 2 differences."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Stell dir vor, du sollst f\u00fcr ein Projekt entscheiden, ob Barcodes oder QR-Codes verwendet werden. Nimm begr\u00fcndet Stellung, wof\u00fcr du dich entscheiden w\u00fcrdest und in welchen Situationen welche Technologie sinnvoller ist.", "Imagine you have to decide for a project whether to use barcodes or QR codes. Give a reasoned opinion on what you would choose and in which situations each technology is more suitable."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Betrachte den QR-Code genau. Welche Farben haben die einzelnen Pixel und wof\u00fcr k\u00f6nnten sie stehen?", "Hint: Look closely at the QR code. What colors do the individual pixels have and what could they represent?"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: \u00dcberlege, welche Zusatzinformation ohne gemeinsamen Standard mitgeschickt werden muss. Verwende dabei den Fachbegriff aus der Infobox Kodierung.", "Hint: Think about which additional information must be sent without a shared standard. Use the technical term from the Encoding info box."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Woher w\u00fcrdest du wissen, wo der n\u00e4chste Buchstabe anf\u00e4ngt, wenn ein Buchstabe 4 Pixel lang ist und ein anderer 10 Pixel?", "Hint: How would you know where the next letter starts if one letter is 4 pixels long and another is 10?"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Beziehe dich auf begrenzten Speicherplatz und reservierte QR-Code-Bereiche.", "Hint: Refer to limited storage space and reserved QR code areas."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Suche den festen Bereich vor den Nutzdaten, in dem die Zeichenanzahl codiert wird.", "Hint: Look for the fixed area before the payload where the character count is encoded."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Achte auf gro\u00dfe gleichfarbige Fl\u00e4chen und erkl\u00e4re, warum Scanner damit Probleme haben k\u00f6nnen.", "Hint: Look for large areas of the same color and explain why scanners may have problems with them."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Gehe darauf ein, wie ung\u00fcnstige Muster entstehen k\u00f6nnen und wie diese aussehen.", "Hint: Explain how unfavorable patterns can occur and what they look like."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Erkl\u00e4re eine konkrete Maskenregel mit Zeile, Spalte und Modulo.", "Hint: Explain a concrete mask rule using row, column, and modulo."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Vergleiche die Ursprungsdaten mit einmaligem und zweimaligem Maskierten Daten. ", "Hint: Compare the original data with once-masked and twice-masked data."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Nenne drei konkrete Einsatzbereiche und begr\u00fcnde jeweils den praktischen Nutzen. Nutze dabei das Wort sinnvoll.", "Hint: Name three concrete use cases and justify the practical benefit of each. Use the word useful."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Formuliere Ziel, QR-Inhalt und Platzierung als drei getrennte Punkte.", "Hint: Formulate goal, QR content, and placement as three separate points."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Nenne je zwei Vor- und Nachteile der aktuellen Kontrolle und trenne sie klar.", "Hint: Name two advantages and two disadvantages of the current control and separate them clearly."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Nenne drei konkrete Einsatzbereiche und begr\u00fcnde jeweils den praktischen Nutzen. Nutze dabei das Wort sinnvoll.", "Name three specific use cases and justify the practical benefit of each. Use the word useful."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Sinnvoll sind z.B. Ticketkontrolle, Produktinfos im Handel und schnelle Links auf Plakaten.", "Useful examples are ticket checks, product information in retail, and quick links on posters."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Maximale Anzahl an Zeichen f\u00fcr den QR Code Typen erreicht", "Maximum number of characters for this QR code type reached"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Sehr gut, jetzt hast du deine erste Nachricht mit deiner selbstgew\u00e4hlten Kodierung kodiert!", "Great, you have now encoded your first message using your own encoding scheme!"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("\u00dcberpr\u00fcfe deine Eingabe nochmal!", "Check your input again!"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Lege zuerst eine g\u00fcltige Kodierung in Aufgabe 2 fest.", "First define a valid encoding in task 2."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Kodierung", "Encoding"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("ASCII als Standard", "ASCII as a standard"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Maskierung im QR-Code", "Masking in QR codes"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Mehrere Masken in QR-Codes", "Multiple masks in QR codes"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Metadaten in QR-Codes", "Metadata in QR codes"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Vorteile der XOR-Operation", "Advantages of the XOR operation"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis zur Fehlerkorrektur", "Note on error correction"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Fehlertypen erkennen", "Recognizing error types"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Redundanz statt Wiederholung", "Redundancy instead of repetition"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Speicheraustausch in QR-Codes", "Storage trade-off in QR codes"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Informationen zur Bearbeitung", "Information for working on tasks"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Fehlerkorrektur in QR-Codes", "Error correction in QR codes"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Erl\u00e4utere, wie du den Sachverhalt aus Aufgabe 3 mit einem QR-Code l\u00f6sen w\u00fcrdest. Gehe dabei auch darauf ein, welche Daten im QR-Code gespeichert werden m\u00fcssen und wie die Ausgangskontrolle dadurch automatisiert funktionieren k\u00f6nnte.", "Explain how you would solve the situation from task 3 using a QR code. Also address which data must be stored in the QR code and how exit control could be automated."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Nimm begr\u00fcndet Stellung zum Nutzen von QR-Codes im Anwendungsfall von Aufgabe 3.", "Take a reasoned position on the usefulness of QR codes in the application case from task 3."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Eine Lehrkraft \u00e4u\u00dfert Bedenken dar\u00fcber, dass Sch\u00fcler zum einen die QR-Codes manipulieren k\u00f6nnten, um falsche Daten zu speichern. \nErl\u00e4utere, wie du auf diese Bedenken reagierst. Begr\u00fcnde deine Antwort.", "A teacher expresses concerns that students could manipulate QR codes to store false data. Explain how you would respond to these concerns. Justify your answer."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Eine andere Lehrkraft bef\u00fcrchtet, dass die QR-Codes nach einem Jahr verschmutzen oder besch\u00e4digt sind, da das Lesen eines QR-Codes nicht mehr m\u00f6glich ist, wenn schon ein Pixel umgef\u00e4rbt ist. \nGehe auf die Bedenken ein und erl\u00e4utere, ob du diese teilst oder nicht. Begr\u00fcnde deine Antwort.", "Another teacher fears that QR codes will become dirty or damaged after one year because a QR code can no longer be read once even one pixel changes. Address these concerns and explain whether you agree or disagree. Justify your answer."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Eine Bank \u00fcberlegt, QR-Codes f\u00fcr das Speichern von Banking-Daten (wie Kontonummer, PIN und Passw\u00f6rter) auf Kundenkarten zu nutzen. \nErl\u00e4utere, warum dies keine sinnvolle Anwendung f\u00fcr QR-Codes ist. Nenne mindestens zwei Gr\u00fcnde.", "A bank is considering using QR codes on customer cards to store banking data (such as account number, PIN, and passwords). Explain why this is not a sensible use of QR codes. Give at least two reasons."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Nenne ein weiteres Beispiel, bei dem der Einsatz von QR-Codes problematisch oder nicht sinnvoll w\u00e4re. Begr\u00fcnde deine Antwort.", "Name another example where using QR codes would be problematic or not sensible. Justify your answer."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Vergleiche die Vor- und Nachteile von QR-Codes bei sensiblen Daten (wie Bankdaten) mit denen bei \u00f6ffentlichen Informationen (wie Website-Links). Nutze daf\u00fcr 30 W\u00f6rter.\n\nHinweis: Deine Zusammenfassung erscheint auf deinem Merkblatt.", "Compare the advantages and disadvantages of QR codes for sensitive data (such as bank data) with those for public information (such as website links). Use 30 words.\n\nNote: Your summary will appear on your reference sheet."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe, welche Daten du au\u00dferdem in einer VCard speichern k\u00f6nntest und welche Vorteile dies hat.", "Describe which additional data you could store in a VCard and what advantages this has."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Im folgenden QR-Code kannst du eine Nachricht in das Textfeld eingeben. Mit den Checkboxen kannst du Metadaten anzeigen oder die Fehlerkorrektur-Pixel sehen. Teste verschiedene Eingaben und \u00fcberpr\u00fcfe das Ergebnis mit einem QR-Code Scanner.", "In the following QR code, you can enter a message in the text field. Use the checkboxes to display metadata or error-correction pixels. Test different inputs and verify the result with a QR code scanner."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe in eigenen Worten die Bestandteile eines QR-Codes und deren Funktion mit mindestens 20 W\u00f6rtern.", "Describe in your own words the components of a QR code and their function using at least 20 words."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Scannbarer QR Code", "Scannable QR code"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Noch erforderlich:", "Still required:"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Ben\u00f6tigte Arbeitsmaterialien", "Required materials"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Ger\u00e4te", "Devices"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Computer mit Internetzugang", "Computer with internet access"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Smartphone mit Kamera", "Smartphone with camera"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Scanner-Tools", "Scanner tools"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Apps und Kamera", "Apps and camera"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("QR-Code-Scanner-App", "QR code scanner app"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Alternativ: Kamera-App mit QR-Scan", "Alternative: camera app with QR scan"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Um QR-Codes mit deinem Smartphone zu scannen, ben\u00f6tigst du eine Scanner-App:\nDas Arbeitsheft wurde mit der App 'QR- & Barcode- Scanner'aus dem Appstore von TeaCapps getestet. F\u00fcr eine reibungslose Bearbeitung wird empfohlen, diese App zu verwenden.\nDie meisten Handys haben heute auch in der Kamera einen eingebauten QR-Code Scanner. Dieser kann auch benutzt werden.\nUm einen QR-Code zu scannen, \u00f6ffne die Scanner-App oder die Kamera deines Smartphones und richte sie auf den QR-Code. Die App oder Kamera erkennt den Code automatisch und zeigt dir den Inhalt an.\nTipp: Achte darauf, dass der QR-Code gut beleuchtet und nicht zu verdeckt ist, damit der Scanner ihn schnell erkennen kann.", "To scan QR codes with your smartphone, you need a scanner app:\nThis workbook was tested with the app 'QR- & Barcode-Scanner' from TeaCapps in the app store. For smooth processing, it is recommended to use this app.\nMost phones today also have a built-in QR code scanner in the camera. This can be used as well.\nTo scan a QR code, open the scanner app or your smartphone camera and point it at the QR code. The app or camera recognizes the code automatically and shows its content.\nTip: Make sure the QR code is well lit and not too covered so the scanner can detect it quickly."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Am Ende des Arbeitsheftes gibst du deine Ergebnisse als JSON-Datei ab.\nKlicke dazu auf den Button \"Ergebnisse Abgeben\" in der Navigation. Dadurch wird eine Datei mit deinen Antworten heruntergeladen.\nLade diese Datei nach der Bearbeitung des Arbeitsheftes in den Abgabeordner hoch.", "At the end of the workbook, submit your results as a JSON file.\nClick the \"Submit Results\" button in the navigation. This downloads a file with your answers.\nAfter finishing the workbook, upload this file to the submission folder."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Du kennst das bestimmt, dass du mit deinem Smartphone kurz einen QR-Code scannst und  anschlie\u00dfend zu einer Webseite weitergeleitet wirst. Doch was genau passiert dabei? F\u00fcr welche Anwendungen ist es sinnvoll einen QR-Code zu nutzen und f\u00fcr welche nicht? Die Antworten auf diese Fragen findest du in den folgenden Kapiteln, welche du auf der linken Seite ausw\u00e4hlen kannst. In der rechten oberen Ecke findest du jeweils eine Zeitabsch\u00e4tzung, wie lange das Kapitel dauert.\nViel Spa\u00df!", "You probably know this: you quickly scan a QR code with your smartphone and are then redirected to a website. But what exactly happens? For which applications is it useful to use a QR code and for which not? You will find answers to these questions in the following chapters, which you can select on the left side. In the upper right corner, you will find an estimated time for each chapter.\nHave fun!"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Scanne die QR-Codes und beschreibe deren Inhalte in den Textfeldern unter den QR Codes. Beschreibe die Gemeinsamkeiten im gro\u00dfen Eingabefeld.", "Scan the QR codes and describe their contents in the text fields below the QR codes. Describe the similarities in the large input field."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Die QR-Codes enthalten unterschiedliche Inhalte wie eine Webseite, Kontaktdaten von Max Mustermann und einen Hinweis f\u00fcr die Abgabe.", "The QR codes contain different content such as a website, contact details of Max Mustermann, and a submission hint."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Der Hinweis f\u00fcr eine korrekte Abgabe des gro\u00dfen Eingabefeldes befindet sich im dritten QR-Code.", "Hint: The hint for correct submission in the large input field is located in the third QR code."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Durch das Klicken auf den \"Abgeben\" Button bei den Aufgaben werden deine Antworten lokal in deinem Browser gespeichert. Textaufgaben werden mit einer LLM-Pr\u00fcfung bewertet, damit auch Synonyme und sinnvolle Umschreibungen als richtig erkannt werden. Falls die LLM-Pr\u00fcfung nicht verf\u00fcgbar ist, wird automatisch die klassische Schl\u00fcsselwortpr\u00fcfung genutzt. Das Textfeld f\u00e4rbt sich gr\u00fcn, wenn die Antwort als richtig bewertet wird, ansonsten rot. Zus\u00e4tzlich gibt es im Arbeitsheft immer wieder Informationsboxen, welche nach dem Bearbeiten der Aufgabe angezeigt werden. Falls du mal bei einer Aufgabe nicht weiter kommen solltest, kannst du dir durch einen Klick auf 'L\u00f6sung zeigen' die L\u00f6sung anzeigen lassen. Alle ben\u00f6tigten Schl\u00fcsselw\u00f6rter sind in der L\u00f6sung fett markiert. Probiere es an Aufgabe 1 einmal selbst aus, indem du deine Eingabe \u00e4nderst, falls du sie beim ersten Mal richtig gel\u00f6st hast.", "By clicking the \"Submit\" button in tasks, your answers are saved locally in your browser. Text tasks are checked with an LLM so synonyms and meaningful paraphrases can also be accepted as correct. If the LLM check is unavailable, the classic keyword check is used automatically. The text field turns green when your answer is evaluated as correct, otherwise red. In addition, the workbook contains information boxes that are shown after completing tasks. If you get stuck, you can click 'Show solution' to display the solution. All required keywords are marked in bold in the solution. Try it yourself in task 1 by changing your input if you solved it correctly on your first try."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Was kommt als N\u00e4chstes?", "What comes next?"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Nun kannst du frei w\u00e4hlen, in welcher Reihenfolge du die Kapitel Nachrichten schreiben, Maskierung und Fehlerkorrektur bearbeitest.", "Now you can freely choose the order in which you complete the chapters Writing Messages, Masking, and Error Correction."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wenn du alle drei Kapitel bearbeitet hast, kannst du zum Kapitel Praxisanwendungen \u00fcbergehen, in welchem du dein Wissen auf konkrete Anwendungsf\u00e4lle \u00fcbertragen kannst.", "After completing all three chapters, you can move on to the Practical Applications chapter, where you can transfer your knowledge to concrete use cases."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Im Kapitel Zusammenfassung erstellst du dir zum Schluss dann deinen eigenen Spickzettel, auf dem die wichtigsten Informationen zu QR-Codes \u00fcbersichtlich dargestellt sind. Daf\u00fcr werden jeweils deine Antworten aus den Kapiteln mit verwendet. Diese kannst du zum Schluss nochmal anpassen.", "In the Summary chapter, you create your own cheat sheet at the end, where the most important information about QR codes is presented clearly. Your answers from the chapters are used for this. You can adjust them again at the end."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wenn du damit auch Fertig bist, kannst du dir im Zusatzkapitel Barcode noch einen kurzen \u00dcberblick \u00fcber eindimensionale Barcodes verschaffen und diese mit QR-Codes vergleichen.", "When you are done with that as well, you can get a short overview of one-dimensional barcodes in the additional Barcode chapter and compare them with QR codes."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Aufgabe 11", "Task 11"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Um das Speichern der Daten einmal auszuprobieren, erstelle einen QR-Code mit deinen Daten (Du kannst dir daf\u00fcr nat\u00fcrlich auch welche ausdenken).", "To try data storage yourself, create a QR code with your data (you can of course make up data)."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Gehe daf\u00fcr auf die Webseite ", "Go to the website "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" und w\u00e4hle dort den Typ 'VCard' aus. F\u00fclle die Informationen aus.", " and select the type 'VCard' there. Fill in the information."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("\u00dcberpr\u00fcfe, ob der QR-Code funktioniert, indem du ihn mit deinem Smartphone scannst. Wenn alles funktioniert hat, kannst du dir den QR-Code als Bild speichern, ausdrucken und in deine Handyh\u00fclle legen.", "Check whether the QR code works by scanning it with your smartphone. If everything works, you can save the QR code as an image, print it, and put it in your phone case."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hake alle K\u00e4stchen nach dem Abarbeiten ab.", "Tick all boxes after completing the steps."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Die Webseite ge\u00f6ffnet", "Opened the website"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" Typ 'VCard' ausgew\u00e4hlt und Informationen ausgef\u00fcllt", " Selected type 'VCard' and filled in information"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" QR-Code mit Smartphone gescannt und getestet", " Scanned and tested QR code with smartphone"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" QR-Code als Bild gespeichert/ausgedruckt", " Saved/printed QR code as image"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Richtrig!", "Correct!"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("XOR-Operator", "XOR operator"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Der XOR-Operator (exklusives Oder) liefert genau dann 1, wenn die beiden Eingaben unterschiedlich sind. Bei der Maskierung bedeutet das, dass alle Pixel die bei der Maske schwarz gef\u00e4rbt sind, umgekehrt werden. ", "The XOR operator (exclusive OR) returns 1 exactly when the two inputs are different. In masking, this means that all pixels that are black in the mask are inverted."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Links und in der Mitte sind die urspr\u00fcnglichen Daten und die Maske vorgegeben. Rechts kannst du die maskierten Daten eintragen. Bestimme durch Anwenden der XOR-Operation die korrekten maskierten Daten.", "On the left and in the middle, the original data and the mask are given. On the right, you can enter the masked data. Determine the correct masked data by applying the XOR operation."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Links sind die urspr\u00fcnglichen Daten dargestellt. In der Mitte kannst du die Maske definieren. Rechts wird das Ergebnis der Maskierung, welche durch eine XOR-Operation realisiert wird, angezeigt.", "The original data is shown on the left. In the middle, you can define the mask. On the right, the result of the masking, implemented via an XOR operation, is displayed."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("In dieser Aufgabe wollen wir eine besondere Eigenschaft der XOR Operation untersuchen. Berechne daf\u00fcr im ersten Schritt die maskierten Daten.", "In this task, we examine a special property of the XOR operation. First, calculate the masked data."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wende die Maske anschlie\u00dfend ein zweites Mal auf die maskierten Daten an. Trage deine Ergebnisse in die Felder mit blauem Rahmen ein.", "Then apply the mask a second time to the masked data. Enter your results in the blue-framed fields."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Urspr\u00fcngliche Daten", "Original data"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Maskierte Daten", "Masked data"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("maskierte Daten", "masked data"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("1x Maskiert", "Masked once"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("2x Maskiert", "Masked twice"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Maskierung beschreiben", "Describe masking"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wenn urspr\u00fcngliche Daten schwarz und die Maske schwarz dargestellt sind, dann ist das Ergebnis: ", "If original data is black and the mask is black, then the result is: "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wenn urspr\u00fcngliche Daten schwarz und die Maske wei\u00df dargestellt sind, dann ist das Ergebnis: ", "If original data is black and the mask is white, then the result is: "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wenn urspr\u00fcngliche Daten wei\u00df und die Maske schwarz dargestellt sind, dann ist das Ergebnis: ", "If original data is white and the mask is black, then the result is: "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wenn urspr\u00fcngliche Daten wei\u00df und die Maske wei\u00df dargestellt sind, dann ist das Ergebnis: ", "If original data is white and the mask is white, then the result is: "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("- W\u00e4hlen -", "- Select -"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("schwarz", "black"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("wei\u00df", "white"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Aufgabe 9", "Task 9"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Erg\u00e4nze die L\u00fccken im folgenden Text:", "Complete the gaps in the following text:"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Je mehr Daten zur Fehlererkennung und -korrektur genutzt werden, desto ", "The more data is used for error detection and correction, the "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" ist die Wahrscheinlichkeit, Fehler zu erkennen und zu korrigieren.", " the probability of detecting and correcting errors."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Substutionsfehler lassen sich  ", "Substitution errors can be "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("verbessern, als L\u00f6schfehler.", " improved than deletion errors."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Pr\u00fcfsummen dienen vor allem zur ", "Checksums are primarily used for "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("und nicht zur", "and not for"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("-- ausw\u00e4hlen --", "-- select --"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("niedriger", "lower"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("gr\u00f6\u00dfer", "higher"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("leichter", "easier"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("schwerer", "harder"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Stell dir vor, du sollst f\u00fcr ein Projekt entscheiden, ob Barcodes oder QR-Codes verwendet werden. Nimm begr\u00fcndet Stellung, wof\u00fcr du dich entscheiden w\u00fcrdest und in welchen Situationen welche Codes sinnvoller sind.", "Imagine you have to decide for a project whether barcodes or QR codes should be used. Give a reasoned opinion on what you would choose and in which situations which codes are more suitable."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe eine Methode, wie Fehler nicht nur erkannt, sondern auch korrigiert werden k\u00f6nnen am Beispiel der Nachricht '12345'. Gib die Nachricht an. (Tipp: \u00dcberlege dir, was du machst, wenn deine Information von einer Person im Gespr\u00e4ch nicht verstanden wurde.)", "Describe a method for not only detecting errors but also correcting them using the message '12345'. State the message. (Tip: Think about what you do when your information is not understood by someone in conversation.)"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Vergleiche die beiden Situationen. Beurteile, welcher der beiden Fehler schwieriger zu korrigieren und erkennen ist. \n", "Compare the two situations. Assess which of the two errors is more difficult to detect and correct.\n"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Nenne ein Problem, das dieses Verfahren mit sich bringt. \u00dcberlege dir dazu, wie die Nachricht 'Hallo5' mit einer Pr\u00fcfsumme aussehen m\u00fcsste.", "Name one problem that this method brings with it. Think about what the message 'Hallo5' with a checksum would have to look like."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Beschreibe jeweils, wie viel % der Nachricht maximal unleserlich sein d\u00fcrfen, damit die Nachricht trotzdem noch korrekt gelesen werden kann. \n", "Describe for each case what maximum percentage of the message may be unreadable so that the message can still be read correctly.\n"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Erkl\u00e4re, welche Auswirkungen ein hohes Fehlerkorrektur in QR-Codes auf die Menge der Daten hat.", "Explain how a high error-correction level in QR codes affects the amount of data."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Erkl\u00e4re in eigenen Worten, wie die Fehlerkorrektur in QR-Codes funktioniert. Gehe dabei auf den Zusammenhang zwischen zus\u00e4tzlichen Daten und dem Korrekturlevel ein. Erl\u00e4utere zus\u00e4tzlich, wie die Fehlerkorrektur im QR-Code dargestellt wird. Nutze daf\u00fcr mindestens 30 W\u00f6rter.\n\nHinweis: Deine Zusammenfassung erscheint auf deinem Merkblatt.", "Explain in your own words how error correction in QR codes works. Include the connection between additional data and correction level. Also explain how error correction is represented in the QR code. Use at least 30 words.\n\nNote: Your summary will appear on your reference sheet."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Erl\u00e4utere am Beispiel der Daten von Aufgabe 3, was die Probleme sind, wenn man nur eine feste Maske verwendet.", "Using the data from task 3 as an example, explain the problems that arise when only one fixed mask is used."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Erl\u00e4utere am Beispiel der Daten von Aufgabe 3, was die Probleme sind, wenn man nur eine feste Maske verwendet. Beschreibe zus\u00e4tzlich eine m\u00f6gliche L\u00f6sung, um diese Probleme zu umgehen.", "Using the data from task 3 as an example, explain the problems that arise when only one fixed mask is used. Also describe a possible solution to avoid these problems."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Erl\u00e4utere an einem Beispiel, wie Maskierung und Demaskierung funktionieren.\n\nGehe dabei auf folgende Punkte ein:\n- die Probleme einer festen Maske\n- wie die beste Maske ausgew\u00e4hlt wird\n- wie die XOR-Operation dabei eingesetzt wird\n\nNutze daf\u00fcr mindestens 30 W\u00f6rter.\n\nHinweis: Deine Zusammenfassung erscheint auf deinem Merkblatt.", "Using an example, explain how masking and demasking work.\n\nAddress the following points:\n- the problems of a fixed mask\n- how the best mask is selected\n- how the XOR operation is used\n\nUse at least 30 words.\n\nNote: Your summary will appear on your reference sheet."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: \u00dcberlege dir welche Fehlerart erkannt wird.", "Hint: Think about which error type is detected."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Entscheide dich f\u00fcr eine Situation. \u00dcberlege dir bei welcher Notiz du mehr Probleme hast den Fehler zu erkennen.", "Hint: Choose one situation. Think about for which note you have more difficulty detecting the error."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Nutze Redundanz. \u00dcberlege dir, wie du die Nachricht so erweitern kannst, dass sie auch bei Fehlern noch lesbar bleibt. Gib die Nachricht an.", "Hint: Use redundancy. Think about how you can extend the message so it remains readable even with errors. State the message."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Pr\u00fcfe die Mehrdeutigkeit am Beispiel 'Hallo5' und warum die Zuordnung nicht eindeutig ist.", "Hint: Check the ambiguity using the example 'Hallo5' and why the assignment is not unique."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Versuche mit dem Scanner so nah an die QR Codes zu gehen, sodass nur ein QR-Code gleichzeitig im Fokus ist.", "Hint: Try moving the scanner close enough to the QR codes so only one QR code is in focus at a time."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Beschreibe, wie die Menge der \u00fcbertragenen Daten mit dem Korrekturlevel zusammenh\u00e4ngt.", "Hint: Describe how the amount of transmitted data relates to the correction level."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Hinweis: Erkl\u00e4re, wie sich Korrekturlevel und Datenkapazit\u00e4t gegenseitig beeinflussen.", "Hint: Explain how correction level and data capacity influence each other."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("a) 50 %, b) 66 %, c) 90 % k\u00f6nnen unleserlich sein und die Nachricht ist noch rekonstruierbar.", "a) 50%, b) 66%, c) 90% may be unreadable and the message is still reconstructable."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Eine M\u00f6glichkeit mit Fehlern umzugehen ist es, eine Pr\u00fcfsumme zu verwenden. Dabei werden bestimmte Zeichen in der Nachricht gez\u00e4hlt und die Anzahl der Zeichen an das Ende angehangen.", "One way to deal with errors is to use a checksum. Certain characters in the message are counted and the number is appended at the end."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Das Problem ist, dass durch das erhalten einer Nachricht nicht klar ist, ob die Nachricht 'Hallo' mit der Pr\u00fcfsumme '5' oder die Nachricht 'Hallo5' mit der Pr\u00fcfsumme '6' gemeint ist. Es gibt also keine eindeutige Zuordnung zwischen Nachricht und Pr\u00fcfsumme.", "The problem is that when receiving a message, it is unclear whether 'Hallo' with checksum '5' or 'Hallo5' with checksum '6' is meant. So there is no unique mapping between message and checksum."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Man kann die Nachricht 2 mal senden, z.B. 1234512345. Wenn der erste Teil der Nachricht unleserlich ist, kann die Nachricht durch den 2. Teil dann immernoch gelesen werden.", "You can send the message twice, e.g. 1234512345. If the first part is unreadable, the message can still be read from the second part."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Situation 2 ist schwerer zu erkennen und zu korrigieren, da der Fehler nicht sofort auff\u00e4llt. Die falsche Hausnummer wirkt auf den ersten Blick plausibel, obwohl sie inhaltlich falsch ist.", "Situation 2 is harder to detect and correct because the error is not immediately obvious. The wrong house number seems plausible at first glance although it is factually wrong."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Eine Pruefsumme kann Ausfallfehler erkennen, aber nicht direkt korrigieren. Da nur die L\u00e4nge der Nachricht gespeichert wird, f\u00e4llt nur auf, wenn Zeichen fehlen \u2013 nicht aber, wenn Zeichen durch andere ausgetauscht wurden.", "A checksum can detect dropout errors, but cannot correct them directly. Since only the length of the message is stored, it only detects missing characters \u2013 not substituted ones."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Mehr Fehlerkorrektur bedeutet mehr genutzen Speicher. Dadurch steigt die Robustheit, aber es bleibt weniger Platz f\u00fcr Daten. Ein hohes Korrekturlevel ist nur sinnvoll, wenn die Umgebung viele Fehler verursacht.", "More error correction means more used memory. This increases robustness, but leaves less space for data. A high correction level is only useful if the environment causes many errors."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Durch die Bildschirmaufl\u00f6sung und Kamerafehler kann es dazu kommen, dass f\u00e4lschlicherweise nicht alle QR Codes scannbar waren. Das ist jedoch nicht schlimm!", "Due to screen resolution and camera errors, it can happen that not all QR codes appeared scannable by mistake. That is not a problem."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Die 4 verschiedenen Buchstabenmuster", "The 4 different letter patterns"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Im QR-Code werden die Buchstaben in einem Zickzack-Muster kodiert. Es gibt dabei 4 verschiedene Auspr\u00e4gungen, welche im Bild dargestellt sind.\n\nDiese wechselnde Richtung erm\u00f6glicht eine effiziente Nutzung des verf\u00fcgbaren Platzes im QR-Code.", "In the QR code, letters are encoded in a zigzag pattern. There are 4 different variants, which are shown in the image.\n\nThis alternating direction enables efficient use of the available space in the QR code."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Jeder Pixel kann 2 Farben darstellen. \u00dcberlege dir als erstes eine L\u00f6sung f\u00fcr eine kleine Pixelanzahl.", "Each pixel can represent 2 colors. First think of a solution for a small number of pixels."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Die L\u00e4nge der Nachricht wird in einem festen Bereich am Anfang der Nachricht gespeichert. Dieser Bereich ist 8 Bits lang und gibt die Anzahl der Zeichen in Bin\u00e4rdarstellung an.", "The message length is stored in a fixed area at the beginning of the message. This area is 8 bits long and specifies the number of characters in binary form."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Die L\u00e4nge der Nachricht ist beschr\u00e4nkt, da die Anzahl der Pixel im QR-Code begrenzt ist. Je l\u00e4nger die Nachricht, desto mehr Pixel werden ben\u00f6tigt. Irgendwann gibt es nicht genug Pixel, um die gesamte Nachricht darzustellen. Zus\u00e4tzlich gibt es bestimmte Bereiche, welche nicht genutzt werden.", "The message length is limited because the number of pixels in the QR code is limited. The longer the message, the more pixels are needed. At some point there are not enough pixels to represent the full message. In addition, certain areas cannot be used."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Eine feste Maske kann je nach Daten ung\u00fcnstige Muster erzeugen, z. B. dass viele benachbarte Pixel schwarz sind. Dadurch wird der QR-Code f\u00fcr einen Scanner schlechter lesbar. Eine m\u00f6gliche L\u00f6sung ist, mehrere verschiedene Masken auszuprobieren und die Maske auszuw\u00e4hlen, die den besten Kontrast erzeugt.", "A fixed mask can create unfavourable patterns depending on the data, for example when many neighbouring pixels are black. This makes the QR code harder for a scanner to read. One possible solution is to try several different masks and choose the one that produces the best contrast."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Es k\u00f6nnen insgesamt 2^8 = 256 verschiedene Zeichen dargestellt werden.", "A total of 2^8 = 256 different characters can be represented."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Ein Vorteil der festen L\u00e4nge ist die eindeutige Trennung der Buchstaben ohne zus\u00e4tzliche Trennzeichen. Da jeder Buchstabe immer genau 8 Pixel lang ist, ist eine klare Dekodierung m\u00f6glich.", "One advantage of fixed length is the clear separation of letters without additional delimiters. Since every letter is always exactly 8 pixels long, unambiguous decoding is possible."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Ohne Standard muss bei einer Kodierung zus\u00e4tzlich auch die Kodierungsvorschrift (also wie Buchstaben in Pixel umgewandelt werden) mit \u00fcbergeben werden. Sonst kennen andere die Kodierungsvorschrift nicht, und die Nachrichten kann nicht wieder dekodiert(Zur\u00fcck in Buchstaben) umgewandelt werden.", "Without a standard, an encoding rule (how letters are converted to pixels) must also be transmitted. Otherwise, others do not know the rule and cannot decode the messages back into letters."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Der QR-Code wirkt unlesbar, weil viele schwarze Bereiche zusammenhaengen. Eine Maskierung sorgt spaeter fuer bessere Lesbarkeit.", "The QR code appears unreadable because many black areas are connected. Masking later improves readability."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wird die Maske zweimal angewandt, entstehen wieder die Ursprungsdaten. Das vereinfacht das Maskieren und Demaskieren, da f\u00fcr beides die gleiche Maske genutzt werden kann.", "If the mask is applied twice, the original data appears again. This simplifies masking and demasking because the same mask can be used for both."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("In der Schule koennte das Ziel sein, Material zu verteilen; der QR-Code enthaelt den Link, die Platzierung ist am Klassenraum.", "At school, the goal could be to distribute material; the QR code contains the link, and it is placed at the classroom."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Ein Vorteil ist die direkte Kontrolle durch eine Lehrkraft. Dieser kann die Sch\u00fcler aufhalten und ist flexibel in der Entscheidung. Ein Nachteil ist der hohe Aufwand und moegliche Fehler beim Nachschlagen.", "One advantage is direct control by a teacher. They can stop students and decide flexibly. One disadvantage is the high effort and possible lookup errors."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Trade-off Fehlerkorrektur", "Error correction trade-off"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Abgabe der JSON-Datei am Ende", "Submit the JSON file at the end"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Eine Kodierungsvorschrift beschreibt, wie Informationen (z.B. Buchstaben) in eine andere Form (z.B. Pixel) umgewandelt(kodiert) werden. Bei QR-Codes werden Buchstaben in schwarze und wei\u00dfe Pixel kodiert. Jeder Buchstabe bekommt dabei ein bestimmtes Muster. \nJeder Buchstabe muss ein eindeutiges Muster haben, damit man die Nachricht sp\u00e4ter wieder zur\u00fcck in die urspr\u00fcngliche Form umgewandelt (dekodieren) werden kann. \nIn der Praxis wird hierf\u00fcr kein Zuf\u00e4lliges Muster verwendet. Hier werden Buchstaben in Zahlen kodiert, welche anschlie\u00dfend in Bits (0 und 1) dargestellt werden. Dies geschieht \u00fcber die Bin\u00e4rdarstellung der Zahl. Zum Schluss werden die Bits als schwarze (1) und wei\u00dfe (0) Pixel dargestellt.", "An encoding rule describes how information (e.g. letters) is converted (encoded) into another form (e.g. pixels). In QR codes, letters are encoded as black and white pixels. Each letter gets a specific pattern.\nEach letter must have a unique pattern so that the message can later be converted back (decoded) into its original form.\nIn practice, no random pattern is used. Letters are encoded into numbers, which are then represented in bits (0 and 1). This happens through the binary representation of the number. Finally, the bits are shown as black (1) and white (0) pixels."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("ASCII steht f\u00fcr \"American Standard Code for Information Interchange\", auf Deutsch: \"Amerikanischer Standard-Code f\u00fcr den Informationsaustausch\". Es ist eine Kodierungsvorschrift, bei der jeder Buchstabe und jedes Sonderzeichen einer festen Zahl zugeordnet ist. Die Zahl wird als 8-Bit-Kombination (also 8 Nullen und Einsen) gespeichert.\nDa ASCII ein gemeinsamer Standard ist, muss die Kodierungsvorschrift nicht mit\u00fcbertragen werden. Beide Seiten kennen sie bereits.\nQR-Codes nutzen UTF-8, eine Erweiterung von ASCII. UTF-8 kann auch Umlaute und viele weitere Zeichen darstellen.", "ASCII stands for \"American Standard Code for Information Interchange\". It is an encoding rule that assigns a fixed number to every letter and special character. The number is stored as an 8-bit combination (8 zeros and ones).\nBecause ASCII is a shared standard, the encoding rule does not need to be transmitted. Both sides already know it.\nQR codes use UTF-8, an extension of ASCII. UTF-8 can also represent umlauts and many other characters."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Trotz verschiedenen Einsatzm\u00f6glichkeiten haben QR Codes einen \u00e4hnlichem Aussehen.", "Despite different use cases, QR codes have a similar appearance."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" Die roten Bereiche in den Ecken hei\u00dfen ", " The red areas in the corners are called "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(". Diese dienen dazu, dass die Handykamera den Anfang und das Ende des QR Codes erfassen kann.", ". They allow the phone camera to detect the beginning and end of the QR code."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" Die Blaue Stelle ist ein ", " The blue area is an "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(". Dieser Hilft den QR Code auf unebenen Fl\u00e4chen (z.B Verpackungen) zu lesen.", ". It helps read the QR code on uneven surfaces (e.g. packaging)."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" Der Gr\u00fcne Bereich sind die ", " The green area contains the "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("(Synchronisationslinien). Hier wechseln sich schwarze und wei\u00dfe Pixel ab. Mithilfe dieser Anordnung wird die Gr\u00f6\u00dfe des QR Codes bestimmt.", "(synchronization lines). Black and white pixels alternate here. This arrangement is used to determine the size of the QR code."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" Da viele verschiedene QR Code Versionen existieren, wird eine ", " Because many different QR code versions exist, a "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" festgehalten. Die ", " is recorded. The "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" sind Informationen \u00fcber den Aufbau des QR Codes (z.B die Verwendete Maske).", " are information about the structure of the QR code (e.g. the mask used)."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(" Weiterhin haben alle QR Codes einen wei\u00dfen Rand um den Code, damit dieser gelesen werden kann. Diesen Rand nennt man die Randzone. \nDie genauen bereiche k\u00f6nnen je nach QR Code Version variieren, aber es gibt immer bestimmte Bereiche, die nicht f\u00fcr die Nachricht verwendet werden k\u00f6nnen.", " Furthermore, all QR codes have a white border around the code so it can be read. This border is called the quiet zone.\nThe exact areas may vary depending on the QR code version, but there are always certain areas that cannot be used for the message."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Wie du vielleicht bemerkt hast, war der QR-Code von einem Scanner nicht lesbar. Um einen Besseren Kontrast zwischen wei\u00dfen und schwarzen Pixeln herzustellen, werden Pixel nach einem bestimmten Muster(Maske) umgef\u00e4rbt. Diesen Prozess nennt man Maskierung. Die Maskierung sorgt daf\u00fcr, dass der QR-Code besser lesbar ist und von Scannern zuverl\u00e4ssiger erkannt werden kann.\nAls n\u00e4chstes schauen wir uns einmal an, wie genau die Maskierung funktioniert, welche Probleme es dabei gibt und wie diese gel\u00f6st werden k\u00f6nnen.", "As you may have noticed, the QR code was not readable by a scanner. To create better contrast between white and black pixels, pixels are recolored according to a certain pattern (mask). This process is called masking. Masking makes the QR code more readable and allows scanners to recognize it more reliably.\nNext, we will look at how masking works in detail, what problems occur, and how they can be solved."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Um das Problem einer festen Maske zu l\u00f6sen, werden in QR-Codes 8 verschiedene Masken nacheinander angewandt. Daraufhin wird jeweils bewertet, welche Maske den gr\u00f6\u00dften Kontrast zwischen schwarzen und wei\u00dfen Pixeln generiert. Zus\u00e4tzlich werden andere Kriterien, wie das Vermeiden des Timingpatterns(abwechselnde schwarze und wei\u00dfe Pixel), ber\u00fccksichtigt. Die Maske, die  alle Kriterien am Besten erf\u00fcllt, wird ausgew\u00e4hlt. Diese Maske wird anschlie\u00dfend auf den QR-Code angewandt. Dadurch wird sichergestellt, dass der QR-Code optimal lesbar ist. Die verschiedenen Masken sind im Bild dargestellt. Unter jeder Maske steht hierbei die Berechnungsvorschrift, die angibt, welche Pixel umgef\u00e4rbt werden. Das \"%\" Zeichen steht hierbei f\u00fcr den Modulo-Operator - also den Rest einer Division.", "To solve the problem of a fixed mask, 8 different masks are applied one after another in QR codes. Then each mask is evaluated to determine which one generates the highest contrast between black and white pixels. Additional criteria are considered as well, such as avoiding timing patterns (alternating black and white pixels). The mask that best fulfills all criteria is selected. This mask is then applied to the QR code. This ensures the QR code is optimally readable. The different masks are shown in the image. Below each mask is the calculation rule indicating which pixels are recolored. The \"%\" sign stands for the modulo operator, i.e. the remainder of a division."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Der Scanner wei\u00df deshalb, welche Maske angewandt wurde, weil Metadaten (Daten \u00fcber die Daten) auch in Form von Pixeln an bestimmten Stellen im QR-Code festgehalten werden. ", "The scanner knows which mask was applied because metadata (data about data) is also stored as pixels at specific positions in the QR code. "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Die Metadaten werden im Bild gelb und orange dargestellt.", "The metadata is shown in yellow and orange in the image."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Zu diesen Metadaten z\u00e4hlt unter anderem die Nummer der verwendeten Maske. Diese Information wird an spezifischen Positionen im QR-Code kodiert.", "This metadata includes, among other things, the number of the mask used. This information is encoded at specific positions in the QR code."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Damit der Scanner diese auslesen und die entsprechende Maske r\u00fcckg\u00e4ngig machen kann, um die urspr\u00fcnglichen Daten zu rekonstruieren.", "This allows the scanner to read it and reverse the corresponding mask to reconstruct the original data."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Weitere Metadaten sind beispielsweise die verwendete Fehlerkorrektur-Stufe und die Versionsnummer des QR-Codes.", "Other metadata includes, for example, the error-correction level used and the QR code version number."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Die Tatsache, dass die XOR-Operation ihre eigene Umkehrfunktion ist, ist sehr praktisch. Dies f\u00fchrt dazu, dass durch 2-maliges Anwenden der gleichen Maske die urspr\u00fcnglichen Daten wiederhergestellt werden. Der Scanner muss dadurch keine zwei verschiedenen Funktionen implementieren - eine zum Maskieren und eine zum Demaskieren. Stattdessen kann er einfach die gleiche XOR-Funktion ein zweites Mal anwenden. Dies spart Speicherplatz und reduziert Komplexit\u00e4t. ", "The fact that XOR is its own inverse is very practical. This means that applying the same mask twice restores the original data. Therefore, the scanner does not need to implement two different functions, one for masking and one for demasking. Instead, it can simply apply the same XOR function a second time. This saves memory and reduces complexity. "), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Es gibt zwei Haupttypen von Fehlern: \nAusfallfehler (auch L\u00f6schfehler genannt): Ein Zeichen wird vollst\u00e4ndig entfernt oder ist unlesbar. \nSubstitutionsfehler: Ein Zeichen wird durch ein anderes ersetzt. \nSubstitutionsfehler sind oft schwieriger zu erkennen, da der Text syntaktisch(richtige Zeichen werden verwendet) korrekt bleibt, aber semantisch (Bedeutung der Zeichen) falsch ist. \nDurch Redundanz (doppelte Informationen) k\u00f6nnen beide Fehlertypen erkannt und teilweise korrigiert werden.", "There are two main types of errors:\nDropout errors (also called deletion errors): a character is completely removed or unreadable.\nSubstitution errors: one character is replaced by another.\nSubstitution errors are often harder to detect because the text remains syntactically correct (valid characters are used) but semantically wrong (meaning is wrong).\nThrough redundancy (duplicate information), both error types can be detected and partially corrected."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Nochmal senden (oder nochmal scannen) sollte m\u00f6glichst vermieden werden. Besser ist es, in einer einzigen Nachricht Informationen mehrfach zu \u00fcbertragen, z.B. indem die Nachricht doppelt enthalten ist. So entsteht nur ein Kommunikationsprozess statt zwei getrennten \u00dcbertragungen. Kommunikationsprozesse sollten minimiert werden, um Zeitaufwand und Fehlerquellen zu reduzieren.", "Resending (or rescanning) should be avoided if possible. It is better to transmit information multiple times within a single message, for example by including the message twice. This creates only one communication process instead of two separate transmissions. Communication processes should be minimized to reduce time effort and error sources."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("QR-Codes haben eine maximale Gr\u00f6\u00dfe und damit einen begrenzten Gesamtspeicher. Ein Teil des Speichers wird immer f\u00fcr die Positionsmuster, Trennzeichen und Formatinformationen ben\u00f6tigt. Der restliche Speicher wird aufgeteilt zwischen Datenspeicher (f\u00fcr die eigentliche Information) und Fehlerkorrektur (f\u00fcr die Redundanz). Je h\u00f6her das Korrekturlevel, desto mehr Speicher ist f\u00fcr Redundanz reserviert und desto weniger Speicher steht f\u00fcr die Daten zur Verf\u00fcgung. Dies ist ein klassischer Trade-off: Mehr Fehlertoleranz bedeutet weniger Kapazit\u00e4t f\u00fcr Daten. \nUm das Problem der festen gr\u00f6\u00dfe zu umgehen, gibt es verschiedene QR-Code Versionen mit unterschiedlicher Anzahl an Pixeln. Je mehr Daten gespeichert werden sollen, desto h\u00f6her muss die Version gew\u00e4hlt werden, um genug Speicherplatz zu haben. Allerdings steigt mit der Version auch die Gr\u00f6\u00dfe des QR-Codes, was wiederum die Lesbarkeit beeintr\u00e4chtigen kann. Daher ist es wichtig, die richtige Balance zwischen Datenmenge, Fehlerkorrektur und QR-Code Gr\u00f6\u00dfe zu finden. Die Gr\u00f6\u00dfte Version 40 hat 177 x 177 Pixel.", "QR codes have a maximum size and therefore limited total storage. Part of the storage is always needed for position patterns, separators, and format information. The remaining storage is split between data storage (actual information) and error correction (redundancy). The higher the correction level, the more storage is reserved for redundancy and the less remains for data. This is a classic trade-off: more error tolerance means less capacity for data.\nTo overcome the problem of fixed size, there are different QR code versions with different numbers of pixels. The more data that should be stored, the higher the version must be to provide enough storage space. However, with higher versions, the QR code also becomes larger, which can reduce readability. Therefore, it is important to find the right balance between data amount, error correction, and QR code size. The largest version, 40, has 177 x 177 pixels."), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("In QR-Codes werden Reed-Solomon-Codes zur Fehlerkorrektur genutzt. Dies ist ein besonders leistungsf\u00e4higes Verfahren, das beide Fehlerarten zum Teil korrigieren kann. Die Fehlerkorrektur wird dabei sowohl auf die Daten, als auch auf die Metadaten (z.B. Formatinformationen, Maske) angewendet. \n\nDabei werden QR-Codes nach Fehlertoleranzstufen klassifiziert. Die Fehlertoleranz liegt dabei zwischen 7% und 30% und gibt an wieviel % des QR-Codes besch\u00e4digt sein k\u00f6nnen, ohne dass die Information verloren geht. Die vier Stufen sind:\n\u2022 Level L: 7% Fehlertoleranz (Low) \n\u2022 Level M: 15% Fehlertoleranz (Medium) \n\u2022 Level Q: 25% Fehlertoleranz (Quartile)   \n\u2022 Level H: 30% Fehlertoleranz (High) \n\nDie Reed-Solomon-Codes arbeiten im Prinzip genau so, wie es im Exkurs behandelt wurde. Sie nutzen jedoch mehr Mathematik und sind etwas effizienter als Nachrichten doppelt zu schreiben. Die genau Funktionsweise \u00fcbersteigt den Rahmen dieses Kurses, weshalb diese nicht weiter behandelt wird. Zum Nachlesen: https://de.wikipedia.org/wiki/Reed-Solomon-Code", "In QR codes, Reed-Solomon codes are used for error correction. This is a very powerful method that can partially correct both error types. Error correction is applied both to data and metadata (e.g. format information, mask).\n\nQR codes are classified by error-tolerance levels. Error tolerance ranges between 7% and 30% and indicates how much of the QR code can be damaged without losing information. The four levels are:\n\u2022 Level L: 7% error tolerance (Low)\n\u2022 Level M: 15% error tolerance (Medium)\n\u2022 Level Q: 25% error tolerance (Quartile)\n\u2022 Level H: 30% error tolerance (High)\n\nIn principle, Reed-Solomon codes work exactly as discussed in the excursus. However, they use more mathematics and are somewhat more efficient than writing messages twice. The exact mechanism is beyond the scope of this course and is therefore not covered further. For further reading: https://de.wikipedia.org/wiki/Reed-Solomon-Code")]));
   this.Llivechart_Main$__f_exactSentenceEnMap = this$624.from__sc_IterableOnce__sci_Map(elems$1);
   var this$675 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Map$();
   var elems$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("schwarz", "black"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("wei\u00df", "white"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("weiss", "white"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("zus\u00e4tzlich", "additional"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Kodierungsvorschrift", "encoding rule"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Trennung", "separation"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("eindeutig", "unique"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("L\u00e4nge", "length"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Anfang", "start"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("unlesbar", "unreadable"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Muster", "pattern"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Maske", "mask"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Zeile", "row"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Spalte", "column"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("urspr\u00fcnglich", "original"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Ursprungsdaten", "original data"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Daten", "data"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("sinnvoll", "useful"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Schule", "school"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Ziel", "goal"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Platzierung", "placement"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Vorteil", "advantage"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("Nachteil", "disadvantage"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("begrenzt", "limited"), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("nochmal", "again")]));
   this.Llivechart_Main$__f_keywordEnMap = this$675.from__sc_IterableOnce__sci_Map(elems$2);
   try {
-    window.addEventListener("hashchange", ((_$9) => {
+    window.addEventListener("hashchange", ((_$29) => {
       var this$676 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_currentHashVar);
       var value = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(window.location.hash);
       $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$676, value);
@@ -1570,9 +2761,9 @@ function $c_Llivechart_Main$() {
   var this$704 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$11)).flatMap__F1__sci_List(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((chapter) => {
     var chapter$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(chapter);
     var this$702 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.loadFromLocalStorage__T__s_Option(chapter$1));
-    var f = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$10) => {
-      var _$10$1 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(_$10);
-      return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(chapter$1, _$10$1);
+    var f = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$30) => {
+      var _$30$1 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(_$30);
+      return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(chapter$1, _$30$1);
     }));
     return (this$702.isEmpty__Z() ? $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$() : new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(f.apply__O__O(this$702.get__O())));
   }))));
@@ -1937,6 +3128,282 @@ $c_Llivechart_Main$.prototype.setWorkbookLanguage__T__V = (function(language) {
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$1, normalized);
   this.saveWorkbookLanguage__T__V(normalized);
 });
+$c_Llivechart_Main$.prototype.livechart$Main$$$logLlmIssue__T__T__V = (function(kind, message) {
+  try {
+    console.error(((("[LLM][" + kind) + "] ") + message));
+  } catch (e) {
+  }
+});
+$c_Llivechart_Main$.prototype.livechart$Main$$$buildStudentAnswerFeedback__T__sci_Set__s_Option__T__T = (function(inputText, keywords, minWordCount, lang) {
+  var this$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inputText);
+  var lower = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(this$1.toLowerCase());
+  var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(keywords);
+  var this$8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(this$2));
+  var f = ((_$22) => {
+    var _$22$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(_$22);
+    var x = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__trim__T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$22$1));
+    var this$7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x);
+    return (!(this$7 === ""));
+  });
+  var l = this$8;
+  block: {
+    var result;
+    while (true) {
+      if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(l).isEmpty__Z()) {
+        var result = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$();
+        break;
+      } else {
+        var h = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(l).head__O();
+        var t = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(l).tail__O());
+        if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(f(h)) === false)) {
+          l = t;
+          continue;
+        }
+        var start = l;
+        var remaining = t;
+        while (true) {
+          if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(remaining).isEmpty__Z()) {
+            var result = start;
+            break block;
+          } else {
+            var x$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(remaining).head__O();
+            if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(f(x$1)) !== false)) {
+              remaining = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(remaining).tail__O());
+              continue;
+            }
+            var firstMiss = remaining;
+            var newHead = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sci_$colon$colon($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(start).head__O(), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$());
+            var toProcess = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(start).tail__O());
+            var currentLast = newHead;
+            while ((toProcess !== firstMiss)) {
+              var newElem = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sci_$colon$colon($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(toProcess).head__O(), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$());
+              $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(currentLast).sci_$colon$colon__f_next = newElem;
+              currentLast = newElem;
+              toProcess = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(toProcess).tail__O());
+            }
+            var next = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(firstMiss).tail__O());
+            var nextToCopy = next;
+            while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(next).isEmpty__Z())) {
+              var head = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(next).head__O();
+              if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(f(head)) !== false)) {
+                next = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(next).tail__O());
+              } else {
+                while ((nextToCopy !== next)) {
+                  var newElem$2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sci_$colon$colon($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(nextToCopy).head__O(), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$());
+                  $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(currentLast).sci_$colon$colon__f_next = newElem$2;
+                  currentLast = newElem$2;
+                  nextToCopy = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(nextToCopy).tail__O());
+                }
+                nextToCopy = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(next).tail__O());
+                next = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(next).tail__O());
+              }
+            }
+            if ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(nextToCopy).isEmpty__Z())) {
+              $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(currentLast).sci_$colon$colon__f_next = nextToCopy;
+            }
+            var result = newHead;
+            break block;
+          }
+        }
+      }
+    }
+  }
+  var this$12 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(result);
+  var f$1 = ((k) => {
+    var k$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(k);
+    return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__keywordVariants__T__sci_Set(this, k$1)).exists__F1__Z(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((v) => {
+      var v$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(v);
+      var this$10 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lower);
+      var this$9 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(v$1);
+      var s = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(this$9.toLowerCase());
+      var this$11 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(s);
+      return ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(this$10.indexOf(this$11)) !== (-1));
+    })));
+  });
+  var l$1 = this$12;
+  block$2: {
+    var result$1;
+    while (true) {
+      if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(l$1).isEmpty__Z()) {
+        var result$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$();
+        break;
+      } else {
+        var h$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(l$1).head__O();
+        var t$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(l$1).tail__O());
+        if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(f$1(h$1)) === false)) {
+          l$1 = t$1;
+          continue;
+        }
+        var start$1 = l$1;
+        var remaining$1 = t$1;
+        while (true) {
+          if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(remaining$1).isEmpty__Z()) {
+            var result$1 = start$1;
+            break block$2;
+          } else {
+            var x$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(remaining$1).head__O();
+            if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(f$1(x$2)) !== false)) {
+              remaining$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(remaining$1).tail__O());
+              continue;
+            }
+            var firstMiss$1 = remaining$1;
+            var newHead$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sci_$colon$colon($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(start$1).head__O(), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$());
+            var toProcess$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(start$1).tail__O());
+            var currentLast$1 = newHead$1;
+            while ((toProcess$1 !== firstMiss$1)) {
+              var newElem$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sci_$colon$colon($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(toProcess$1).head__O(), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$());
+              $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(currentLast$1).sci_$colon$colon__f_next = newElem$1;
+              currentLast$1 = newElem$1;
+              toProcess$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(toProcess$1).tail__O());
+            }
+            var next$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(firstMiss$1).tail__O());
+            var nextToCopy$1 = next$1;
+            while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(next$1).isEmpty__Z())) {
+              var head$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(next$1).head__O();
+              if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(f$1(head$1)) !== false)) {
+                next$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(next$1).tail__O());
+              } else {
+                while ((nextToCopy$1 !== next$1)) {
+                  var newElem$2$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sci_$colon$colon($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(nextToCopy$1).head__O(), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$());
+                  $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(currentLast$1).sci_$colon$colon__f_next = newElem$2$1;
+                  currentLast$1 = newElem$2$1;
+                  nextToCopy$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(nextToCopy$1).tail__O());
+                }
+                nextToCopy$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(next$1).tail__O());
+                next$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(next$1).tail__O());
+              }
+            }
+            if ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(nextToCopy$1).isEmpty__Z())) {
+              $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(currentLast$1).sci_$colon$colon__f_next = nextToCopy$1;
+            }
+            var result$1 = newHead$1;
+            break block$2;
+          }
+        }
+      }
+    }
+  }
+  var this$13 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(result);
+  var f$2 = ((elem) => {
+    var elem$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(elem);
+    return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(result$1).contains__O__Z(elem$1);
+  });
+  var l$2 = this$13;
+  block$4: {
+    var result$2;
+    while (true) {
+      if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(l$2).isEmpty__Z()) {
+        var result$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$();
+        break;
+      } else {
+        var h$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(l$2).head__O();
+        var t$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(l$2).tail__O());
+        if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(f$2(h$2)) === true)) {
+          l$2 = t$2;
+          continue;
+        }
+        var start$2 = l$2;
+        var remaining$2 = t$2;
+        while (true) {
+          if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(remaining$2).isEmpty__Z()) {
+            var result$2 = start$2;
+            break block$4;
+          } else {
+            var x$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(remaining$2).head__O();
+            if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(f$2(x$3)) !== true)) {
+              remaining$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(remaining$2).tail__O());
+              continue;
+            }
+            var firstMiss$2 = remaining$2;
+            var newHead$2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sci_$colon$colon($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(start$2).head__O(), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$());
+            var toProcess$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(start$2).tail__O());
+            var currentLast$2 = newHead$2;
+            while ((toProcess$2 !== firstMiss$2)) {
+              var newElem$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sci_$colon$colon($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(toProcess$2).head__O(), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$());
+              $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(currentLast$2).sci_$colon$colon__f_next = newElem$3;
+              currentLast$2 = newElem$3;
+              toProcess$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(toProcess$2).tail__O());
+            }
+            var next$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(firstMiss$2).tail__O());
+            var nextToCopy$2 = next$2;
+            while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(next$2).isEmpty__Z())) {
+              var head$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(next$2).head__O();
+              if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(f$2(head$2)) !== true)) {
+                next$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(next$2).tail__O());
+              } else {
+                while ((nextToCopy$2 !== next$2)) {
+                  var newElem$2$2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sci_$colon$colon($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(nextToCopy$2).head__O(), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$());
+                  $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(currentLast$2).sci_$colon$colon__f_next = newElem$2$2;
+                  currentLast$2 = newElem$2$2;
+                  nextToCopy$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(nextToCopy$2).tail__O());
+                }
+                nextToCopy$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(next$2).tail__O());
+                next$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(next$2).tail__O());
+              }
+            }
+            if ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(nextToCopy$2).isEmpty__Z())) {
+              $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(currentLast$2).sci_$colon$colon__f_next = nextToCopy$2;
+            }
+            var result$2 = newHead$2;
+            break block$4;
+          }
+        }
+      }
+    }
+  }
+  var this$14 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inputText);
+  var xs = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__split__T__I__AT(this$14, "\\s+", 0);
+  var i = 0;
+  var res = 0;
+  var len = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(xs).u.length;
+  while ((i < len)) {
+    var x1 = i;
+    var x0 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(xs).get(x1);
+    var this$19 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x0);
+    if ((!(this$19 === ""))) {
+      res = ((1 + res) | 0);
+    }
+    i = ((1 + i) | 0);
+  }
+  var wordCount = res;
+  matchResult13: {
+    var minWordsText;
+    if ((minWordCount instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
+      var x53 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(minWordCount)).s_Some__f_value);
+      if ((wordCount < x53)) {
+        var minWordsText = ((lang === "en") ? (((("Word count is currently " + wordCount) + ", minimum is ") + x53) + ". ") : (((("Wortanzahl ist aktuell " + wordCount) + ", mindestens erforderlich sind ") + x53) + ". "));
+        break matchResult13;
+      }
+      var minWordsText = ((lang === "en") ? (((("Word count target met (" + wordCount) + "/") + x53) + "). ") : (((("Wortanzahl erreicht (" + wordCount) + "/") + x53) + "). "));
+      break matchResult13;
+    }
+    var x$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+    if ((x$4 === minWordCount)) {
+      var minWordsText = "";
+      break matchResult13;
+    }
+    throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(minWordCount);
+  }
+  if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(result).isEmpty__Z()) {
+    return ((lang === "en") ? (minWordsText + "Your answer has been considered for this task.") : (minWordsText + "Deine Antwort wurde fuer diese Aufgabe beruecksichtigt."));
+  } else {
+    var this$20 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(result$1);
+    if ((!this$20.isEmpty__Z())) {
+      var this$21 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(result$1).take__I__sci_List(4));
+      var presentText = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_IterableOnceOps__mkString__T__T__T__T(this$21, "", ", ", "");
+    } else {
+      var presentText = "-";
+    }
+    var this$22 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(result$2);
+    if ((!this$22.isEmpty__Z())) {
+      var this$23 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(result$2).take__I__sci_List(4));
+      var missingText = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_IterableOnceOps__mkString__T__T__T__T(this$23, "", ", ", "");
+    } else {
+      var missingText = "-";
+    }
+    return ((lang === "en") ? (((((minWordsText + " Covered aspects: ") + presentText) + ". Still missing or unclear: ") + missingText) + ".") : (((((minWordsText + "In deiner Antwort erkennbar: ") + presentText) + ". Noch unklar oder fehlend: ") + missingText) + "."));
+  }
+});
 $c_Llivechart_Main$.prototype.applyDomLanguage__V = (function() {
   var root = document.getElementById("app");
   if ((root !== null)) {
@@ -1947,7 +3414,7 @@ $c_Llivechart_Main$.prototype.applyDomLanguage__V = (function() {
 });
 $c_Llivechart_Main$.prototype.initLanguageTranslationRuntime__V = (function() {
   if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_translationObserver).isEmpty__Z()) {
-    var observer = new MutationObserver(((_$7, _$8) => {
+    var observer = new MutationObserver(((_$27, _$28) => {
       var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar);
       var this$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$2.Lcom_raquo_airstream_state_SourceVar__f_signal);
       var x = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$3.tryNow__s_util_Try()).get__O();
@@ -1969,11 +3436,11 @@ $c_Llivechart_Main$.prototype.initLanguageTranslationRuntime__V = (function() {
 $c_Llivechart_Main$.prototype.scrollContentToTop__V = (function() {
   try {
     window.scrollTo(0, 0);
-    matchResult2: {
-      var x30 = document.querySelector(".main-content");
-      if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ((x30 instanceof HTMLElement))) {
-        x30.scrollTop = 0.0;
-        break matchResult2;
+    matchResult19: {
+      var x68 = document.querySelector(".main-content");
+      if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ((x68 instanceof HTMLElement))) {
+        x68.scrollTop = 0.0;
+        break matchResult19;
       }
     }
   } catch (e) {
@@ -2179,14 +3646,14 @@ $c_Llivechart_Main$.prototype.renderQRCodeExercise__I__T__T__T__Lcom_raquo_lamin
       var $x_1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
     } else {
       var x0 = this$4.get__O();
-      var _$11 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(x0);
-      var this$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$11).Llivechart_Main$ChapterData__f_exercises);
+      var _$31 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(x0);
+      var this$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$31).Llivechart_Main$ChapterData__f_exercises);
       _return: {
         var these = this$5;
         while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).isEmpty__Z())) {
           var x0$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).head__O();
-          var _$12 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$1);
-          if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$12).Llivechart_Main$ExerciseResponse__f_task === taskText)) {
+          var _$32 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$1);
+          if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$32).Llivechart_Main$ExerciseResponse__f_task === taskText)) {
             var this$6 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).head__O());
             break _return;
           }
@@ -2198,8 +3665,8 @@ $c_Llivechart_Main$.prototype.renderQRCodeExercise__I__T__T__T__Lcom_raquo_lamin
         var $x_1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
       } else {
         var x0$2 = this$6.get__O();
-        var _$13 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$2);
-        var $x_1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$13).Llivechart_Main$ExerciseResponse__f_answer;
+        var _$33 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$2);
+        var $x_1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$33).Llivechart_Main$ExerciseResponse__f_answer;
       }
     }
     var this$7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_1);
@@ -2308,8 +3775,8 @@ $c_Llivechart_Main$.prototype.renderQRCodeExercise__I__T__T__T__Lcom_raquo_lamin
   })));
   var $x_16 = $x_30.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_29.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_28, $x_20, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableNode__O__Lcom_raquo_laminar_inserters_DynamicInserter($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(childSource$1), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableNode$().Lcom_raquo_laminar_modifiers_RenderableNode$__f_nodeRenderable, (void 0))])));
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_child);
-  var childSource$2 = ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_airstream_combine_generated_StaticSignalCombineOps$()).combineWithFn__Lcom_raquo_airstream_core_Source$SignalSource__Lcom_raquo_airstream_core_Source$SignalSource__F2__Lcom_raquo_airstream_core_Signal($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(showLengthVar).Lcom_raquo_airstream_state_SourceVar__f_signal, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar).Lcom_raquo_airstream_state_SourceVar__f_signal, new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction2_$$Lambda$1a8112ad760bd31301975c22c9537bb38341e0c2(((_$14, lang$5$1) => {
-    $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(_$14);
+  var childSource$2 = ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_airstream_combine_generated_StaticSignalCombineOps$()).combineWithFn__Lcom_raquo_airstream_core_Source$SignalSource__Lcom_raquo_airstream_core_Source$SignalSource__F2__Lcom_raquo_airstream_core_Signal($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(showLengthVar).Lcom_raquo_airstream_state_SourceVar__f_signal, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar).Lcom_raquo_airstream_state_SourceVar__f_signal, new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction2_$$Lambda$1a8112ad760bd31301975c22c9537bb38341e0c2(((_$34, lang$5$1) => {
+    $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(_$34);
     var lang$6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(lang$5$1);
     var $x_15 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).label__Lcom_raquo_laminar_tags_HtmlTag());
     var $x_14 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
@@ -2362,14 +3829,14 @@ $c_Llivechart_Main$.prototype.renderQRCodeExerciseWithMetadata__I__T__T__T__s_Op
       var $x_1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
     } else {
       var x0 = this$4.get__O();
-      var _$15 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(x0);
-      var this$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$15).Llivechart_Main$ChapterData__f_exercises);
+      var _$35 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(x0);
+      var this$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$35).Llivechart_Main$ChapterData__f_exercises);
       _return: {
         var these = this$5;
         while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).isEmpty__Z())) {
           var x0$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).head__O();
-          var _$16 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$1);
-          if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$16).Llivechart_Main$ExerciseResponse__f_task === taskText)) {
+          var _$36 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$1);
+          if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$36).Llivechart_Main$ExerciseResponse__f_task === taskText)) {
             var this$6 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).head__O());
             break _return;
           }
@@ -2381,8 +3848,8 @@ $c_Llivechart_Main$.prototype.renderQRCodeExerciseWithMetadata__I__T__T__T__s_Op
         var $x_1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
       } else {
         var x0$2 = this$6.get__O();
-        var _$17 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$2);
-        var $x_1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$17).Llivechart_Main$ExerciseResponse__f_answer;
+        var _$37 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$2);
+        var $x_1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$37).Llivechart_Main$ExerciseResponse__f_answer;
       }
     }
     var this$7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_1);
@@ -2535,7 +4002,7 @@ $c_Llivechart_Main$.prototype.renderQRCodeExerciseWithMetadata__I__T__T__T__s_Op
   var $x_20 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).checked__Lcom_raquo_laminar_keys_HtmlProp()).$less$minus$minus__Lcom_raquo_airstream_core_Source__Lcom_raquo_laminar_modifiers_KeyUpdater($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(metadataActive).Lcom_raquo_airstream_state_SourceVar__f_signal);
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
   var eventProp$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onChange__Lcom_raquo_laminar_keys_EventProp();
-  var this$57 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$1, false, false)).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$20) => $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(_$20.target.checked)))));
+  var this$57 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$1, false, false)).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$40) => $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(_$40.target.checked)))));
   var sink$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(metadataActive).Lcom_raquo_airstream_state_SourceVar__f_writer;
   var onNext$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$1$1) => {
     $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(sink$1).onNext__O__V(_$1$1);
@@ -2560,7 +4027,7 @@ $c_Llivechart_Main$.prototype.renderQRCodeExerciseWithMetadata__I__T__T__T__s_Op
   var $x_9 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).checked__Lcom_raquo_laminar_keys_HtmlProp()).$less$minus$minus__Lcom_raquo_airstream_core_Source__Lcom_raquo_laminar_modifiers_KeyUpdater($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(errorCorrectionActive).Lcom_raquo_airstream_state_SourceVar__f_signal);
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
   var eventProp$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onChange__Lcom_raquo_laminar_keys_EventProp();
-  var this$61 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$2, false, false)).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$21) => $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(_$21.target.checked)))));
+  var this$61 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$2, false, false)).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$41) => $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(_$41.target.checked)))));
   var sink$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(errorCorrectionActive).Lcom_raquo_airstream_state_SourceVar__f_writer;
   var onNext$2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$1$2) => {
     $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(sink$2).onNext__O__V(_$1$2);
@@ -2584,11 +4051,11 @@ $c_Llivechart_Main$.prototype.renderQRCodeExerciseWithMetadata__I__T__T__T__s_Op
   var project$6 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1) => {
     var x$1$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T3(x$1);
     if ((x$1$1 !== null)) {
-      var x60 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$1).T3__f__1);
-      var x61 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$1).T3__f__2);
-      var x62 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$1).T3__f__3);
-      if ((x60 !== null)) {
-        return this.renderQRCodeSimulationWithBothMetadata__T__sci_Set__sci_Set__Z__sci_Set__Z__sci_Map__I__Lcom_raquo_laminar_nodes_ReactiveElement(x60, darkRedPixels, lightRedPixels, x61, $p_Llivechart_Main$__getErrorCorrectionPixels$1__sci_Map__T__sci_Set(this, allErrorCorrectionZones, x60), x62, allErrorCorrectionZones, 21);
+      var x98 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$1).T3__f__1);
+      var x99 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$1).T3__f__2);
+      var x100 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$1).T3__f__3);
+      if ((x98 !== null)) {
+        return this.renderQRCodeSimulationWithBothMetadata__T__sci_Set__sci_Set__Z__sci_Set__Z__sci_Map__I__Lcom_raquo_laminar_nodes_ReactiveElement(x98, darkRedPixels, lightRedPixels, x99, $p_Llivechart_Main$__getErrorCorrectionPixels$1__sci_Map__T__sci_Set(this, allErrorCorrectionZones, x98), x100, allErrorCorrectionZones, 21);
       }
     }
     throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$1);
@@ -2619,7 +4086,7 @@ $c_Llivechart_Main$.prototype.encodeTextToPixels__T__sci_Map__sci_Map = (functio
     return ((x$1$1 !== null) && ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uC($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$1)._1__O()), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$1)._2__O()), true));
   })))).foreach__F1__V(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$2) => {
     var x$1$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x$1$2);
-    matchResult21: {
+    matchResult38: {
       if ((x$1$3 !== null)) {
         var char$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uC($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$3)._1__O());
         var charIndex$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$3)._2__O());
@@ -2629,12 +4096,12 @@ $c_Llivechart_Main$.prototype.encodeTextToPixels__T__sci_Map__sci_Map = (functio
           var allPixels = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List(x0);
           var bits = this.charToAsciBits__C__sci_List(char$1);
           var this$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(bits);
-          var filledPixels = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_StrictOptimizedIterableOps__zipWithIndex__O(this$5))).collect__s_PartialFunction__sci_List(new $j_livechart$002e$002dMain$0024$0024anon$00241.$c_Llivechart_Main$$anon$1(zigzagMapping, allPixels));
+          var filledPixels = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_StrictOptimizedIterableOps__zipWithIndex__O(this$5))).collect__s_PartialFunction__sci_List(new $j_livechart$002e$002dMain$0024$0024anon$00242.$c_Llivechart_Main$$anon$2(zigzagMapping, allPixels));
           var this$6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(encodedMap);
           $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$p_scm_HashMap__put0__O__O__Z__s_Some(this$6, charIndex$1, filledPixels, false);
-          break matchResult21;
+          break matchResult38;
         } else {
-          break matchResult21;
+          break matchResult38;
         }
       }
       throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$3);
@@ -2713,8 +4180,8 @@ $c_Llivechart_Main$.prototype.renderQRCodeSimulation__T__Z__I__Lcom_raquo_lamina
               var elem$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(x0$2, col1);
               this$23.addOne__O__scm_ArrayBuffer(elem$1);
             }
-            var ev$608 = ((1 + elem) | 0);
-            elem = ev$608;
+            var ev$623 = ((1 + elem) | 0);
+            elem = ev$623;
           }
           if ((((col2 >= 0) && ((x0$2 >= 9) || (col2 >= 9))) && ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(grid.get(x0$2)).get(col2) === 0))) {
             if ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(forbiddenPositions).contains__O__Z(elem))) {
@@ -2722,8 +4189,8 @@ $c_Llivechart_Main$.prototype.renderQRCodeSimulation__T__Z__I__Lcom_raquo_lamina
               var elem$2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(x0$2, col2);
               this$25.addOne__O__scm_ArrayBuffer(elem$2);
             }
-            var ev$609 = ((1 + elem) | 0);
-            elem = ev$609;
+            var ev$624 = ((1 + elem) | 0);
+            elem = ev$624;
           }
           if ((i$3 === 0)) {
             break;
@@ -2744,8 +4211,8 @@ $c_Llivechart_Main$.prototype.renderQRCodeSimulation__T__Z__I__Lcom_raquo_lamina
               var elem$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(x0$3, col1);
               this$31.addOne__O__scm_ArrayBuffer(elem$3);
             }
-            var ev$610 = ((1 + elem) | 0);
-            elem = ev$610;
+            var ev$625 = ((1 + elem) | 0);
+            elem = ev$625;
           }
           if ((((col2 >= 0) && ((x0$3 >= 9) || (col2 >= 9))) && ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(grid.get(x0$3)).get(col2) === 0))) {
             if ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(forbiddenPositions).contains__O__Z(elem))) {
@@ -2753,8 +4220,8 @@ $c_Llivechart_Main$.prototype.renderQRCodeSimulation__T__Z__I__Lcom_raquo_lamina
               var elem$4 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(x0$3, col2);
               this$33.addOne__O__scm_ArrayBuffer(elem$4);
             }
-            var ev$611 = ((1 + elem) | 0);
-            elem = ev$611;
+            var ev$626 = ((1 + elem) | 0);
+            elem = ev$626;
           }
           if ((i$4 === scala$collection$immutable$Range$$lastElement$1)) {
             break;
@@ -2776,21 +4243,21 @@ $c_Llivechart_Main$.prototype.renderQRCodeSimulation__T__Z__I__Lcom_raquo_lamina
     var x0$4 = i$5;
     var this$39 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(dataPositions);
     if ((x0$4 < this$39.scm_ArrayBuffer__f_size0)) {
-      matchResult22: {
-        var \u03b41$___1;
-        var \u03b41$___2;
-        var x78 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(dataPositions).apply__I__O(x0$4));
-        if ((x78 !== null)) {
-          var row = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x78)._1__O());
-          var col$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x78)._2__O());
-          var \u03b41$___1 = row;
-          var \u03b41$___2 = col$1;
-          break matchResult22;
+      matchResult39: {
+        var \u03b42$___1;
+        var \u03b42$___2;
+        var x116 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(dataPositions).apply__I__O(x0$4));
+        if ((x116 !== null)) {
+          var row = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x116)._1__O());
+          var col$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x116)._2__O());
+          var \u03b42$___1 = row;
+          var \u03b42$___2 = col$1;
+          break matchResult39;
         }
-        throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x78);
+        throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x116);
       }
-      var row$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(\u03b41$___1);
-      var col$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(\u03b41$___2);
+      var row$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(\u03b42$___1);
+      var col$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(\u03b42$___2);
       $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(grid.get(row$2)).set(col$2, 0);
     }
     if ((i$5 === 3)) {
@@ -2815,37 +4282,37 @@ $c_Llivechart_Main$.prototype.renderQRCodeSimulation__T__Z__I__Lcom_raquo_lamina
       return ((x$1$1 !== null) && ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$1)._1__O()), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$1)._2__O()), true));
     })))).foreach__F1__V(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$2) => {
       var x$1$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x$1$2);
-      matchResult25: {
+      matchResult42: {
         if ((x$1$3 !== null)) {
           var bit$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$3)._1__O());
           var idx$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$3)._2__O());
           var posIdx = ((4 + idx$1) | 0);
           var this$50 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(dataPositions);
           if ((posIdx < this$50.scm_ArrayBuffer__f_size0)) {
-            matchResult24: {
-              var \u03b42$___1;
-              var \u03b42$___2;
-              var x84 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(dataPositions).apply__I__O(posIdx));
-              if ((x84 !== null)) {
-                var row$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x84)._1__O());
-                var col$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x84)._2__O());
-                var \u03b42$___1 = row$1;
-                var \u03b42$___2 = col$3;
-                break matchResult24;
+            matchResult41: {
+              var \u03b43$___1;
+              var \u03b43$___2;
+              var x122 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(dataPositions).apply__I__O(posIdx));
+              if ((x122 !== null)) {
+                var row$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x122)._1__O());
+                var col$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x122)._2__O());
+                var \u03b43$___1 = row$1;
+                var \u03b43$___2 = col$3;
+                break matchResult41;
               }
-              throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x84);
+              throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x122);
             }
-            var row$2$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(\u03b42$___1);
-            var col$2$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(\u03b42$___2);
+            var row$2$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(\u03b43$___1);
+            var col$2$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(\u03b43$___2);
             if ((bit$1 === 1)) {
               $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(grid.get(row$2$1)).set(col$2$1, 2);
-              break matchResult25;
+              break matchResult42;
             } else {
               $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(grid.get(row$2$1)).set(col$2$1, 0);
-              break matchResult25;
+              break matchResult42;
             }
           } else {
-            break matchResult25;
+            break matchResult42;
           }
         }
         throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$3);
@@ -2915,7 +4382,7 @@ $c_Llivechart_Main$.prototype.renderQRCodeSimulation__T__Z__I__Lcom_raquo_lamina
   var this$108 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sc_MapOps$WithFilter(this$104, p);
   var f = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$4$1) => {
     var x$1$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x$1$4$1);
-    matchResult28: {
+    matchResult45: {
       if ((x$1$5 !== null)) {
         $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$5)._1__O());
         var filledPixels$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$5)._2__O());
@@ -2926,26 +4393,26 @@ $c_Llivechart_Main$.prototype.renderQRCodeSimulation__T__Z__I__Lcom_raquo_lamina
           var pixelIdx = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(x0$6);
           var this$106 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(dataPositions);
           if ((pixelIdx < this$106.scm_ArrayBuffer__f_size0)) {
-            matchResult27: {
-              var \u03b43$___1;
-              var \u03b43$___2;
-              var x93 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(dataPositions).apply__I__O(pixelIdx));
-              if ((x93 !== null)) {
-                var row$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x93)._1__O());
-                var col$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x93)._2__O());
-                var \u03b43$___1 = row$3;
-                var \u03b43$___2 = col$4;
-                break matchResult27;
+            matchResult44: {
+              var \u03b44$___1;
+              var \u03b44$___2;
+              var x131 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(dataPositions).apply__I__O(pixelIdx));
+              if ((x131 !== null)) {
+                var row$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x131)._1__O());
+                var col$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x131)._2__O());
+                var \u03b44$___1 = row$3;
+                var \u03b44$___2 = col$4;
+                break matchResult44;
               }
-              throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x93);
+              throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x131);
             }
-            var row$2$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(\u03b43$___1);
-            var col$2$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(\u03b43$___2);
+            var row$2$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(\u03b44$___1);
+            var col$2$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(\u03b44$___2);
             $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(grid.get(row$2$2)).set(col$2$2, 2);
           }
           these = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).tail__O());
         }
-        break matchResult28;
+        break matchResult45;
       }
       throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$5);
     }
@@ -3023,7 +4490,7 @@ $c_Llivechart_Main$.prototype.renderQRCodeSimulation__T__Z__I__Lcom_raquo_lamina
   while ((i$6 < $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(xs).u.length)) {
     var x1 = i$6;
     var x0$9 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(xs).get(x1);
-    matchResult30: {
+    matchResult47: {
       var x0$18;
       if ((x0$9 !== null)) {
         var row$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$asArrayOf_I($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x0$9)._1__O(), 1);
@@ -3131,7 +4598,7 @@ $c_Llivechart_Main$.prototype.renderQRCodeSimulation__T__Z__I__Lcom_raquo_lamina
           }
         }
         var x0$18 = ys;
-        break matchResult30;
+        break matchResult47;
       }
       throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x0$9);
     }
@@ -3226,8 +4693,8 @@ $c_Llivechart_Main$.prototype.renderQRCodeSimulationWithBothMetadata__T__sci_Set
               var elem$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(x0$2, col1);
               this$23.addOne__O__scm_ArrayBuffer(elem$1);
             }
-            var ev$616 = ((1 + elem) | 0);
-            elem = ev$616;
+            var ev$631 = ((1 + elem) | 0);
+            elem = ev$631;
           }
           if ((((col2 >= 0) && ((x0$2 >= 9) || (col2 >= 9))) && ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(grid.get(x0$2)).get(col2) === 0))) {
             if ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(forbiddenPositions).contains__O__Z(elem))) {
@@ -3235,8 +4702,8 @@ $c_Llivechart_Main$.prototype.renderQRCodeSimulationWithBothMetadata__T__sci_Set
               var elem$2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(x0$2, col2);
               this$25.addOne__O__scm_ArrayBuffer(elem$2);
             }
-            var ev$617 = ((1 + elem) | 0);
-            elem = ev$617;
+            var ev$632 = ((1 + elem) | 0);
+            elem = ev$632;
           }
           if ((i$3 === 0)) {
             break;
@@ -3257,8 +4724,8 @@ $c_Llivechart_Main$.prototype.renderQRCodeSimulationWithBothMetadata__T__sci_Set
               var elem$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(x0$3, col1);
               this$31.addOne__O__scm_ArrayBuffer(elem$3);
             }
-            var ev$618 = ((1 + elem) | 0);
-            elem = ev$618;
+            var ev$633 = ((1 + elem) | 0);
+            elem = ev$633;
           }
           if ((((col2 >= 0) && ((x0$3 >= 9) || (col2 >= 9))) && ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(grid.get(x0$3)).get(col2) === 0))) {
             if ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(forbiddenPositions).contains__O__Z(elem))) {
@@ -3266,8 +4733,8 @@ $c_Llivechart_Main$.prototype.renderQRCodeSimulationWithBothMetadata__T__sci_Set
               var elem$4 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(x0$3, col2);
               this$33.addOne__O__scm_ArrayBuffer(elem$4);
             }
-            var ev$619 = ((1 + elem) | 0);
-            elem = ev$619;
+            var ev$634 = ((1 + elem) | 0);
+            elem = ev$634;
           }
           if ((i$4 === scala$collection$immutable$Range$$lastElement$1)) {
             break;
@@ -3289,21 +4756,21 @@ $c_Llivechart_Main$.prototype.renderQRCodeSimulationWithBothMetadata__T__sci_Set
     var x0$4 = i$5;
     var this$39 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(dataPositions);
     if ((x0$4 < this$39.scm_ArrayBuffer__f_size0)) {
-      matchResult40: {
-        var \u03b47$___1;
-        var \u03b47$___2;
-        var x132 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(dataPositions).apply__I__O(x0$4));
-        if ((x132 !== null)) {
-          var row = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x132)._1__O());
-          var col$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x132)._2__O());
-          var \u03b47$___1 = row;
-          var \u03b47$___2 = col$1;
-          break matchResult40;
+      matchResult57: {
+        var \u03b48$___1;
+        var \u03b48$___2;
+        var x170 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(dataPositions).apply__I__O(x0$4));
+        if ((x170 !== null)) {
+          var row = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x170)._1__O());
+          var col$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x170)._2__O());
+          var \u03b48$___1 = row;
+          var \u03b48$___2 = col$1;
+          break matchResult57;
         }
-        throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x132);
+        throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x170);
       }
-      var row$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(\u03b47$___1);
-      var col$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(\u03b47$___2);
+      var row$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(\u03b48$___1);
+      var col$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(\u03b48$___2);
       $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(grid.get(row$2)).set(col$2, 0);
     }
     if ((i$5 === 3)) {
@@ -3327,37 +4794,37 @@ $c_Llivechart_Main$.prototype.renderQRCodeSimulationWithBothMetadata__T__sci_Set
     return ((x$1$1 !== null) && ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$1)._1__O()), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$1)._2__O()), true));
   })))).foreach__F1__V(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$2) => {
     var x$1$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x$1$2);
-    matchResult43: {
+    matchResult60: {
       if ((x$1$3 !== null)) {
         var bit$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$3)._1__O());
         var idx$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$3)._2__O());
         var posIdx = ((4 + idx$1) | 0);
         var this$50 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(dataPositions);
         if ((posIdx < this$50.scm_ArrayBuffer__f_size0)) {
-          matchResult42: {
-            var \u03b48$___1;
-            var \u03b48$___2;
-            var x138 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(dataPositions).apply__I__O(posIdx));
-            if ((x138 !== null)) {
-              var row$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x138)._1__O());
-              var col$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x138)._2__O());
-              var \u03b48$___1 = row$1;
-              var \u03b48$___2 = col$3;
-              break matchResult42;
+          matchResult59: {
+            var \u03b49$___1;
+            var \u03b49$___2;
+            var x176 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(dataPositions).apply__I__O(posIdx));
+            if ((x176 !== null)) {
+              var row$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x176)._1__O());
+              var col$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x176)._2__O());
+              var \u03b49$___1 = row$1;
+              var \u03b49$___2 = col$3;
+              break matchResult59;
             }
-            throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x138);
+            throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x176);
           }
-          var row$2$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(\u03b48$___1);
-          var col$2$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(\u03b48$___2);
+          var row$2$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(\u03b49$___1);
+          var col$2$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(\u03b49$___2);
           if ((bit$1 === 1)) {
             $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(grid.get(row$2$1)).set(col$2$1, 2);
-            break matchResult43;
+            break matchResult60;
           } else {
             $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(grid.get(row$2$1)).set(col$2$1, 0);
-            break matchResult43;
+            break matchResult60;
           }
         } else {
-          break matchResult43;
+          break matchResult60;
         }
       }
       throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$3);
@@ -3426,7 +4893,7 @@ $c_Llivechart_Main$.prototype.renderQRCodeSimulationWithBothMetadata__T__sci_Set
   var this$108 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sc_MapOps$WithFilter(this$104, p);
   var f = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$4$1) => {
     var x$1$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x$1$4$1);
-    matchResult46: {
+    matchResult63: {
       if ((x$1$5 !== null)) {
         $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$5)._1__O());
         var filledPixels$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$5)._2__O());
@@ -3437,26 +4904,26 @@ $c_Llivechart_Main$.prototype.renderQRCodeSimulationWithBothMetadata__T__sci_Set
           var pixelIdx = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(x0$6);
           var this$106 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(dataPositions);
           if ((pixelIdx < this$106.scm_ArrayBuffer__f_size0)) {
-            matchResult45: {
-              var \u03b49$___1;
-              var \u03b49$___2;
-              var x147 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(dataPositions).apply__I__O(pixelIdx));
-              if ((x147 !== null)) {
-                var row$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x147)._1__O());
-                var col$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x147)._2__O());
-                var \u03b49$___1 = row$3;
-                var \u03b49$___2 = col$4;
-                break matchResult45;
+            matchResult62: {
+              var \u03b410$___1;
+              var \u03b410$___2;
+              var x185 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(dataPositions).apply__I__O(pixelIdx));
+              if ((x185 !== null)) {
+                var row$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x185)._1__O());
+                var col$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x185)._2__O());
+                var \u03b410$___1 = row$3;
+                var \u03b410$___2 = col$4;
+                break matchResult62;
               }
-              throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x147);
+              throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x185);
             }
-            var row$2$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(\u03b49$___1);
-            var col$2$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(\u03b49$___2);
+            var row$2$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(\u03b410$___1);
+            var col$2$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(\u03b410$___2);
             $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(grid.get(row$2$2)).set(col$2$2, 2);
           }
           these = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).tail__O());
         }
-        break matchResult46;
+        break matchResult63;
       }
       throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$5);
     }
@@ -3495,7 +4962,7 @@ $c_Llivechart_Main$.prototype.renderQRCodeSimulationWithBothMetadata__T__sci_Set
   while ((i$6 < $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(xs).u.length)) {
     var x1 = i$6;
     var x0$7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(xs).get(x1);
-    matchResult48: {
+    matchResult65: {
       var x0$16;
       if ((x0$7 !== null)) {
         var row$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$asArrayOf_I($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x0$7)._1__O(), 1);
@@ -3602,7 +5069,7 @@ $c_Llivechart_Main$.prototype.renderQRCodeSimulationWithBothMetadata__T__sci_Set
           }
         }
         var x0$16 = ys;
-        break matchResult48;
+        break matchResult65;
       }
       throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x0$7);
     }
@@ -3794,9 +5261,9 @@ $c_Llivechart_Main$.prototype.persistExerciseAnswer__T__T__T__V = (function(chap
         return new $j_livechart$002e$002dMain$0024$002dChapter$002dData.$c_Llivechart_Main$ChapterData(chapter, emptyExercises, rating);
       }))));
       var this$10 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(existing).Llivechart_Main$ChapterData__f_exercises);
-      var f$1 = ((_$22) => {
-        var _$22$1 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(_$22);
-        return ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$22$1).Llivechart_Main$ExerciseResponse__f_task === taskText);
+      var f$1 = ((_$42) => {
+        var _$42$1 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(_$42);
+        return ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$42$1).Llivechart_Main$ExerciseResponse__f_task === taskText);
       });
       var l = this$10;
       block: {
@@ -3938,11 +5405,11 @@ $c_Llivechart_Main$.prototype.loadFromLocalStorage__T__s_Option = (function(chap
     var stored = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(window.localStorage.getItem(("qr-chapter-" + chapter)));
     if ((stored !== null)) {
       var parsed = JSON.parse(stored);
-      matchResult49: {
+      matchResult66: {
         var exercises;
         var arg = parsed.exercises;
-        var x159 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(Array.isArray(arg));
-        if ((x159 === true)) {
+        var x197 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(Array.isArray(arg));
+        if ((x197 === true)) {
           var array = parsed.exercises;
           var this$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$ct_sjs_js_WrappedArray__sjs_js_Array__(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjs_js_WrappedArray(), array);
           var this$8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(this$3));
@@ -3959,7 +5426,7 @@ $c_Llivechart_Main$.prototype.loadFromLocalStorage__T__s_Option = (function(chap
           });
           if ((this$8 === $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$())) {
             var exercises = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$();
-            break matchResult49;
+            break matchResult66;
           } else {
             var x0 = this$8.head__O();
             var h = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sci_$colon$colon(f(x0), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$());
@@ -3973,7 +5440,7 @@ $c_Llivechart_Main$.prototype.loadFromLocalStorage__T__s_Option = (function(chap
               rest = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(rest).tail__O());
             }
             var exercises = h;
-            break matchResult49;
+            break matchResult66;
           }
         }
         var elems = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().genericWrapArray__O__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_sr_Nothing$.getArrayOf().constr)([]));
@@ -4061,8 +5528,8 @@ $c_Llivechart_Main$.prototype.saveExerciseStatus__T__T__Llivechart_Main$Exercise
         var this$6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
       } else {
         var x0 = this$4.get__O();
-        var _$23 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(x0);
-        var this$6 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(_$23);
+        var _$43 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(x0);
+        var this$6 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(_$43);
       }
       var this$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_$less$colon$less$();
       var ev = this$5.s_$less$colon$less$__f_singleton;
@@ -4149,14 +5616,14 @@ $c_Llivechart_Main$.prototype.AufgabePixelAnordnung__Lcom_raquo_laminar_nodes_Re
     var savedTaskAnswer = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
   } else {
     var x0 = this$1.get__O();
-    var _$24 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(x0);
-    var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$24).Llivechart_Main$ChapterData__f_exercises);
+    var _$44 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(x0);
+    var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$44).Llivechart_Main$ChapterData__f_exercises);
     _return: {
       var these = this$2;
       while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).isEmpty__Z())) {
         var x0$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).head__O();
-        var _$25 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$1);
-        if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$25).Llivechart_Main$ExerciseResponse__f_task === "Ziehe die Zahlen 1-8 auf die Felder im Grid (ein Raster von 2x4 Pixeln), um zu zeigen, in welcher Reihenfolge die Bits des ersten Buchstabens in Aufgabe 8 kodiert werden.")) {
+        var _$45 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$1);
+        if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$45).Llivechart_Main$ExerciseResponse__f_task === "Ziehe die Zahlen 1-8 auf die Felder im Grid (ein Raster von 2x4 Pixeln), um zu zeigen, in welcher Reihenfolge die Bits des ersten Buchstabens in Aufgabe 8 kodiert werden.")) {
           var this$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).head__O());
           break _return;
         }
@@ -4168,8 +5635,8 @@ $c_Llivechart_Main$.prototype.AufgabePixelAnordnung__Lcom_raquo_laminar_nodes_Re
       var savedTaskAnswer = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
     } else {
       var x0$2 = this$3.get__O();
-      var _$26 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$2);
-      var savedTaskAnswer = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$26).Llivechart_Main$ExerciseResponse__f_answer;
+      var _$46 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$2);
+      var savedTaskAnswer = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$46).Llivechart_Main$ExerciseResponse__f_answer;
     }
   }
   var this$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(savedTaskAnswer);
@@ -4184,8 +5651,8 @@ $c_Llivechart_Main$.prototype.AufgabePixelAnordnung__Lcom_raquo_laminar_nodes_Re
   var this$7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(savedTaskAnswer);
   if ((!this$7.isEmpty__Z())) {
     var x0$4 = this$7.get__O();
-    var _$27 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x0$4);
-    var this$8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$27);
+    var _$47 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x0$4);
+    var this$8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$47);
     var loadedCompletedFromTask = ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(this$8.indexOf("completed=true")) !== (-1));
   } else {
     var loadedCompletedFromTask = false;
@@ -4211,9 +5678,9 @@ $c_Llivechart_Main$.prototype.AufgabePixelAnordnung__Lcom_raquo_laminar_nodes_Re
   var correctSolution = this$33.from__sc_IterableOnce__sci_Map(elems);
   var gridNumbers = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_Var).apply__O__Lcom_raquo_airstream_state_Var(loadedGrid);
   var this$36 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(gridNumbers).Lcom_raquo_airstream_state_SourceVar__f_signal);
-  var project = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$28) => {
-    var _$28$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Map(_$28);
-    var this$34 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$28$1);
+  var project = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$48) => {
+    var _$48$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Map(_$48);
+    var this$34 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$48$1);
     var this$35 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sc_MapOps$$anon$1(this$34);
     return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Set$().from__sc_IterableOnce__sci_Set(this$35);
   }));
@@ -4368,9 +5835,9 @@ $c_Llivechart_Main$.prototype.AufgabePixelAnordnung__Lcom_raquo_laminar_nodes_Re
               var this$80 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_jl_Integer$();
               var num = this$80.java$lang$Integer$$parseIntImpl__T__I__I__I(numStr, 10, 214748364);
               if (((num >= 1) && (num <= 8))) {
-                var cleaned = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Map($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(gridMap$1).filter__F1__O(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$29) => {
-                  var _$29$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(_$29);
-                  return ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$29$1)._2__O()) !== num);
+                var cleaned = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Map($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(gridMap$1).filter__F1__O(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$49) => {
+                  var _$49$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(_$49);
+                  return ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$49$1)._2__O()) !== num);
                 }))));
                 var this$85 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(gridNumbers);
                 var this$84 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(cleaned);
@@ -4397,8 +5864,8 @@ $c_Llivechart_Main$.prototype.AufgabePixelAnordnung__Lcom_raquo_laminar_nodes_Re
             var this$92 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
           } else {
             var x0$8 = this$90.get__O();
-            var _$30 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(x0$8);
-            var this$92 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(("" + _$30));
+            var _$50 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(x0$8);
+            var this$92 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(("" + _$50));
           }
           var value$3 = (this$92.isEmpty__Z() ? "" : this$92.get__O());
           var r$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable;
@@ -4454,9 +5921,9 @@ $c_Llivechart_Main$.prototype.AufgabePixelAnordnung__Lcom_raquo_laminar_nodes_Re
   var updater = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).value__Lcom_raquo_laminar_keys_HtmlProp()).$less$minus$minus__Lcom_raquo_airstream_core_Source__Lcom_raquo_laminar_modifiers_KeyUpdater($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(previewCharVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
   var eventProp$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onInput__Lcom_raquo_laminar_keys_EventProp();
-  var this$106 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$3, false, false)).mapToValue__Lcom_raquo_laminar_keys_EventProcessor()).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$31) => {
-    var _$31$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(_$31);
-    return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sc_StringOps$().take$extension__T__I__T(_$31$1, 1);
+  var this$106 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$3, false, false)).mapToValue__Lcom_raquo_laminar_keys_EventProcessor()).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$51) => {
+    var _$51$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(_$51);
+    return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sc_StringOps$().take$extension__T__I__T(_$51$1, 1);
   }))));
   var sink = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(previewCharVar).Lcom_raquo_airstream_state_SourceVar__f_writer;
   var onNext$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$1) => {
@@ -4486,8 +5953,8 @@ $c_Llivechart_Main$.prototype.AufgabePixelAnordnung__Lcom_raquo_laminar_nodes_Re
       var asciiOpt = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
     } else {
       var x0$9 = this$111.get__O();
-      var _$32 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uC(x0$9);
-      var asciiOpt = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(_$32);
+      var _$52 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uC(x0$9);
+      var asciiOpt = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(_$52);
     }
     if (asciiOpt.isEmpty__Z()) {
       var bits = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
@@ -4547,15 +6014,15 @@ $c_Llivechart_Main$.prototype.AufgabePixelAnordnung__Lcom_raquo_laminar_nodes_Re
         var asciiOpt$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
       } else {
         var x0$14 = this$129.get__O();
-        var _$33 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uC(x0$14);
-        var asciiOpt$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(_$33);
+        var _$53 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uC(x0$14);
+        var asciiOpt$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(_$53);
       }
       if (asciiOpt$1.isEmpty__Z()) {
         var this$131 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
       } else {
         var x0$15 = asciiOpt$1.get__O();
-        var _$34 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(x0$15);
-        var this$131 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(("" + _$34));
+        var _$54 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(x0$15);
+        var this$131 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(("" + _$54));
       }
       var decimalText = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T((this$131.isEmpty__Z() ? "-" : this$131.get__O()));
       if (asciiOpt$1.isEmpty__Z()) {
@@ -4622,7 +6089,7 @@ $c_Llivechart_Main$.prototype.AufgabePixelAnordnung__Lcom_raquo_laminar_nodes_Re
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
   var eventProp$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
   var this$147 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$4, false, false));
-  var onNext$4 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$35) => {
+  var onNext$4 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$55) => {
     var this$143 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(gridNumbers);
     var value$8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Map$EmptyMap$();
     $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$143, value$8);
@@ -4646,7 +6113,7 @@ $c_Llivechart_Main$.prototype.AufgabePixelAnordnung__Lcom_raquo_laminar_nodes_Re
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
   var eventProp$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
   var this$160 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$5, false, false));
-  var onNext$5 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$36) => {
+  var onNext$5 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$56) => {
     var this$151 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(gridNumbers);
     var this$152 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$151.Lcom_raquo_airstream_state_SourceVar__f_signal);
     var current = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Map($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$152.tryNow__s_util_Try()).get__O());
@@ -4868,7 +6335,7 @@ $c_Llivechart_Main$.prototype.AufgabeKodierung__Lcom_raquo_laminar_nodes_Reactiv
             $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
             var eventProp = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
             var this$31 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp, false, false));
-            var onNext = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$37) => {
+            var onNext = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$57) => {
               if ((!disabled)) {
                 var this$30 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(pixelGrid);
                 var mod = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((g) => {
@@ -4905,12 +6372,12 @@ $c_Llivechart_Main$.prototype.AufgabeKodierung__Lcom_raquo_laminar_nodes_Reactiv
   var project$6 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$3$1) => {
     var x$1$7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x$1$3$1);
     if ((x$1$7 !== null)) {
-      var x214 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$7)._1__O());
-      var x215 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$7)._2__O());
-      if (((x214 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some) && ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x214)).s_Some__f_value) === false))) {
-        return $p_Llivechart_Main$__translatedNow__T__T__T(this, "Nochmal versuchen", x215);
+      var x252 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$7)._1__O());
+      var x253 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$7)._2__O());
+      if (((x252 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some) && ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x252)).s_Some__f_value) === false))) {
+        return $p_Llivechart_Main$__translatedNow__T__T__T(this, "Nochmal versuchen", x253);
       }
-      return $p_Llivechart_Main$__translatedNow__T__T__T(this, "Abgeben", x215);
+      return $p_Llivechart_Main$__translatedNow__T__T__T(this, "Abgeben", x253);
     }
     throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$7);
   }));
@@ -4919,7 +6386,7 @@ $c_Llivechart_Main$.prototype.AufgabeKodierung__Lcom_raquo_laminar_nodes_Reactiv
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
   var eventProp$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
   var this$76 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$1, false, false));
-  var onNext$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$38) => {
+  var onNext$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$58) => {
     var this$43 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(pixelGrid);
     var this$44 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$43.Lcom_raquo_airstream_state_SourceVar__f_signal);
     var current = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$44.tryNow__s_util_Try()).get__O());
@@ -4960,20 +6427,20 @@ $c_Llivechart_Main$.prototype.AufgabeKodierung__Lcom_raquo_laminar_nodes_Reactiv
       while ((rest$1 !== $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$())) {
         var x0$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(rest$1).head__O();
         var x$1$8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x0$4);
-        matchResult68: {
+        matchResult85: {
           var $x_62;
           if ((x$1$8 !== null)) {
             var pattern = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$8)._1__O());
             var idx$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$8)._2__O());
             var this$63 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(patterns);
-            var otherIndices = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_StrictOptimizedIterableOps__zipWithIndex__O(this$63))).collect__s_PartialFunction__sci_List(new $j_livechart$002e$002dMain$0024$0024anon$00242.$c_Llivechart_Main$$anon$2(idx$1, pattern));
+            var otherIndices = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_StrictOptimizedIterableOps__zipWithIndex__O(this$63))).collect__s_PartialFunction__sci_List(new $j_livechart$002e$002dMain$0024$0024anon$00243.$c_Llivechart_Main$$anon$3(idx$1, pattern));
             var this$64 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(otherIndices);
             if ((!this$64.isEmpty__Z())) {
               var $x_62 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(idx$1);
-              break matchResult68;
+              break matchResult85;
             } else {
               var $x_62 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
-              break matchResult68;
+              break matchResult85;
             }
           }
           throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$8);
@@ -5018,11 +6485,11 @@ $c_Llivechart_Main$.prototype.AufgabeKodierung__Lcom_raquo_laminar_nodes_Reactiv
   var project$7 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$4$1) => {
     var x$1$9 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(x$1$4$1);
     if ((x$1$9 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
-      var x231 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$9)).s_Some__f_value);
-      if ((x231 === true)) {
+      var x269 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$9)).s_Some__f_value);
+      if ((x269 === true)) {
         return "btn-time btn-success";
       }
-      if ((x231 === false)) {
+      if ((x269 === false)) {
         return "btn-time btn-error";
       }
     }
@@ -5082,14 +6549,14 @@ $c_Llivechart_Main$.prototype.AufgabeKodierung__Lcom_raquo_laminar_nodes_Reactiv
     var $x_2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
   } else {
     var x0$5 = this$87.get__O();
-    var _$39 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(x0$5);
-    var this$88 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$39).Llivechart_Main$ChapterData__f_exercises);
+    var _$59 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(x0$5);
+    var this$88 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$59).Llivechart_Main$ChapterData__f_exercises);
     _return: {
       var these = this$88;
       while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).isEmpty__Z())) {
         var x0$6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).head__O();
-        var _$40 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$6);
-        if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$40).Llivechart_Main$ExerciseResponse__f_task === "Schreibe das Wort 'MISSISSIPPI' mit deiner eigenen Kodierung aus Aufgabe 2.")) {
+        var _$60 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$6);
+        if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$60).Llivechart_Main$ExerciseResponse__f_task === "Schreibe das Wort 'MISSISSIPPI' mit deiner eigenen Kodierung aus Aufgabe 2.")) {
           var this$89 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).head__O());
           break _return;
         }
@@ -5101,8 +6568,8 @@ $c_Llivechart_Main$.prototype.AufgabeKodierung__Lcom_raquo_laminar_nodes_Reactiv
       var $x_2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
     } else {
       var x0$7 = this$89.get__O();
-      var _$41 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$7);
-      var $x_2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$41).Llivechart_Main$ExerciseResponse__f_answer;
+      var _$61 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$7);
+      var $x_2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$61).Llivechart_Main$ExerciseResponse__f_answer;
     }
   }
   var this$90 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_2);
@@ -5212,7 +6679,7 @@ $c_Llivechart_Main$.prototype.AufgabeKodierung__Lcom_raquo_laminar_nodes_Reactiv
           var patterns$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(this$121);
           var elems$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T.getArrayOf().constr)(["M", "I", "S", "P"]));
           var letters = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$1);
-          matchResult72: {
+          matchResult89: {
             var letter$1;
             var this$124 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(patterns$1);
             var this$125 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_StrictOptimizedIterableOps__zipWithIndex__O(this$124)));
@@ -5221,31 +6688,31 @@ $c_Llivechart_Main$.prototype.AufgabeKodierung__Lcom_raquo_laminar_nodes_Reactiv
               while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$1).isEmpty__Z())) {
                 var x0$12 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$1).head__O();
                 var x$1$12 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x0$12);
-                matchResult71: {
+                matchResult88: {
                   var $x_28;
                   if ((x$1$12 !== null)) {
                     var pattern$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$12)._1__O());
                     var $x_28 = ((pattern$1 === null) ? (rowPixels$1 === null) : $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(pattern$1).equals__O__Z(rowPixels$1));
-                    break matchResult71;
+                    break matchResult88;
                   }
                   throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$12);
                 }
                 if ($x_28) {
-                  var x238 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$1).head__O());
+                  var x276 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$1).head__O());
                   break _return$1;
                 }
                 these$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$1).tail__O());
               }
-              var x238 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+              var x276 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
             }
-            if ((x238 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
-              var x240 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x238)).s_Some__f_value);
-              if ((x240 !== null)) {
-                var idx$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x240)._2__O());
+            if ((x276 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
+              var x278 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x276)).s_Some__f_value);
+              if ((x278 !== null)) {
+                var idx$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x278)._2__O());
                 if ((idx$2 < $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(letters).length__I())) {
                   var this$126 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(letters);
                   var letter$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_LinearSeqOps__apply__I__O(this$126, idx$2));
-                  break matchResult72;
+                  break matchResult89;
                 }
               }
             }
@@ -5275,7 +6742,7 @@ $c_Llivechart_Main$.prototype.AufgabeKodierung__Lcom_raquo_laminar_nodes_Reactiv
             $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
             var eventProp$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
             var this$130 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$2, false, false));
-            var onNext$2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$43) => {
+            var onNext$2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$63) => {
               if ((!disabled3)) {
                 var this$129 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(pixelGrid3);
                 var mod$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((g$2) => {
@@ -5332,12 +6799,12 @@ $c_Llivechart_Main$.prototype.AufgabeKodierung__Lcom_raquo_laminar_nodes_Reactiv
   var project$14 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$7$1) => {
     var x$1$14 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x$1$7$1);
     if ((x$1$14 !== null)) {
-      var x255 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$14)._1__O());
-      var x256 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$14)._2__O());
-      if (((x255 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some) && ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x255)).s_Some__f_value) === false))) {
-        return $p_Llivechart_Main$__translatedNow__T__T__T(this, "Nochmal versuchen", x256);
+      var x293 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$14)._1__O());
+      var x294 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$14)._2__O());
+      if (((x293 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some) && ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x293)).s_Some__f_value) === false))) {
+        return $p_Llivechart_Main$__translatedNow__T__T__T(this, "Nochmal versuchen", x294);
       }
-      return $p_Llivechart_Main$__translatedNow__T__T__T(this, "Abgeben", x256);
+      return $p_Llivechart_Main$__translatedNow__T__T__T(this, "Abgeben", x294);
     }
     throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$14);
   }));
@@ -5346,7 +6813,7 @@ $c_Llivechart_Main$.prototype.AufgabeKodierung__Lcom_raquo_laminar_nodes_Reactiv
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
   var eventProp$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
   var this$186 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$3, false, false));
-  var onNext$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$44) => {
+  var onNext$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$64) => {
     var this$147 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(pixelGrid3);
     var this$148 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$147.Lcom_raquo_airstream_state_SourceVar__f_signal);
     var current$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$148.tryNow__s_util_Try()).get__O());
@@ -5401,7 +6868,7 @@ $c_Llivechart_Main$.prototype.AufgabeKodierung__Lcom_raquo_laminar_nodes_Reactiv
         while ((rest$2 !== $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$())) {
           var x0$13 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(rest$2).head__O();
           var x$1$15 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x0$13);
-          matchResult76: {
+          matchResult93: {
             var $x_17;
             if ((x$1$15 !== null)) {
               var charIdx = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$15)._1__O());
@@ -5416,10 +6883,10 @@ $c_Llivechart_Main$.prototype.AufgabeKodierung__Lcom_raquo_laminar_nodes_Reactiv
                 var this$173 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(current$1);
                 var currentRow = this$173.slice__I__I__sci_Vector(targetStart, targetEnd);
                 var $x_17 = ((!((expectedRow === null) ? (currentRow === null) : $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(expectedRow).equals__O__Z(currentRow))) ? new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(wordIdx) : $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
-                break matchResult76;
+                break matchResult93;
               } else {
                 var $x_17 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(wordIdx);
-                break matchResult76;
+                break matchResult93;
               }
             }
             throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$15);
@@ -5465,11 +6932,11 @@ $c_Llivechart_Main$.prototype.AufgabeKodierung__Lcom_raquo_laminar_nodes_Reactiv
   var project$15 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$8$1) => {
     var x$1$16 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(x$1$8$1);
     if ((x$1$16 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
-      var x266 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$16)).s_Some__f_value);
-      if ((x266 === true)) {
+      var x304 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$16)).s_Some__f_value);
+      if ((x304 === true)) {
         return "btn-time btn-success";
       }
-      if ((x266 === false)) {
+      if ((x304 === false)) {
         return "btn-time btn-error";
       }
     }
@@ -5486,11 +6953,11 @@ $c_Llivechart_Main$.prototype.AufgabeKodierung__Lcom_raquo_laminar_nodes_Reactiv
   var project$19 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$9$1) => {
     var x$1$17 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x$1$9$1);
     if ((x$1$17 !== null)) {
-      var x276 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$17)._1__O());
-      var x277 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$17)._2__O());
-      if ((x276 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
-        var x279 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x276)).s_Some__f_value);
-        if ((x279 === true)) {
+      var x314 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$17)._1__O());
+      var x315 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$17)._2__O());
+      if ((x314 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
+        var x317 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x314)).s_Some__f_value);
+        if ((x317 === true)) {
           var $x_9 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).span__Lcom_raquo_laminar_tags_HtmlTag());
           var $x_8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
           $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_child);
@@ -5502,8 +6969,8 @@ $c_Llivechart_Main$.prototype.AufgabeKodierung__Lcom_raquo_laminar_nodes_Reactiv
           var textSource$8 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$190, project$16, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
           return $x_9.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_8.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildTextInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_inserters_DynamicInserter(textSource$8, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("color: green; font-weight: bold;")])));
         }
-        if ((x279 === false)) {
-          if ((x277 === true)) {
+        if ((x317 === false)) {
+          if ((x315 === true)) {
             var $x_11 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).span__Lcom_raquo_laminar_tags_HtmlTag());
             var $x_10 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
             $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_child);
@@ -5515,7 +6982,7 @@ $c_Llivechart_Main$.prototype.AufgabeKodierung__Lcom_raquo_laminar_nodes_Reactiv
             var textSource$9 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$192, project$17, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
             return $x_11.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_10.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildTextInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_inserters_DynamicInserter(textSource$9, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("color: red; font-weight: bold;")])));
           }
-          if ((x277 === false)) {
+          if ((x315 === false)) {
             var $x_13 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).span__Lcom_raquo_laminar_tags_HtmlTag());
             var $x_12 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
             $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_child);
@@ -5542,15 +7009,15 @@ $c_Llivechart_Main$.prototype.appElement__Lcom_raquo_laminar_nodes_ReactiveEleme
   var $x_692 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
   var $x_691 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_cls).$colon$eq__T__Lcom_raquo_laminar_modifiers_CompositeKeySetter("app-container");
   var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
-  var fn = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$45) => {
-    $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_Lcom_raquo_laminar_lifecycle_MountContext(_$45);
+  var fn = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$65) => {
+    $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_Lcom_raquo_laminar_lifecycle_MountContext(_$65);
     this.initLanguageTranslationRuntime__V();
   }));
   var $x_690 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_MountHooks__onMountCallback__F1__Lcom_raquo_laminar_modifiers_Modifier(this$2, fn);
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_child);
   var this$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
-  var project = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$46) => {
-    $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(_$46);
+  var project = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$66) => {
+    $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(_$66);
     this.applyDomLanguage__V();
     $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
     return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("");
@@ -6565,9 +8032,9 @@ $c_Llivechart_Main$.prototype.appElement__Lcom_raquo_laminar_nodes_ReactiveEleme
       var $x_239 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).typ__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("checkbox");
       var $x_238 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).checked__Lcom_raquo_laminar_keys_HtmlProp());
       var this$294 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(checkboxStates).Lcom_raquo_airstream_state_SourceVar__f_signal);
-      var project$27 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$47) => {
-        var _$47$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List(_$47);
-        var this$293 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$47$1);
+      var project$27 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$67) => {
+        var _$67$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List(_$67);
+        var this$293 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$67$1);
         return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_LinearSeqOps__apply__I__O(this$293, 0));
       }));
       var $x_237 = $x_238.$less$minus$minus__Lcom_raquo_airstream_core_Source__Lcom_raquo_laminar_modifiers_KeyUpdater(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$294, project$27, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$()));
@@ -6594,9 +8061,9 @@ $c_Llivechart_Main$.prototype.appElement__Lcom_raquo_laminar_nodes_ReactiveEleme
       var $x_230 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).typ__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("checkbox");
       var $x_229 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).checked__Lcom_raquo_laminar_keys_HtmlProp());
       var this$300 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(checkboxStates).Lcom_raquo_airstream_state_SourceVar__f_signal);
-      var project$28 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$48) => {
-        var _$48$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List(_$48);
-        var this$299 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$48$1);
+      var project$28 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$68) => {
+        var _$68$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List(_$68);
+        var this$299 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$68$1);
         return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_LinearSeqOps__apply__I__O(this$299, 1));
       }));
       var $x_228 = $x_229.$less$minus$minus__Lcom_raquo_airstream_core_Source__Lcom_raquo_laminar_modifiers_KeyUpdater(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$300, project$28, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$()));
@@ -6623,9 +8090,9 @@ $c_Llivechart_Main$.prototype.appElement__Lcom_raquo_laminar_nodes_ReactiveEleme
       var $x_221 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).typ__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("checkbox");
       var $x_220 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).checked__Lcom_raquo_laminar_keys_HtmlProp());
       var this$306 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(checkboxStates).Lcom_raquo_airstream_state_SourceVar__f_signal);
-      var project$29 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$49) => {
-        var _$49$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List(_$49);
-        var this$305 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$49$1);
+      var project$29 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$69) => {
+        var _$69$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List(_$69);
+        var this$305 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$69$1);
         return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_LinearSeqOps__apply__I__O(this$305, 2));
       }));
       var $x_219 = $x_220.$less$minus$minus__Lcom_raquo_airstream_core_Source__Lcom_raquo_laminar_modifiers_KeyUpdater(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$306, project$29, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$()));
@@ -6652,9 +8119,9 @@ $c_Llivechart_Main$.prototype.appElement__Lcom_raquo_laminar_nodes_ReactiveEleme
       var $x_212 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).typ__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("checkbox");
       var $x_211 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).checked__Lcom_raquo_laminar_keys_HtmlProp());
       var this$312 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(checkboxStates).Lcom_raquo_airstream_state_SourceVar__f_signal);
-      var project$30 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$50) => {
-        var _$50$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List(_$50);
-        var this$311 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$50$1);
+      var project$30 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$70) => {
+        var _$70$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List(_$70);
+        var this$311 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$70$1);
         return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_LinearSeqOps__apply__I__O(this$311, 3));
       }));
       var $x_210 = $x_211.$less$minus$minus__Lcom_raquo_airstream_core_Source__Lcom_raquo_laminar_modifiers_KeyUpdater(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$312, project$30, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$()));
@@ -6823,7 +8290,7 @@ $c_Llivechart_Main$.prototype.appElement__Lcom_raquo_laminar_nodes_ReactiveEleme
       var $x_346 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).checked__Lcom_raquo_laminar_keys_HtmlProp()).$less$minus$minus__Lcom_raquo_airstream_core_Source__Lcom_raquo_laminar_modifiers_KeyUpdater($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(metadataActive).Lcom_raquo_airstream_state_SourceVar__f_signal);
       $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
       var eventProp$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onChange__Lcom_raquo_laminar_keys_EventProp();
-      var this$361 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$5, false, false)).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$53) => $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(_$53.target.checked)))));
+      var this$361 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$5, false, false)).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$73) => $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(_$73.target.checked)))));
       var sink$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(metadataActive).Lcom_raquo_airstream_state_SourceVar__f_writer;
       var onNext$5 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$1$1) => {
         $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(sink$1).onNext__O__V(_$1$1);
@@ -6848,7 +8315,7 @@ $c_Llivechart_Main$.prototype.appElement__Lcom_raquo_laminar_nodes_ReactiveEleme
       var $x_335 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).checked__Lcom_raquo_laminar_keys_HtmlProp()).$less$minus$minus__Lcom_raquo_airstream_core_Source__Lcom_raquo_laminar_modifiers_KeyUpdater($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(errorCorrectionActive).Lcom_raquo_airstream_state_SourceVar__f_signal);
       $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
       var eventProp$6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onChange__Lcom_raquo_laminar_keys_EventProp();
-      var this$365 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$6, false, false)).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$54) => $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(_$54.target.checked)))));
+      var this$365 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$6, false, false)).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$74) => $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(_$74.target.checked)))));
       var sink$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(errorCorrectionActive).Lcom_raquo_airstream_state_SourceVar__f_writer;
       var onNext$6 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$1$2) => {
         $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(sink$2).onNext__O__V(_$1$2);
@@ -6873,7 +8340,7 @@ $c_Llivechart_Main$.prototype.appElement__Lcom_raquo_laminar_nodes_ReactiveEleme
       var $x_324 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).checked__Lcom_raquo_laminar_keys_HtmlProp()).$less$minus$minus__Lcom_raquo_airstream_core_Source__Lcom_raquo_laminar_modifiers_KeyUpdater($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(maskActive).Lcom_raquo_airstream_state_SourceVar__f_signal);
       $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
       var eventProp$7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onChange__Lcom_raquo_laminar_keys_EventProp();
-      var this$369 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$7, false, false)).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$55) => $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(_$55.target.checked)))));
+      var this$369 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$7, false, false)).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$75) => $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(_$75.target.checked)))));
       var sink$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(maskActive).Lcom_raquo_airstream_state_SourceVar__f_writer;
       var onNext$7 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$1$3) => {
         $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(sink$3).onNext__O__V(_$1$3);
@@ -6897,10 +8364,10 @@ $c_Llivechart_Main$.prototype.appElement__Lcom_raquo_laminar_nodes_ReactiveEleme
       var project$38 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$2) => {
         var x$1$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T3(x$1$2);
         if ((x$1$3 !== null)) {
-          var x288 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$3).T3__f__1);
-          var x289 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$3).T3__f__2);
-          var x290 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$3).T3__f__3);
-          if ((x288 !== null)) {
+          var x326 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$3).T3__f__1);
+          var x327 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$3).T3__f__2);
+          var x328 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$3).T3__f__3);
+          if ((x326 !== null)) {
             var $x_316 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag());
             var $x_315 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
             var $x_314 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("display: flex; flex-direction: column; gap: 0.5rem;");
@@ -6909,7 +8376,7 @@ $c_Llivechart_Main$.prototype.appElement__Lcom_raquo_laminar_nodes_ReactiveEleme
             var $x_313 = this$374.from__sc_IterableOnce__sci_Set(elems$51);
             var this$375 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Set$();
             var elems$52 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapIntArray__AI__sci_ArraySeq(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$ac_I(new Int32Array([50, 71, 175, 172, 171, 323, 344, 185, 186])));
-            return $x_316.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_315.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_314, this.renderQRCodeSimulationWithBothMetadata__T__sci_Set__sci_Set__Z__sci_Set__Z__sci_Map__I__Lcom_raquo_laminar_nodes_ReactiveElement(x288, $x_313, this$375.from__sc_IterableOnce__sci_Set(elems$52), x289, $p_Llivechart_Main$__getErrorCorrectionPixels$2__sci_Map__T__sci_Set(this, allErrorCorrectionZones, x288), x290, allErrorCorrectionZones, 21)])));
+            return $x_316.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_315.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_314, this.renderQRCodeSimulationWithBothMetadata__T__sci_Set__sci_Set__Z__sci_Set__Z__sci_Map__I__Lcom_raquo_laminar_nodes_ReactiveElement(x326, $x_313, this$375.from__sc_IterableOnce__sci_Set(elems$52), x327, $p_Llivechart_Main$__getErrorCorrectionPixels$2__sci_Map__T__sci_Set(this, allErrorCorrectionZones, x326), x328, allErrorCorrectionZones, 21)])));
           }
         }
         throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$3);
@@ -6921,14 +8388,14 @@ $c_Llivechart_Main$.prototype.appElement__Lcom_raquo_laminar_nodes_ReactiveEleme
       var project$40 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$3$1) => {
         var x$1$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T4(x$1$3$1);
         if ((x$1$4 !== null)) {
-          var x295 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$4).T4__f__1);
-          var x296 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$4).T4__f__2);
-          var x297 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$4).T4__f__3);
-          var x298 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$4).T4__f__4);
-          if ((x295 !== null)) {
-            var this$382 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x295);
-            if ((((!(this$382 === "")) && x296) && x297)) {
-              var allReady = x298;
+          var x333 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$4).T4__f__1);
+          var x334 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$4).T4__f__2);
+          var x335 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$4).T4__f__3);
+          var x336 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$4).T4__f__4);
+          if ((x333 !== null)) {
+            var this$382 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x333);
+            if ((((!(this$382 === "")) && x334) && x335)) {
+              var allReady = x336;
             } else {
               var allReady = false;
             }
@@ -6945,27 +8412,27 @@ $c_Llivechart_Main$.prototype.appElement__Lcom_raquo_laminar_nodes_ReactiveEleme
                 return $p_Llivechart_Main$__translatedNow__T__T__T(this, "Scannbarer QR Code", lang$26);
               }));
               var textSource$19 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$383, project$39, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
-              return $x_304.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_303.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_302, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_301).apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_300.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildTextInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_inserters_DynamicInserter(textSource$19, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("margin-top: 0; margin-bottom: 0.5rem;")]))), this.generateQRCode__T__I__Lcom_raquo_laminar_nodes_ReactiveElement(x295, 220)])));
+              return $x_304.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_303.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_302, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_301).apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_300.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildTextInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_inserters_DynamicInserter(textSource$19, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("margin-top: 0; margin-bottom: 0.5rem;")]))), this.generateQRCode__T__I__Lcom_raquo_laminar_nodes_ReactiveElement(x333, 220)])));
             } else {
-              var this$387 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x295);
+              var this$387 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x333);
               if ((!(this$387 === ""))) {
                 var this$388 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar);
                 var this$389 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$388.Lcom_raquo_airstream_state_SourceVar__f_signal);
                 var lang$2$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$389.tryNow__s_util_Try()).get__O());
                 var $x_308 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
-                if ((!x296)) {
+                if ((!x334)) {
                   var value$42 = $p_Llivechart_Main$__translatedNow__T__T__T(this, "Metadaten", lang$2$1);
                   var $x_307 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(value$42);
                 } else {
                   var $x_307 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
                 }
-                if ((!x297)) {
+                if ((!x335)) {
                   var value$43 = $p_Llivechart_Main$__translatedNow__T__T__T(this, "Fehlerkorrektur", lang$2$1);
                   var $x_306 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(value$43);
                 } else {
                   var $x_306 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
                 }
-                if ((!x298)) {
+                if ((!x336)) {
                   var value$44 = $p_Llivechart_Main$__translatedNow__T__T__T(this, "Maske", lang$2$1);
                   var $x_305 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(value$44);
                 } else {
@@ -7064,7 +8531,7 @@ $c_Llivechart_Main$.prototype.appElement__Lcom_raquo_laminar_nodes_ReactiveEleme
       $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
       var eventProp$8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
       var this$423 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$8, false, false));
-      var onNext$8 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$56) => {
+      var onNext$8 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$76) => {
         var this$422 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(showMaterialsVar);
         var mod$4 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((v) => {
           var v$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(v);
@@ -7168,7 +8635,7 @@ $c_Llivechart_Main$.prototype.appElement__Lcom_raquo_laminar_nodes_ReactiveEleme
       $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
       var eventProp$9 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
       var this$441 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$9, false, false));
-      var onNext$9 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$57) => {
+      var onNext$9 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$77) => {
         var this$440 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(showDidaktikVar);
         var mod$5 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((v$2) => {
           var v$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(v$2);
@@ -7414,7 +8881,7 @@ $c_Llivechart_Main$.prototype.appElement__Lcom_raquo_laminar_nodes_ReactiveEleme
       var showInfoBoxVar = this.infoBoxVar__T__Lcom_raquo_airstream_state_Var("qr-infobox-einfuehrung-1");
       var $x_515 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag());
       var $x_514 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
-      var $x_513 = this.Infotext__T__T__s_Option__Lcom_raquo_laminar_nodes_ReactiveElement("Informationen zur Bearbeitung", "Durch das Klicken auf den \"Abgeben\" Button bei den Aufgaben werden deine Antworten lokal in deinem Browser gespeichert.\nDas Textfeld f\u00e4rbt sich gr\u00fcn, wenn alle Schl\u00fcsselw\u00f6rter, welche gefordert waren, im Text vorhanden sind. Ansonsten f\u00e4rbt es sich rot.\nZus\u00e4tzlich gibt es im Arbeitsheft immer wieder Informationsboxen, welche nach dem Bearbeiten der Aufgabe angezeigt werden.\nFalls du mal bei einer Aufgabe nicht weiter kommen solltest, kannst du dir durch einen Klick auf 'L\u00f6sung zeigen' die L\u00f6sung anzeigen lassen. Alle ben\u00f6tigten Schl\u00fcsselw\u00f6rter sind in der L\u00f6sung fett markiert.\nProbiere es an Aufgabe 1 einmal selbst aus, indem du deine Eingabe \u00e4nderst, falls du sie beim ersten Mal richtig gel\u00f6st hast.", $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
+      var $x_513 = this.Infotext__T__T__s_Option__Lcom_raquo_laminar_nodes_ReactiveElement("Informationen zur Bearbeitung", "Durch das Klicken auf den \"Abgeben\" Button bei den Aufgaben werden deine Antworten lokal in deinem Browser gespeichert.\nTextaufgaben werden mit einer LLM-Pruefung bewertet, damit auch Synonyme und sinnvolle Umschreibungen als richtig erkannt werden.\nFalls die LLM-Pruefung nicht verfuegbar ist, wird automatisch die klassische Schluesselwortpruefung genutzt.\nDas Textfeld faerbt sich gruen, wenn die Antwort als richtig bewertet wird. Ansonsten faerbt es sich rot.\nZus\u00e4tzlich gibt es im Arbeitsheft immer wieder Informationsboxen, welche nach dem Bearbeiten der Aufgabe angezeigt werden.\nFalls du mal bei einer Aufgabe nicht weiter kommen solltest, kannst du dir durch einen Klick auf 'L\u00f6sung zeigen' die L\u00f6sung anzeigen lassen. Alle ben\u00f6tigten Schl\u00fcsselw\u00f6rter sind in der L\u00f6sung fett markiert.\nProbiere es an Aufgabe 1 einmal selbst aus, indem du deine Eingabe \u00e4nderst, falls du sie beim ersten Mal richtig gel\u00f6st hast.", $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
       var this$481 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Set$();
       var elems$59 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T.getArrayOf().constr)(["qr"]));
       var keywords$26 = this$481.from__sc_IterableOnce__sci_Set(elems$59);
@@ -7637,9 +9104,9 @@ $c_Llivechart_Main$.prototype.appElement__Lcom_raquo_laminar_nodes_ReactiveEleme
       }));
       var praxisUnlockedSignal = this.withAdminOverride__Lcom_raquo_airstream_core_Signal__Lcom_raquo_airstream_core_Signal(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$514, project$65, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$()));
       var this$515 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_completedChaptersVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
-      var project$66 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$58) => {
-        var _$58$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set(_$58);
-        return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$58$1).contains__O__Z("praxisanwendungen");
+      var project$66 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$78) => {
+        var _$78$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set(_$78);
+        return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$78$1).contains__O__Z("praxisanwendungen");
       }));
       var zusammenfassungUnlockedSignal = this.withAdminOverride__Lcom_raquo_airstream_core_Signal__Lcom_raquo_airstream_core_Signal(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$515, project$66, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$()));
       var barcodeUnlockedSignal = this.withAdminOverride__Lcom_raquo_airstream_core_Signal__Lcom_raquo_airstream_core_Signal($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_merkzettelCreatedVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
@@ -7747,14 +9214,14 @@ $c_Llivechart_Main$.prototype.renderPixelAreaWithLabels__I__I__T__sci_List__sci_
       var $x_2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
     } else {
       var x0 = this$7.get__O();
-      var _$75 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(x0);
-      var this$8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$75).Llivechart_Main$ChapterData__f_exercises);
+      var _$95 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(x0);
+      var this$8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$95).Llivechart_Main$ChapterData__f_exercises);
       _return: {
         var these = this$8;
         while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).isEmpty__Z())) {
           var x0$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).head__O();
-          var _$76 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$1);
-          if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$76).Llivechart_Main$ExerciseResponse__f_task === taskText)) {
+          var _$96 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$1);
+          if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$96).Llivechart_Main$ExerciseResponse__f_task === taskText)) {
             var this$9 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).head__O());
             break _return;
           }
@@ -7766,8 +9233,8 @@ $c_Llivechart_Main$.prototype.renderPixelAreaWithLabels__I__I__T__sci_List__sci_
         var $x_2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
       } else {
         var x0$2 = this$9.get__O();
-        var _$77 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$2);
-        var $x_2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$77).Llivechart_Main$ExerciseResponse__f_answer;
+        var _$97 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$2);
+        var $x_2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$97).Llivechart_Main$ExerciseResponse__f_answer;
       }
     }
     var this$10 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_2);
@@ -7897,23 +9364,23 @@ $c_Llivechart_Main$.prototype.renderPixelAreaWithLabels__I__I__T__sci_List__sci_
         var $x_29 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$37.apply__O__s_Option(r$1));
         var this$38 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_$less$colon$less$();
         var status = $x_29.flatten__s_$less$colon$less__s_Option(this$38.s_$less$colon$less$__f_singleton);
-        matchResult92: {
+        matchResult109: {
           var rowBg;
           if ((status instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
-            var x340 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(status)).s_Some__f_value);
-            if ((x340 === true)) {
+            var x378 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(status)).s_Some__f_value);
+            if ((x378 === true)) {
               var rowBg = "background: rgba(46, 204, 113, 0.2); border-radius: 4px; padding: 2px;";
-              break matchResult92;
+              break matchResult109;
             }
-            if ((x340 === false)) {
+            if ((x378 === false)) {
               var rowBg = "background: rgba(231, 76, 60, 0.2); border-radius: 4px; padding: 2px;";
-              break matchResult92;
+              break matchResult109;
             }
           }
           var x$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
           if ((x$4 === status)) {
             var rowBg = "";
-            break matchResult92;
+            break matchResult109;
           }
           throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(status);
         }
@@ -7972,7 +9439,7 @@ $c_Llivechart_Main$.prototype.renderPixelAreaWithLabels__I__I__T__sci_List__sci_
           $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
           var eventProp = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
           var this$52 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp, false, false));
-          var onNext = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$79) => {
+          var onNext = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$99) => {
             var this$51 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(pixelGrid);
             var mod = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((g) => {
               var g$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector(g);
@@ -8037,7 +9504,7 @@ $c_Llivechart_Main$.prototype.renderPixelAreaWithLabels__I__I__T__sci_List__sci_
   var $x_21 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildTextInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_inserters_DynamicInserter(textSource$1, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable);
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
   var eventProp$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
-  var this$89 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$1, false, false)).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$80) => {
+  var this$89 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$1, false, false)).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$100) => {
     var this$61 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(pixelGrid);
     var this$62 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$61.Lcom_raquo_airstream_state_SourceVar__f_signal);
     var current = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$62.tryNow__s_util_Try()).get__O());
@@ -8133,11 +9600,11 @@ $c_Llivechart_Main$.prototype.renderPixelAreaWithLabels__I__I__T__sci_List__sci_
   var project$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$2$1) => {
     var x$1$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(x$1$2$1);
     if ((x$1$3 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
-      var x348 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$3)).s_Some__f_value);
-      if ((x348 === true)) {
+      var x386 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$3)).s_Some__f_value);
+      if ((x386 === true)) {
         return "btn-time btn-success";
       }
-      if ((x348 === false)) {
+      if ((x386 === false)) {
         return "btn-time btn-error";
       }
     }
@@ -8181,7 +9648,7 @@ $c_Llivechart_Main$.prototype.renderPixelAreaWithLabels__I__I__T__sci_List__sci_
       } else {
         var x0$13 = this$96.get__O();
         var x$1$6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x0$13);
-        matchResult96: {
+        matchResult113: {
           var $x_9;
           if ((x$1$6 !== null)) {
             var de = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$6)._1__O());
@@ -8196,7 +9663,7 @@ $c_Llivechart_Main$.prototype.renderPixelAreaWithLabels__I__I__T__sci_List__sci_
             }));
             var textSource$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$97, project$6, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
             var $x_9 = $x_11.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_10.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildTextInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_inserters_DynamicInserter(textSource$3, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("color: #c62828; font-weight: 600; margin-top: 0.5rem;")])));
-            break matchResult96;
+            break matchResult113;
           }
           throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$6);
         }
@@ -8224,9 +9691,9 @@ $c_Llivechart_Main$.prototype.renderMenu__Lcom_raquo_laminar_nodes_ReactiveEleme
   }));
   var praxisUnlockedSignal = this.withAdminOverride__Lcom_raquo_airstream_core_Signal__Lcom_raquo_airstream_core_Signal(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$11, project, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$()));
   var this$12 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_completedChaptersVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
-  var project$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$82) => {
-    var _$82$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set(_$82);
-    return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$82$1).contains__O__Z("praxisanwendungen");
+  var project$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$102) => {
+    var _$102$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set(_$102);
+    return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$102$1).contains__O__Z("praxisanwendungen");
   }));
   var zusammenfassungUnlockedSignal = this.withAdminOverride__Lcom_raquo_airstream_core_Signal__Lcom_raquo_airstream_core_Signal(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$12, project$1, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$()));
   var barcodesUnlockedSignal = this.withAdminOverride__Lcom_raquo_airstream_core_Signal__Lcom_raquo_airstream_core_Signal($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_merkzettelCreatedVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
@@ -8277,13 +9744,13 @@ $c_Llivechart_Main$.prototype.renderMenu__Lcom_raquo_laminar_nodes_ReactiveEleme
         var project$4 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$2) => {
           var x$1$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T3(x$1$2);
           if ((x$1$3 !== null)) {
-            var x359 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$3).T3__f__1);
-            var x360 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$3).T3__f__2);
-            var x361 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$3).T3__f__3);
-            if ((x359 !== null)) {
-              if ((x361 !== null)) {
-                var active = ((x361 === hash) ? " active" : "");
-                return ((!x360) ? ("menu-item locked" + active) : ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x359).contains__O__Z(chapterKey) ? ("menu-item completed" + active) : ("menu-item" + active)));
+            var x397 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$3).T3__f__1);
+            var x398 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$3).T3__f__2);
+            var x399 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$3).T3__f__3);
+            if ((x397 !== null)) {
+              if ((x399 !== null)) {
+                var active = ((x399 === hash) ? " active" : "");
+                return ((!x398) ? ("menu-item locked" + active) : ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x397).contains__O__Z(chapterKey) ? ("menu-item completed" + active) : ("menu-item" + active)));
               }
             }
           }
@@ -8295,14 +9762,14 @@ $c_Llivechart_Main$.prototype.renderMenu__Lcom_raquo_laminar_nodes_ReactiveEleme
         var project$5 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$3$1) => {
           var x$1$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T4(x$1$3$1);
           if ((x$1$4 !== null)) {
-            var x366 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$4).T4__f__1);
-            var x367 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$4).T4__f__2);
-            var x368 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$4).T4__f__3);
-            var x369 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$4).T4__f__4);
-            if ((x366 !== null)) {
-              if ((x369 !== null)) {
-                var active$1 = ((x369 === hash) ? " active" : "");
-                return ((!x367) ? ("menu-item locked" + active$1) : (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x366).contains__O__Z(chapterKey) || x368) ? ("menu-item completed" + active$1) : ("menu-item" + active$1)));
+            var x404 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$4).T4__f__1);
+            var x405 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$4).T4__f__2);
+            var x406 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$4).T4__f__3);
+            var x407 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$4).T4__f__4);
+            if ((x404 !== null)) {
+              if ((x407 !== null)) {
+                var active$1 = ((x407 === hash) ? " active" : "");
+                return ((!x405) ? ("menu-item locked" + active$1) : (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x404).contains__O__Z(chapterKey) || x406) ? ("menu-item completed" + active$1) : ("menu-item" + active$1)));
               }
             }
           }
@@ -8314,13 +9781,13 @@ $c_Llivechart_Main$.prototype.renderMenu__Lcom_raquo_laminar_nodes_ReactiveEleme
         var project$6 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$4$1) => {
           var x$1$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T3(x$1$4$1);
           if ((x$1$5 !== null)) {
-            var x375 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$5).T3__f__1);
-            var x376 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$5).T3__f__2);
-            var x377 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$5).T3__f__3);
-            if ((x375 !== null)) {
-              if ((x377 !== null)) {
-                var active$2 = ((x377 === hash) ? " active" : "");
-                return ((!x376) ? ("menu-item locked" + active$2) : ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x375).contains__O__Z(chapterKey) ? ("menu-item completed" + active$2) : ("menu-item" + active$2)));
+            var x413 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$5).T3__f__1);
+            var x414 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$5).T3__f__2);
+            var x415 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$5).T3__f__3);
+            if ((x413 !== null)) {
+              if ((x415 !== null)) {
+                var active$2 = ((x415 === hash) ? " active" : "");
+                return ((!x414) ? ("menu-item locked" + active$2) : ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x413).contains__O__Z(chapterKey) ? ("menu-item completed" + active$2) : ("menu-item" + active$2)));
               }
             }
           }
@@ -8333,12 +9800,12 @@ $c_Llivechart_Main$.prototype.renderMenu__Lcom_raquo_laminar_nodes_ReactiveEleme
         var project$7 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$5$1) => {
           var x$1$6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x$1$5$1);
           if ((x$1$6 !== null)) {
-            var x382 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$6)._1__O());
-            var x383 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$6)._2__O());
-            if ((x382 !== null)) {
-              if ((x383 !== null)) {
-                var active$3 = ((x383 === hash) ? " active" : "");
-                return ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x382).contains__O__Z(chapterKey) ? ("menu-item completed" + active$3) : ("menu-item" + active$3));
+            var x420 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$6)._1__O());
+            var x421 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$6)._2__O());
+            if ((x420 !== null)) {
+              if ((x421 !== null)) {
+                var active$3 = ((x421 === hash) ? " active" : "");
+                return ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x420).contains__O__Z(chapterKey) ? ("menu-item completed" + active$3) : ("menu-item" + active$3));
               }
             }
           }
@@ -8416,7 +9883,7 @@ $c_Llivechart_Main$.prototype.renderMenu__Lcom_raquo_laminar_nodes_ReactiveEleme
         $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
         var eventProp = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onMouseEnter__Lcom_raquo_laminar_keys_EventProp();
         var this$44 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp, false, false));
-        var onNext = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$83) => (void 0)));
+        var onNext = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$103) => (void 0)));
         var $x_44 = $x_58.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_57.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_55, $x_52, $x_51, $x_48, new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_modifiers_EventListener(this$44, onNext)])));
       } else if (isZusammenfassung) {
         var $x_72 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).a__Lcom_raquo_laminar_tags_HtmlTag());
@@ -8487,7 +9954,7 @@ $c_Llivechart_Main$.prototype.renderMenu__Lcom_raquo_laminar_nodes_ReactiveEleme
         $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
         var eventProp$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onMouseEnter__Lcom_raquo_laminar_keys_EventProp();
         var this$60 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$1, false, false));
-        var onNext$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$84) => (void 0)));
+        var onNext$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$104) => (void 0)));
         var $x_44 = $x_72.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_71.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_69, $x_66, $x_65, $x_62, new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_modifiers_EventListener(this$60, onNext$1)])));
       } else if (isBarcodes) {
         var $x_86 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).a__Lcom_raquo_laminar_tags_HtmlTag());
@@ -8558,7 +10025,7 @@ $c_Llivechart_Main$.prototype.renderMenu__Lcom_raquo_laminar_nodes_ReactiveEleme
         $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
         var eventProp$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onMouseEnter__Lcom_raquo_laminar_keys_EventProp();
         var this$76 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$2, false, false));
-        var onNext$2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$85) => (void 0)));
+        var onNext$2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$105) => (void 0)));
         var $x_44 = $x_86.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_85.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_83, $x_80, $x_79, $x_76, new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_modifiers_EventListener(this$76, onNext$2)])));
       } else {
         var $x_96 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).a__Lcom_raquo_laminar_tags_HtmlTag());
@@ -8595,7 +10062,7 @@ $c_Llivechart_Main$.prototype.renderMenu__Lcom_raquo_laminar_nodes_ReactiveEleme
         $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
         var eventProp$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onMouseEnter__Lcom_raquo_laminar_keys_EventProp();
         var this$84 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$3, false, false));
-        var onNext$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$86) => (void 0)));
+        var onNext$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$106) => (void 0)));
         var $x_44 = $x_96.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_95.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_94, $x_91, $x_90, new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_modifiers_EventListener(this$84, onNext$3)])));
       }
       return $x_101.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_100.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_97, $x_44])));
@@ -8617,7 +10084,7 @@ $c_Llivechart_Main$.prototype.renderMenu__Lcom_raquo_laminar_nodes_ReactiveEleme
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
   var eventProp$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
   var this$87 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$4, false, false));
-  var onNext$4 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$87) => {
+  var onNext$4 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$107) => {
     this.setWorkbookLanguage__T__V("de");
   }));
   var $x_32 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_modifiers_EventListener(this$87, onNext$4);
@@ -8642,7 +10109,7 @@ $c_Llivechart_Main$.prototype.renderMenu__Lcom_raquo_laminar_nodes_ReactiveEleme
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
   var eventProp$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
   var this$91 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$5, false, false));
-  var onNext$5 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$88) => {
+  var onNext$5 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$108) => {
     this.setWorkbookLanguage__T__V("en");
   }));
   var $x_21 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_modifiers_EventListener(this$91, onNext$5);
@@ -8675,7 +10142,7 @@ $c_Llivechart_Main$.prototype.renderMenu__Lcom_raquo_laminar_nodes_ReactiveEleme
     $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
     var eventProp$6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
     var this$118 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$6, false, false));
-    var onNext$6 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$89) => {
+    var onNext$6 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$109) => {
       var elems$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T.getArrayOf().constr)(["einfuehrung", "nachricht", "maskierung", "fehlerkorrektur", "praxisanwendungen", "zusammenfassung", "barcodes"]));
       var chapters = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$2);
       var this$98 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_allResponsesVar);
@@ -8734,15 +10201,15 @@ $c_Llivechart_Main$.prototype.renderMenu__Lcom_raquo_laminar_nodes_ReactiveEleme
 });
 $c_Llivechart_Main$.prototype.renderMaskierungAufgabe__Lcom_raquo_laminar_nodes_ReactiveElement = (function() {
   var this$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.loadFromLocalStorage__T__s_Option("maskierung"));
-  var f$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$90) => {
-    var _$90$1 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(_$90);
-    var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$90$1).Llivechart_Main$ChapterData__f_exercises).find__F1__s_Option(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$91) => {
-      var _$91$1 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(_$91);
-      return ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$91$1).Llivechart_Main$ExerciseResponse__f_task === "Beschreibe, wie die Maskierung funktioniert. Erg\u00e4nze die S\u00e4tze.");
+  var f$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$110) => {
+    var _$110$1 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(_$110);
+    var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$110$1).Llivechart_Main$ChapterData__f_exercises).find__F1__s_Option(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$111) => {
+      var _$111$1 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(_$111);
+      return ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$111$1).Llivechart_Main$ExerciseResponse__f_task === "Beschreibe, wie die Maskierung funktioniert. Erg\u00e4nze die S\u00e4tze.");
     }))));
-    var f = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$92) => {
-      var _$92$1 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(_$92);
-      return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$92$1).Llivechart_Main$ExerciseResponse__f_answer;
+    var f = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$112) => {
+      var _$112$1 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(_$112);
+      return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$112$1).Llivechart_Main$ExerciseResponse__f_answer;
     }));
     return (this$2.isEmpty__Z() ? $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$() : $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(f.apply__O__O(this$2.get__O())));
   }));
@@ -8755,14 +10222,14 @@ $c_Llivechart_Main$.prototype.renderMaskierungAufgabe__Lcom_raquo_laminar_nodes_
   if ((!this$4.isEmpty__Z())) {
     f$2.apply__O__O(this$4.get__O());
   }
-  matchResult107$1: {
-    var \u03b410$;
-    matchResult106$1: {
-      var x401;
+  matchResult124$1: {
+    var \u03b411$;
+    matchResult123$1: {
+      var x439;
       if ((savedData instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
         var json = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(savedData)).s_Some__f_value);
-        var x401 = $p_Llivechart_Main$__liftedTree1$1__T__T6(this, json);
-        break matchResult106$1;
+        var x439 = $p_Llivechart_Main$__liftedTree1$1__T__T6(this, json);
+        break matchResult123$1;
       }
       var x = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
       if ((x === savedData)) {
@@ -8773,29 +10240,29 @@ $c_Llivechart_Main$.prototype.renderMaskierungAufgabe__Lcom_raquo_laminar_nodes_
         var this$6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Vector$();
         var elem = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction0_$$Lambda$92a2e254bbb9c06a0a02fc31abab59c51c18ecc1((() => false));
         var _2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_StrictOptimizedSeqFactory__fill__I__F0__sc_SeqOps(this$6, 16, elem);
-        var x401 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T6(_1, _2, "", "", "", "");
-        break matchResult106$1;
+        var x439 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T6(_1, _2, "", "", "", "");
+        break matchResult123$1;
       }
       throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(savedData);
     }
-    if ((x401 !== null)) {
-      var loadedOriginal = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x401).T6__f__1);
-      var loadedMask = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x401).T6__f__2);
-      var loadedA1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x401).T6__f__3);
-      var loadedA2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x401).T6__f__4);
-      var loadedA3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x401).T6__f__5);
-      var loadedA4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x401).T6__f__6);
-      var \u03b410$ = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T6(loadedOriginal, loadedMask, loadedA1, loadedA2, loadedA3, loadedA4);
-      break matchResult107$1;
+    if ((x439 !== null)) {
+      var loadedOriginal = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x439).T6__f__1);
+      var loadedMask = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x439).T6__f__2);
+      var loadedA1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x439).T6__f__3);
+      var loadedA2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x439).T6__f__4);
+      var loadedA3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x439).T6__f__5);
+      var loadedA4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x439).T6__f__6);
+      var \u03b411$ = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T6(loadedOriginal, loadedMask, loadedA1, loadedA2, loadedA3, loadedA4);
+      break matchResult124$1;
     }
-    throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x401);
+    throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x439);
   }
-  var loadedOriginal$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector(\u03b410$.T6__f__1);
-  var loadedMask$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector(\u03b410$.T6__f__2);
-  var loadedA1$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(\u03b410$.T6__f__3);
-  var loadedA2$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(\u03b410$.T6__f__4);
-  var loadedA3$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(\u03b410$.T6__f__5);
-  var loadedA4$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(\u03b410$.T6__f__6);
+  var loadedOriginal$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector(\u03b411$.T6__f__1);
+  var loadedMask$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector(\u03b411$.T6__f__2);
+  var loadedA1$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(\u03b411$.T6__f__3);
+  var loadedA2$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(\u03b411$.T6__f__4);
+  var loadedA3$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(\u03b411$.T6__f__5);
+  var loadedA4$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(\u03b411$.T6__f__6);
   var originalData = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_Var).apply__O__Lcom_raquo_airstream_state_Var(loadedOriginal$2);
   var maskPattern = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_Var).apply__O__Lcom_raquo_airstream_state_Var(loadedMask$2);
   var answer1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_Var).apply__O__Lcom_raquo_airstream_state_Var(loadedA1$2);
@@ -9438,7 +10905,7 @@ $c_Llivechart_Main$.prototype.renderMaskierungAufgabe__Lcom_raquo_laminar_nodes_
   var $x_5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildTextInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_inserters_DynamicInserter(textSource$23, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable);
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
   var eventProp$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
-  var this$261 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$4, false, false)).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$95) => {
+  var this$261 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$4, false, false)).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$115) => {
     var this$225 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(answer1);
     var this$226 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$225.Lcom_raquo_airstream_state_SourceVar__f_signal);
     var a1$7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$226.tryNow__s_util_Try()).get__O());
@@ -9502,11 +10969,11 @@ $c_Llivechart_Main$.prototype.renderMaskierungAufgabe__Lcom_raquo_laminar_nodes_
   var project$35 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$2$1) => {
     var x$1$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(x$1$2$1);
     if ((x$1$4 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
-      var x423 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$4)).s_Some__f_value);
-      if ((x423 === true)) {
+      var x461 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$4)).s_Some__f_value);
+      if ((x461 === true)) {
         return "btn-time btn-success";
       }
-      if ((x423 === false)) {
+      if ((x461 === false)) {
         return "btn-time btn-error";
       }
     }
@@ -9550,7 +11017,7 @@ $c_Llivechart_Main$.prototype.renderSimplePixelGrid__I__I__Lcom_raquo_airstream_
           $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
           var eventProp = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
           var this$6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp, false, false));
-          var onNext = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$96) => {
+          var onNext = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$116) => {
             var this$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(gridVar);
             var mod = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((g) => {
               var g$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector(g);
@@ -9577,14 +11044,14 @@ $c_Llivechart_Main$.prototype.renderMaskierungAufgabe3__Lcom_raquo_laminar_nodes
     var $x_1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
   } else {
     var x0 = this$1.get__O();
-    var _$97 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(x0);
-    var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$97).Llivechart_Main$ChapterData__f_exercises);
+    var _$117 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(x0);
+    var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$117).Llivechart_Main$ChapterData__f_exercises);
     _return: {
       var these = this$2;
       while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).isEmpty__Z())) {
         var x0$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).head__O();
-        var _$98 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$1);
-        if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$98).Llivechart_Main$ExerciseResponse__f_task === "Berechne durch Anwenden der XOR-Operation die korrekten maskierten Daten.")) {
+        var _$118 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$1);
+        if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$118).Llivechart_Main$ExerciseResponse__f_task === "Berechne durch Anwenden der XOR-Operation die korrekten maskierten Daten.")) {
           var this$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).head__O());
           break _return;
         }
@@ -9596,8 +11063,8 @@ $c_Llivechart_Main$.prototype.renderMaskierungAufgabe3__Lcom_raquo_laminar_nodes
       var $x_1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
     } else {
       var x0$2 = this$3.get__O();
-      var _$99 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$2);
-      var $x_1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$99).Llivechart_Main$ExerciseResponse__f_answer;
+      var _$119 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$2);
+      var $x_1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$119).Llivechart_Main$ExerciseResponse__f_answer;
     }
   }
   var this$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_1);
@@ -9640,8 +11107,8 @@ $c_Llivechart_Main$.prototype.renderMaskierungAufgabe3__Lcom_raquo_laminar_nodes
     var $x_3 = true;
   } else {
     var x0$5 = this$15.get__O();
-    var _$101 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector(x0$5);
-    var $x_3 = ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$101).length__I() === 16);
+    var _$121 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector(x0$5);
+    var $x_3 = ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$121).length__I() === 16);
   }
   if ($x_3) {
     var this$16 = this$15;
@@ -9796,23 +11263,23 @@ $c_Llivechart_Main$.prototype.renderMaskierungAufgabe3__Lcom_raquo_laminar_nodes
         var $x_19 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$44.apply__O__s_Option(r$6));
         var this$45 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_$less$colon$less$();
         var rowStatusValue = $x_19.flatten__s_$less$colon$less__s_Option(this$45.s_$less$colon$less$__f_singleton);
-        matchResult114: {
+        matchResult131: {
           var rowStyle;
           if ((rowStatusValue instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
-            var x434 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(rowStatusValue)).s_Some__f_value);
-            if ((x434 === true)) {
+            var x472 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(rowStatusValue)).s_Some__f_value);
+            if ((x472 === true)) {
               var rowStyle = "border: 2px solid #4CAF50;";
-              break matchResult114;
+              break matchResult131;
             }
-            if ((x434 === false)) {
+            if ((x472 === false)) {
               var rowStyle = "border: 2px solid #f44336;";
-              break matchResult114;
+              break matchResult131;
             }
           }
           var x$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
           if ((x$2 === rowStatusValue)) {
             var rowStyle = "";
-            break matchResult114;
+            break matchResult131;
           }
           throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(rowStatusValue);
         }
@@ -9841,7 +11308,7 @@ $c_Llivechart_Main$.prototype.renderMaskierungAufgabe3__Lcom_raquo_laminar_nodes
           $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
           var eventProp = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
           var this$54 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp, false, false));
-          var onNext = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$102) => {
+          var onNext = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$122) => {
             var this$53 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(userMaskedData);
             var mod = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((g) => {
               var g$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector(g);
@@ -9907,7 +11374,7 @@ $c_Llivechart_Main$.prototype.renderMaskierungAufgabe3__Lcom_raquo_laminar_nodes
   var $x_14 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_nodes_TextNode(this$62, "Abgeben", r$7);
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
   var eventProp$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
-  var this$84 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$1, false, false)).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$103) => {
+  var this$84 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$1, false, false)).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$123) => {
     var this$64 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(userMaskedData);
     var this$65 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$64.Lcom_raquo_airstream_state_SourceVar__f_signal);
     var current$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$65.tryNow__s_util_Try()).get__O());
@@ -9992,11 +11459,11 @@ $c_Llivechart_Main$.prototype.renderMaskierungAufgabe3__Lcom_raquo_laminar_nodes
   var project$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$3$1) => {
     var x$1$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(x$1$3$1);
     if ((x$1$4 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
-      var x442 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$4)).s_Some__f_value);
-      if ((x442 === true)) {
+      var x480 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$4)).s_Some__f_value);
+      if ((x480 === true)) {
         return "btn-time btn-success";
       }
-      if ((x442 === false)) {
+      if ((x480 === false)) {
         return "btn-time btn-error";
       }
     }
@@ -10014,14 +11481,14 @@ $c_Llivechart_Main$.prototype.renderMaskierungAufgabe7__Lcom_raquo_laminar_nodes
     var savedData = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
   } else {
     var x0 = this$1.get__O();
-    var _$104 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(x0);
-    var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$104).Llivechart_Main$ChapterData__f_exercises);
+    var _$124 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(x0);
+    var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$124).Llivechart_Main$ChapterData__f_exercises);
     _return: {
       var these = this$2;
       while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).isEmpty__Z())) {
         var x0$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).head__O();
-        var _$105 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$1);
-        if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$105).Llivechart_Main$ExerciseResponse__f_task === "Berechne im ersten Schritt die maskierten Daten. Wende die Maske anschlie\u00dfend ein zweites Mal auf die maskierten Daten an. Trage deine Ergebnisse in die beiden rechten Bereiche ein.")) {
+        var _$125 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$1);
+        if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$125).Llivechart_Main$ExerciseResponse__f_task === "Berechne im ersten Schritt die maskierten Daten. Wende die Maske anschlie\u00dfend ein zweites Mal auf die maskierten Daten an. Trage deine Ergebnisse in die beiden rechten Bereiche ein.")) {
           var this$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).head__O());
           break _return;
         }
@@ -10033,19 +11500,19 @@ $c_Llivechart_Main$.prototype.renderMaskierungAufgabe7__Lcom_raquo_laminar_nodes
       var savedData = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
     } else {
       var x0$2 = this$3.get__O();
-      var _$106 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$2);
-      var savedData = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$106).Llivechart_Main$ExerciseResponse__f_answer;
+      var _$126 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$2);
+      var savedData = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$126).Llivechart_Main$ExerciseResponse__f_answer;
     }
   }
-  matchResult118: {
-    var \u03b411$___1;
-    var \u03b411$___2;
-    matchResult117$1: {
-      var x446;
+  matchResult135: {
+    var \u03b412$___1;
+    var \u03b412$___2;
+    matchResult134$1: {
+      var x484;
       if ((savedData instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
         var json = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(savedData)).s_Some__f_value);
-        var x446 = $p_Llivechart_Main$__liftedTree2$1__T__T2(this, json);
-        break matchResult117$1;
+        var x484 = $p_Llivechart_Main$__liftedTree2$1__T__T2(this, json);
+        break matchResult134$1;
       }
       var x = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
       if ((x === savedData)) {
@@ -10065,22 +11532,22 @@ $c_Llivechart_Main$.prototype.renderMaskierungAufgabe7__Lcom_raquo_laminar_nodes
           i$1 = ((1 + i$1) | 0);
         }
         var _2 = b$1.result__sci_Vector();
-        var x446 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(_1, _2);
-        break matchResult117$1;
+        var x484 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2(_1, _2);
+        break matchResult134$1;
       }
       throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(savedData);
     }
-    if ((x446 !== null)) {
-      var loadedData1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x446)._1__O());
-      var loadedData2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x446)._2__O());
-      var \u03b411$___1 = loadedData1;
-      var \u03b411$___2 = loadedData2;
-      break matchResult118;
+    if ((x484 !== null)) {
+      var loadedData1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x484)._1__O());
+      var loadedData2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x484)._2__O());
+      var \u03b412$___1 = loadedData1;
+      var \u03b412$___2 = loadedData2;
+      break matchResult135;
     }
-    throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x446);
+    throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x484);
   }
-  var loadedData1$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector(\u03b411$___1);
-  var loadedData2$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector(\u03b411$___2);
+  var loadedData1$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector(\u03b412$___1);
+  var loadedData2$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector(\u03b412$___2);
   var $x_1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_Var);
   var this$8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Vector$();
   var elems = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapBooleanArray__AZ__sci_ArraySeq(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$ac_Z([true, true, false, false, false, false, true, true, true, false, true, false, false, true, false, true]));
@@ -10234,23 +11701,23 @@ $c_Llivechart_Main$.prototype.renderMaskierungAufgabe7__Lcom_raquo_laminar_nodes
         var $x_82 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$37.apply__O__s_Option(r$6));
         var this$38 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_$less$colon$less$();
         var rowStatusValue = $x_82.flatten__s_$less$colon$less__s_Option(this$38.s_$less$colon$less$__f_singleton);
-        matchResult121: {
+        matchResult138: {
           var rowStyle;
           if ((rowStatusValue instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
-            var x459 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(rowStatusValue)).s_Some__f_value);
-            if ((x459 === true)) {
+            var x497 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(rowStatusValue)).s_Some__f_value);
+            if ((x497 === true)) {
               var rowStyle = "border: 2px solid #4CAF50;";
-              break matchResult121;
+              break matchResult138;
             }
-            if ((x459 === false)) {
+            if ((x497 === false)) {
               var rowStyle = "border: 2px solid #f44336;";
-              break matchResult121;
+              break matchResult138;
             }
           }
           var x$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
           if ((x$2 === rowStatusValue)) {
             var rowStyle = "";
-            break matchResult121;
+            break matchResult138;
           }
           throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(rowStatusValue);
         }
@@ -10280,7 +11747,7 @@ $c_Llivechart_Main$.prototype.renderMaskierungAufgabe7__Lcom_raquo_laminar_nodes
           $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
           var eventProp = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
           var this$47 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp, false, false));
-          var onNext = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$109) => {
+          var onNext = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$129) => {
             var this$46 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(userMaskedData1);
             var mod = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((g) => {
               var g$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector(g);
@@ -10331,7 +11798,7 @@ $c_Llivechart_Main$.prototype.renderMaskierungAufgabe7__Lcom_raquo_laminar_nodes
   var $x_78 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_nodes_TextNode(this$51, "Abgeben", r$7);
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
   var eventProp$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
-  var this$75 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$1, false, false)).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$110) => {
+  var this$75 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$1, false, false)).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$130) => {
     var this$53 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(userMaskedData1);
     var this$54 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$53.Lcom_raquo_airstream_state_SourceVar__f_signal);
     var current1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$54.tryNow__s_util_Try()).get__O());
@@ -10417,11 +11884,11 @@ $c_Llivechart_Main$.prototype.renderMaskierungAufgabe7__Lcom_raquo_laminar_nodes
   var project$2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$4$1) => {
     var x$1$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(x$1$4$1);
     if ((x$1$5 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
-      var x467 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$5)).s_Some__f_value);
-      if ((x467 === true)) {
+      var x505 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$5)).s_Some__f_value);
+      if ((x505 === true)) {
         return "btn-time btn-success";
       }
-      if ((x467 === false)) {
+      if ((x505 === false)) {
         return "btn-time btn-error";
       }
     }
@@ -10572,23 +12039,23 @@ $c_Llivechart_Main$.prototype.renderMaskierungAufgabe7__Lcom_raquo_laminar_nodes
         var $x_15 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$104.apply__O__s_Option(v1$1));
         var this$105 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_$less$colon$less$();
         var rowStatusValue$1 = $x_15.flatten__s_$less$colon$less__s_Option(this$105.s_$less$colon$less$__f_singleton);
-        matchResult124: {
+        matchResult141: {
           var rowStyle$1;
           if ((rowStatusValue$1 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
-            var x472 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(rowStatusValue$1)).s_Some__f_value);
-            if ((x472 === true)) {
+            var x510 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(rowStatusValue$1)).s_Some__f_value);
+            if ((x510 === true)) {
               var rowStyle$1 = "border: 2px solid #4CAF50;";
-              break matchResult124;
+              break matchResult141;
             }
-            if ((x472 === false)) {
+            if ((x510 === false)) {
               var rowStyle$1 = "border: 2px solid #f44336;";
-              break matchResult124;
+              break matchResult141;
             }
           }
           var x$6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
           if ((x$6 === rowStatusValue$1)) {
             var rowStyle$1 = "";
-            break matchResult124;
+            break matchResult141;
           }
           throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(rowStatusValue$1);
         }
@@ -10618,7 +12085,7 @@ $c_Llivechart_Main$.prototype.renderMaskierungAufgabe7__Lcom_raquo_laminar_nodes
           $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
           var eventProp$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
           var this$114 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$2, false, false));
-          var onNext$2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$111) => {
+          var onNext$2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$131) => {
             var this$113 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(userMaskedData2);
             var mod$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((g$2) => {
               var g$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector(g$2);
@@ -10669,7 +12136,7 @@ $c_Llivechart_Main$.prototype.renderMaskierungAufgabe7__Lcom_raquo_laminar_nodes
   var $x_11 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_nodes_TextNode(this$118, "Abgeben", r$17);
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
   var eventProp$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
-  var this$143 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$3, false, false)).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$112) => {
+  var this$143 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$3, false, false)).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$132) => {
     var this$120 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(userMaskedData2);
     var this$121 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$120.Lcom_raquo_airstream_state_SourceVar__f_signal);
     var current2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Vector($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$121.tryNow__s_util_Try()).get__O());
@@ -10754,11 +12221,11 @@ $c_Llivechart_Main$.prototype.renderMaskierungAufgabe7__Lcom_raquo_laminar_nodes
   var project$5 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$6$1) => {
     var x$1$7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(x$1$6$1);
     if ((x$1$7 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
-      var x480 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$7)).s_Some__f_value);
-      if ((x480 === true)) {
+      var x518 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$7)).s_Some__f_value);
+      if ((x518 === true)) {
         return "btn-time btn-success";
       }
-      if ((x480 === false)) {
+      if ((x518 === false)) {
         return "btn-time btn-error";
       }
     }
@@ -10805,14 +12272,14 @@ $c_Llivechart_Main$.prototype.renderFehlerkorrekturLueckentext__Lcom_raquo_lamin
     var savedData = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
   } else {
     var x0 = this$1.get__O();
-    var _$114 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(x0);
-    var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$114).Llivechart_Main$ChapterData__f_exercises);
+    var _$134 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(x0);
+    var this$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$134).Llivechart_Main$ChapterData__f_exercises);
     _return: {
       var these = this$2;
       while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).isEmpty__Z())) {
         var x0$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).head__O();
-        var _$115 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$1);
-        if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$115).Llivechart_Main$ExerciseResponse__f_task === "Erg\u00e4nze die L\u00fccken im folgenden Text:")) {
+        var _$135 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$1);
+        if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$135).Llivechart_Main$ExerciseResponse__f_task === "Erg\u00e4nze die L\u00fccken im folgenden Text:")) {
           var this$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).head__O());
           break _return;
         }
@@ -10824,8 +12291,8 @@ $c_Llivechart_Main$.prototype.renderFehlerkorrekturLueckentext__Lcom_raquo_lamin
       var savedData = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
     } else {
       var x0$2 = this$3.get__O();
-      var _$116 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$2);
-      var savedData = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$116).Llivechart_Main$ExerciseResponse__f_answer;
+      var _$136 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$2);
+      var savedData = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$136).Llivechart_Main$ExerciseResponse__f_answer;
     }
   }
   var this$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(savedData);
@@ -10834,43 +12301,43 @@ $c_Llivechart_Main$.prototype.renderFehlerkorrekturLueckentext__Lcom_raquo_lamin
     var data = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x0$3);
     console.log(("Loading L\u00fcckentext data: " + data));
   }
-  matchResult129: {
-    var \u03b412$___1;
-    var \u03b412$___2;
-    var \u03b412$___3;
-    var \u03b412$___4;
-    matchResult128$1: {
-      var x487;
+  matchResult146: {
+    var \u03b413$___1;
+    var \u03b413$___2;
+    var \u03b413$___3;
+    var \u03b413$___4;
+    matchResult145$1: {
+      var x525;
       if ((savedData instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
         var json = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(savedData)).s_Some__f_value);
-        var x487 = $p_Llivechart_Main$__liftedTree3$1__T__T4(this, json);
-        break matchResult128$1;
+        var x525 = $p_Llivechart_Main$__liftedTree3$1__T__T4(this, json);
+        break matchResult145$1;
       }
       var x = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
       if ((x === savedData)) {
         console.log("No saved data found for L\u00fcckentext");
-        var x487 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T4("", "", "", "");
-        break matchResult128$1;
+        var x525 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T4("", "", "", "");
+        break matchResult145$1;
       }
       throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(savedData);
     }
-    if ((x487 !== null)) {
-      var loadedA1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x487).T4__f__1);
-      var loadedA2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x487).T4__f__2);
-      var loadedA3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x487).T4__f__3);
-      var loadedA4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x487).T4__f__4);
-      var \u03b412$___1 = loadedA1;
-      var \u03b412$___2 = loadedA2;
-      var \u03b412$___3 = loadedA3;
-      var \u03b412$___4 = loadedA4;
-      break matchResult129;
+    if ((x525 !== null)) {
+      var loadedA1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x525).T4__f__1);
+      var loadedA2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x525).T4__f__2);
+      var loadedA3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x525).T4__f__3);
+      var loadedA4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x525).T4__f__4);
+      var \u03b413$___1 = loadedA1;
+      var \u03b413$___2 = loadedA2;
+      var \u03b413$___3 = loadedA3;
+      var \u03b413$___4 = loadedA4;
+      break matchResult146;
     }
-    throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x487);
+    throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x525);
   }
-  var loadedA1$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(\u03b412$___1);
-  var loadedA2$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(\u03b412$___2);
-  var loadedA3$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(\u03b412$___3);
-  var loadedA4$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(\u03b412$___4);
+  var loadedA1$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(\u03b413$___1);
+  var loadedA2$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(\u03b413$___2);
+  var loadedA3$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(\u03b413$___3);
+  var loadedA4$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(\u03b413$___4);
   var answer1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_Var).apply__O__Lcom_raquo_airstream_state_Var(loadedA1$2);
   var answer2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_Var).apply__O__Lcom_raquo_airstream_state_Var(loadedA2$2);
   var answer3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_Var).apply__O__Lcom_raquo_airstream_state_Var(loadedA3$2);
@@ -11179,7 +12646,7 @@ $c_Llivechart_Main$.prototype.renderFehlerkorrekturLueckentext__Lcom_raquo_lamin
   var $x_6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_nodes_TextNode(this$95, "Abgeben", r$21);
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
   var eventProp$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
-  var this$114 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$4, false, false)).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$117) => {
+  var this$114 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$4, false, false)).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$137) => {
     var this$97 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(answer1);
     var this$98 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$97.Lcom_raquo_airstream_state_SourceVar__f_signal);
     var a1$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$98.tryNow__s_util_Try()).get__O());
@@ -11225,11 +12692,11 @@ $c_Llivechart_Main$.prototype.renderFehlerkorrekturLueckentext__Lcom_raquo_lamin
   var project$7 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1) => {
     var x$1$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(x$1);
     if ((x$1$1 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
-      var x501 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$1)).s_Some__f_value);
-      if ((x501 === true)) {
+      var x539 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$1)).s_Some__f_value);
+      if ((x539 === true)) {
         return "btn-success";
       }
-      if ((x501 === false)) {
+      if ((x539 === false)) {
         return "btn-error";
       }
     }
@@ -11331,7 +12798,7 @@ $c_Llivechart_Main$.prototype.imageWithFallback__T__T__I__Lcom_raquo_laminar_nod
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
   var eventProp = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onError__Lcom_raquo_laminar_keys_EventProp();
   var this$12 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp, false, false));
-  var onNext = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$118) => {
+  var onNext = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$138) => {
     var this$7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(idxVar);
     var this$8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$7.Lcom_raquo_airstream_state_SourceVar__f_signal);
     var next = ((1 + $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$8.tryNow__s_util_Try()).get__O())) | 0);
@@ -11353,52 +12820,41 @@ $c_Llivechart_Main$.prototype.renderExercise__T__sci_Set__I__s_Option__T__s_Opti
   } else {
     var storedData = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
   }
-  var this$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(storedData);
-  if (this$4.isEmpty__Z()) {
-    var this$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
-  } else {
-    var x0 = this$4.get__O();
-    var _$119 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(x0);
-    var this$5 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$119).Llivechart_Main$ChapterData__f_exercises);
-  }
-  if (this$5.isEmpty__Z()) {
+  var this$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(storedData);
+  var f = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$139) => {
+    var _$139$1 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(_$139);
+    return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$139$1).Llivechart_Main$ChapterData__f_exercises;
+  }));
+  var this$7 = (this$5.isEmpty__Z() ? $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$() : new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(f.apply__O__O(this$5.get__O())));
+  var default$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction0_$$Lambda$92a2e254bbb9c06a0a02fc31abab59c51c18ecc1((() => {
     var elems = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().genericWrapArray__O__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_sr_Nothing$.getArrayOf().constr)([]));
-    var $x_1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems);
-  } else {
-    var $x_1 = this$5.get__O();
-  }
-  var storedAnswers = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($x_1);
-  var this$7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(storedAnswers);
-  _return: {
-    var these = this$7;
-    while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).isEmpty__Z())) {
-      var x0$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).head__O();
-      var _$120 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$1);
-      if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$120).Llivechart_Main$ExerciseResponse__f_task === taskText)) {
-        var this$8 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).head__O());
-        break _return;
-      }
-      these = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).tail__O());
-    }
-    var this$8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
-  }
-  if (this$8.isEmpty__Z()) {
-    var $x_2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
-  } else {
-    var x0$2 = this$8.get__O();
-    var _$121 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$2);
-    var $x_2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$121).Llivechart_Main$ExerciseResponse__f_answer;
-  }
-  var this$9 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_2);
-  var initialText = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T((this$9.isEmpty__Z() ? "" : this$9.get__O()));
+    return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems);
+  }));
+  var storedAnswers = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List((this$7.isEmpty__Z() ? default$1.apply__O() : this$7.get__O()));
+  var this$8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(storedAnswers).find__F1__s_Option(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$140) => {
+    var _$140$1 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(_$140);
+    return ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$140$1).Llivechart_Main$ExerciseResponse__f_task === taskText);
+  }))));
+  var f$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$141) => {
+    var _$141$1 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(_$141);
+    return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$141$1).Llivechart_Main$ExerciseResponse__f_answer;
+  }));
+  var this$9 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n((this$8.isEmpty__Z() ? $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$() : $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(f$1.apply__O__O(this$8.get__O()))));
+  var default$2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction0_$$Lambda$92a2e254bbb9c06a0a02fc31abab59c51c18ecc1((() => ""));
+  var initialText = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T((this$9.isEmpty__Z() ? default$2.apply__O() : this$9.get__O()));
   var storedStatus = this.loadExerciseStatus__T__T__Llivechart_Main$ExerciseStatus(chapter, taskText);
   var initialShowSolution = ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(storedStatus).Llivechart_Main$ExerciseStatus__f_showSolution && $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(storedStatus).Llivechart_Main$ExerciseStatus__f_lastCheck).contains__O__Z(false));
   var textVar = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_Var).apply__O__Lcom_raquo_airstream_state_Var(initialText);
   var lastCheckVar = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_Var).apply__O__Lcom_raquo_airstream_state_Var($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(storedStatus).Llivechart_Main$ExerciseStatus__f_lastCheck);
   var showSolutionVar = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_Var).apply__O__Lcom_raquo_airstream_state_Var(initialShowSolution);
-  var $x_3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_Var);
+  var $x_1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_Var);
   var y = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(storedStatus).Llivechart_Main$ExerciseStatus__f_wrongAttempts;
-  var wrongAttemptsVar = $x_3.apply__O__Lcom_raquo_airstream_state_Var(((y < 0) ? 0 : y));
+  var wrongAttemptsVar = $x_1.apply__O__Lcom_raquo_airstream_state_Var(((y < 0) ? 0 : y));
+  var llmPendingVar = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_Var).apply__O__Lcom_raquo_airstream_state_Var(false);
+  var llmFallbackVar = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_Var).apply__O__Lcom_raquo_airstream_state_Var(false);
+  var llmDecisionVar = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_Var).apply__O__Lcom_raquo_airstream_state_Var(false);
+  var answerScoreVar = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_Var).apply__O__Lcom_raquo_airstream_state_Var($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
+  var answerFeedbackVar = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_Var).apply__O__Lcom_raquo_airstream_state_Var($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
   var this$12 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(solutionWords);
   if ((!this$12.isEmpty__Z())) {
     var effectiveSolutionWords = solutionWords;
@@ -11413,9 +12869,9 @@ $c_Llivechart_Main$.prototype.renderExercise__T__sci_Set__I__s_Option__T__s_Opti
   var wordCountSignal = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$13, project, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
   var buttonClassSignal = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_airstream_state_Val$().apply__O__Lcom_raquo_airstream_state_Val("");
-  if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(keywords).exists__F1__Z(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$123) => {
-    var _$123$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(_$123);
-    var this$16 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__trim__T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$123$1)));
+  if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(keywords).exists__F1__Z(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$143) => {
+    var _$143$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(_$143);
+    var this$16 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__trim__T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$143$1)));
     return (this$16 === "");
   })))) {
     var suppressPraise = true;
@@ -11432,114 +12888,79 @@ $c_Llivechart_Main$.prototype.renderExercise__T__sci_Set__I__s_Option__T__s_Opti
   var this$21 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(chapter);
   if ((!(this$21 === ""))) {
     var this$22 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(multipleChoice);
-    var $x_4 = (!this$22.isEmpty__Z());
+    var $x_2 = (!this$22.isEmpty__Z());
   } else {
-    var $x_4 = false;
+    var $x_2 = false;
   }
-  if ($x_4) {
+  if ($x_2) {
     var storedMcData = this.loadFromLocalStorage__T__s_Option(chapter);
   } else {
     var storedMcData = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
   }
   var this$23 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(storedMcData);
-  if (this$23.isEmpty__Z()) {
-    var this$24 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
-  } else {
-    var x0$3 = this$23.get__O();
-    var _$124 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(x0$3);
-    var this$24 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$124).Llivechart_Main$ChapterData__f_exercises);
-  }
-  if (this$24.isEmpty__Z()) {
+  var f$2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$144) => {
+    var _$144$1 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(_$144);
+    return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$144$1).Llivechart_Main$ChapterData__f_exercises;
+  }));
+  var this$25 = (this$23.isEmpty__Z() ? $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$() : new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(f$2.apply__O__O(this$23.get__O())));
+  var default$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction0_$$Lambda$92a2e254bbb9c06a0a02fc31abab59c51c18ecc1((() => {
     var elems$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().genericWrapArray__O__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_sr_Nothing$.getArrayOf().constr)([]));
-    var $x_5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$1);
+    return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$1);
+  }));
+  var storedMcAnswers = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List((this$25.isEmpty__Z() ? default$3.apply__O() : this$25.get__O()));
+  var this$26 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(storedMcAnswers).find__F1__s_Option(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$145) => {
+    var _$145$1 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(_$145);
+    return ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$145$1).Llivechart_Main$ExerciseResponse__f_task === mcTaskText);
+  }))));
+  var f$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$146) => {
+    var _$146$1 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(_$146);
+    return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$146$1).Llivechart_Main$ExerciseResponse__f_answer;
+  }));
+  var this$27 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n((this$26.isEmpty__Z() ? $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$() : $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(f$3.apply__O__O(this$26.get__O()))));
+  var default$4 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction0_$$Lambda$92a2e254bbb9c06a0a02fc31abab59c51c18ecc1((() => ""));
+  var storedMcAnswer = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T((this$27.isEmpty__Z() ? default$4.apply__O() : this$27.get__O()));
+  var this$28 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(multipleChoice);
+  if ((!this$28.isEmpty__Z())) {
+    var this$31 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(storedMcAnswer);
+    var $x_3 = (!(this$31 === ""));
   } else {
-    var $x_5 = this$24.get__O();
+    var $x_3 = false;
   }
-  var storedMcAnswers = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($x_5);
-  var this$26 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(storedMcAnswers);
-  _return$1: {
-    var these$1 = this$26;
-    while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$1).isEmpty__Z())) {
-      var x0$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$1).head__O();
-      var _$125 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$4);
-      if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$125).Llivechart_Main$ExerciseResponse__f_task === mcTaskText)) {
-        var this$27 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$1).head__O());
-        break _return$1;
-      }
-      these$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$1).tail__O());
-    }
-    var this$27 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
-  }
-  if (this$27.isEmpty__Z()) {
-    var $x_6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
-  } else {
-    var x0$5 = this$27.get__O();
-    var _$126 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$5);
-    var $x_6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$126).Llivechart_Main$ExerciseResponse__f_answer;
-  }
-  var this$28 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_6);
-  var storedMcAnswer = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T((this$28.isEmpty__Z() ? "" : this$28.get__O()));
-  var this$29 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(multipleChoice);
-  if ((!this$29.isEmpty__Z())) {
-    var this$32 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(storedMcAnswer);
-    var $x_7 = (!(this$32 === ""));
-  } else {
-    var $x_7 = false;
-  }
-  if ($x_7) {
+  if ($x_3) {
     var choices = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(multipleChoice).get__O());
-    var $x_8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_Predef$();
-    var this$33 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(storedMcAnswer);
-    var xs = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__split__T__I__AT(this$33, ", ", 0);
-    var capacity = 0;
-    var size = 0;
-    var jsElems = null;
-    capacity = 0;
-    size = 0;
-    jsElems = [];
+    var $x_4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_Predef$();
+    var this$32 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(storedMcAnswer);
+    var xs = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__split__T__I__AT(this$32, ", ", 0);
+    var f$5 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((choice) => {
+      var choice$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(choice);
+      var this$34 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(choices);
+      var this$35 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_StrictOptimizedIterableOps__zipWithIndex__O(this$34))).find__F1__s_Option(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$147) => {
+        var _$147$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(_$147);
+        var x = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$147$1)._1__O()))._1__O();
+        return ((x === null) ? (choice$1 === null) : $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$dp_equals__O__Z($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x), choice$1));
+      }))));
+      var f$4 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$148) => {
+        var _$148$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(_$148);
+        return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$148$1)._2__O());
+      }));
+      return (this$35.isEmpty__Z() ? $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$() : new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(f$4.apply__O__O(this$35.get__O())));
+    }));
+    var b = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_scm_ArrayBuilder$generic($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_I.getClassOf());
     var i = 0;
     while ((i < $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(xs).u.length)) {
       var x1 = i;
-      var x0$6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(xs).get(x1);
-      var this$39 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(choices);
-      var this$40 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_StrictOptimizedIterableOps__zipWithIndex__O(this$39)));
-      _return$2: {
-        var these$2 = this$40;
-        while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$2).isEmpty__Z())) {
-          var x0$7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$2).head__O();
-          var _$127 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x0$7);
-          var x = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$127)._1__O()))._1__O();
-          if (((x === null) ? (x0$6 === null) : $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$dp_equals__O__Z($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x), x0$6))) {
-            var this$41 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$2).head__O());
-            break _return$2;
-          }
-          these$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$2).tail__O());
-        }
-        var this$41 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
-      }
-      if (this$41.isEmpty__Z()) {
-        var elems$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
-      } else {
-        var x0$8 = this$41.get__O();
-        var _$128 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x0$8);
-        var elems$2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$128)._2__O()));
-      }
-      var it = elems$2.iterator__sc_Iterator();
-      while ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(it).hasNext__Z()) {
-        var elem = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(it).next__O();
-        var unboxedElem = ((elem === null) ? 0 : elem);
-        jsElems.push(unboxedElem);
-      }
+      var elems$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sc_IterableOnce(f$5.apply__O__O($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(xs).get(x1)));
+      b.addAll__sc_IterableOnce__scm_ArrayBuilder$generic(elems$2);
       i = ((1 + i) | 0);
     }
-    var this$42 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_8.wrapIntArray__AI__scm_ArraySeq$ofInt(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$ac_I(new Int32Array(jsElems))));
-    var initialMcSelected = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Set$().from__sc_IterableOnce__sci_Set(this$42);
+    var this$40 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_4.wrapIntArray__AI__scm_ArraySeq$ofInt($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$asArrayOf_I(b.result__O(), 1)));
+    var initialMcSelected = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Set$().from__sc_IterableOnce__sci_Set(this$40);
   } else {
     var initialMcSelected = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Set$EmptySet$();
   }
   var mcSelectedVar = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_Var).apply__O__Lcom_raquo_airstream_state_Var(initialMcSelected);
-  var this$44 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(multipleChoice);
-  if (((!this$44.isEmpty__Z()) && showMCFeedback)) {
+  var this$42 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(multipleChoice);
+  if (((!this$42.isEmpty__Z()) && showMCFeedback)) {
     $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
     var value = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
     var statusSignal = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_airstream_state_Val$().apply__O__Lcom_raquo_airstream_state_Val(value);
@@ -11547,946 +12968,913 @@ $c_Llivechart_Main$.prototype.renderExercise__T__sci_Set__I__s_Option__T__s_Opti
     var statusSignal = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar).Lcom_raquo_airstream_state_SourceVar__f_signal;
   }
   var editor = new $j_livechart$002e$002dSimple$002dText$002dEditor.$c_Llivechart_SimpleTextEditor(textVar, statusSignal, numericOnly);
-  var this$48 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineNumericInputs);
-  var inlineInputLabels = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List((this$48.isEmpty__Z() ? $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$() : this$48.get__O()));
-  var this$49 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineInputLabels);
-  var f = ((_$129) => {
-    $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(_$129);
+  var this$46 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineNumericInputs);
+  var default$5 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction0_$$Lambda$92a2e254bbb9c06a0a02fc31abab59c51c18ecc1((() => $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$()));
+  var inlineInputLabels = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List((this$46.isEmpty__Z() ? default$5.apply__O() : this$46.get__O()));
+  var inlineInputVars = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineInputLabels).map__F1__sci_List(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$149) => {
+    $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(_$149);
     return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_Var).apply__O__Lcom_raquo_airstream_state_Var("");
-  });
-  if ((this$49 === $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$())) {
-    var inlineInputVars = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$();
-  } else {
-    var x0$9 = this$49.head__O();
-    var h = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sci_$colon$colon(f(x0$9), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$());
-    var t = h;
-    var rest = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List(this$49.tail__O());
-    while ((rest !== $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$())) {
-      var x0$10 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(rest).head__O();
-      var nx = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sci_$colon$colon(f(x0$10), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$());
-      $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(t).sci_$colon$colon__f_next = nx;
-      t = nx;
-      rest = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(rest).tail__O());
-    }
-    var inlineInputVars = h;
-  }
+  })));
   var inlineChecksVar = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_Var).apply__O__Lcom_raquo_airstream_state_Var($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
-  var this$52 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$ct_s_util_matching_Regex__T__sci_Seq__(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_util_matching_Regex(), "\\d+", $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$()).findAllIn__jl_CharSequence__s_util_matching_Regex$MatchIterator(initialText));
-  var initialInlineValues = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(this$52);
-  var this$54 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_StrictOptimizedIterableOps__zipWithIndex__O(inlineInputVars)));
-  var these$3 = this$54;
-  while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$3).isEmpty__Z())) {
-    var x0$11 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$3).head__O();
-    var x$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x0$11);
-    matchResult132: {
-      if ((x$1 !== null)) {
-        var v = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_Lcom_raquo_airstream_state_Var($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1)._1__O());
-        var idx = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1)._2__O());
-        var this$58 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(v);
-        var this$55 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(initialInlineValues);
-        var this$56 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_PartialFunction$Lifted(this$55);
-        var this$57 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$56.apply__O__s_Option(idx));
-        var value$1 = (this$57.isEmpty__Z() ? "" : this$57.get__O());
-        $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$58, value$1);
-        break matchResult132;
+  var this$49 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$ct_s_util_matching_Regex__T__sci_Seq__(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_util_matching_Regex(), "\\d+", $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$()).findAllIn__jl_CharSequence__s_util_matching_Regex$MatchIterator(initialText));
+  var initialInlineValues = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(this$49);
+  var this$51 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineInputVars);
+  var this$56 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_StrictOptimizedIterableOps__zipWithIndex__O(this$51)));
+  var f$6 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1) => {
+    var x$1$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x$1);
+    matchResult149: {
+      if ((x$1$1 !== null)) {
+        var v = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_Lcom_raquo_airstream_state_Var($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$1)._1__O());
+        var idx = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$1)._2__O());
+        var this$55 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(v);
+        var this$52 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(initialInlineValues);
+        var this$53 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_PartialFunction$Lifted(this$52);
+        var this$54 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$53.apply__O__s_Option(idx));
+        var default$6 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction0_$$Lambda$92a2e254bbb9c06a0a02fc31abab59c51c18ecc1((() => ""));
+        var value$1 = (this$54.isEmpty__Z() ? default$6.apply__O() : this$54.get__O());
+        $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$55, value$1);
+        break matchResult149;
       }
-      throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1);
+      throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$1);
     }
-    these$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$3).tail__O());
+  }));
+  var these = this$56;
+  while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).isEmpty__Z())) {
+    f$6.apply__O__O($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).head__O());
+    these = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).tail__O());
   }
-  var $x_119 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag());
-  var $x_118 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
-  var $x_117 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_className).$colon$eq__T__Lcom_raquo_laminar_modifiers_CompositeKeySetter((isExcursus ? "exercise-content excursus" : "exercise-content"));
-  var $x_116 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).h2__Lcom_raquo_laminar_tags_HtmlTag());
-  var $x_115 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+  var $x_139 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag());
+  var $x_138 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+  var $x_137 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_className).$colon$eq__T__Lcom_raquo_laminar_modifiers_CompositeKeySetter((isExcursus ? "exercise-content excursus" : "exercise-content"));
+  var $x_136 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).h2__Lcom_raquo_laminar_tags_HtmlTag());
+  var $x_135 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_child);
-  var this$59 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
+  var this$57 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
   var project$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((lang) => {
     var lang$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(lang);
     return ((index === (-1)) ? ((lang$1 === "en") ? "Task" : "Aufgabe") : ((lang$1 === "en") ? ("Task " + index) : ("Aufgabe " + index)));
   }));
-  var textSource = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$59, project$1, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
-  var $x_114 = $x_116.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_115.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildTextInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_inserters_DynamicInserter(textSource, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable)])));
-  var this$62 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
-  var this$61 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(image);
-  if (this$61.isEmpty__Z()) {
-    var nodes = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
-  } else {
-    var x0$12 = this$61.get__O();
-    var img = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_Lcom_raquo_laminar_nodes_ReactiveElement(x0$12);
-    var nodes = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag()).apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_cls).$colon$eq__T__Lcom_raquo_laminar_modifiers_CompositeKeySetter("exercise-image"), img]))));
-  }
-  var $x_113 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__nodeOptionToModifier__s_Option__Lcom_raquo_laminar_modifiers_Modifier(this$62, nodes);
-  var $x_112 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).p__Lcom_raquo_laminar_tags_HtmlTag());
-  var $x_111 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+  var textSource = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$57, project$1, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
+  var $x_134 = $x_136.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_135.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildTextInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_inserters_DynamicInserter(textSource, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable)])));
+  var this$60 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
+  var this$59 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(image);
+  var f$7 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((img) => {
+    var img$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_Lcom_raquo_laminar_nodes_ReactiveElement(img);
+    return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag()).apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_cls).$colon$eq__T__Lcom_raquo_laminar_modifiers_CompositeKeySetter("exercise-image"), img$1])));
+  }));
+  var nodes = (this$59.isEmpty__Z() ? $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$() : new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(f$7.apply__O__O(this$59.get__O())));
+  var $x_133 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__nodeOptionToModifier__s_Option__Lcom_raquo_laminar_modifiers_Modifier(this$60, nodes);
+  var $x_132 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).p__Lcom_raquo_laminar_tags_HtmlTag());
+  var $x_131 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_child);
-  var this$63 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
+  var this$61 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
   var project$2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((lang$2) => {
     var lang$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(lang$2);
     return $p_Llivechart_Main$__translatedNow__T__T__T(this, taskText, lang$3);
   }));
-  var textSource$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$63, project$2, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
-  var $x_110 = $x_112.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_111.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildTextInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_inserters_DynamicInserter(textSource$1, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("white-space: pre-wrap;")])));
-  var this$65 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineInputLabels);
-  if ((!this$65.isEmpty__Z())) {
-    var this$108 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
-    var $x_109 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
-    var $x_108 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag());
-    var $x_107 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
-    var $x_106 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("margin: 0.75rem 0; display: flex; flex-direction: column; gap: 0.5rem;");
+  var textSource$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$61, project$2, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
+  var $x_130 = $x_132.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_131.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildTextInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_inserters_DynamicInserter(textSource$1, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("white-space: pre-wrap;")])));
+  var this$63 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineInputLabels);
+  if ((!this$63.isEmpty__Z())) {
+    var this$102 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
+    var $x_129 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+    var $x_128 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag());
+    var $x_127 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+    var $x_126 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("margin: 0.75rem 0; display: flex; flex-direction: column; gap: 0.5rem;");
     $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
     $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
-    var this$68 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineInputLabels);
-    var value$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_StrictOptimizedIterableOps__zipWithIndex__O(this$68);
-    var this$94 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_airstream_state_Val$().apply__O__Lcom_raquo_airstream_state_Val(value$2));
-    var project$4 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$132) => {
-      var _$132$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List(_$132);
-      var this$93 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$132$1);
-      var f$1 = ((x$1$1) => {
-        var x$1$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x$1$1);
-        if ((x$1$2 !== null)) {
-          var labelText = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$2)._1__O());
-          var idx$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$2)._2__O());
-          var $x_105 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag());
-          var $x_104 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
-          var $x_103 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("display: flex; align-items: center; gap: 0.5rem;");
-          var $x_102 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).span__Lcom_raquo_laminar_tags_HtmlTag());
-          var $x_101 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
-          var this$70 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
+    var this$66 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineInputLabels);
+    var value$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_StrictOptimizedIterableOps__zipWithIndex__O(this$66);
+    var this$89 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_airstream_state_Val$().apply__O__Lcom_raquo_airstream_state_Val(value$2));
+    var project$4 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$152) => {
+      var _$152$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List(_$152);
+      return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$152$1).map__F1__sci_List(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$2) => {
+        var x$1$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x$1$2);
+        if ((x$1$3 !== null)) {
+          var labelText = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$3)._1__O());
+          var idx$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$3)._2__O());
+          var $x_125 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag());
+          var $x_124 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+          var $x_123 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("display: flex; align-items: center; gap: 0.5rem;");
+          var $x_122 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).span__Lcom_raquo_laminar_tags_HtmlTag());
+          var $x_121 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+          var this$68 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
           var r = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable;
-          var $x_100 = $x_102.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_101.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_nodes_TextNode(this$70, labelText, r)])));
-          var $x_99 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).input__Lcom_raquo_laminar_tags_HtmlTag());
-          var $x_98 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
-          var $x_97 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).typ__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("text");
-          var $x_96 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).placeholder__Lcom_raquo_laminar_keys_HtmlProp()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("");
-          var $x_95 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr());
-          var this$74 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__inlineInputStyleSignal$1__Lcom_raquo_airstream_state_Var__I__Lcom_raquo_airstream_core_Signal(this, inlineChecksVar, idx$1));
+          var $x_120 = $x_122.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_121.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_nodes_TextNode(this$68, labelText, r)])));
+          var $x_119 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).input__Lcom_raquo_laminar_tags_HtmlTag());
+          var $x_118 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+          var $x_117 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).typ__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("text");
+          var $x_116 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).placeholder__Lcom_raquo_laminar_keys_HtmlProp()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("");
+          var $x_115 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr());
+          var this$72 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($p_Llivechart_Main$__inlineInputStyleSignal$1__Lcom_raquo_airstream_state_Var__I__Lcom_raquo_airstream_core_Signal(this, inlineChecksVar, idx$1));
           var project$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((feedback) => {
             var feedback$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(feedback);
-            var this$73 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(feedback$1);
-            if ((!(this$73 === ""))) {
+            var this$71 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(feedback$1);
+            if ((!(this$71 === ""))) {
               return ("padding: 0.3rem; border: 1px solid #ccc; border-radius: 4px; width: 80px; text-align: center;; " + feedback$1);
             } else {
               return "padding: 0.3rem; border: 1px solid #ccc; border-radius: 4px; width: 80px; text-align: center;";
             }
           }));
-          var $x_94 = $x_95.$less$minus$minus__Lcom_raquo_airstream_core_Source__Lcom_raquo_laminar_modifiers_KeyUpdater(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$74, project$3, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$()));
+          var $x_114 = $x_115.$less$minus$minus__Lcom_raquo_airstream_core_Source__Lcom_raquo_laminar_modifiers_KeyUpdater(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$72, project$3, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$()));
           $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
           var eventProp = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onKeyDown__Lcom_raquo_laminar_keys_EventProp();
-          var this$77 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp, false, false));
+          var this$75 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp, false, false));
           var onNext = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((e) => {
             if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(e.ctrlKey) || $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(e.metaKey))) {
-              var this$76 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(e.key));
-              _return$3: {
-                var len = this$76.length;
+              var this$74 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(e.key));
+              _return: {
+                var len = this$74.length;
                 if ((len === 1)) {
                   var i$1 = 0;
                   while ((i$1 !== len)) {
                     var index$1 = i$1;
-                    var c = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$charAt(this$76, index$1);
-                    var $x_92 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_jl_Character$().toLowerCase__C__C($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_jl_Character$().toUpperCase__C__C(c));
+                    var c = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$charAt(this$74, index$1);
+                    var $x_112 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_jl_Character$().toLowerCase__C__C($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_jl_Character$().toUpperCase__C__C(c));
                     var index$2 = i$1;
                     var c$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$charAt("v", index$2);
-                    if (($x_92 !== $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_jl_Character$().toLowerCase__C__C($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_jl_Character$().toUpperCase__C__C(c$1)))) {
-                      var $x_91 = false;
-                      break _return$3;
+                    if (($x_112 !== $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_jl_Character$().toLowerCase__C__C($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_jl_Character$().toUpperCase__C__C(c$1)))) {
+                      var $x_111 = false;
+                      break _return;
                     }
                     i$1 = ((1 + i$1) | 0);
                   }
-                  var $x_91 = true;
+                  var $x_111 = true;
                 } else {
-                  var $x_91 = false;
+                  var $x_111 = false;
                 }
               }
             } else {
-              var $x_91 = false;
+              var $x_111 = false;
             }
-            if ($x_91) {
+            if ($x_111) {
               e.preventDefault();
             }
           }));
-          var $x_93 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_modifiers_EventListener(this$77, onNext);
+          var $x_113 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_modifiers_EventListener(this$75, onNext);
           $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
           var eventProp$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onPaste__Lcom_raquo_laminar_keys_EventProp();
-          var this$79 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$1, false, false));
+          var this$77 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$1, false, false));
           var onNext$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((e$2) => {
             e$2.preventDefault();
           }));
-          var $x_90 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_modifiers_EventListener(this$79, onNext$1);
+          var $x_110 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_modifiers_EventListener(this$77, onNext$1);
           $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
-          var updater = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).value__Lcom_raquo_laminar_keys_HtmlProp()).$less$minus$minus__Lcom_raquo_airstream_core_Source__Lcom_raquo_laminar_modifiers_KeyUpdater($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_Lcom_raquo_airstream_state_Var($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_LinearSeqOps__apply__I__O(inlineInputVars, idx$1))).Lcom_raquo_airstream_state_SourceVar__f_signal);
+          var $x_109 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).value__Lcom_raquo_laminar_keys_HtmlProp());
+          var this$78 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineInputVars);
+          var updater = $x_109.$less$minus$minus__Lcom_raquo_airstream_core_Source__Lcom_raquo_laminar_modifiers_KeyUpdater($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_Lcom_raquo_airstream_state_Var($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_LinearSeqOps__apply__I__O(this$78, idx$1))).Lcom_raquo_airstream_state_SourceVar__f_signal);
           $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
           var eventProp$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onInput__Lcom_raquo_laminar_keys_EventProp();
-          var this$90 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$2, false, false)).mapToValue__Lcom_raquo_laminar_keys_EventProcessor());
+          var this$86 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$2, false, false)).mapToValue__Lcom_raquo_laminar_keys_EventProcessor());
           var onNext$2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((value$3) => {
             var value$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(value$3);
-            var this$89 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_Lcom_raquo_airstream_state_Var($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_LinearSeqOps__apply__I__O(inlineInputVars, idx$1)));
-            var this$83 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(value$4);
-            var len$1 = this$83.length;
-            var sb = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$ct_jl_StringBuilder__I__(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_jl_StringBuilder(), len$1);
-            var i$2 = 0;
-            while ((i$2 < len$1)) {
-              var this$84 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(value$4);
-              var index$3 = i$2;
-              var x$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$charAt(this$84, index$3);
-              var this$87 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_jl_Character$();
-              if (this$87.isDigit__I__Z(x$2)) {
-                var str = ("" + $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$cToS(x$2));
-                sb.jl_StringBuilder__f_java$lang$StringBuilder$$content = (sb.jl_StringBuilder__f_java$lang$StringBuilder$$content + str);
-              }
-              i$2 = ((1 + i$2) | 0);
-            }
-            var value$5 = ((len$1 === sb.length__I()) ? value$4 : sb.jl_StringBuilder__f_java$lang$StringBuilder$$content);
-            $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$89, value$5);
+            var this$80 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineInputVars);
+            var this$85 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_Lcom_raquo_airstream_state_Var($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_LinearSeqOps__apply__I__O(this$80, idx$1)));
+            var value$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sc_StringOps$().filter$extension__T__F1__T(value$4, new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$153) => {
+              var _$153$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uC(_$153);
+              var this$84 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_jl_Character$();
+              return this$84.isDigit__I__Z(_$153$1);
+            })));
+            $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$85, value$5);
             $p_Llivechart_Main$__updateInlineTextVar$1__sci_List__Lcom_raquo_airstream_state_Var__V(this, inlineInputVars, textVar);
           }));
-          var listener = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_modifiers_EventListener(this$90, onNext$2);
-          var $x_89 = $x_99.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_98.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_97, $x_96, $x_94, $x_93, $x_90, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inputs_InputController$().controlled__Lcom_raquo_laminar_modifiers_EventListener__Lcom_raquo_laminar_modifiers_KeyUpdater__Lcom_raquo_laminar_modifiers_Binder(listener, updater)])));
-          var $x_88 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).span__Lcom_raquo_laminar_tags_HtmlTag();
-          var $x_87 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
-          var this$92 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
+          var listener = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_modifiers_EventListener(this$86, onNext$2);
+          var $x_108 = $x_119.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_118.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_117, $x_116, $x_114, $x_113, $x_110, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inputs_InputController$().controlled__Lcom_raquo_laminar_modifiers_EventListener__Lcom_raquo_laminar_modifiers_KeyUpdater__Lcom_raquo_laminar_modifiers_Binder(listener, updater)])));
+          var $x_107 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).span__Lcom_raquo_laminar_tags_HtmlTag();
+          var $x_106 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+          var this$88 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
           var r$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable;
-          return $x_105.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_104.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_103, $x_100, $x_89, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_88).apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_87.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_nodes_TextNode(this$92, "%", r$1)])))])));
+          return $x_125.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_124.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_123, $x_120, $x_108, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_107).apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_106.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_nodes_TextNode(this$88, "%", r$1)])))])));
         }
-        throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$2);
-      });
-      if ((this$93 === $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$())) {
-        return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$();
-      } else {
-        var x0$13 = this$93.head__O();
-        var h$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sci_$colon$colon(f$1(x0$13), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$());
-        var t$1 = h$1;
-        var rest$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List(this$93.tail__O());
-        while ((rest$1 !== $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$())) {
-          var x0$14 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(rest$1).head__O();
-          var nx$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sci_$colon$colon(f$1(x0$14), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$());
-          $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(t$1).sci_$colon$colon__f_next = nx$1;
-          t$1 = nx$1;
-          rest$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(rest$1).tail__O());
-        }
-        return h$1;
-      }
+        throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$3);
+      })));
     }));
-    var childrenSource = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$94, project$4, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
-    var $x_86 = $x_108.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_107.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_106, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildrenInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableSeq__Lcom_raquo_laminar_modifiers_RenderableNode__O__Lcom_raquo_laminar_inserters_DynamicInserter(childrenSource, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableSeq$collectionSeqRenderable$(), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableNode$().Lcom_raquo_laminar_modifiers_RenderableNode$__f_nodeRenderable, (void 0))])));
+    var childrenSource = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$89, project$4, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
+    var $x_105 = $x_128.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_127.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_126, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildrenInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableSeq__Lcom_raquo_laminar_modifiers_RenderableNode__O__Lcom_raquo_laminar_inserters_DynamicInserter(childrenSource, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableSeq$collectionSeqRenderable$(), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableNode$().Lcom_raquo_laminar_modifiers_RenderableNode$__f_nodeRenderable, (void 0))])));
     $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_child);
-    var this$103 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineChecksVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
+    var this$97 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineChecksVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
     var project$6 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$2$1) => {
-      var x$1$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(x$1$2$1);
-      if ((x$1$3 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
-        var checks = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$3)).s_Some__f_value);
-        var this$96 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(checks);
-        _return$4: {
-          var these$4 = this$96;
-          while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$4).isEmpty__Z())) {
-            var x0$15 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$4).head__O();
-            var _$134 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(x0$15);
-            if ((!(_$134 === false))) {
-              var $x_82 = false;
-              break _return$4;
-            }
-            these$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$4).tail__O());
-          }
-          var $x_82 = true;
-        }
-        if ($x_82) {
-          var this$97 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineAllWrongHint);
-          if (this$97.isEmpty__Z()) {
-            var this$100 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
-          } else {
-            var x0$16 = this$97.get__O();
-            var hint = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x0$16);
-            var $x_85 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag();
-            var $x_84 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
-            var $x_83 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("margin-top: 0.5rem; color: #c62828; font-weight: 600;");
+      var x$1$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(x$1$2$1);
+      if ((x$1$4 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
+        var checks = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$4)).s_Some__f_value);
+        if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(checks).forall__F1__Z(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$154) => {
+          var _$154$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(_$154);
+          return (_$154$1 === false);
+        })))) {
+          var this$93 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineAllWrongHint);
+          var f$8 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((hint) => {
+            var hint$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(hint);
+            var $x_104 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag());
+            var $x_103 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+            var $x_102 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("margin-top: 0.5rem; color: #c62828; font-weight: 600;");
             $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_child);
-            var this$98 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
+            var this$91 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
             var project$5 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((lang$4) => {
               var lang$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(lang$4);
-              return $p_Llivechart_Main$__translatedNow__T__T__T(this, hint, lang$5);
+              return $p_Llivechart_Main$__translatedNow__T__T__T(this, hint$1, lang$5);
             }));
-            var textSource$2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$98, project$5, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
-            var this$100 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_85).apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_84.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_83, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildTextInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_inserters_DynamicInserter(textSource$2, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable)]))));
-          }
-          return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_Lcom_raquo_laminar_nodes_ChildNode((this$100.isEmpty__Z() ? ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("")) : this$100.get__O()));
+            var textSource$2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$91, project$5, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
+            return $x_104.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_103.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_102, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildTextInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_inserters_DynamicInserter(textSource$2, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable)])));
+          }));
+          var this$95 = (this$93.isEmpty__Z() ? $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$() : new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(f$8.apply__O__O(this$93.get__O())));
+          var default$7 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction0_$$Lambda$92a2e254bbb9c06a0a02fc31abab59c51c18ecc1((() => {
+            $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
+            return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("");
+          }));
+          return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_Lcom_raquo_laminar_nodes_ChildNode((this$95.isEmpty__Z() ? default$7.apply__O() : this$95.get__O()));
         }
       }
       $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
       return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("");
     }));
-    var childSource = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$103, project$6, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
-    var elems$3 = $x_109.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_86, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableNode__O__Lcom_raquo_laminar_inserters_DynamicInserter(childSource, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableNode$().Lcom_raquo_laminar_modifiers_RenderableNode$__f_nodeRenderable, (void 0))]));
+    var childSource = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$97, project$6, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
+    var elems$3 = $x_129.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_105, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableNode__O__Lcom_raquo_laminar_inserters_DynamicInserter(childSource, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableNode$().Lcom_raquo_laminar_modifiers_RenderableNode$__f_nodeRenderable, (void 0))]));
     var modifiers = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$3);
-    var this$107 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_$less$colon$less$();
-    var asModifier = this$107.s_$less$colon$less$__f_singleton;
+    var this$101 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_$less$colon$less$();
+    var asModifier = this$101.s_$less$colon$less$__f_singleton;
     var renderableSeq = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableSeq$collectionSeqRenderable$();
-    var $x_81 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__seqToModifier__O__F1__Lcom_raquo_laminar_modifiers_RenderableSeq__Lcom_raquo_laminar_modifiers_Modifier(this$108, modifiers, asModifier, renderableSeq);
+    var $x_101 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__seqToModifier__O__F1__Lcom_raquo_laminar_modifiers_RenderableSeq__Lcom_raquo_laminar_modifiers_Modifier(this$102, modifiers, asModifier, renderableSeq);
   } else {
-    var this$111 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
+    var this$105 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
     var elems$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_nodes_CommentNode.getArrayOf().constr)([($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode(""))]));
     var nodes$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems$4);
     var renderableSeq$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableSeq$collectionSeqRenderable$();
-    var $x_81 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__nodeSeqToModifier__O__Lcom_raquo_laminar_modifiers_RenderableSeq__Lcom_raquo_laminar_modifiers_Modifier(this$111, nodes$1, renderableSeq$1);
+    var $x_101 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__nodeSeqToModifier__O__Lcom_raquo_laminar_modifiers_RenderableSeq__Lcom_raquo_laminar_modifiers_Modifier(this$105, nodes$1, renderableSeq$1);
   }
-  var this$112 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(multipleChoice);
-  if (this$112.isEmpty__Z()) {
-    var this$141 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
-  } else {
-    var x0$17 = this$112.get__O();
-    var choices$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List(x0$17);
-    var $x_80 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag();
-    var $x_79 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
-    var $x_78 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr());
+  var this$132 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(multipleChoice);
+  var f$9 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((choices$3) => {
+    var choices$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List(choices$3);
+    var $x_100 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag());
+    var $x_99 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+    var $x_98 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr());
     if (showMCFeedback) {
-      var this$114 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
-      var project$7 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$4) => {
-        var x$1$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(x$1$4);
-        if ((x$1$5 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
-          var x520 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$5)).s_Some__f_value);
-          if ((x520 === true)) {
+      var this$106 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
+      var project$7 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$5) => {
+        var x$1$6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(x$1$5);
+        if ((x$1$6 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
+          var x558 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$6)).s_Some__f_value);
+          if ((x558 === true)) {
             return "margin: 1rem 0; padding: 1rem; background: rgba(76, 175, 80, 0.1); border: 2px solid #4caf50; border-radius: 4px;";
           }
-          if ((x520 === false)) {
+          if ((x558 === false)) {
             return "margin: 1rem 0; padding: 1rem; background: rgba(244, 67, 54, 0.1); border: 2px solid #f44336; border-radius: 4px;";
           }
         }
         return "margin: 1rem 0; padding: 1rem; background: #f5f5f5; border: 2px solid #ddd; border-radius: 4px;";
       }));
-      var $x_77 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$114, project$7, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
+      var $x_97 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$106, project$7, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
     } else {
       $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
-      var $x_77 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_airstream_state_Val$().apply__O__Lcom_raquo_airstream_state_Val("margin: 1rem 0; padding: 1rem; background: #f5f5f5; border: 2px solid #ddd; border-radius: 4px;");
+      var $x_97 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_airstream_state_Val$().apply__O__Lcom_raquo_airstream_state_Val("margin: 1rem 0; padding: 1rem; background: #f5f5f5; border: 2px solid #ddd; border-radius: 4px;");
     }
-    var $x_76 = $x_78.$less$minus$minus__Lcom_raquo_airstream_core_Source__Lcom_raquo_laminar_modifiers_KeyUpdater($x_77);
-    var $x_75 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).p__Lcom_raquo_laminar_tags_HtmlTag());
-    var $x_74 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
-    var $x_73 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("font-weight: 600; margin-bottom: 0.75rem; margin-top: 0;");
+    var $x_96 = $x_98.$less$minus$minus__Lcom_raquo_airstream_core_Source__Lcom_raquo_laminar_modifiers_KeyUpdater($x_97);
+    var $x_95 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).p__Lcom_raquo_laminar_tags_HtmlTag());
+    var $x_94 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+    var $x_93 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("font-weight: 600; margin-bottom: 0.75rem; margin-top: 0;");
     $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_child);
-    var this$117 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
+    var this$109 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
     var project$8 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((lang$6) => {
       var lang$7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(lang$6);
       return $p_Llivechart_Main$__translatedNow__T__T__T(this, mcLabel, lang$7);
     }));
-    var textSource$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$117, project$8, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
-    var $x_72 = $x_75.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_74.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_73, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildTextInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_inserters_DynamicInserter(textSource$3, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable)])));
-    var $x_71 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag();
-    var $x_70 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+    var textSource$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$109, project$8, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
+    var $x_92 = $x_95.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_94.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_93, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildTextInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_inserters_DynamicInserter(textSource$3, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable)])));
+    var $x_91 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag();
+    var $x_90 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
     $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
-    var this$139 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_airstream_state_Val$().apply__O__Lcom_raquo_airstream_state_Val(choices$1)));
-    var project$11 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$135) => {
-      var _$135$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List(_$135);
-      var this$122 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$135$1);
-      var this$138 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_StrictOptimizedIterableOps__zipWithIndex__O(this$122)));
-      var f$2 = ((x$1$6) => {
-        var x$1$7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x$1$6);
-        if ((x$1$7 !== null)) {
-          var x522 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$7)._1__O());
-          if ((x522 !== null)) {
-            var labelText$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x522)._1__O());
-            var idx$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$7)._2__O());
-            var $x_69 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag());
-            var $x_68 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
-            var $x_67 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("margin: 0.5rem 0;");
-            var $x_66 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).input__Lcom_raquo_laminar_tags_HtmlTag());
-            var $x_65 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
-            var $x_64 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).typ__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("checkbox");
-            var $x_63 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).idAttr__Lcom_raquo_laminar_keys_HtmlProp()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter(((("qr-choice-" + $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__hashCode__I($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(taskText))) + "-") + idx$2));
+    var this$130 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_airstream_state_Val$().apply__O__Lcom_raquo_airstream_state_Val(choices$1)));
+    var project$11 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$155) => {
+      var _$155$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List(_$155);
+      var this$114 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$155$1);
+      return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_StrictOptimizedIterableOps__zipWithIndex__O(this$114))).map__F1__sci_List(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$7) => {
+        var x$1$8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x$1$7);
+        if ((x$1$8 !== null)) {
+          var x560 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$8)._1__O());
+          if ((x560 !== null)) {
+            var labelText$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x560)._1__O());
+            var idx$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$8)._2__O());
+            var $x_89 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag());
+            var $x_88 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+            var $x_87 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("margin: 0.5rem 0;");
+            var $x_86 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).input__Lcom_raquo_laminar_tags_HtmlTag());
+            var $x_85 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+            var $x_84 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).typ__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("checkbox");
+            var $x_83 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).idAttr__Lcom_raquo_laminar_keys_HtmlProp()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter(((("qr-choice-" + $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__hashCode__I($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(taskText))) + "-") + idx$2));
             $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
             var eventProp$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onChange__Lcom_raquo_laminar_keys_EventProp();
-            var this$134 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$3, false, false));
-            var onNext$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$136) => {
-              var this$126 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(mcSelectedVar);
+            var this$126 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$3, false, false));
+            var onNext$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$156) => {
+              var this$118 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(mcSelectedVar);
               var mod = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((selected) => {
                 var selected$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set(selected);
                 if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(selected$1).contains__O__Z(idx$2)) {
-                  var this$124 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(selected$1);
-                  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set(this$124.excl__O__sci_SetOps(idx$2));
+                  var this$116 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(selected$1);
+                  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set(this$116.excl__O__sci_SetOps(idx$2));
                 } else {
-                  var this$125 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(selected$1);
-                  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set(this$125.incl__O__sci_SetOps(idx$2));
+                  var this$117 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(selected$1);
+                  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set(this$117.incl__O__sci_SetOps(idx$2));
                 }
               }));
-              $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__update__F1__V(this$126, mod);
-              var this$129 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(chapter);
-              if ((!(this$129 === ""))) {
-                var this$130 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(mcSelectedVar);
-                var this$131 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$130.Lcom_raquo_airstream_state_SourceVar__f_signal);
-                var this$133 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sc_IterableOnceOps($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sc_IterableOps($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$131.tryNow__s_util_Try()).get__O())).map__F1__O(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((i$3) => {
-                  var i$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(i$3);
-                  var this$132 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(choices$1);
-                  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_LinearSeqOps__apply__I__O(this$132, i$4)))._1__O());
+              $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__update__F1__V(this$118, mod);
+              var this$121 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(chapter);
+              if ((!(this$121 === ""))) {
+                var this$122 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(mcSelectedVar);
+                var this$123 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$122.Lcom_raquo_airstream_state_SourceVar__f_signal);
+                var this$125 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sc_IterableOnceOps($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sc_IterableOps($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$123.tryNow__s_util_Try()).get__O())).map__F1__O(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((i$2) => {
+                  var i$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(i$2);
+                  var this$124 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(choices$1);
+                  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_LinearSeqOps__apply__I__O(this$124, i$3)))._1__O());
                 })))));
-                var selectedChoices = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_IterableOnceOps__mkString__T__T__T__T(this$133, "", ", ", "");
+                var selectedChoices = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_IterableOnceOps__mkString__T__T__T__T(this$125, "", ", ", "");
                 this.persistExerciseAnswer__T__T__T__V(chapter, mcTaskText, selectedChoices);
               }
             }));
-            var $x_62 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_modifiers_EventListener(this$134, onNext$3);
-            var $x_61 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).checked__Lcom_raquo_laminar_keys_HtmlProp();
-            var this$135 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(mcSelectedVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
-            var project$9 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$137) => {
-              var _$137$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set(_$137);
-              return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$137$1).contains__O__Z(idx$2);
+            var $x_82 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_modifiers_EventListener(this$126, onNext$3);
+            var $x_81 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).checked__Lcom_raquo_laminar_keys_HtmlProp();
+            var this$127 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(mcSelectedVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
+            var project$9 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$157) => {
+              var _$157$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set(_$157);
+              return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$157$1).contains__O__Z(idx$2);
             }));
-            var $x_60 = $x_66.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_65.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_64, $x_63, $x_62, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_61).$less$minus$minus__Lcom_raquo_airstream_core_Source__Lcom_raquo_laminar_modifiers_KeyUpdater(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$135, project$9, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$()))])));
-            var $x_59 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).label__Lcom_raquo_laminar_tags_HtmlTag();
-            var $x_58 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
-            var $x_57 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).forId__Lcom_raquo_laminar_keys_HtmlProp()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter(((("qr-choice-" + $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__hashCode__I($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(taskText))) + "-") + idx$2));
-            var $x_56 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("margin-left: 0.5rem; cursor: pointer;");
+            var $x_80 = $x_86.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_85.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_84, $x_83, $x_82, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_81).$less$minus$minus__Lcom_raquo_airstream_core_Source__Lcom_raquo_laminar_modifiers_KeyUpdater(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$127, project$9, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$()))])));
+            var $x_79 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).label__Lcom_raquo_laminar_tags_HtmlTag();
+            var $x_78 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+            var $x_77 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).forId__Lcom_raquo_laminar_keys_HtmlProp()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter(((("qr-choice-" + $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__hashCode__I($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(taskText))) + "-") + idx$2));
+            var $x_76 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("margin-left: 0.5rem; cursor: pointer;");
             $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_child);
-            var this$136 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
+            var this$128 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
             var project$10 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((lang$8) => {
               var lang$9 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(lang$8);
               return $p_Llivechart_Main$__translatedNow__T__T__T(this, labelText$1, lang$9);
             }));
-            var textSource$4 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$136, project$10, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
-            return $x_69.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_68.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_67, $x_60, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_59).apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_58.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_57, $x_56, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildTextInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_inserters_DynamicInserter(textSource$4, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable)])))])));
+            var textSource$4 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$128, project$10, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
+            return $x_89.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_88.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_87, $x_80, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_79).apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_78.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_77, $x_76, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildTextInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_inserters_DynamicInserter(textSource$4, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable)])))])));
           }
         }
-        throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$7);
-      });
-      if ((this$138 === $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$())) {
-        return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$();
-      } else {
-        var x0$18 = this$138.head__O();
-        var h$2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sci_$colon$colon(f$2(x0$18), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$());
-        var t$2 = h$2;
-        var rest$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List(this$138.tail__O());
-        while ((rest$2 !== $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$())) {
-          var x0$19 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(rest$2).head__O();
-          var nx$2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sci_$colon$colon(f$2(x0$19), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$());
-          $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(t$2).sci_$colon$colon__f_next = nx$2;
-          t$2 = nx$2;
-          rest$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(rest$2).tail__O());
-        }
-        return h$2;
-      }
+        throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$8);
+      })));
     }));
-    var childrenSource$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$139, project$11, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
-    var this$141 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_80).apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_79.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_76, $x_72, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_71).apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_70.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildrenInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableSeq__Lcom_raquo_laminar_modifiers_RenderableNode__O__Lcom_raquo_laminar_inserters_DynamicInserter(childrenSource$1, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableSeq$collectionSeqRenderable$(), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableNode$().Lcom_raquo_laminar_modifiers_RenderableNode$__f_nodeRenderable, (void 0))])))]))));
-  }
-  var $x_55 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_Lcom_raquo_laminar_modifiers_Modifier((this$141.isEmpty__Z() ? ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("")) : this$141.get__O()));
-  var $x_54 = (showEditor ? editor.Llivechart_SimpleTextEditor__f_domElement : ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("")));
+    var childrenSource$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$130, project$11, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
+    return $x_100.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_99.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_96, $x_92, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_91).apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_90.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildrenInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableSeq__Lcom_raquo_laminar_modifiers_RenderableNode__O__Lcom_raquo_laminar_inserters_DynamicInserter(childrenSource$1, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableSeq$collectionSeqRenderable$(), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableNode$().Lcom_raquo_laminar_modifiers_RenderableNode$__f_nodeRenderable, (void 0))])))])));
+  }));
+  var this$134 = (this$132.isEmpty__Z() ? $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$() : new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(f$9.apply__O__O(this$132.get__O())));
+  var default$8 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction0_$$Lambda$92a2e254bbb9c06a0a02fc31abab59c51c18ecc1((() => {
+    $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
+    return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("");
+  }));
+  var $x_75 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_Lcom_raquo_laminar_modifiers_Modifier((this$134.isEmpty__Z() ? default$8.apply__O() : this$134.get__O()));
+  var $x_74 = (showEditor ? editor.Llivechart_SimpleTextEditor__f_domElement : ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("")));
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_child);
-  var this$148 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(textVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
+  var this$140 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(textVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
   var project$12 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((text$2) => {
     var text$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(text$2);
-    var this$146 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(chapter);
-    if ((!(this$146 === ""))) {
+    var this$138 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(chapter);
+    if ((!(this$138 === ""))) {
       this.persistExerciseAnswer__T__T__T__V(chapter, taskText, text$3);
     }
     $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
     return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("");
   }));
-  var childSource$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$148, project$12, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
-  var $x_53 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableNode__O__Lcom_raquo_laminar_inserters_DynamicInserter(childSource$1, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableNode$().Lcom_raquo_laminar_modifiers_RenderableNode$__f_nodeRenderable, (void 0));
+  var childSource$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$140, project$12, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
+  var $x_73 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableNode__O__Lcom_raquo_laminar_inserters_DynamicInserter(childSource$1, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableNode$().Lcom_raquo_laminar_modifiers_RenderableNode$__f_nodeRenderable, (void 0));
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_child);
-  var this$158 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
-  var project$13 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$138) => {
-    $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(_$138);
-    var this$150 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar);
-    var this$151 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$150.Lcom_raquo_airstream_state_SourceVar__f_signal);
-    var lastCheck = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$151.tryNow__s_util_Try()).get__O());
-    var this$152 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(showSolutionVar);
-    var this$153 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$152.Lcom_raquo_airstream_state_SourceVar__f_signal);
-    var showSolution = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$153.tryNow__s_util_Try()).get__O());
-    var this$154 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(wrongAttemptsVar);
-    var this$155 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$154.Lcom_raquo_airstream_state_SourceVar__f_signal);
-    var wrongAttempts = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$155.tryNow__s_util_Try()).get__O());
+  var this$150 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
+  var project$13 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$158) => {
+    $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(_$158);
+    var this$142 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar);
+    var this$143 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$142.Lcom_raquo_airstream_state_SourceVar__f_signal);
+    var lastCheck = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$143.tryNow__s_util_Try()).get__O());
+    var this$144 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(showSolutionVar);
+    var this$145 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$144.Lcom_raquo_airstream_state_SourceVar__f_signal);
+    var showSolution = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$145.tryNow__s_util_Try()).get__O());
+    var this$146 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(wrongAttemptsVar);
+    var this$147 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$146.Lcom_raquo_airstream_state_SourceVar__f_signal);
+    var wrongAttempts = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$147.tryNow__s_util_Try()).get__O());
     this.saveExerciseStatus__T__T__Llivechart_Main$ExerciseStatus__V(chapter, taskText, new $j_livechart$002e$002dMain$0024$002dExercise$002dStatus.$c_Llivechart_Main$ExerciseStatus(lastCheck, showSolution, wrongAttempts));
     $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
     return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("");
   }));
-  var childSource$2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$158, project$13, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
-  var $x_52 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableNode__O__Lcom_raquo_laminar_inserters_DynamicInserter(childSource$2, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableNode$().Lcom_raquo_laminar_modifiers_RenderableNode$__f_nodeRenderable, (void 0));
+  var childSource$2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$150, project$13, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
+  var $x_72 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableNode__O__Lcom_raquo_laminar_inserters_DynamicInserter(childSource$2, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableNode$().Lcom_raquo_laminar_modifiers_RenderableNode$__f_nodeRenderable, (void 0));
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_child);
-  var this$168 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(showSolutionVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
-  var project$14 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$139) => {
-    $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(_$139);
-    var this$160 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar);
-    var this$161 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$160.Lcom_raquo_airstream_state_SourceVar__f_signal);
-    var lastCheck$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$161.tryNow__s_util_Try()).get__O());
-    var this$162 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(showSolutionVar);
-    var this$163 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$162.Lcom_raquo_airstream_state_SourceVar__f_signal);
-    var showSolution$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$163.tryNow__s_util_Try()).get__O());
-    var this$164 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(wrongAttemptsVar);
-    var this$165 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$164.Lcom_raquo_airstream_state_SourceVar__f_signal);
-    var wrongAttempts$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$165.tryNow__s_util_Try()).get__O());
+  var this$160 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(showSolutionVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
+  var project$14 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$159) => {
+    $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(_$159);
+    var this$152 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar);
+    var this$153 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$152.Lcom_raquo_airstream_state_SourceVar__f_signal);
+    var lastCheck$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$153.tryNow__s_util_Try()).get__O());
+    var this$154 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(showSolutionVar);
+    var this$155 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$154.Lcom_raquo_airstream_state_SourceVar__f_signal);
+    var showSolution$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$155.tryNow__s_util_Try()).get__O());
+    var this$156 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(wrongAttemptsVar);
+    var this$157 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$156.Lcom_raquo_airstream_state_SourceVar__f_signal);
+    var wrongAttempts$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$157.tryNow__s_util_Try()).get__O());
     this.saveExerciseStatus__T__T__Llivechart_Main$ExerciseStatus__V(chapter, taskText, new $j_livechart$002e$002dMain$0024$002dExercise$002dStatus.$c_Llivechart_Main$ExerciseStatus(lastCheck$1, showSolution$1, wrongAttempts$1));
     $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
     return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("");
   }));
-  var childSource$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$168, project$14, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
-  var $x_51 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableNode__O__Lcom_raquo_laminar_inserters_DynamicInserter(childSource$3, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableNode$().Lcom_raquo_laminar_modifiers_RenderableNode$__f_nodeRenderable, (void 0));
+  var childSource$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$160, project$14, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
+  var $x_71 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableNode__O__Lcom_raquo_laminar_inserters_DynamicInserter(childSource$3, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableNode$().Lcom_raquo_laminar_modifiers_RenderableNode$__f_nodeRenderable, (void 0));
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_child);
-  var this$178 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(wrongAttemptsVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
-  var project$15 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$140) => {
-    $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(_$140);
-    var this$170 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar);
-    var this$171 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$170.Lcom_raquo_airstream_state_SourceVar__f_signal);
-    var lastCheck$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$171.tryNow__s_util_Try()).get__O());
-    var this$172 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(showSolutionVar);
-    var this$173 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$172.Lcom_raquo_airstream_state_SourceVar__f_signal);
-    var showSolution$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$173.tryNow__s_util_Try()).get__O());
-    var this$174 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(wrongAttemptsVar);
-    var this$175 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$174.Lcom_raquo_airstream_state_SourceVar__f_signal);
-    var wrongAttempts$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$175.tryNow__s_util_Try()).get__O());
+  var this$170 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(wrongAttemptsVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
+  var project$15 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$160) => {
+    $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(_$160);
+    var this$162 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar);
+    var this$163 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$162.Lcom_raquo_airstream_state_SourceVar__f_signal);
+    var lastCheck$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$163.tryNow__s_util_Try()).get__O());
+    var this$164 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(showSolutionVar);
+    var this$165 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$164.Lcom_raquo_airstream_state_SourceVar__f_signal);
+    var showSolution$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$165.tryNow__s_util_Try()).get__O());
+    var this$166 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(wrongAttemptsVar);
+    var this$167 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$166.Lcom_raquo_airstream_state_SourceVar__f_signal);
+    var wrongAttempts$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$167.tryNow__s_util_Try()).get__O());
     this.saveExerciseStatus__T__T__Llivechart_Main$ExerciseStatus__V(chapter, taskText, new $j_livechart$002e$002dMain$0024$002dExercise$002dStatus.$c_Llivechart_Main$ExerciseStatus(lastCheck$2, showSolution$2, wrongAttempts$2));
     $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
     return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("");
   }));
-  var childSource$4 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$178, project$15, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
-  var $x_50 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableNode__O__Lcom_raquo_laminar_inserters_DynamicInserter(childSource$4, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableNode$().Lcom_raquo_laminar_modifiers_RenderableNode$__f_nodeRenderable, (void 0));
-  var this$180 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(keywords);
-  if ((!this$180.isEmpty__Z())) {
-    var $x_13 = true;
-  } else {
-    var this$181 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(minWordCount);
-    var $x_13 = (!this$181.isEmpty__Z());
-  }
-  if ($x_13) {
-    var $x_12 = true;
-  } else {
-    var this$182 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(submitCallback);
-    var $x_12 = (!this$182.isEmpty__Z());
-  }
-  if ($x_12) {
-    var $x_11 = true;
-  } else {
-    var this$183 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(multipleChoice);
-    var $x_11 = (!this$183.isEmpty__Z());
-  }
-  if ($x_11) {
+  var childSource$4 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$170, project$15, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
+  var $x_70 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableNode__O__Lcom_raquo_laminar_inserters_DynamicInserter(childSource$4, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableNode$().Lcom_raquo_laminar_modifiers_RenderableNode$__f_nodeRenderable, (void 0));
+  var this$172 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(keywords);
+  if ((!this$172.isEmpty__Z())) {
     var $x_10 = true;
   } else {
-    var this$184 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineNumericExpected);
-    var $x_10 = (!this$184.isEmpty__Z());
+    var this$173 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(minWordCount);
+    var $x_10 = (!this$173.isEmpty__Z());
   }
   if ($x_10) {
-    var $x_49 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag());
-    var $x_48 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
-    var $x_47 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center;");
-    var $x_46 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).button__Lcom_raquo_laminar_tags_HtmlTag());
-    var $x_45 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+    var $x_9 = true;
+  } else {
+    var this$174 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(solutionText);
+    var $x_9 = (!this$174.isEmpty__Z());
+  }
+  if ($x_9) {
+    var $x_8 = true;
+  } else {
+    var this$175 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(submitCallback);
+    var $x_8 = (!this$175.isEmpty__Z());
+  }
+  if ($x_8) {
+    var $x_7 = true;
+  } else {
+    var this$176 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(multipleChoice);
+    var $x_7 = (!this$176.isEmpty__Z());
+  }
+  if ($x_7) {
+    var $x_6 = true;
+  } else {
+    var this$177 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineNumericExpected);
+    var $x_6 = (!this$177.isEmpty__Z());
+  }
+  if (($x_6 || ((((showEditor && $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(keywords).isEmpty__Z()) && $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(multipleChoice).isEmpty__Z()) && $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineNumericExpected).isEmpty__Z()) && (!numericOnly)))) {
+    var $x_69 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag());
+    var $x_68 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+    var $x_67 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center;");
+    var $x_66 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).button__Lcom_raquo_laminar_tags_HtmlTag());
+    var $x_65 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
     $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_child);
-    var signal = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar).Lcom_raquo_airstream_state_SourceVar__f_signal;
-    var this$187 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_airstream_combine_generated_CombinableSignal$().combineWith$extension__Lcom_raquo_airstream_core_Signal__Lcom_raquo_airstream_core_Source$SignalSource__Lapp_tulz_tuplez_Composition__Lcom_raquo_airstream_core_Signal(signal, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar).Lcom_raquo_airstream_state_SourceVar__f_signal, new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lapp_tulz_tuplez_Composition\uff3fPri0$$anon$1()));
+    var this$180 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_airstream_combine_generated_StaticSignalCombineOps$()).combine__Lcom_raquo_airstream_core_Source$SignalSource__Lcom_raquo_airstream_core_Source$SignalSource__Lcom_raquo_airstream_core_Source$SignalSource__Lcom_raquo_airstream_core_Signal($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar).Lcom_raquo_airstream_state_SourceVar__f_signal, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar).Lcom_raquo_airstream_state_SourceVar__f_signal, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(llmPendingVar).Lcom_raquo_airstream_state_SourceVar__f_signal));
     var project$16 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$3$1) => {
-      var x$1$8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x$1$3$1);
-      if ((x$1$8 !== null)) {
-        var x529 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$8)._1__O());
-        var x530 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$8)._2__O());
-        if (((x529 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some) && ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x529)).s_Some__f_value) === false))) {
-          return $p_Llivechart_Main$__translatedNow__T__T__T(this, "Nochmal versuchen", x530);
+      var x$1$9 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T3(x$1$3$1);
+      if ((x$1$9 !== null)) {
+        var x573 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$9).T3__f__1);
+        var x574 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$9).T3__f__2);
+        var x575 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$9).T3__f__3);
+        if ((x575 === true)) {
+          return ((x574 === "en") ? "Checking..." : "Pruefe...");
         }
-        return $p_Llivechart_Main$__translatedNow__T__T__T(this, "Abgeben", x530);
+        if (((x573 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some) && ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x573)).s_Some__f_value) === false))) {
+          if ((x575 === false)) {
+            return $p_Llivechart_Main$__translatedNow__T__T__T(this, "Nochmal versuchen", x574);
+          }
+        }
+        if ((x575 === false)) {
+          return $p_Llivechart_Main$__translatedNow__T__T__T(this, "Abgeben", x574);
+        }
       }
-      throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$8);
+      throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$9);
     }));
-    var textSource$5 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$187, project$16, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
-    var $x_44 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildTextInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_inserters_DynamicInserter(textSource$5, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable);
+    var textSource$5 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$180, project$16, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
+    var $x_64 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildTextInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_inserters_DynamicInserter(textSource$5, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable);
+    var $x_63 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).disabled__Lcom_raquo_laminar_keys_HtmlProp()).$less$minus$minus__Lcom_raquo_airstream_core_Source__Lcom_raquo_laminar_modifiers_KeyUpdater($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(llmPendingVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
     $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
     var eventProp$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
-    var this$224 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$4, false, false));
-    var onNext$4 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$141) => {
-      var this$190 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar);
-      var this$191 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$190.Lcom_raquo_airstream_state_SourceVar__f_signal);
-      if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$191.tryNow__s_util_Try()).get__O())).contains__O__Z(false)) {
-        var this$192 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar);
+    var this$222 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$4, false, false));
+    var onNext$4 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$161) => {
+      var this$183 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar);
+      var this$184 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$183.Lcom_raquo_airstream_state_SourceVar__f_signal);
+      if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$184.tryNow__s_util_Try()).get__O())).contains__O__Z(false)) {
+        var this$185 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar);
         var value$6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
-        $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$192, value$6);
-        var this$193 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(showSolutionVar);
-        $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$193, false);
-        var this$194 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineChecksVar);
+        $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$185, value$6);
+        var this$186 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(showSolutionVar);
+        $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$186, false);
+        var this$187 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineChecksVar);
         var value$7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
-        $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$194, value$7);
+        $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$187, value$7);
+        var this$188 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(llmFallbackVar);
+        $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$188, false);
+        var this$189 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(llmDecisionVar);
+        $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$189, false);
+        var this$190 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(answerScoreVar);
+        var value$8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+        $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$190, value$8);
+        var this$191 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(answerFeedbackVar);
+        var value$9 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+        $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$191, value$9);
       } else {
-        var this$195 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineNumericExpected);
-        if ((!this$195.isEmpty__Z())) {
+        var this$192 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineNumericExpected);
+        if ((!this$192.isEmpty__Z())) {
           var expected = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineNumericExpected).get__O());
-          var this$196 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(expected);
-          var this$201 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_StrictOptimizedIterableOps__zipWithIndex__O(this$196)));
-          var f$3 = ((x$1$9) => {
-            var x$1$10 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x$1$9);
-            if ((x$1$10 !== null)) {
-              var exp = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$10)._1__O());
-              var idx$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$10)._2__O());
-              var this$197 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_PartialFunction$Lifted(inlineInputVars);
-              var this$198 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$197.apply__O__s_Option(idx$3));
-              if ((!this$198.isEmpty__Z())) {
-                var x0$20 = this$198.get__O();
-                var _$142 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_Lcom_raquo_airstream_state_Var(x0$20);
-                var this$199 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$142);
-                var this$200 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$199.Lcom_raquo_airstream_state_SourceVar__f_signal);
-                return ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__trim__T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$200.tryNow__s_util_Try()).get__O()))) === exp);
-              } else {
-                return false;
-              }
+          var this$193 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(expected);
+          var checks$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_StrictOptimizedIterableOps__zipWithIndex__O(this$193))).map__F1__sci_List(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$10) => {
+            var x$1$11 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x$1$10);
+            if ((x$1$11 !== null)) {
+              var exp = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$11)._1__O());
+              var idx$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$11)._2__O());
+              var this$194 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineInputVars);
+              var this$195 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_PartialFunction$Lifted(this$194);
+              var this$198 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$195.apply__O__s_Option(idx$3));
+              var p = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$164) => {
+                var _$164$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_Lcom_raquo_airstream_state_Var(_$164);
+                var this$196 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$164$1);
+                var this$197 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$196.Lcom_raquo_airstream_state_SourceVar__f_signal);
+                return ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__trim__T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$197.tryNow__s_util_Try()).get__O()))) === exp);
+              }));
+              return ((!this$198.isEmpty__Z()) && $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(p.apply__O__O(this$198.get__O())));
             }
-            throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$10);
-          });
-          if ((this$201 === $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$())) {
-            var checks$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$();
-          } else {
-            var x0$21 = this$201.head__O();
-            var h$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sci_$colon$colon(f$3(x0$21), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$());
-            var t$3 = h$3;
-            var rest$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List(this$201.tail__O());
-            while ((rest$3 !== $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$())) {
-              var x0$22 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(rest$3).head__O();
-              var nx$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sci_$colon$colon(f$3(x0$22), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$());
-              $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(t$3).sci_$colon$colon__f_next = nx$3;
-              t$3 = nx$3;
-              rest$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(rest$3).tail__O());
-            }
-            var checks$1 = h$3;
-          }
-          var this$203 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineChecksVar);
-          var value$8 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(checks$1);
-          $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$203, value$8);
-          _return$5: {
-            var these$5 = checks$1;
-            while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$5).isEmpty__Z())) {
-              var x0$23 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$5).head__O();
-              var x$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(x0$23);
-              if ((!x$3)) {
-                var ok = false;
-                break _return$5;
-              }
-              these$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$5).tail__O());
-            }
-            var ok = true;
-          }
+            throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$11);
+          })));
+          var this$200 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineChecksVar);
+          var value$10 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(checks$1);
+          $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$200, value$10);
+          var ok = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(checks$1).forall__F1__Z(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$2) => {
+            var x$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(x$2);
+            return x$3;
+          })));
         } else {
-          var this$205 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(multipleChoice);
-          if (((!this$205.isEmpty__Z()) && showMCFeedback)) {
-            var this$206 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(mcSelectedVar);
-            var this$207 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$206.Lcom_raquo_airstream_state_SourceVar__f_signal);
-            var selected$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$207.tryNow__s_util_Try()).get__O());
+          var this$202 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(multipleChoice);
+          if (((!this$202.isEmpty__Z()) && showMCFeedback)) {
+            var this$203 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(mcSelectedVar);
+            var this$204 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$203.Lcom_raquo_airstream_state_SourceVar__f_signal);
+            var selected$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$204.tryNow__s_util_Try()).get__O());
             var choices$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(multipleChoice).get__O());
-            var this$208 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(choices$2);
-            var this$209 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_StrictOptimizedIterableOps__zipWithIndex__O(this$208)));
-            var f$4 = ((_$143) => {
-              var _$143$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(_$143);
-              return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$143$1)._1__O()))._2__O());
-            });
-            var l = this$209;
-            block: {
-              var result;
-              while (true) {
-                if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(l).isEmpty__Z()) {
-                  var result = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$();
-                  break;
-                } else {
-                  var h$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(l).head__O();
-                  var t$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(l).tail__O());
-                  if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(f$4(h$4)) === false)) {
-                    l = t$4;
-                    continue;
-                  }
-                  var start = l;
-                  var remaining = t$4;
-                  while (true) {
-                    if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(remaining).isEmpty__Z()) {
-                      var result = start;
-                      break block;
-                    } else {
-                      var x$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(remaining).head__O();
-                      if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(f$4(x$4)) !== false)) {
-                        remaining = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(remaining).tail__O());
-                        continue;
-                      }
-                      var firstMiss = remaining;
-                      var newHead = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sci_$colon$colon($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(start).head__O(), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$());
-                      var toProcess = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(start).tail__O());
-                      var currentLast = newHead;
-                      while ((toProcess !== firstMiss)) {
-                        var newElem = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sci_$colon$colon($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(toProcess).head__O(), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$());
-                        $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(currentLast).sci_$colon$colon__f_next = newElem;
-                        currentLast = newElem;
-                        toProcess = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(toProcess).tail__O());
-                      }
-                      var next = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(firstMiss).tail__O());
-                      var nextToCopy = next;
-                      while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(next).isEmpty__Z())) {
-                        var head = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(next).head__O();
-                        if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(f$4(head)) !== false)) {
-                          next = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(next).tail__O());
-                        } else {
-                          while ((nextToCopy !== next)) {
-                            var newElem$2 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sci_$colon$colon($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(nextToCopy).head__O(), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$());
-                            $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(currentLast).sci_$colon$colon__f_next = newElem$2;
-                            currentLast = newElem$2;
-                            nextToCopy = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(nextToCopy).tail__O());
-                          }
-                          nextToCopy = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(next).tail__O());
-                          next = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(next).tail__O());
-                        }
-                      }
-                      if ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(nextToCopy).isEmpty__Z())) {
-                        $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(currentLast).sci_$colon$colon__f_next = nextToCopy;
-                      }
-                      var result = newHead;
-                      break block;
-                    }
-                  }
-                }
-              }
-            }
-            var this$210 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(result);
-            var f$5 = ((_$144) => {
-              var _$144$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(_$144);
-              return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$144$1)._2__O());
-            });
-            if ((this$210 === $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$())) {
-              var this$211 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$();
-            } else {
-              var x0$24 = this$210.head__O();
-              var h$5 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sci_$colon$colon(f$5(x0$24), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$());
-              var t$5 = h$5;
-              var rest$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List(this$210.tail__O());
-              while ((rest$4 !== $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$())) {
-                var x0$25 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(rest$4).head__O();
-                var nx$4 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sci_$colon$colon(f$5(x0$25), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$());
-                $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(t$5).sci_$colon$colon__f_next = nx$4;
-                t$5 = nx$4;
-                rest$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(rest$4).tail__O());
-              }
-              var this$211 = h$5;
-            }
-            var correctIndices = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Set$().from__sc_IterableOnce__sci_Set(this$211);
-            var allCorrectSelected = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(correctIndices).forall__F1__Z(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((elem$1) => {
-              var elem$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(elem$1);
-              return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(selected$2).contains__O__Z(elem$2);
+            var this$205 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(choices$2);
+            var this$206 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_StrictOptimizedIterableOps__zipWithIndex__O(this$205)));
+            var p$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$165) => {
+              var _$165$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(_$165);
+              return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$165$1)._1__O()))._2__O());
+            }));
+            var this$207 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$p_sci_List__filterCommon__F1__Z__sci_List(this$206, p$1, false)).map__F1__sci_List(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$166) => {
+              var _$166$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(_$166);
+              return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$166$1)._2__O());
+            }))));
+            var correctIndices = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Set$().from__sc_IterableOnce__sci_Set(this$207);
+            var allCorrectSelected = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(correctIndices).forall__F1__Z(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((elem) => {
+              var elem$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(elem);
+              return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(selected$2).contains__O__Z(elem$1);
             })));
             var noWrongSelected = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(selected$2).forall__F1__Z(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((idx$4) => {
               var idx$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(idx$4);
-              var this$212 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(choices$2);
-              return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_LinearSeqOps__apply__I__O(this$212, idx$5)))._2__O());
+              var this$208 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(choices$2);
+              return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_LinearSeqOps__apply__I__O(this$208, idx$5)))._2__O());
             })));
             var ok = (allCorrectSelected && noWrongSelected);
           } else {
-            var this$213 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(textVar);
-            var this$214 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$213.Lcom_raquo_airstream_state_SourceVar__f_signal);
-            var text$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$214.tryNow__s_util_Try()).get__O());
+            var this$209 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(textVar);
+            var this$210 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$209.Lcom_raquo_airstream_state_SourceVar__f_signal);
+            var text$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$210.tryNow__s_util_Try()).get__O());
             var keywordOk = $p_Llivechart_Main$__matchesKeywords__T__sci_Set__Z(this, text$4, keywords);
-            matchResult140: {
+            matchResult157: {
               var ok;
               if ((minWordCount instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
                 var min = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(minWordCount)).s_Some__f_value);
                 var ok = (keywordOk && ($p_Llivechart_Main$__countWords$1__T__I(this, text$4) >= min));
-                break matchResult140;
+                break matchResult157;
               }
               var x$2$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
               if ((x$2$1 === minWordCount)) {
                 var ok = keywordOk;
-                break matchResult140;
+                break matchResult157;
               }
               throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(minWordCount);
             }
           }
         }
-        var this$216 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar);
-        var value$9 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(ok);
-        $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$216, value$9);
-        if (ok) {
-          var this$217 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(wrongAttemptsVar);
-          $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$217, 0);
-          var this$218 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(solutionText);
-          if ((!this$218.isEmpty__Z())) {
-            var this$219 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(showSolutionVar);
-            $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$219, true);
-          }
-          var this$220 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(submitCallback);
-          if ((!this$220.isEmpty__Z())) {
-            var x0$26 = this$220.get__O();
-            var callback = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_F0(x0$26);
-            $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(callback).apply__O();
-          }
-          var this$221 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(infoCallback);
-          if ((!this$221.isEmpty__Z())) {
-            var x0$27 = this$221.get__O();
-            var callback$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_F0(x0$27);
-            $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(callback$1).apply__O();
-          }
+        if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(inlineNumericExpected).isEmpty__Z()) {
+          var this$211 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(multipleChoice);
+          var $x_60 = (!((!this$211.isEmpty__Z()) && showMCFeedback));
         } else {
-          var this$222 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(wrongAttemptsVar);
-          var mod$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$145) => {
-            var _$145$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(_$145);
-            return ((1 + _$145$1) | 0);
-          }));
-          $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__update__F1__V(this$222, mod$1);
-          var this$223 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(showSolutionVar);
-          $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$223, false);
+          var $x_60 = false;
+        }
+        if ($x_60) {
+          var canUseLlm = (!numericOnly);
+        } else {
+          var canUseLlm = false;
+        }
+        if (canUseLlm) {
+          var this$212 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(llmPendingVar);
+          $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$212, true);
+          var this$213 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(textVar);
+          var this$214 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$213.Lcom_raquo_airstream_state_SourceVar__f_signal);
+          var text$2$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$214.tryNow__s_util_Try()).get__O());
+          var this$215 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar);
+          var this$216 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$215.Lcom_raquo_airstream_state_SourceVar__f_signal);
+          $p_Llivechart_Main$__evaluateTextWithLlmOrFallback__T__T__s_Option__sci_Set__s_Option__Z__T__F1__V(this, taskText, text$2$1, solutionText, keywords, minWordCount, ok, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$216.tryNow__s_util_Try()).get__O()), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((llmResult) => {
+            var llmResult$1 = $j_livechart$002e$002dMain$0024$002dLlm$002dCheck$002dResult.$as_Llivechart_Main$LlmCheckResult(llmResult);
+            $p_Llivechart_Main$__applyCheckResult$1__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__s_Option__s_Option__s_Option__Z__s_Option__s_Option__Z__Z__V(this, llmPendingVar, llmFallbackVar, llmDecisionVar, answerScoreVar, answerFeedbackVar, lastCheckVar, showSolutionVar, wrongAttemptsVar, submitCallback, infoCallback, solutionText, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(llmResult$1).Llivechart_Main$LlmCheckResult__f_isCorrect, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(llmResult$1).Llivechart_Main$LlmCheckResult__f_score, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(llmResult$1).Llivechart_Main$LlmCheckResult__f_feedback, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(llmResult$1).Llivechart_Main$LlmCheckResult__f_usedFallback, (!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(llmResult$1).Llivechart_Main$LlmCheckResult__f_usedFallback));
+          })));
+        } else {
+          var $x_62 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+          var this$217 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(textVar);
+          var this$218 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$217.Lcom_raquo_airstream_state_SourceVar__f_signal);
+          var $x_61 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$218.tryNow__s_util_Try()).get__O());
+          var this$219 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar);
+          var this$220 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$219.Lcom_raquo_airstream_state_SourceVar__f_signal);
+          var value$11 = this.livechart$Main$$$buildStudentAnswerFeedback__T__sci_Set__s_Option__T__T($x_61, keywords, minWordCount, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$220.tryNow__s_util_Try()).get__O()));
+          $p_Llivechart_Main$__applyCheckResult$1__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__Lcom_raquo_airstream_state_Var__s_Option__s_Option__s_Option__Z__s_Option__s_Option__Z__Z__V(this, llmPendingVar, llmFallbackVar, llmDecisionVar, answerScoreVar, answerFeedbackVar, lastCheckVar, showSolutionVar, wrongAttemptsVar, submitCallback, infoCallback, solutionText, ok, $x_62, new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(value$11), false, false);
         }
       }
     }));
-    var $x_43 = $x_46.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_45.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_44, new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_modifiers_EventListener(this$224, onNext$4), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_cls).$colon$eq__T__Lcom_raquo_laminar_modifiers_CompositeKeySetter("btn-time"), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_cls).$less$minus$minus__Lcom_raquo_airstream_core_Source__Lcom_raquo_laminar_keys_CompositeKey$CompositeValueMapper__Lcom_raquo_laminar_modifiers_KeyUpdater(buttonClassSignal, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).StringValueMapper__Lcom_raquo_laminar_keys_CompositeKey$CompositeValueMappers$StringValueMapper$())])));
+    var $x_59 = $x_66.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_65.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_64, $x_63, new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_modifiers_EventListener(this$222, onNext$4), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_cls).$colon$eq__T__Lcom_raquo_laminar_modifiers_CompositeKeySetter("btn-time"), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_cls).$less$minus$minus__Lcom_raquo_airstream_core_Source__Lcom_raquo_laminar_keys_CompositeKey$CompositeValueMapper__Lcom_raquo_laminar_modifiers_KeyUpdater(buttonClassSignal, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).StringValueMapper__Lcom_raquo_laminar_keys_CompositeKey$CompositeValueMappers$StringValueMapper$())])));
     $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_child);
-    var this$228 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
+    var this$226 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
     var project$18 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$4$1) => {
-      var x$1$11 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(x$1$4$1);
-      if ((((x$1$11 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some) && ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$11)).s_Some__f_value) === true)) && (!suppressPraise))) {
-        var $x_41 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).span__Lcom_raquo_laminar_tags_HtmlTag());
-        var $x_40 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
-        var $x_39 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("color: #2e7d32; font-weight: 600;");
+      var x$1$12 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(x$1$4$1);
+      if ((((x$1$12 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some) && ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$12)).s_Some__f_value) === true)) && (!suppressPraise))) {
+        var $x_57 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).span__Lcom_raquo_laminar_tags_HtmlTag());
+        var $x_56 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+        var $x_55 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("color: #2e7d32; font-weight: 600;");
         $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_child);
-        var this$225 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
+        var this$223 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
         var project$17 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((lang$10) => {
           var lang$11 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(lang$10);
           return ((lang$11 === "en") ? "Correct! Very good" : "Richtig! Sehr gut");
         }));
-        var textSource$6 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$225, project$17, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
-        return $x_41.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_40.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_39, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildTextInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_inserters_DynamicInserter(textSource$6, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable)])));
+        var textSource$6 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$223, project$17, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
+        return $x_57.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_56.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_55, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildTextInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_inserters_DynamicInserter(textSource$6, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable)])));
       } else {
         $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
         return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("");
       }
     }));
-    var childSource$5 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$228, project$18, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
-    var $x_42 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableNode__O__Lcom_raquo_laminar_inserters_DynamicInserter(childSource$5, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableNode$().Lcom_raquo_laminar_modifiers_RenderableNode$__f_nodeRenderable, (void 0));
+    var childSource$5 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$226, project$18, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
+    var $x_58 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableNode__O__Lcom_raquo_laminar_inserters_DynamicInserter(childSource$5, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableNode$().Lcom_raquo_laminar_modifiers_RenderableNode$__f_nodeRenderable, (void 0));
     $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_child);
-    var signal$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar).Lcom_raquo_airstream_state_SourceVar__f_signal;
-    var this$246 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_airstream_combine_generated_CombinableSignal$().combineWith$extension__Lcom_raquo_airstream_core_Signal__Lcom_raquo_airstream_core_Source$SignalSource__Lapp_tulz_tuplez_Composition__Lcom_raquo_airstream_core_Signal(signal$1, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(wrongAttemptsVar).Lcom_raquo_airstream_state_SourceVar__f_signal, new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lapp_tulz_tuplez_Composition\uff3fPri0$$anon$1()));
+    var this$244 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_airstream_combine_generated_StaticSignalCombineOps$()).combine__Lcom_raquo_airstream_core_Source$SignalSource__Lcom_raquo_airstream_core_Source$SignalSource__Lcom_raquo_airstream_core_Source$SignalSource__Lcom_raquo_airstream_core_Signal($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar).Lcom_raquo_airstream_state_SourceVar__f_signal, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(wrongAttemptsVar).Lcom_raquo_airstream_state_SourceVar__f_signal, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(llmDecisionVar).Lcom_raquo_airstream_state_SourceVar__f_signal));
     var project$21 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$5$1) => {
-      var x$1$12 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x$1$5$1);
-      if ((x$1$12 !== null)) {
-        var x543 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$12)._1__O());
-        if (((x543 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some) && ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x543)).s_Some__f_value) === false))) {
-          var wrongAttempts$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$12)._2__O());
-          var this$232 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(solutionText);
-          if ((!this$232.isEmpty__Z())) {
-            var $x_37 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag());
-            var $x_36 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
-            var $x_35 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("display: flex; align-items: center; gap: 0.75rem;");
+      var x$1$13 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T3(x$1$5$1);
+      if ((x$1$13 !== null)) {
+        var x586 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$13).T3__f__1);
+        if (((x586 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some) && ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x586)).s_Some__f_value) === false))) {
+          var wrongAttempts$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$13).T3__f__2);
+          if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$13).T3__f__3) === false)) {
+            var this$230 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(solutionText);
+            var $x_43 = (!this$230.isEmpty__Z());
+          } else {
+            var $x_43 = false;
+          }
+          if ($x_43) {
+            var $x_53 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag());
+            var $x_52 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+            var $x_51 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("display: flex; align-items: center; gap: 0.75rem;");
             if ((wrongAttempts$3 >= 2)) {
-              var $x_34 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).button__Lcom_raquo_laminar_tags_HtmlTag());
-              var $x_33 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+              var $x_50 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).button__Lcom_raquo_laminar_tags_HtmlTag());
+              var $x_49 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
               $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_child);
-              var this$233 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
+              var this$231 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
               var project$19 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((lang$12) => {
                 var lang$13 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(lang$12);
                 return ((lang$13 === "en") ? "Show solution" : "L\u00f6sung zeigen");
               }));
-              var textSource$7 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$233, project$19, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
-              var $x_32 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildTextInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_inserters_DynamicInserter(textSource$7, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable);
-              var $x_31 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_cls).$colon$eq__T__Lcom_raquo_laminar_modifiers_CompositeKeySetter("btn-time");
+              var textSource$7 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$231, project$19, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
+              var $x_48 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildTextInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_inserters_DynamicInserter(textSource$7, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable);
+              var $x_47 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_cls).$colon$eq__T__Lcom_raquo_laminar_modifiers_CompositeKeySetter("btn-time");
               $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
               var eventProp$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
-              var this$238 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$5, false, false));
-              var onNext$5 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$146) => {
-                var this$236 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(showSolutionVar);
-                $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$236, true);
-                var this$237 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(infoCallback);
-                if ((!this$237.isEmpty__Z())) {
-                  var x0$28 = this$237.get__O();
-                  var callback$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_F0(x0$28);
-                  $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(callback$2).apply__O();
+              var this$236 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$5, false, false));
+              var onNext$5 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$167) => {
+                var this$234 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(showSolutionVar);
+                $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_airstream_state_Var__set__O__V(this$234, true);
+                var this$235 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(infoCallback);
+                var f$10 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((callback) => {
+                  var callback$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_F0(callback);
+                  $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(callback$1).apply__O();
+                }));
+                if ((!this$235.isEmpty__Z())) {
+                  f$10.apply__O__O(this$235.get__O());
                 }
               }));
-              var $x_30 = $x_34.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_33.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_32, $x_31, new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_modifiers_EventListener(this$238, onNext$5)])));
+              var $x_46 = $x_50.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_49.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_48, $x_47, new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_modifiers_EventListener(this$236, onNext$5)])));
             } else {
               $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
-              var $x_30 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("");
+              var $x_46 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("");
             }
             var this$240 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(wrongHint);
-            if (this$240.isEmpty__Z()) {
-              var this$243 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
-            } else {
-              var x0$29 = this$240.get__O();
-              var hintText = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x0$29);
-              var $x_29 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).span__Lcom_raquo_laminar_tags_HtmlTag();
-              var $x_28 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+            var f$11 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((hintText) => {
+              var hintText$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(hintText);
+              var $x_45 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).span__Lcom_raquo_laminar_tags_HtmlTag());
+              var $x_44 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
               $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_child);
-              var this$241 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
+              var this$238 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
               var project$20 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((lang$14) => {
                 var lang$15 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(lang$14);
-                return $p_Llivechart_Main$__translatedNow__T__T__T(this, hintText, lang$15);
+                return $p_Llivechart_Main$__translatedNow__T__T__T(this, hintText$1, lang$15);
               }));
-              var textSource$8 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$241, project$20, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
-              var this$243 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_29).apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_28.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildTextInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_inserters_DynamicInserter(textSource$8, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("color: #c62828; font-weight: 600;")]))));
-            }
-            return $x_37.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_36.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_35, $x_30, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_Lcom_raquo_laminar_modifiers_Modifier((this$243.isEmpty__Z() ? ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("")) : this$243.get__O()))])));
+              var textSource$8 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$238, project$20, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
+              return $x_45.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_44.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildTextInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_inserters_DynamicInserter(textSource$8, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("color: #c62828; font-weight: 600;")])));
+            }));
+            var this$242 = (this$240.isEmpty__Z() ? $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$() : new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(f$11.apply__O__O(this$240.get__O())));
+            var default$9 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction0_$$Lambda$92a2e254bbb9c06a0a02fc31abab59c51c18ecc1((() => {
+              $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
+              return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("");
+            }));
+            return $x_53.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_52.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_51, $x_46, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_Lcom_raquo_laminar_modifiers_Modifier((this$242.isEmpty__Z() ? default$9.apply__O() : this$242.get__O()))])));
           }
         }
       }
       $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
       return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("");
     }));
-    var childSource$6 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$246, project$21, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
-    var $x_38 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableNode__O__Lcom_raquo_laminar_inserters_DynamicInserter(childSource$6, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableNode$().Lcom_raquo_laminar_modifiers_RenderableNode$__f_nodeRenderable, (void 0));
+    var childSource$6 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$244, project$21, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
+    var $x_54 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableNode__O__Lcom_raquo_laminar_inserters_DynamicInserter(childSource$6, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableNode$().Lcom_raquo_laminar_modifiers_RenderableNode$__f_nodeRenderable, (void 0));
     $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_child);
-    var this$256 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(showSolutionVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
-    var project$22 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((show) => {
-      var show$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(show);
-      if (show$1) {
-        var this$248 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar);
-        var this$249 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$248.Lcom_raquo_airstream_state_SourceVar__f_signal);
-        var lang$16 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$249.tryNow__s_util_Try()).get__O());
-        var wordsForLang = $p_Llivechart_Main$__translateSolutionWords__sci_Set__T__sci_Set(this, effectiveSolutionWords, lang$16);
-        var this$250 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(solutionText);
-        if (this$250.isEmpty__Z()) {
-          var this$253 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+    var this$251 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_airstream_combine_generated_StaticSignalCombineOps$()).combine__Lcom_raquo_airstream_core_Source$SignalSource__Lcom_raquo_airstream_core_Source$SignalSource__Lcom_raquo_airstream_core_Source$SignalSource__Lcom_raquo_airstream_core_Signal($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar).Lcom_raquo_airstream_state_SourceVar__f_signal, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(llmFallbackVar).Lcom_raquo_airstream_state_SourceVar__f_signal, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar).Lcom_raquo_airstream_state_SourceVar__f_signal));
+    var project$22 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$6$1) => {
+      var x$1$14 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T3(x$1$6$1);
+      if ((((x$1$14 !== null) && ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$14).T3__f__1 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) && ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$14).T3__f__2) === true))) {
+        var lang$16 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$14).T3__f__3);
+        var $x_41 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).span__Lcom_raquo_laminar_tags_HtmlTag());
+        var $x_40 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+        var $x_39 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("color: #6d4c41; font-size: 0.92rem;");
+        if ((lang$16 === "en")) {
+          var this$248 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
+          var r$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable;
+          var $x_38 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_nodes_TextNode(this$248, "LLM check unavailable, classic keyword check was used.", r$2);
         } else {
-          var x0$30 = this$250.get__O();
-          var text$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x0$30);
-          var $x_26 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag();
-          var $x_25 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
-          var $x_24 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_cls).$colon$eq__T__Lcom_raquo_laminar_modifiers_CompositeKeySetter("loesung-container");
-          var $x_23 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("flex-basis: 100%;");
-          var $x_22 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag();
-          var $x_21 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
-          var $x_20 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_cls).$colon$eq__T__Lcom_raquo_laminar_modifiers_CompositeKeySetter("loesung-header");
-          if ((lang$16 === "en")) {
-            var this$251 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
-            var r$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable;
-            var $x_19 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_nodes_TextNode(this$251, "Solution", r$2);
-          } else {
-            var this$252 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
-            var r$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable;
-            var $x_19 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_nodes_TextNode(this$252, "L\u00f6sung", r$3);
-          }
-          var this$253 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_26).apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_25.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_24, $x_23, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_22).apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_21.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_20, $x_19]))), this.L\u01c3\u01b6sungZeigen__T__sci_Set__T__Lcom_raquo_laminar_nodes_ReactiveElement(text$5, wordsForLang, lang$16)]))));
+          var this$249 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
+          var r$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable;
+          var $x_38 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_nodes_TextNode(this$249, "LLM-Pruefung nicht verfuegbar, klassische Stichwortpruefung wurde genutzt.", r$3);
         }
-        return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_Lcom_raquo_laminar_nodes_ChildNode((this$253.isEmpty__Z() ? ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L), new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("")) : this$253.get__O()));
+        return $x_41.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_40.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_39, $x_38])));
       } else {
         $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
         return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("");
       }
     }));
-    var childSource$7 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$256, project$22, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
-    var $x_27 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableNode__O__Lcom_raquo_laminar_inserters_DynamicInserter(childSource$7, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableNode$().Lcom_raquo_laminar_modifiers_RenderableNode$__f_nodeRenderable, (void 0));
-    matchResult145: {
-      var $x_14;
+    var childSource$7 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$251, project$22, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
+    var $x_42 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableNode__O__Lcom_raquo_laminar_inserters_DynamicInserter(childSource$7, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableNode$().Lcom_raquo_laminar_modifiers_RenderableNode$__f_nodeRenderable, (void 0));
+    $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_child);
+    var this$278 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_airstream_combine_generated_StaticSignalCombineOps$()).combine__Lcom_raquo_airstream_core_Source$SignalSource__Lcom_raquo_airstream_core_Source$SignalSource__Lcom_raquo_airstream_core_Signal($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(showSolutionVar).Lcom_raquo_airstream_state_SourceVar__f_signal, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(llmDecisionVar).Lcom_raquo_airstream_state_SourceVar__f_signal));
+    var project$25 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$7$1) => {
+      var x$1$15 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x$1$7$1);
+      if ((x$1$15 !== null)) {
+        var show = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$15)._1__O());
+        var llmDecision = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$15)._2__O());
+        if (show) {
+          var this$255 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar);
+          var this$256 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$255.Lcom_raquo_airstream_state_SourceVar__f_signal);
+          var lang$17 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$256.tryNow__s_util_Try()).get__O());
+          var wordsForLang = $p_Llivechart_Main$__translateSolutionWords__sci_Set__T__sci_Set(this, effectiveSolutionWords, lang$17);
+          var $x_36 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag());
+          var $x_35 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+          var $x_34 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_cls).$colon$eq__T__Lcom_raquo_laminar_modifiers_CompositeKeySetter("loesung-container");
+          var $x_33 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("flex-basis: 100%;");
+          var $x_32 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag());
+          var $x_31 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+          var $x_30 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_cls).$colon$eq__T__Lcom_raquo_laminar_modifiers_CompositeKeySetter("loesung-header");
+          if (llmDecision) {
+            if ((lang$17 === "en")) {
+              var this$257 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
+              var r$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable;
+              var $x_29 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_nodes_TextNode(this$257, "Evaluation", r$4);
+            } else {
+              var this$258 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
+              var r$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable;
+              var $x_29 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_nodes_TextNode(this$258, "Bewertung", r$5);
+            }
+          } else if ((lang$17 === "en")) {
+            var this$259 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
+            var r$6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable;
+            var $x_29 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_nodes_TextNode(this$259, "Solution", r$6);
+          } else {
+            var this$260 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
+            var r$7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable;
+            var $x_29 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_nodes_TextNode(this$260, "L\u00f6sung", r$7);
+          }
+          var $x_28 = $x_32.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_31.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_30, $x_29])));
+          if (llmDecision) {
+            $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
+            var $x_27 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("");
+          } else {
+            var this$262 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(solutionText);
+            var f$12 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((text$5) => {
+              var text$6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(text$5);
+              return this.L\u01c3\u01b6sungZeigen__T__sci_Set__T__Lcom_raquo_laminar_nodes_ReactiveElement(text$6, wordsForLang, lang$17);
+            }));
+            var this$264 = (this$262.isEmpty__Z() ? $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$() : new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(f$12.apply__O__O(this$262.get__O())));
+            var default$10 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction0_$$Lambda$92a2e254bbb9c06a0a02fc31abab59c51c18ecc1((() => {
+              $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
+              return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("");
+            }));
+            var $x_27 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_Lcom_raquo_laminar_modifiers_Modifier((this$264.isEmpty__Z() ? default$10.apply__O() : this$264.get__O()));
+          }
+          $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_child);
+          var this$268 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(answerScoreVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
+          var project$23 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$2$2) => {
+            var x$1$16 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(x$1$2$2);
+            if ((x$1$16 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
+              var score = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$16)).s_Some__f_value);
+              var $x_25 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag());
+              var $x_24 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+              var $x_23 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("margin-top: 0.6rem; font-weight: 700; color: #0d47a1;");
+              if ((lang$17 === "en")) {
+                var this$265 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
+                var value$12 = (("LLM score: " + score) + "/100");
+                var r$8 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable;
+                var $x_22 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_nodes_TextNode(this$265, value$12, r$8);
+              } else {
+                var this$266 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
+                var value$13 = (("LLM-Punktzahl: " + score) + "/100");
+                var r$9 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable;
+                var $x_22 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_nodes_TextNode(this$266, value$13, r$9);
+              }
+              return $x_25.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_24.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_23, $x_22])));
+            }
+            var x$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+            if ((x$4 === x$1$16)) {
+              $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
+              return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("");
+            }
+            throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$16);
+          }));
+          var childSource$8 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$268, project$23, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
+          var $x_26 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableNode__O__Lcom_raquo_laminar_inserters_DynamicInserter(childSource$8, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableNode$().Lcom_raquo_laminar_modifiers_RenderableNode$__f_nodeRenderable, (void 0));
+          $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_child);
+          var this$275 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(answerFeedbackVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
+          var project$24 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$3$2) => {
+            var x$1$17 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(x$1$3$2);
+            if ((x$1$17 instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
+              var feedbackText = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(x$1$17)).s_Some__f_value);
+              var x$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__trim__T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(feedbackText));
+              var this$272 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$5);
+              if ((!(this$272 === ""))) {
+                var $x_21 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag());
+                var $x_20 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+                var $x_19 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("margin-top: 0.75rem; padding: 0.65rem; border-left: 4px solid #1976d2; background: rgba(25, 118, 210, 0.08);");
+                var $x_18 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).p__Lcom_raquo_laminar_tags_HtmlTag();
+                var $x_17 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+                var $x_16 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("margin: 0;");
+                var this$273 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
+                var r$10 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable;
+                return $x_21.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_20.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_19, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_18).apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_17.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_16, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_nodes_TextNode(this$273, feedbackText, r$10)])))])));
+              }
+            }
+            $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
+            return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("");
+          }));
+          var childSource$9 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$275, project$24, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
+          return $x_36.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_35.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_34, $x_33, $x_28, $x_27, $x_26, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableNode__O__Lcom_raquo_laminar_inserters_DynamicInserter(childSource$9, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableNode$().Lcom_raquo_laminar_modifiers_RenderableNode$__f_nodeRenderable, (void 0))])));
+        } else {
+          $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
+          return new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("");
+        }
+      }
+      throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$15);
+    }));
+    var childSource$10 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$278, project$25, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
+    var $x_37 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableNode__O__Lcom_raquo_laminar_inserters_DynamicInserter(childSource$10, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableNode$().Lcom_raquo_laminar_modifiers_RenderableNode$__f_nodeRenderable, (void 0));
+    matchResult166$1: {
+      var $x_11;
       if ((minWordCount instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
         var min$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(minWordCount)).s_Some__f_value);
         $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_child);
-        var signal$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar).Lcom_raquo_airstream_state_SourceVar__f_signal;
-        var this$265 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_airstream_combine_generated_CombinableSignal$().combineWith$extension__Lcom_raquo_airstream_core_Signal__Lcom_raquo_airstream_core_Source$SignalSource__Lapp_tulz_tuplez_Composition__Lcom_raquo_airstream_core_Signal(signal$2, wordCountSignal, new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lapp_tulz_tuplez_Composition\uff3fPri0$$anon$1()));
-        var project$23 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$6$1) => {
-          var x$1$13 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x$1$6$1);
-          if ((x$1$13 !== null)) {
-            var status = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$13)._1__O());
-            var count = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$13)._2__O());
+        var signal = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar).Lcom_raquo_airstream_state_SourceVar__f_signal;
+        var this$287 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_airstream_combine_generated_CombinableSignal$().combineWith$extension__Lcom_raquo_airstream_core_Signal__Lcom_raquo_airstream_core_Source$SignalSource__Lapp_tulz_tuplez_Composition__Lcom_raquo_airstream_core_Signal(signal, wordCountSignal, new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lapp_tulz_tuplez_Composition\uff3fPri0$$anon$1()));
+        var project$26 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((x$1$8$1) => {
+          var x$1$18 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x$1$8$1);
+          if ((x$1$18 !== null)) {
+            var status = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$18)._1__O());
+            var count = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$18)._2__O());
             if ((status instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
               var color = ((count < min$1) ? "#b71c1c" : "#2e7d32");
-              var $x_18 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).span__Lcom_raquo_laminar_tags_HtmlTag());
-              var $x_17 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
-              var $x_16 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter((("color: " + color) + ";"));
-              var this$260 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar);
-              var this$261 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$260.Lcom_raquo_airstream_state_SourceVar__f_signal);
-              var x$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$261.tryNow__s_util_Try()).get__O();
-              if (((x$5 !== null) && $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$dp_equals__O__Z($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$5), "en"))) {
-                var this$262 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
-                var value$10 = (((("Minimum word count is " + min$1) + ", you wrote ") + count) + ".");
-                var r$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable;
-                var $x_15 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_nodes_TextNode(this$262, value$10, r$4);
+              var $x_15 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).span__Lcom_raquo_laminar_tags_HtmlTag());
+              var $x_14 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
+              var $x_13 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).styleAttr__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter((("color: " + color) + ";"));
+              var this$282 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar);
+              var this$283 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$282.Lcom_raquo_airstream_state_SourceVar__f_signal);
+              var x$6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$283.tryNow__s_util_Try()).get__O();
+              if (((x$6 !== null) && $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$dp_equals__O__Z($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$6), "en"))) {
+                var this$284 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
+                var value$14 = (((("Minimum word count is " + min$1) + ", you wrote ") + count) + ".");
+                var r$11 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable;
+                var $x_12 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_nodes_TextNode(this$284, value$14, r$11);
               } else {
-                var this$263 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
-                var value$11 = (((("Mindestwortzahl sind " + min$1) + ", du hast ") + count) + " geschrieben.");
-                var r$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable;
-                var $x_15 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_nodes_TextNode(this$263, value$11, r$5);
+                var this$285 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
+                var value$15 = (((("Mindestwortzahl sind " + min$1) + ", du hast ") + count) + " geschrieben.");
+                var r$12 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable;
+                var $x_12 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_Lcom_raquo_laminar_api_Implicits__textToTextNode__O__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_nodes_TextNode(this$285, value$15, r$12);
               }
-              return $x_18.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_17.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_16, $x_15])));
+              return $x_15.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_14.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_13, $x_12])));
             }
             var x$3$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
             if ((x$3$1 === status)) {
@@ -12495,26 +13883,26 @@ $c_Llivechart_Main$.prototype.renderExercise__T__sci_Set__I__s_Option__T__s_Opti
             }
             throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(status);
           }
-          throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$13);
+          throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$18);
         }));
-        var childSource$8 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$265, project$23, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
-        var $x_14 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableNode__O__Lcom_raquo_laminar_inserters_DynamicInserter(childSource$8, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableNode$().Lcom_raquo_laminar_modifiers_RenderableNode$__f_nodeRenderable, (void 0));
-        break matchResult145;
+        var childSource$11 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$287, project$26, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$());
+        var $x_11 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableNode__O__Lcom_raquo_laminar_inserters_DynamicInserter(childSource$11, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableNode$().Lcom_raquo_laminar_modifiers_RenderableNode$__f_nodeRenderable, (void 0));
+        break matchResult166$1;
       }
-      var x$6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
-      if ((x$6 === minWordCount)) {
+      var x$7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+      if ((x$7 === minWordCount)) {
         $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
-        var $x_14 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("");
-        break matchResult145;
+        var $x_11 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("");
+        break matchResult166$1;
       }
       throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(minWordCount);
     }
-    var $x_9 = $x_49.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_48.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_47, $x_43, $x_42, $x_38, $x_27, $x_14])));
+    var $x_5 = $x_69.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_68.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_67, $x_59, $x_58, $x_54, $x_42, $x_37, $x_11])));
   } else {
     $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
-    var $x_9 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("");
+    var $x_5 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_nodes_CommentNode("");
   }
-  return $x_119.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_118.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_117, $x_114, $x_113, $x_110, $x_81, $x_55, $x_54, $x_53, $x_52, $x_51, $x_50, $x_9, this.teacherNoteBlock__T__I__Lcom_raquo_laminar_nodes_ReactiveElement(chapter, index)])));
+  return $x_139.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_138.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_137, $x_134, $x_133, $x_130, $x_101, $x_75, $x_74, $x_73, $x_72, $x_71, $x_70, $x_5, this.teacherNoteBlock__T__I__Lcom_raquo_laminar_nodes_ReactiveElement(chapter, index)])));
 });
 $c_Llivechart_Main$.prototype.renderExerciseMC__T__sci_List__I__T__Lcom_raquo_laminar_nodes_ReactiveElement = (function(taskText, choices, index, chapter) {
   var this$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(chapter);
@@ -12528,8 +13916,8 @@ $c_Llivechart_Main$.prototype.renderExerciseMC__T__sci_List__I__T__Lcom_raquo_la
     var this$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
   } else {
     var x0 = this$4.get__O();
-    var _$147 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(x0);
-    var this$5 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$147).Llivechart_Main$ChapterData__f_exercises);
+    var _$168 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(x0);
+    var this$5 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$168).Llivechart_Main$ChapterData__f_exercises);
   }
   if (this$5.isEmpty__Z()) {
     var elems = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().genericWrapArray__O__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_sr_Nothing$.getArrayOf().constr)([]));
@@ -12543,8 +13931,8 @@ $c_Llivechart_Main$.prototype.renderExerciseMC__T__sci_List__I__T__Lcom_raquo_la
     var these = this$7;
     while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).isEmpty__Z())) {
       var x0$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).head__O();
-      var _$148 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$1);
-      if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$148).Llivechart_Main$ExerciseResponse__f_task === taskText)) {
+      var _$169 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$1);
+      if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$169).Llivechart_Main$ExerciseResponse__f_task === taskText)) {
         var this$8 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).head__O());
         break _return;
       }
@@ -12556,8 +13944,8 @@ $c_Llivechart_Main$.prototype.renderExerciseMC__T__sci_List__I__T__Lcom_raquo_la
     var $x_2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
   } else {
     var x0$2 = this$8.get__O();
-    var _$149 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$2);
-    var $x_2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$149).Llivechart_Main$ExerciseResponse__f_answer;
+    var _$170 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$2);
+    var $x_2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$170).Llivechart_Main$ExerciseResponse__f_answer;
   }
   var this$9 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_2);
   var storedAnswer = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T((this$9.isEmpty__Z() ? "" : this$9.get__O()));
@@ -12582,8 +13970,8 @@ $c_Llivechart_Main$.prototype.renderExerciseMC__T__sci_List__I__T__Lcom_raquo_la
         var these$1 = this$20;
         while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$1).isEmpty__Z())) {
           var x0$4 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$1).head__O();
-          var _$150 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x0$4);
-          var x = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$150)._1__O()))._1__O();
+          var _$171 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x0$4);
+          var x = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$171)._1__O()))._1__O();
           if (((x === null) ? (x0$3 === null) : $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$dp_equals__O__Z($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x), x0$3))) {
             var this$21 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$1).head__O());
             break _return$1;
@@ -12596,8 +13984,8 @@ $c_Llivechart_Main$.prototype.renderExerciseMC__T__sci_List__I__T__Lcom_raquo_la
         var elems$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
       } else {
         var x0$5 = this$21.get__O();
-        var _$151 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x0$5);
-        var elems$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$151)._2__O()));
+        var _$172 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x0$5);
+        var elems$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$172)._2__O()));
       }
       var it = elems$1.iterator__sc_Iterator();
       while ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(it).hasNext__Z()) {
@@ -12641,16 +14029,16 @@ $c_Llivechart_Main$.prototype.renderExerciseMC__T__sci_List__I__T__Lcom_raquo_la
   var $x_30 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
   var this$49 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L), $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_airstream_state_Val$().apply__O__Lcom_raquo_airstream_state_Val(choices)));
-  var project$6 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$152) => {
-    var _$152$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List(_$152);
-    var this$31 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$152$1);
+  var project$6 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$173) => {
+    var _$173$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List(_$173);
+    var this$31 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$173$1);
     var this$48 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_StrictOptimizedIterableOps__zipWithIndex__O(this$31)));
     var f = ((x$1) => {
       var x$1$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x$1);
       if ((x$1$1 !== null)) {
-        var x567 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$1)._1__O());
-        if ((x567 !== null)) {
-          var label = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x567)._1__O());
+        var x626 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$1)._1__O());
+        if ((x626 !== null)) {
+          var label = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x626)._1__O());
           var idx = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$1)._2__O());
           var $x_29 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).div__Lcom_raquo_laminar_tags_HtmlTag());
           var $x_28 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$();
@@ -12663,8 +14051,8 @@ $c_Llivechart_Main$.prototype.renderExerciseMC__T__sci_List__I__T__Lcom_raquo_la
               var selected = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$3)._1__O());
               var status = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$3)._2__O());
               if ((status instanceof $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some)) {
-                var x562 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(status)).s_Some__f_value);
-                if ((x562 === true)) {
+                var x621 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Some(status)).s_Some__f_value);
+                if ((x621 === true)) {
                   var this$34 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(choices);
                   if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_LinearSeqOps__apply__I__O(this$34, idx)))._2__O())) {
                     var $x_26 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(selected).contains__O__Z(idx);
@@ -12677,7 +14065,7 @@ $c_Llivechart_Main$.prototype.renderExerciseMC__T__sci_List__I__T__Lcom_raquo_la
                 if ($x_26) {
                   return "background: rgba(46, 204, 113, 0.2); border-left: 4px solid #2ecc71; padding: 2px 6px; border-radius: 4px;";
                 }
-                if ((x562 === false)) {
+                if ((x621 === false)) {
                   var this$35 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(choices);
                   if ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_LinearSeqOps__apply__I__O(this$35, idx)))._2__O())) {
                     return "background: rgba(46, 204, 113, 0.2); border-left: 4px solid #2ecc71; padding: 2px 6px; border-radius: 4px;";
@@ -12698,16 +14086,16 @@ $c_Llivechart_Main$.prototype.renderExerciseMC__T__sci_List__I__T__Lcom_raquo_la
           var $x_22 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).typ__Lcom_raquo_laminar_keys_HtmlAttr()).$colon$eq__O__Lcom_raquo_laminar_modifiers_KeySetter("checkbox");
           var $x_21 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).disabled__Lcom_raquo_laminar_keys_HtmlProp());
           var this$39 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(lastCheckVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
-          var project$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$153) => {
-            var _$153$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(_$153);
-            var this$38 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$153$1);
+          var project$3 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$174) => {
+            var _$174$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_s_Option(_$174);
+            var this$38 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$174$1);
             return (!this$38.isEmpty__Z());
           }));
           var $x_20 = $x_21.$less$minus$minus__Lcom_raquo_airstream_core_Source__Lcom_raquo_laminar_modifiers_KeyUpdater(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$39, project$3, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$()));
           $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
           var eventProp = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onChange__Lcom_raquo_laminar_keys_EventProp();
           var this$44 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp, false, false));
-          var onNext = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$154) => {
+          var onNext = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$175) => {
             var this$43 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(selectedVar);
             var mod = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((selected$1) => {
               var selected$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set(selected$1);
@@ -12724,9 +14112,9 @@ $c_Llivechart_Main$.prototype.renderExerciseMC__T__sci_List__I__T__Lcom_raquo_la
           var $x_19 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_laminar_modifiers_EventListener(this$44, onNext);
           var $x_18 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).checked__Lcom_raquo_laminar_keys_HtmlProp();
           var this$45 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(selectedVar).Lcom_raquo_airstream_state_SourceVar__f_signal);
-          var project$4 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$155) => {
-            var _$155$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set(_$155);
-            return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$155$1).contains__O__Z(idx);
+          var project$4 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$176) => {
+            var _$176$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set(_$176);
+            return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$176$1).contains__O__Z(idx);
           }));
           var $x_17 = $x_24.apply__sci_Seq__Lcom_raquo_laminar_nodes_ReactiveHtmlElement($x_23.wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_Lcom_raquo_laminar_modifiers_Modifier.getArrayOf().constr)([$x_22, $x_20, $x_19, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_18).$less$minus$minus__Lcom_raquo_airstream_core_Source__Lcom_raquo_laminar_modifiers_KeyUpdater(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_Lcom_raquo_airstream_misc_MapSignal(this$45, project$4, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$()))])));
           var $x_16 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).span__Lcom_raquo_laminar_tags_HtmlTag();
@@ -12793,12 +14181,12 @@ $c_Llivechart_Main$.prototype.renderExerciseMC__T__sci_List__I__T__Lcom_raquo_la
   var $x_10 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_inserters_ChildTextInserter$().apply__Lcom_raquo_airstream_core_Observable__Lcom_raquo_laminar_modifiers_RenderableText__Lcom_raquo_laminar_inserters_DynamicInserter(textSource$3, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_modifiers_RenderableText$().Lcom_raquo_laminar_modifiers_RenderableText$__f_stringRenderable);
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
   var eventProp$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
-  var this$67 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$1, false, false)).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$156) => {
+  var this$67 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$1, false, false)).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$177) => {
     var this$62 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(selectedVar);
     var this$63 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$62.Lcom_raquo_airstream_state_SourceVar__f_signal);
     var selected$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_Set($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$63.tryNow__s_util_Try()).get__O());
     var this$64 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(choices);
-    var this$65 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_StrictOptimizedIterableOps__zipWithIndex__O(this$64))).collect__s_PartialFunction__sci_List(new $j_livechart$002e$002dMain$0024$0024anon$00244.$c_Llivechart_Main$$anon$4()));
+    var this$65 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_sc_StrictOptimizedIterableOps__zipWithIndex__O(this$64))).collect__s_PartialFunction__sci_List(new $j_livechart$002e$002dMain$0024$0024anon$00245.$c_Llivechart_Main$$anon$5()));
     var correctIndices = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Set$().from__sc_IterableOnce__sci_Set(this$65);
     return ((selected$5 === null) ? (correctIndices === null) : $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(selected$5).equals__O__Z(correctIndices));
   })))).map__F1__Lcom_raquo_laminar_keys_EventProcessor(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((ok) => {
@@ -12853,7 +14241,7 @@ $c_Llivechart_Main$.prototype.ensureJsPdfLoaded__F0__V = (function(onReady) {
       var script = document.createElement("script");
       script.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
       script.setAttribute("data-jspdf", "true");
-      script.onload = ((_$157) => $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(onReady).apply__O());
+      script.onload = ((_$178) => $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(onReady).apply__O());
       document.head.appendChild(script);
     }
   }
@@ -12885,8 +14273,8 @@ $c_Llivechart_Main$.prototype.generateMerkzettelPdf__sci_List__sci_List__V = (fu
     if ((!headerQrAdded)) {
       console.warn("Could not load header QR image for PDF (likely CORS/network). Continuing without it.");
     }
-    var ev$620 = ((27 + elem) | 0);
-    elem = ev$620;
+    var ev$635 = ((27 + elem) | 0);
+    elem = ev$635;
     var this$26 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(studentName);
     if ((!(this$26 === ""))) {
       doc.setFontSize(13);
@@ -12895,29 +14283,29 @@ $c_Llivechart_Main$.prototype.generateMerkzettelPdf__sci_List__sci_List__V = (fu
       var value$3 = elem;
       var fields$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T2.getArrayOf().constr)([new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_T2("align", "center")]));
       doc.text(s$1, 105, value$3, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sjs_js_special_package$().objectLiteral__sci_Seq__sjs_js_Object(fields$1));
-      var ev$621 = ((10 + elem) | 0);
-      elem = ev$621;
+      var ev$636 = ((10 + elem) | 0);
+      elem = ev$636;
     }
     var this$37 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(sections);
     var these = this$37;
     while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).isEmpty__Z())) {
       var x0 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).head__O();
       var x$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x0);
-      matchResult155: {
+      matchResult176: {
         if ((x$1 !== null)) {
           var heading = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1)._1__O());
           var body = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1)._2__O());
           if ((elem > 270)) {
             doc.addPage();
-            var ev$622 = 15;
-            elem = ev$622;
+            var ev$637 = 15;
+            elem = ev$637;
           }
           doc.setFontSize(13);
           doc.setFont("helvetica", "bold");
           var value$4 = elem;
           doc.text(heading, 10, value$4);
-          var ev$623 = ((6 + elem) | 0);
-          elem = ev$623;
+          var ev$638 = ((6 + elem) | 0);
+          elem = ev$638;
           doc.setFontSize(11);
           doc.setFont("helvetica", "normal");
           var x = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$f_T__trim__T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(body));
@@ -12931,8 +14319,8 @@ $c_Llivechart_Main$.prototype.generateMerkzettelPdf__sci_List__sci_List__V = (fu
           var boxHeight = ((6 + Math.imul(5, $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uI(lines.length))) | 0);
           if ((((elem + boxHeight) | 0) > 280)) {
             doc.addPage();
-            var ev$624 = 15;
-            elem = ev$624;
+            var ev$639 = 15;
+            elem = ev$639;
           }
           var value$5 = elem;
           doc.rect(10, value$5, 190, boxHeight);
@@ -12946,13 +14334,13 @@ $c_Llivechart_Main$.prototype.generateMerkzettelPdf__sci_List__sci_List__V = (fu
             var line = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x0$1);
             var value$6 = elem$2;
             doc.text(line, 12, value$6);
-            var ev$625 = ((5 + elem$2) | 0);
-            elem$2 = ev$625;
+            var ev$640 = ((5 + elem$2) | 0);
+            elem$2 = ev$640;
             i = ((1 + i) | 0);
           }
-          var ev$626 = ((6 + ((elem + boxHeight) | 0)) | 0);
-          elem = ev$626;
-          break matchResult155;
+          var ev$641 = ((6 + ((elem + boxHeight) | 0)) | 0);
+          elem = ev$641;
+          break matchResult176;
         }
         throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1);
       }
@@ -12960,29 +14348,29 @@ $c_Llivechart_Main$.prototype.generateMerkzettelPdf__sci_List__sci_List__V = (fu
     }
     if ((elem > 140)) {
       doc.addPage();
-      var ev$627 = 15;
-      elem = ev$627;
+      var ev$642 = 15;
+      elem = ev$642;
     } else {
-      var ev$628 = ((10 + elem) | 0);
-      elem = ev$628;
+      var ev$643 = ((10 + elem) | 0);
+      elem = ev$643;
     }
     doc.setFontSize(13);
     doc.setFont("helvetica", "bold");
     var value$7 = elem;
     doc.text("Bereiche eines QR-Codes", 10, value$7);
-    var ev$629 = ((6 + elem) | 0);
-    elem = ev$629;
+    var ev$644 = ((6 + elem) | 0);
+    elem = ev$644;
     doc.setFontSize(11);
     doc.setFont("helvetica", "normal");
     var x$2 = elem;
     var qrAreasImageAdded = $p_Llivechart_Main$__tryAddImage$1__sjs_js_Object__T__T__D__D__D__D__Z(this, doc, "/qr_Bereiche.png", "PNG", 55.0, x$2, 100.0, 100.0);
     if (qrAreasImageAdded) {
-      var ev$630 = ((105 + elem) | 0);
-      elem = ev$630;
+      var ev$645 = ((105 + elem) | 0);
+      elem = ev$645;
     } else {
       console.warn("Could not load qr_Bereiche.png for PDF (likely CORS/missing file). Continuing with text only.");
-      var ev$631 = ((6 + elem) | 0);
-      elem = ev$631;
+      var ev$646 = ((6 + elem) | 0);
+      elem = ev$646;
     }
     var elems = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$d_T.getArrayOf().constr)(["Trotz verschiedenen Einsatzm\u00f6glichkeiten haben QR Codes einen \u00e4hnlichen Aussehen.", "Die roten Bereiche in den Ecken hei\u00dfen Positionsmarker. Diese dienen dazu, dass die Handykamera den Anfang und das Ende des QR Codes erfassen kann.", "Die blaue Stelle ist ein Ausrichtungsmarker. Dieser hilft den QR Code auf unebenen Fl\u00e4chen (z.B. Verpackungen) zu lesen.", "Der gr\u00fcne Bereich sind die Timing-Patterns (Synchronisationslinien). Hier wechseln sich schwarze und wei\u00dfe Pixel ab. Mithilfe dieser Anordnung wird die Gr\u00f6\u00dfe des QR Codes bestimmt.", "Da viele verschiedene QR Code Versionen existieren, wird eine Versionsnummer festgehalten. Die Metadaten sind Informationen \u00fcber den Aufbau des QR Codes (z.B. die verwendete Maske).", "Weiterhin haben alle QR Codes einen wei\u00dfen Rand um den Code, damit dieser gelesen werden kann. Diesen Rand nennt man die Randzone. Die genauen Bereiche k\u00f6nnen je nach QR Code Version variieren, aber es gibt immer bestimmte Bereiche, die nicht f\u00fcr die Nachricht verwendet werden k\u00f6nnen."]));
     var explanations = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems);
@@ -12992,24 +14380,24 @@ $c_Llivechart_Main$.prototype.generateMerkzettelPdf__sci_List__sci_List__V = (fu
       var x0$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$1).head__O();
       var text = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T(x0$2);
       var x$3 = elem;
-      var ev$641 = $p_Llivechart_Main$__printColoredText$1__sjs_js_Object__T__D__I(this, doc, text, x$3);
-      elem = ev$641;
+      var ev$656 = $p_Llivechart_Main$__printColoredText$1__sjs_js_Object__T__D__I(this, doc, text, x$3);
+      elem = ev$656;
       these$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_sci_List($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$1).tail__O());
     }
     if ((elem > 220)) {
       doc.addPage();
-      var ev$642 = 15;
-      elem = ev$642;
+      var ev$657 = 15;
+      elem = ev$657;
     } else {
-      var ev$643 = ((6 + elem) | 0);
-      elem = ev$643;
+      var ev$658 = ((6 + elem) | 0);
+      elem = ev$658;
     }
     doc.setFontSize(13);
     doc.setFont("helvetica", "bold");
     var value$8 = elem;
     doc.text(((lang === "en") ? "My chapter understanding" : "Verstaendnis der Kapitel"), 10, value$8);
-    var ev$644 = ((7 + elem) | 0);
-    elem = ev$644;
+    var ev$659 = ((7 + elem) | 0);
+    elem = ev$659;
     var noEntry = $p_Llivechart_Main$__translatedNow__T__T__T(this, "(keine Antwort)", lang);
     var this$87 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(selfAssessments);
     var f = ((x$1$2) => {
@@ -13046,8 +14434,8 @@ $c_Llivechart_Main$.prototype.generateMerkzettelPdf__sci_List__sci_List__V = (fu
     }
     if ((((elem + (((1 + tableRows.length__I()) | 0) << 3)) | 0) > 280)) {
       doc.addPage();
-      var ev$645 = 15;
-      elem = ev$645;
+      var ev$660 = 15;
+      elem = ev$660;
     }
     doc.setFontSize(11);
     doc.setFont("helvetica", "bold");
@@ -13059,21 +14447,21 @@ $c_Llivechart_Main$.prototype.generateMerkzettelPdf__sci_List__sci_List__V = (fu
     doc.text(((lang === "en") ? "Chapter" : "Kapitel"), 12, value$11);
     var value$12 = (elem + 5.5);
     doc.text(((lang === "en") ? "Chapter understanding" : "Verstaendnis des Kapitels"), 132, value$12);
-    var ev$646 = ((8 + elem) | 0);
-    elem = ev$646;
+    var ev$661 = ((8 + elem) | 0);
+    elem = ev$661;
     doc.setFont("helvetica", "normal");
     var these$2 = tableRows;
     while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$2).isEmpty__Z())) {
       var x0$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these$2).head__O();
       var x$1$3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x0$5);
-      matchResult158: {
+      matchResult179: {
         if ((x$1$3 !== null)) {
           var chapter$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$3)._1__O());
           var rating$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$1$3)._2__O());
           if ((((8 + elem) | 0) > 282)) {
             doc.addPage();
-            var ev$647 = 15;
-            elem = ev$647;
+            var ev$662 = 15;
+            elem = ev$662;
             doc.setFont("helvetica", "bold");
             var value$13 = elem;
             doc.rect(10, value$13, 120, 8);
@@ -13083,8 +14471,8 @@ $c_Llivechart_Main$.prototype.generateMerkzettelPdf__sci_List__sci_List__V = (fu
             doc.text(((lang === "en") ? "Chapter" : "Kapitel"), 12, value$15);
             var value$16 = (elem + 5.5);
             doc.text(((lang === "en") ? "Chapter understanding" : "Verstaendnis des Kapitels"), 132, value$16);
-            var ev$648 = ((8 + elem) | 0);
-            elem = ev$648;
+            var ev$663 = ((8 + elem) | 0);
+            elem = ev$663;
             doc.setFont("helvetica", "normal");
           }
           var value$17 = elem;
@@ -13095,9 +14483,9 @@ $c_Llivechart_Main$.prototype.generateMerkzettelPdf__sci_List__sci_List__V = (fu
           doc.text(chapter$1, 12, value$19);
           var value$20 = (elem + 5.5);
           doc.text(rating$1, 132, value$20);
-          var ev$649 = ((8 + elem) | 0);
-          elem = ev$649;
-          break matchResult158;
+          var ev$664 = ((8 + elem) | 0);
+          elem = ev$664;
+          break matchResult179;
         }
         throw new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_MatchError(x$1$3);
       }
@@ -13136,14 +14524,14 @@ $c_Llivechart_Main$.prototype.erstelleZusammenfassungsBlatt__Lcom_raquo_laminar_
         var $x_1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
       } else {
         var x0 = this$28.get__O();
-        var _$158 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(x0);
-        var this$29 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$158).Llivechart_Main$ChapterData__f_exercises);
+        var _$179 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(x0);
+        var this$29 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$179).Llivechart_Main$ChapterData__f_exercises);
         _return: {
           var these = this$29;
           while ((!$j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).isEmpty__Z())) {
             var x0$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).head__O();
-            var _$159 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$1);
-            if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$159).Llivechart_Main$ExerciseResponse__f_task === lastTask)) {
+            var _$180 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$1);
+            if (($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$180).Llivechart_Main$ExerciseResponse__f_task === lastTask)) {
               var this$30 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(these).head__O());
               break _return;
             }
@@ -13155,8 +14543,8 @@ $c_Llivechart_Main$.prototype.erstelleZusammenfassungsBlatt__Lcom_raquo_laminar_
           var $x_1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
         } else {
           var x0$2 = this$30.get__O();
-          var _$160 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$2);
-          var $x_1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$160).Llivechart_Main$ExerciseResponse__f_answer;
+          var _$181 = $j_livechart$002e$002dMain$0024$002dExercise$002dResponse.$as_Llivechart_Main$ExerciseResponse(x0$2);
+          var $x_1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$181).Llivechart_Main$ExerciseResponse__f_answer;
         }
       }
       var this$31 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($x_1);
@@ -13318,7 +14706,7 @@ $c_Llivechart_Main$.prototype.erstelleZusammenfassungsBlatt__Lcom_raquo_laminar_
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
   var eventProp$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
   var this$83 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp$1, false, false));
-  var onNext$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$161) => {
+  var onNext$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$182) => {
     var this$69 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(pdfHeadings);
     var f$2 = ((x$1$4) => {
       var x$1$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T2(x$1$4);
@@ -13330,8 +14718,8 @@ $c_Llivechart_Main$.prototype.erstelleZusammenfassungsBlatt__Lcom_raquo_laminar_
           var this$66 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
         } else {
           var x0$8 = this$63.get__O();
-          var _$162 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_Lcom_raquo_airstream_state_Var(x0$8);
-          var this$64 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$162);
+          var _$183 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_Lcom_raquo_airstream_state_Var(x0$8);
+          var this$64 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$183);
           var this$65 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$64.Lcom_raquo_airstream_state_SourceVar__f_signal);
           var this$66 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_T($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this$65.tryNow__s_util_Try()).get__O()));
         }
@@ -13373,8 +14761,8 @@ $c_Llivechart_Main$.prototype.erstelleZusammenfassungsBlatt__Lcom_raquo_laminar_
           var this$75 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
         } else {
           var x0$11 = this$74.get__O();
-          var _$163 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(x0$11);
-          var this$75 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$163).Llivechart_Main$ChapterData__f_rating);
+          var _$184 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(x0$11);
+          var this$75 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$184).Llivechart_Main$ChapterData__f_rating);
         }
         var ratingData = $j_livechart$002e$002dMain$0024$002dRating$002dData.$as_Llivechart_Main$RatingData((this$75.isEmpty__Z() ? new $j_livechart$002e$002dMain$0024$002dRating$002dData.$c_Llivechart_Main$RatingData(0, 0, 0, 0, "") : this$75.get__O()));
         var this$77 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$__f_languageVar);
@@ -13609,7 +14997,7 @@ $c_Llivechart_Main$.prototype.allgemeineInfos__T__T__Lcom_raquo_laminar_nodes_Re
   $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L);
   var eventProp = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).onClick__Lcom_raquo_laminar_keys_EventProp();
   var this$7 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_keys_EventProcessor$().empty__Lcom_raquo_laminar_keys_EventProp__Z__Z__Lcom_raquo_laminar_keys_EventProcessor(eventProp, false, false));
-  var onNext = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$168) => {
+  var onNext = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((_$189) => {
     var this$6 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(isOpenVar);
     var mod = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_sjsr_AnonFunction1_$$Lambda$3aa60c34ef08a878abffbf4628007cc68fa3c7ab(((v) => {
       var v$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$uZ(v);
@@ -13766,8 +15154,8 @@ $c_Llivechart_Main$.prototype.Rating__T__Lcom_raquo_laminar_nodes_ReactiveElemen
     var this$5 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
   } else {
     var x0 = this$4.get__O();
-    var _$170 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(x0);
-    var this$5 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$170).Llivechart_Main$ChapterData__f_rating);
+    var _$191 = $j_livechart$002e$002dMain$0024$002dChapter$002dData.$as_Llivechart_Main$ChapterData(x0);
+    var this$5 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(_$191).Llivechart_Main$ChapterData__f_rating);
   }
   var storedRating = $j_livechart$002e$002dMain$0024$002dRating$002dData.$as_Llivechart_Main$RatingData((this$5.isEmpty__Z() ? new $j_livechart$002e$002dMain$0024$002dRating$002dData.$c_Llivechart_Main$RatingData(0, 0, 0, 0, "") : this$5.get__O()));
   var understandingVar = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_Lcom_raquo_laminar_api_package$().Lcom_raquo_laminar_api_package$__f_L).Lcom_raquo_laminar_api_package$$anon$1__f_Var).apply__O__Lcom_raquo_airstream_state_Var($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(storedRating).Llivechart_Main$RatingData__f_understanding);
@@ -13968,4 +15356,64 @@ function $m_Llivechart_Main$() {
   return $n_Llivechart_Main$;
 }
 export { $m_Llivechart_Main$ as $m_Llivechart_Main$ };
+/** @constructor */
+function $c_Llivechart_Main$$anon$1(cfg$7, fallbackOk$4, inputText$4, keywords$34, minWordCount$32, lang$10, outer) {
+  this.Llivechart_Main$$anon$1__f_cfg$5 = null;
+  this.Llivechart_Main$$anon$1__f_fallbackOk$2 = false;
+  this.Llivechart_Main$$anon$1__f_inputText$2 = null;
+  this.Llivechart_Main$$anon$1__f_keywords$29 = null;
+  this.Llivechart_Main$$anon$1__f_minWordCount$29 = null;
+  this.Llivechart_Main$$anon$1__f_lang$2 = null;
+  this.Llivechart_Main$$anon$1__f_cfg$5 = cfg$7;
+  this.Llivechart_Main$$anon$1__f_fallbackOk$2 = fallbackOk$4;
+  this.Llivechart_Main$$anon$1__f_inputText$2 = inputText$4;
+  this.Llivechart_Main$$anon$1__f_keywords$29 = keywords$34;
+  this.Llivechart_Main$$anon$1__f_minWordCount$29 = minWordCount$32;
+  this.Llivechart_Main$$anon$1__f_lang$2 = lang$10;
+  if ((outer === null)) {
+    throw $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$ct_jl_NullPointerException__(new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_jl_NullPointerException());
+  }
+}
+export { $c_Llivechart_Main$$anon$1 as $c_Llivechart_Main$$anon$1 };
+$c_Llivechart_Main$$anon$1.prototype = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$h_sr_AbstractPartialFunction();
+$c_Llivechart_Main$$anon$1.prototype.constructor = $c_Llivechart_Main$$anon$1;
+/** @constructor */
+function $h_Llivechart_Main$$anon$1() {
+}
+export { $h_Llivechart_Main$$anon$1 as $h_Llivechart_Main$$anon$1 };
+$h_Llivechart_Main$$anon$1.prototype = $c_Llivechart_Main$$anon$1.prototype;
+$c_Llivechart_Main$$anon$1.prototype.isDefinedAt__jl_Throwable__Z = (function(x) {
+  return (x !== null);
+});
+$c_Llivechart_Main$$anon$1.prototype.applyOrElse__jl_Throwable__F1__O = (function(x, default$1) {
+  if ((x !== null)) {
+    var $x_4 = $m_Llivechart_Main$();
+    var $x_3 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$$anon$1__f_cfg$5).Llivechart_Main$LlmEndpointConfig__f_endpoint;
+    var $x_2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$$anon$1__f_cfg$5).Llivechart_Main$LlmEndpointConfig__f_provider;
+    var $x_1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(this.Llivechart_Main$$anon$1__f_cfg$5).Llivechart_Main$LlmEndpointConfig__f_model;
+    var this$1 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_Option$().apply__O__s_Option($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x).getMessage__T()));
+    $x_4.livechart$Main$$$logLlmIssue__T__T__V("request-failed", ((((((("Endpoint=" + $x_3) + ", provider=") + $x_2) + ", model=") + $x_1) + ", error=") + (this$1.isEmpty__Z() ? $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x).toString__T() : this$1.get__O())));
+    var isCorrect = this.Llivechart_Main$$anon$1__f_fallbackOk$2;
+    var score = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_s_None$();
+    var value = $m_Llivechart_Main$().livechart$Main$$$buildStudentAnswerFeedback__T__sci_Set__s_Option__T__T(this.Llivechart_Main$$anon$1__f_inputText$2, this.Llivechart_Main$$anon$1__f_keywords$29, this.Llivechart_Main$$anon$1__f_minWordCount$29, this.Llivechart_Main$$anon$1__f_lang$2);
+    var feedback = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$c_s_Some(value);
+    return new $j_livechart$002e$002dMain$0024$002dLlm$002dCheck$002dResult.$c_Llivechart_Main$LlmCheckResult(isCorrect, score, feedback, true);
+  } else {
+    return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(default$1).apply__O__O(x);
+  }
+});
+$c_Llivechart_Main$$anon$1.prototype.isDefinedAt__O__Z = (function(x) {
+  return this.isDefinedAt__jl_Throwable__Z($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_jl_Throwable(x));
+});
+$c_Llivechart_Main$$anon$1.prototype.applyOrElse__O__F1__O = (function(x, default$1) {
+  return this.applyOrElse__jl_Throwable__F1__O($j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$as_jl_Throwable(x), default$1);
+});
+var $d_Llivechart_Main$$anon$1 = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$TypeData().initClass($c_Llivechart_Main$$anon$1, "livechart.Main$$anon$1", ({
+  Llivechart_Main$$anon$1: 1,
+  sr_AbstractPartialFunction: 1,
+  F1: 1,
+  s_PartialFunction: 1,
+  Ljava_io_Serializable: 1
+}));
+export { $d_Llivechart_Main$$anon$1 as $d_Llivechart_Main$$anon$1 };
 //# sourceMappingURL=livechart.-Main$.js.map
