@@ -1,15 +1,17 @@
 'use strict';
 import * as $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6 from "./internal-3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.js";
 /** @constructor */
-function $c_Llivechart_Main$LlmCheckResult(isCorrect, score, feedback, usedFallback) {
+function $c_Llivechart_Main$LlmCheckResult(isCorrect, score, feedback, usedFallback, llmAvailable) {
   this.Llivechart_Main$LlmCheckResult__f_isCorrect = false;
   this.Llivechart_Main$LlmCheckResult__f_score = null;
   this.Llivechart_Main$LlmCheckResult__f_feedback = null;
   this.Llivechart_Main$LlmCheckResult__f_usedFallback = false;
+  this.Llivechart_Main$LlmCheckResult__f_llmAvailable = false;
   this.Llivechart_Main$LlmCheckResult__f_isCorrect = isCorrect;
   this.Llivechart_Main$LlmCheckResult__f_score = score;
   this.Llivechart_Main$LlmCheckResult__f_feedback = feedback;
   this.Llivechart_Main$LlmCheckResult__f_usedFallback = usedFallback;
+  this.Llivechart_Main$LlmCheckResult__f_llmAvailable = llmAvailable;
 }
 export { $c_Llivechart_Main$LlmCheckResult as $c_Llivechart_Main$LlmCheckResult };
 $c_Llivechart_Main$LlmCheckResult.prototype = new $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$h_O();
@@ -42,14 +44,17 @@ $c_Llivechart_Main$LlmCheckResult.prototype.hashCode__I = (function() {
   var data$4 = (this.Llivechart_Main$LlmCheckResult__f_usedFallback ? 1231 : 1237);
   acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().mix__I__I__I(hash$4, data$4);
   var hash$5 = acc;
-  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().finalizeHash__I__I__I(hash$5, 4);
+  var data$5 = (this.Llivechart_Main$LlmCheckResult__f_llmAvailable ? 1231 : 1237);
+  acc = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().mix__I__I__I(hash$5, data$5);
+  var hash$6 = acc;
+  return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_Statics$().finalizeHash__I__I__I(hash$6, 5);
 });
 $c_Llivechart_Main$LlmCheckResult.prototype.equals__O__Z = (function(x$0) {
   if ((this === x$0)) {
     return true;
   } else if ((x$0 instanceof $c_Llivechart_Main$LlmCheckResult)) {
     var x$0$2 = $as_Llivechart_Main$LlmCheckResult(x$0);
-    if (((this.Llivechart_Main$LlmCheckResult__f_isCorrect === $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$0$2).Llivechart_Main$LlmCheckResult__f_isCorrect) && (this.Llivechart_Main$LlmCheckResult__f_usedFallback === $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$0$2).Llivechart_Main$LlmCheckResult__f_usedFallback))) {
+    if ((((this.Llivechart_Main$LlmCheckResult__f_isCorrect === $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$0$2).Llivechart_Main$LlmCheckResult__f_isCorrect) && (this.Llivechart_Main$LlmCheckResult__f_usedFallback === $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$0$2).Llivechart_Main$LlmCheckResult__f_usedFallback)) && (this.Llivechart_Main$LlmCheckResult__f_llmAvailable === $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$0$2).Llivechart_Main$LlmCheckResult__f_llmAvailable))) {
       var x = this.Llivechart_Main$LlmCheckResult__f_score;
       var x$2 = $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x$0$2).Llivechart_Main$LlmCheckResult__f_score;
       var $x_2 = ((x === null) ? (x$2 === null) : $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$n(x).equals__O__Z(x$2));
@@ -77,7 +82,7 @@ $c_Llivechart_Main$LlmCheckResult.prototype.toString__T = (function() {
   return $j_internal$002d3ebfae0cba70adf981029a0da5b1e4b5ab5d02c6.$m_sr_ScalaRunTime$()._toString__s_Product__T(this);
 });
 $c_Llivechart_Main$LlmCheckResult.prototype.productArity__I = (function() {
-  return 4;
+  return 5;
 });
 $c_Llivechart_Main$LlmCheckResult.prototype.productPrefix__T = (function() {
   return "LlmCheckResult";
@@ -98,6 +103,10 @@ $c_Llivechart_Main$LlmCheckResult.prototype.productElement__I__O = (function(n) 
     }
     case 3: {
       return this.Llivechart_Main$LlmCheckResult__f_usedFallback;
+      break;
+    }
+    case 4: {
+      return this.Llivechart_Main$LlmCheckResult__f_llmAvailable;
       break;
     }
     default: {

@@ -472,7 +472,7 @@ object Main:
         keywordVariants(keyword).exists(variant => haystack.contains(variant.toLowerCase))
       }
 
-  case class LlmCheckResult(isCorrect: Boolean, score: Option[Int], feedback: Option[String], usedFallback: Boolean)
+  case class LlmCheckResult(isCorrect: Boolean, score: Option[Int], feedback: Option[String], usedFallback: Boolean, llmAvailable: Boolean)
 
   private def parseBooleanValue(value: js.Any): Option[Boolean] =
     if value == null || js.isUndefined(value) then None
@@ -542,19 +542,19 @@ object Main:
       case Some(v) => !v.trim.equalsIgnoreCase("false")
       case None => true
 
-    // Default to a free hosted API so students do not need local installs or browser setup.
-    val configuredEndpoint = readLocalStorageItem("qr-llm-endpoint")
+    val configuredEndpoint = readMetaTagContent("qr-llm-endpoint")
+      .orElse(readWindowString("__QR_LLM_ENDPOINT__"))
+      .orElse(readLocalStorageItem("qr-llm-endpoint"))
       .map(_.trim)
       .filter(_.nonEmpty)
 
-    // School mode: force free-only usage by defaulting to the anonymous text endpoint.
-    // If a paid endpoint is configured (gen.pollinations.ai), we still route to free endpoint.
     val endpoint = configuredEndpoint match
-      case Some(ep) if ep.toLowerCase.contains("gen.pollinations.ai") => "https://text.pollinations.ai"
       case Some(ep) => ep
       case None => "https://text.pollinations.ai"
 
-    val provider = readLocalStorageItem("qr-llm-provider")
+    val provider = readMetaTagContent("qr-llm-provider")
+      .orElse(readWindowString("__QR_LLM_PROVIDER__"))
+      .orElse(readLocalStorageItem("qr-llm-provider"))
       .map(_.trim.toLowerCase)
       .filter(_.nonEmpty)
       .getOrElse(
@@ -565,15 +565,17 @@ object Main:
         else "openai"
       )
 
-    val model = readLocalStorageItem("qr-llm-model")
+    val model = readMetaTagContent("qr-llm-model")
+      .orElse(readWindowString("__QR_LLM_MODEL__"))
+      .orElse(readLocalStorageItem("qr-llm-model"))
       .map(_.trim)
       .filter(_.nonEmpty)
       .getOrElse("openai-fast")
 
     val apiKey =
-      readLocalStorageItem("qr-llm-api-key")
-        .orElse(readMetaTagContent("qr-llm-api-key"))
+      readMetaTagContent("qr-llm-api-key")
         .orElse(readWindowString("__QR_LLM_API_KEY__"))
+        .orElse(readLocalStorageItem("qr-llm-api-key"))
         .map(_.trim)
         .filter(_.nonEmpty)
     if enabled && endpoint.nonEmpty then Some(LlmEndpointConfig(endpoint, apiKey, provider, model)) else None
@@ -694,30 +696,34 @@ object Main:
     llmEndpointConfig() match
       case None =>
         logLlmIssue("disabled-or-invalid-config", "LLM config unavailable (disabled or endpoint missing).")
-        onResult(LlmCheckResult(fallbackOk, None, Some(buildStudentAnswerFeedback(inputText, keywords, minWordCount, lang)), usedFallback = true))
+        onResult(LlmCheckResult(fallbackOk, None, Some(buildStudentAnswerFeedback(inputText, keywords, minWordCount, lang)), usedFallback = true, llmAvailable = false))
       case Some(cfg) =>
         val prompt =
           if preparedSolution.nonEmpty then
             "Du bist ein fairer Korrekturassistent fuer Schuelerantworten. " +
-              "Bewerte die Schuelerantwort anhand der Frage und des bereitgestellten Loesungstexts. " +
+              "Bewerte die Antwort anhand der Frage und des bereitgestellten Loesungstexts. " +
+              "Vergib nur dann hohe Punktzahlen, wenn die zentralen inhaltlichen Aspekte klar und korrekt genannt werden. " +
+              "Teilweise richtige Antworten sollen nur mittlere Punktzahlen erhalten; vage, sehr kurze oder unpraezise Antworten deutlich niedrigere. " +
+              "Formuliere dein Feedback direkt an die antwortende Person mit du und deine Antwort, nicht in der dritten Person. " +
               "Anerkenne Synonyme und sinnvolle Umschreibungen als korrekt. " +
               "Antworte nur als JSON mit den Feldern score (0-100 als Zahl) und feedback (string)."
           else
             "Du bist ein fairer Korrekturassistent fuer Schuelerantworten. " +
-              "Bewerte die Schuelerantwort anhand der Frage. Es gibt keinen Loesungstext. " +
-              "Bewerte in diesem Fall bewusst weniger streng: inhaltlich passende Teilantworten klar positiv werten, " +
-              "keine Punktabzuege fuer kleine Sprachfehler oder fehlende Fachbegriffe, wenn der Sinn stimmt. " +
-              "Gib bei nachvollziehbarer, teilweise korrekter Antwort eher mittlere bis gute Punktzahlen. " +
+              "Bewerte die Antwort anhand der Frage. Es gibt keinen Loesungstext. " +
+              "Bewerte in diesem Fall weiterhin nachvollziehbar, aber eher streng: hohe Punktzahlen nur fuer klar passende, inhaltlich ueberzeugende Antworten. " +
+              "Teilantworten, sehr kurze Antworten oder nur grob passende Aussagen sollen deutlich niedriger bewertet werden. " +
+              "Kleine Sprachfehler sind in Ordnung, aber fehlende zentrale Inhalte sollen zu spuerbaren Abzuegen fuehren. " +
+              "Formuliere dein Feedback direkt an die antwortende Person mit du und deine Antwort, nicht in der dritten Person. " +
               "Anerkenne Synonyme und sinnvolle Umschreibungen als korrekt. " +
               "Antworte nur als JSON mit den Feldern score (0-100 als Zahl) und feedback (string)."
 
         val solutionPart = preparedSolution.map(text => s"\n\nLoesungstext: $text").getOrElse("")
         val userPrompt =
-          s"Frage: $taskText$solutionPart\n\nSchuelerantwort: $inputText\n\n" +
+          s"Frage: $taskText$solutionPart\n\nDeine Antwort: $inputText\n\n" +
             (if preparedSolution.nonEmpty then
-              "Bewerte die Schuelerantwort. JSON-Ausgabe mit {\"score\": number, \"feedback\": string}."
+              "Bewerte deine Antwort. Sprich die Person direkt an. JSON-Ausgabe mit {\"score\": number, \"feedback\": string}."
             else
-              "Bewerte die Schuelerantwort eher grosszuegig, wenn der Kern inhaltlich passt. JSON-Ausgabe mit {\"score\": number, \"feedback\": string}.")
+              "Bewerte deine Antwort eher streng und nur dann positiv, wenn die zentralen Inhalte wirklich erkennbar sind. Sprich die Person direkt an. JSON-Ausgabe mit {\"score\": number, \"feedback\": string}.")
 
         def callPollinationsFree(): scala.concurrent.Future[String] =
           val freeHeaders = scala.scalajs.js.Dynamic.literal(
@@ -786,24 +792,27 @@ object Main:
         def toLlmResult(responseText: String): LlmCheckResult =
           val (llmIsCorrect, llmScore, llmFeedback) = parseLlmDecisionFromText(responseText)
           val effectiveScore = llmScore.orElse(llmIsCorrect.map(v => if v then 100 else 0))
+          val fallbackFeedback = buildStudentAnswerFeedback(inputText, keywords, minWordCount, lang)
 
           effectiveScore match
             case Some(score) =>
-              val finalScore = if preparedSolution.isEmpty then math.min(100, score + 10) else score
+              val finalScore = score
               val finalResult = finalScore >= 50
-              val fallbackFeedback = buildStudentAnswerFeedback(inputText, keywords, minWordCount, lang)
-              LlmCheckResult(finalResult, Some(finalScore), llmFeedback.orElse(Some(fallbackFeedback)), usedFallback = false)
+              LlmCheckResult(finalResult, Some(finalScore), llmFeedback.orElse(Some(fallbackFeedback)), usedFallback = false, llmAvailable = true)
             case None =>
-              if responseText.contains("IMPORTANT NOTICE") && responseText.toLowerCase.contains("pollinations") then
+              if cfg.model.trim.equalsIgnoreCase("qwen-safety") && llmFeedback.nonEmpty then
+                LlmCheckResult(fallbackOk, None, llmFeedback.orElse(Some(fallbackFeedback)), usedFallback = true, llmAvailable = true)
+              else
+                if responseText.contains("IMPORTANT NOTICE") && responseText.toLowerCase.contains("pollinations") then
+                  logLlmIssue(
+                    "provider-notice",
+                    "Provider returned a notice page/message instead of evaluation JSON. Request was treated as fallback."
+                  )
                 logLlmIssue(
-                  "provider-notice",
-                  "Provider returned a notice page/message instead of evaluation JSON. Request was treated as fallback."
+                  "parse-failed",
+                  s"Could not extract isCorrect from LLM response. Endpoint=${cfg.endpoint}, provider=${cfg.provider}, model=${cfg.model}, response=${responseText.take(800)}"
                 )
-              logLlmIssue(
-                "parse-failed",
-                s"Could not extract isCorrect from LLM response. Endpoint=${cfg.endpoint}, provider=${cfg.provider}, model=${cfg.model}, response=${responseText.take(800)}"
-              )
-              LlmCheckResult(fallbackOk, None, Some(buildStudentAnswerFeedback(inputText, keywords, minWordCount, lang)), usedFallback = true)
+                LlmCheckResult(fallbackOk, None, Some(fallbackFeedback), usedFallback = true, llmAvailable = false)
 
         val llmResponseFuture: scala.concurrent.Future[String] =
           if cfg.provider == "pollinations-text" then
@@ -886,15 +895,17 @@ object Main:
                   )
                 )
               else if cfg.provider == "openrouter" || cfg.provider == "openai" then
-                scala.scalajs.js.Dynamic.literal(
+                val openAiBody = scala.scalajs.js.Dynamic.literal(
                   model = cfg.model,
                   temperature = 0.2,
-                  response_format = scala.scalajs.js.Dynamic.literal(`type` = "json_object"),
                   messages = js.Array(
                     scala.scalajs.js.Dynamic.literal(role = "system", content = prompt),
                     scala.scalajs.js.Dynamic.literal(role = "user", content = userPrompt)
                   )
                 )
+                if !cfg.model.trim.equalsIgnoreCase("qwen-safety") then
+                  openAiBody.updateDynamic("response_format")(scala.scalajs.js.Dynamic.literal(`type` = "json_object"))
+                openAiBody
               else
                 scala.scalajs.js.Dynamic.literal(
                   question = taskText,
@@ -967,7 +978,7 @@ object Main:
                 "request-failed",
                 s"Endpoint=${cfg.endpoint}, provider=${cfg.provider}, model=${cfg.model}, error=${Option(ex.getMessage).getOrElse(ex.toString)}"
               )
-              LlmCheckResult(fallbackOk, None, Some(buildStudentAnswerFeedback(inputText, keywords, minWordCount, lang)), usedFallback = true)
+              LlmCheckResult(fallbackOk, None, Some(buildStudentAnswerFeedback(inputText, keywords, minWordCount, lang)), usedFallback = true, llmAvailable = false)
           }
           .foreach(onResult)
 
@@ -3047,7 +3058,8 @@ object Main:
                   "Es können insgesamt 2^8 = 256 verschiedene Zeichen dargestellt werden."
                 ),
                 numericOnly = true,
-                wrongHint = Some("Jeder Pixel kann 2 Farben darstellen. Überlege dir als erstes eine Lösung für eine kleine Pixelanzahl.")
+                wrongHint = Some("Jeder Pixel kann 2 Farben darstellen. Überlege dir als erstes eine Lösung für eine kleine Pixelanzahl."),
+                showLlmResponse = false
               ),
               renderQRCodeExercise(
                 8,
@@ -5790,7 +5802,7 @@ object Main:
     )
   end imageWithFallback
 
-  def renderExercise(taskText: String, keywords: Set[String] = Set.empty, index: Int = -1, image: Option[Element] = None, chapter: String = "", submitCallback: Option[() => Unit] = None, infoCallback: Option[() => Unit] = None, minWordCount: Option[Int] = None, solutionText: Option[String] = None, solutionWords: Set[String] = Set.empty, numericOnly: Boolean = false, wrongHint: Option[String] = None, multipleChoice: Option[List[(String, Boolean)]] = None, showMCFeedback: Boolean = true, mcLabel: String = "Welcher QR-Code kann gescannt werden?", isExcursus: Boolean = false, inlineNumericInputs: Option[List[String]] = None, inlineNumericExpected: Option[List[String]] = None, inlineAllWrongHint: Option[String] = None, showEditor: Boolean = true): Element =
+  def renderExercise(taskText: String, keywords: Set[String] = Set.empty, index: Int = -1, image: Option[Element] = None, chapter: String = "", submitCallback: Option[() => Unit] = None, infoCallback: Option[() => Unit] = None, minWordCount: Option[Int] = None, solutionText: Option[String] = None, solutionWords: Set[String] = Set.empty, numericOnly: Boolean = false, wrongHint: Option[String] = None, multipleChoice: Option[List[(String, Boolean)]] = None, showMCFeedback: Boolean = true, mcLabel: String = "Welcher QR-Code kann gescannt werden?", isExcursus: Boolean = false, inlineNumericInputs: Option[List[String]] = None, inlineNumericExpected: Option[List[String]] = None, inlineAllWrongHint: Option[String] = None, showEditor: Boolean = true, showLlmResponse: Boolean = true): Element =
     // Load stored answer from localStorage
     val storedData = if chapter.nonEmpty then loadFromLocalStorage(chapter) else None
     val storedAnswers = storedData.map(_.exercises).getOrElse(List())
@@ -6048,7 +6060,13 @@ object Main:
                   llmPendingVar.set(true)
                   val text = textVar.now()
                   evaluateTextWithLlmOrFallback(taskText, text, solutionText, keywords, minWordCount, ok, languageVar.now()) { llmResult =>
-                    applyCheckResult(llmResult.isCorrect, llmResult.score, llmResult.feedback, llmResult.usedFallback, usedLlmDecision = !llmResult.usedFallback)
+                    applyCheckResult(
+                      llmResult.isCorrect,
+                      llmResult.score,
+                      llmResult.feedback,
+                      usedFallback = llmResult.usedFallback && !llmResult.llmAvailable,
+                      usedLlmDecision = !llmResult.usedFallback
+                    )
                   }
                 else
                   applyCheckResult(ok, None, Some(buildStudentAnswerFeedback(textVar.now(), keywords, minWordCount, languageVar.now())), usedFallback = false, usedLlmDecision = false)
@@ -6094,6 +6112,21 @@ object Main:
               )
             case _ => emptyNode
           },
+          child <-- Signal.combine(showSolutionVar.signal, answerFeedbackVar.signal, answerScoreVar.signal, languageVar.signal).map {
+            case (false, Some(feedbackText), None, lang) if feedbackText.trim.nonEmpty =>
+              if showLlmResponse then
+                div(
+                  styleAttr := "margin-top: 0.75rem; padding: 0.65rem; border-left: 4px solid #1976d2; background: rgba(25, 118, 210, 0.08);",
+                  p(
+                    styleAttr := "margin: 0 0 0.35rem 0; font-weight: 700; color: #0d47a1;",
+                    if lang == "en" then "LLM response" else "LLM-Antwort"
+                  ),
+                  p(styleAttr := "margin: 0;", feedbackText)
+                )
+              else
+                emptyNode
+            case _ => emptyNode
+          },
           child <-- Signal.combine(showSolutionVar.signal, llmDecisionVar.signal).map { case (show, llmDecision) =>
             if show then
               val lang = languageVar.now()
@@ -6101,14 +6134,14 @@ object Main:
               div(
                 cls := "loesung-container",
                 styleAttr := "flex-basis: 100%;",
-                div(cls := "loesung-header", if llmDecision then (if lang == "en" then "Evaluation" else "Bewertung") else (if lang == "en" then "Solution" else "Lösung")),
+                div(cls := "loesung-header", if llmDecision then (if lang == "en" then "AI Feedback" else "KI Feedback") else (if lang == "en" then "Solution" else "Lösung")),
                 if llmDecision then emptyNode else solutionText.map(text => LösungZeigen(text, wordsForLang, lang)).getOrElse(emptyNode),
                 child <-- answerScoreVar.signal.map {
                   case Some(score) =>
                     div(
                       styleAttr := "margin-top: 0.6rem; font-weight: 700; color: #0d47a1;",
-                      if lang == "en" then s"LLM score: $score/100"
-                      else s"LLM-Punktzahl: $score/100"
+                      if lang == "en" then s"Assessment: $score/100"
+                      else s"Bewertung: $score/100"
                     )
                   case None => emptyNode
                 },
@@ -6711,7 +6744,7 @@ object Main:
         case Some(score) =>
           p(
             styleAttr := "margin-top: 0.35rem; font-weight: 700; color: #0d47a1;",
-            child.text <-- languageVar.signal.map(lang => if lang == "en" then s"LLM score: $score/100" else s"LLM-Punktzahl: $score/100")
+            child.text <-- languageVar.signal.map(lang => if lang == "en" then s"Assessment: $score/100" else s"Bewertung: $score/100")
           )
         case None => emptyNode
       }
